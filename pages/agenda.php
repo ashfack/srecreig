@@ -11,6 +11,8 @@ include('db_connect.php');
 	    <link href="../css/agenda.css" rel="stylesheet" type="text/css" />
 	</head>
     <body>
+    	 <h1 class="text-center"> Agenda </h1> 
+
         <?php
 			
 			$list_fer=array(7); //Liste pour les jours ferié; EX: $list_fer=array(7,1)==>tous les dimanches et les Lundi seront des jours fériers
@@ -61,14 +63,6 @@ include('db_connect.php');
 			//echo $l_day;
 	?>
         <center>
-            <div id="lien">
-	            <?php
-					if(isset($_GET['admin']))
-						echo '<a href="agenda.php">Passer en mode User</a>';
-					else
-						echo'<a href="?admin">Passer en mode Admin</a>';
-				?>
-            </div>
             <form name="dt" method="get" action="">
                 <?php
 					if(isset($_GET['admin']))
@@ -172,6 +166,15 @@ include('db_connect.php');
 				elseif(isset($_GET['add']))
 					echo "<div id='notif'>Evénement ajouté</div>";
 			?>
+			            <div id="lien">
+	            <?php
+					if(isset($_GET['admin']))
+						echo '<a href="agenda.php">Passer en mode User</a>';
+					else
+						echo'<a href="?admin">Passer en mode Admin</a>';
+				?>
+            </div>
+
         </center>
     </body>
 </html>

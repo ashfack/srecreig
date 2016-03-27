@@ -6,6 +6,13 @@ body{
 	line-height:18px;
 	}
 
+/* ajoutEntreprise */ 
+.input-group {
+    margin-bottom: 7px;
+}
+
+#sizing-addon1{
+ // width: 45px;
 /**DATATABLE**/
 .paging_two_button .ui-button {
 	float: left;
@@ -126,12 +133,5 @@ table.display tr.odd.row_selected td {background-color: #9FAFD1;}
 .selected {
     background-color: brown;
     color: #FFF;
-
-
-/* ajoutEntreprise */ 
-.input-group {
-    margin-bottom: 7px;
 }
 
-#sizing-addon1{
- // width: 45px;
