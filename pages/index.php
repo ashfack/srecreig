@@ -25,7 +25,7 @@ session_start();
                    { 
                         if(msg==1) //Succes
                         {
-                            window.location.replace("recherche_propagation.php");
+                            window.location.replace("rechercher.php");
                         }
                         else // si la connexion en php n'a pas fonctionnée
                         {

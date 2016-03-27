@@ -52,9 +52,9 @@
                         <i class="fa fa-search fa-fw"></i>  <i class="fa fa-caret-down"></i>
                     </a>
                     <ul class="dropdown-menu dropdown-user">
-                        <li><a href="recherche_propagation.php"><i class="fa fa-university fa-fw"></i> Entreprise</a>
+                        <li><a href="rechercher.php"><i class="fa fa-university fa-fw"></i> Entreprise</a>
                         </li>
-                        <li><a href="recherche_propagation.php"><i class="fa fa-globe fa-fw"></i> Globale</a>
+                        <li><a href="rechercher.php"><i class="fa fa-globe fa-fw"></i> Globale</a>
                         </li>
                      
                     </ul>
