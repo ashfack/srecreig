@@ -98,7 +98,7 @@ table.display tfoot th {
 table.display tr.heading2 td {border-bottom: 1px solid #aaa;}
 table.display td {padding: 3px 10px;}
 /**DataTables ligne couleur alternée**/
-tr.odd {background-image: linear-gradient(orange, whitesmoke);}
+tr.odd {background-image: linear-gradient( #adc2eb, whitesmoke);}
 tr.even {background-image: linear-gradient(white, grey);}
 table.display tr.even.row_selected td {background-color: #B0BED9;}
 table.display tr.odd.row_selected td {background-color: #9FAFD1;}
