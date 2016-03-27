@@ -16,7 +16,7 @@
 </head>
 <body>
 
-	<h1> Information concernant l'entreprise:  <span> <?php echo $_GET['nomEntreprise'] ?> </span> </h1>
+	<h1> Information concernant l'entreprise:  <span> <?php if(isset($_GET['nomEntreprise'])) { echo $_GET['nomEntreprise'] } ?> </span> </h1>
 	
 	<div id="tabs">
 		<ul> 
@@ -24,7 +24,7 @@
 	  		require "db_connect.php";
 	  		require "utilities.php";
 	  		$table_onglet_array=array("Entreprise","Contacts","Alternance","Taxe d'apprentissage","Atelier RH","Conference","Forum SG");
-			$table_array= array("entreprise","coordonneespersonne","alternance","taxeapprentissage","atelierrh","conference","forumsg");
+			$table_array= array("Entreprise","CoordonneesPersonne","Alternance","Taxeapprentissage","AtelierRH","Conference","ForumSG");
 			for($i=0;$i<count($table_array);$i++)
 			{
 				echo "<li> <a href=\"#menu_".$table_array[$i]."\">".$table_onglet_array[$i]."</a> </li>";
@@ -62,13 +62,13 @@
 					echo '</tr></thead>';
 					echo '<tbody>';
 					if($table_array[$i]=="entreprise")
-						$sql=" SELECT ".implode($colonne_array,",")." FROM entreprise WHERE nomEntreprise='".$_GET['nomEntreprise']."'";
+						$sql=" SELECT ".implode($colonne_array,",")." FROM Entreprise WHERE nomEntreprise='".$_GET['nomEntreprise']."'";
 					elseif($table_array[$i]=="coordonneespersonne")
 					{
-						$sql=" SELECT ".implode($colonne_array,",")." FROM coordonneespersonne WHERE idCoordonneesPersonne in ".
-						"(select CoordonneesPersonne_primaire from entreprise where nomEntreprise='".$_GET['nomEntreprise']."') ".
-						"or idCoordonneesPersonne in (select CoordonneesPersonne_secondaire from entreprise where nomEntreprise='".$_GET['nomEntreprise']."') ".
-						"or idCoordonneesPersonne in (select CoordonneesPersonne_TA from entreprise where nomEntreprise='".$_GET['nomEntreprise']."')";
+						$sql=" SELECT ".implode($colonne_array,",")." FROM $table_array[$i] WHERE idCoordonneesPersonne in ".
+						"(select CoordonneesPersonne_primaire from Entreprise where nomEntreprise='".$_GET['nomEntreprise']."') ".
+						"or idCoordonneesPersonne in (select CoordonneesPersonne_secondaire from Entreprise where nomEntreprise='".$_GET['nomEntreprise']."') ".
+						"or idCoordonneesPersonne in (select CoordonneesPersonne_TA from Entreprise where nomEntreprise='".$_GET['nomEntreprise']."')";
 
 						//echo $sql;
 					}
