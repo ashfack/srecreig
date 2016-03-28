@@ -24,7 +24,7 @@
 		  		require "db_connect.php";
 		  		require "utilities.php";
 		  		$table_onglet_array=array("Entreprise","Contacts","Alternance","Taxe d'apprentissage","Atelier RH","Conference","Forum SG");
-				$table_array= array("Entreprise","CoordonneesPersonne","Alternance","Taxeapprentissage","AtelierRH","Conference","ForumSG");
+				$table_array= array("Entreprise","CoordonneesPersonne","Alternance","TaxeApprentissage","AtelierRH","Conference","ForumSG");
 				for($i=0;$i<count($table_array);$i++)
 				{
 					echo "<li> <a href=\"#menu_".$table_array[$i]."\">".$table_onglet_array[$i]."</a> </li>";
@@ -61,9 +61,9 @@
 
 						echo '</tr></thead>';
 						echo '<tbody>';
-						if($table_array[$i]=="entreprise")
+						if($table_array[$i]=="Entreprise")
 							$sql=" SELECT ".implode($colonne_array,",")." FROM Entreprise WHERE nomEntreprise='".$_GET['nomEntreprise']."'";
-						elseif($table_array[$i]=="coordonneespersonne")
+						elseif($table_array[$i]=="CoordonneesPersonne")
 						{
 							$sql=" SELECT ".implode($colonne_array,",")." FROM $table_array[$i] WHERE idCoordonneesPersonne in ".
 							"(select CoordonneesPersonne_primaire from Entreprise where nomEntreprise='".$_GET['nomEntreprise']."') ".
