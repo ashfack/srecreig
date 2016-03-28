@@ -11,6 +11,9 @@ session_start();
              Voici les <a href="http://www.enable-javascript.com/fr/" target="_blank">
              instructions pour activer JavaScript dans votre navigateur Web</a>.
         </noscript>
+        <?php
+            require('header_link.html');
+        ?>
         <script src="../js/jquery-2.2.2.min.js"></script>
         <script src="../js/script_connexion.js"></script>
     </head>
@@ -22,9 +25,27 @@ session_start();
         <h1 style="text-align: center"> Bienvenue, connectez vous !</h1>
         <div id="div1">
         	<form name="connexion" id ="Connect">
-                <label for="pseudo">Identifiant :</label><input type="text" id="pseudo" required/><br/>
-                <label for="mdp">Mot de passe :</label><input type="password" id="mdp" required/><br/>
-                <input type="submit" id ="submit" value="Se connecter"> 
+                <div class="col-md-3">
+                    <div class="input-group">
+                        <span class="input-group-addon">Identifiant</span>
+                        <!-- <label for="pseudo">Identifiant :</label> -->
+                        <input type="text" class="form-control" placeholder="Identifiant" aria-describedby="sizing-addon1" id="pseudo" required/><br/> 
+                        <!-- <label for="mdp">Mot de passe :</label> -->
+                        <!-- <input type="password" class="form-control" placeholder="Mot de passe" aria-describedby="sizing-addon1" id="mdp" required/><br/>
+                        <input type="submit" id ="submit" value="Se connecter">                               -->
+                    </div>
+                    <div class="input-group">
+                        <span class="input-group-addon">Mot de passe</span>
+                        <!-- <label for="pseudo">Identifiant :</label> -->
+                        <!-- <input type="text" class="form-control" placeholder="Identifiant" aria-describedby="sizing-addon1" id="pseudo" required/><br/>  -->
+                        <!-- <label for="mdp">Mot de passe :</label> -->
+                        <input type="password" class="form-control" placeholder="Mot de passe" aria-describedby="sizing-addon1" id="mdp" required/><br/>
+                                                      
+                    </div>
+                    <input type="submit" id ="submit" value="Se connecter">
+                </div>
+
+                
         	</form>	
         </div>
     </body>
