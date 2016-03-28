@@ -4,9 +4,13 @@
       <title>Ajout Entreprise</title>
       <meta charset="UTF-8">
       <link rel="stylesheet" href="../css/style.css">
+      <?php
+         require('header_link.html');
+      ?>
+      
    </head>
    <body>
-      <?php include('header.php'); ?>
+      <?php require('header.php'); ?>
       <div class="container">
          <div class="row" id="content">
             <h1 class="text-center"> Fiche d'ajout d'une entreprise </h1>

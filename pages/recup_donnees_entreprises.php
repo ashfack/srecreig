@@ -16,8 +16,7 @@
             array_push($tab_donnees, $entreprise);  
         }
     }
-   
-   
+  
     echo json_encode($tab_donnees);
 ?>
 

@@ -13,6 +13,7 @@ body{
 
 #sizing-addon1{
  // width: 45px;
+}
 /**DATATABLE**/
 .paging_two_button .ui-button {
 	float: left;
@@ -111,9 +112,7 @@ table.display tfoot th {
 }
 table.display tr.heading2 td {border-bottom: 1px solid #aaa;}
 table.display td {padding: 3px 10px;}
-/**DataTables ligne couleur alternée**/
-/*tr.odd {background-color: #EEE;}*/
-/*tr.even {background-color: white;}*/
+
 table.display tr.even.row_selected td {background-color: #B0BED9;}
 table.display tr.odd.row_selected td {background-color: #9FAFD1;}
 /**ligne tableau blanche**/

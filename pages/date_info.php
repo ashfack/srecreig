@@ -1,4 +1,7 @@
-<?php include('db_connect.php'); $d=$_GET['dt']; ?>
+<?php 
+	require('db_connect.php'); 
+	$d=$_GET['dt']; 
+?>
 <!DOCTYPE html>
 <html>
 	<head>

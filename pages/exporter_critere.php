@@ -1,12 +1,15 @@
 <!DOCTYPE html>
 <html>
    <head>
-      <title>Exporter avec critères </title>
-      <meta charset="UTF-8">
-      <link rel="stylesheet" href="../css/style.css">
+		<title>Exporter avec critères </title>
+		<meta charset="UTF-8">
+		<link rel="stylesheet" href="../css/style.css">
+		<?php
+			require('header_link.html');
+		?>
    </head>
    <body>
-      <?php include('header.php');  ?>
+      <?php require('header.php');  ?>
       <div class="container">
 	      <div class="row" id="content">
 		      <h1 class="text-center"> Exporter avec séléction de critères </h1>

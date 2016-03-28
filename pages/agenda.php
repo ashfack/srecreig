@@ -1,19 +1,20 @@
-<?php 
-include('header.php'); 
-include('db_connect.php'); 
-?>
 <!DOCTYPE html PUBLIC >
 <html>
-
 	<head>
 	    <title>Agenda en PHP</title>
 	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	    <link href="../css/agenda.css" rel="stylesheet" type="text/css" />
+
+	    <?php
+			require('header_link.html');
+		?>
 	</head>
     <body>
     	 <h1 class="text-center"> Agenda </h1> 
 
         <?php
+			require('header.php'); 
+			require('db_connect.php'); 			
 			
 			$list_fer=array(7); //Liste pour les jours ferié; EX: $list_fer=array(7,1)==>tous les dimanches et les Lundi seront des jours fériers
 			$sql="select dt from Agenda";

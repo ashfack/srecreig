@@ -11,37 +11,13 @@ session_start();
              Voici les <a href="http://www.enable-javascript.com/fr/" target="_blank">
              instructions pour activer JavaScript dans votre navigateur Web</a>.
         </noscript>
+        <script src="../js/jquery-2.2.2.min.js"></script>
+        <script src="../js/script_connexion.js"></script>
     </head>
-    <script src="//code.jquery.com/jquery-1.10.2.js"></script>
-    <script>
-        $(document).ready( function () { 
-            $("#Connect").submit( function() {  
-                $.ajax(
-                { 
-                   type: "POST", 
-                   url : "login.php", 
-                   data: "pseudo="+$("#pseudo").val()+"&mdp="+$("#mdp").val(), 
-                   success: function(msg)
-                   { 
-                        if(msg==1) //Succes
-                        {
-                            window.location.replace("rechercher.php");
-                        }
-                        else // si la connexion en php n'a pas fonctionnée
-                        {
-                            if (msg!=0)
-                                alert('Vous vous êtes trompés'); 
-                        }
-                   }
-                });
-                return false;
-            });
-        });
-    </script>
 
     <body id="portail">
         <div id="div0">
-            <img src="http://www.sup-galilee.univ-paris13.fr/templates/jsn_epic_free/images/logoispg.jpg" alt="APPLI CREIG" />
+            <img src="../img/logoispg.jpg" alt="APPLI CREIG" />
         </div>
         <h1 style="text-align: center"> Bienvenue, connectez vous !</h1>
         <div id="div1">
