@@ -2,12 +2,13 @@
     
     require'db_connect.php';
     
-    if(isset($_POST['nomEntreprise']))
+    if(isset($_POST['nomEntreprise']) && $_POST['nomEntreprise']!="")
     {
         $nomEntreprise=$_POST['nomEntreprise'];
-        $nb=$conn->exec("DELETE FROM Entreprise where nomEntreprise ='$nomEntreprise' ");
-        
-        if($nb==1)
+        $rep=$conn->prepare("DELETE FROM Entreprise where nomEntreprise = :nomEntreprise ");
+        $rep->bindValue(':nomEntreprise',"$nomEntreprise",PDO::PARAM_STR);
+      
+        if($rep->execute())
         {
             echo "ok";
         }

@@ -14,15 +14,23 @@
 		<script type="text/javascript" src="../js/script_rechercher-propagation.js"></script>
 	</head>
 	<body>
-		<?php require "header.php"; ?>
-		<h1> Informations concernant l'entreprise:  <span> <?php if(isset($_GET['nomEntreprise'])) { echo $_GET['nomEntreprise'] ;} ?> </span> </h1>
+		<?php 
+
+			require "header.php";
+			require "db_connect.php";
+		  	require "utilities.php";
+			if(isset($_GET['nomEntreprise']) && $_GET['nomEntreprise']!="")
+			{
+					$nomEntreprise=$_GET['nomEntreprise'];
+		?>
+
+		<h1> Informations concernant l'entreprise:  <span> <?php echo $nomEntreprise; ?> </span> </h1>
 		
 		<div id="tabs">
 			<ul> 
 		  	<?php 
 		  		
-		  		require "db_connect.php";
-		  		require "utilities.php";
+		  		
 		  		$table_onglet_array=array("Entreprise","Contacts","Alternance","Taxe d'apprentissage","Atelier RH","Conference","Forum SG");
 				$table_array= array("Entreprise","CoordonneesPersonne","Alternance","TaxeApprentissage","AtelierRH","Conference","ForumSG");
 				for($i=0;$i<count($table_array);$i++)
@@ -61,23 +69,27 @@
 
 						echo '</tr></thead>';
 						echo '<tbody>';
+
+						$sql="Select * from Entreprise";
 						if($table_array[$i]=="Entreprise")
-							$sql=" SELECT ".implode($colonne_array,",")." FROM Entreprise WHERE nomEntreprise='".$_GET['nomEntreprise']."'";
+							$sql=" SELECT ".implode($colonne_array,",")." FROM Entreprise WHERE nomEntreprise = :nomEntreprise";
 						elseif($table_array[$i]=="CoordonneesPersonne")
 						{
 							$sql=" SELECT ".implode($colonne_array,",")." FROM $table_array[$i] WHERE idCoordonneesPersonne in ".
-							"(select CoordonneesPersonne_primaire from Entreprise where nomEntreprise='".$_GET['nomEntreprise']."') ".
-							"or idCoordonneesPersonne in (select CoordonneesPersonne_secondaire from Entreprise where nomEntreprise='".$_GET['nomEntreprise']."') ".
-							"or idCoordonneesPersonne in (select CoordonneesPersonne_TA from Entreprise where nomEntreprise='".$_GET['nomEntreprise']."')";
+							"(select CoordonneesPersonne_primaire from Entreprise where nomEntreprise = :nomEntreprise) ".
+							"or idCoordonneesPersonne in (select CoordonneesPersonne_secondaire from Entreprise where nomEntreprise = :nomEntreprise) ".
+							"or idCoordonneesPersonne in (select CoordonneesPersonne_TA from Entreprise where nomEntreprise = :nomEntreprise)";
 
 							//echo $sql;
 						}
 						else
-							$sql=" SELECT ".implode($colonne_array,",")." FROM $table_array[$i] WHERE Entreprise_nomEntreprise='".$_GET['nomEntreprise']."'";
+							$sql=" SELECT ".implode($colonne_array,",")." FROM $table_array[$i] WHERE Entreprise_nomEntreprise = :nomEntreprise";
 						
 						//echo $sql;
-						$rep=$conn->query($sql);
-
+						$rep=$conn->prepare($sql);
+						$rep->bindValue(':nomEntreprise',$nomEntreprise,PDO::PARAM_STR);
+						$rep->execute();
+					
 						while($data=$rep->fetch())
 						{
 								echo "<tr>";
@@ -100,6 +112,12 @@
 					}
 					
 				}
+		  ?>
+
+		  <?php
+		  	}
+		  	else
+		  		echo "Erreur le nom de l'entreprise n'est pas specifié ";
 		  ?>
 		</div>
 	</body>

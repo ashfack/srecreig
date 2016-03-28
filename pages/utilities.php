@@ -3,7 +3,7 @@ function transformeChaine($tab_chaine)
 {
 	$sigle_transforme=array("numeroSIRET"=>"Numero SIRET","codeNAF"=>"Code NAF","libelleNAF"=>"Libelle NAF","dateAtelierRH"=>"Date atelier RH",
 					"rapprochementAC"=>"Rapprochement AC","dateRVPreparation"=>"Date RV preparation","dateRVSimulation"=>"Date RV simulation",
-					"dateEnvoieFLAuCFA"=>"Date Envoi FL Au CFA","OCTA"=>"OCTA","idTA"=>"id TA","idAtelierRH"=>"id atelier RH");
+					"dateEnvoiFLAuCFA"=>"Date envoi FL au CFA","OCTA"=>"OCTA","idTA"=>"id TA","idAtelierRH"=>"id atelier RH");
 	$sigle=array_keys($sigle_transforme);
 
 	$tab_chaine_transforme=array(); 
