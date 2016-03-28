@@ -46,7 +46,7 @@
 							//ATTENTION SI PLUSIEURS COLONNE EN CLE PRIMAIRE !!!
 							if(isset($row['Key']) && $row['Key'] == 'PRI')
 								$pk=$row['Field'];
-							if(strtoupper($lettre)!=$lettre || $row['Field']=="OCTA")
+							if(strtoupper($lettre)!=$lettre || $row['Field']=="OCTA" || $row['Field']=="CoordonneesPersonne_alternant")
 								array_push($colonne_array,$row['Field']);
 						}
 						$colonne_array_affichage=transformeChaine($colonne_array);

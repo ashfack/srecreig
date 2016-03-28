@@ -14,6 +14,11 @@ function transformeChaine($tab_chaine)
 		if(in_array($chaine,$sigle))
 			array_push($tab_chaine_transforme,$sigle_transforme[$chaine]);
 
+		elseif($chaine=="CoordonneesPersonne_alternant")
+		{
+			array_push($tab_chaine_transforme,"id alternant");
+		}
+
 		elseif(strtoupper($lettre)!=$lettre)
 		{
 			$keywords = preg_split('/(?=[A-Z]+)/', $chaine);

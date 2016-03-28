@@ -32,7 +32,7 @@
                 <div id="dialog_info_confirmation" title="Confirmation !">
                     <p>
                       Vous avez choisit l'entreprise : <span id="emplacement_info_nomEntreprise"> </span> <br/>
-                      Vous allez être redirigé vers une page contenant enormement d'information concernant cette entreprise. Etes vous sûr de vouloir continuer ?
+                      Vous allez être redirigé vers une page contenant énormément d'information concernant cette entreprise. Etes vous sûr de vouloir continuer ?
                     </p>
                 </div>
 

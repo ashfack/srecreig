@@ -39,8 +39,8 @@ $(document).ready(function()
 
 		$("#dialog_info_confirmation").dialog(
 		{
-			height: 220,
-			width:500,
+			height: 250,
+			width:600,
 			autoOpen:false,
 			dialogClass: "alert",
 			position: { my: "center bottom", at: "center top", of: window, within: $("#div_datatable")},
