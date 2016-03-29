@@ -24,7 +24,7 @@
 					$nomEntreprise=$_GET['nomEntreprise'];
 		?>
 
-		<h1> Informations concernant l'entreprise:  <span> <?php echo $nomEntreprise; ?> </span> </h1>
+		<h1 class="text-center"> Informations concernant l'entreprise:  <span> <?php echo $nomEntreprise; ?> </span> </h1>
 		
 		<div id="tabs">
 			<ul> 
