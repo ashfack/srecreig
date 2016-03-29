@@ -10,12 +10,13 @@
 		?>
 	</head>
     <body>
-    	 <h1 class="text-center"> Agenda </h1> 
 
         <?php
 			require('header.php'); 
 			require('db_connect.php'); 			
-			
+	?> 			
+	<h1 class="text-center"> Agenda </h1> 
+        <?php
 			$list_fer=array(7); //Liste pour les jours ferié; EX: $list_fer=array(7,1)==>tous les dimanches et les Lundi seront des jours fériers
 			$sql="select dt from Agenda";
 			$req= $conn->query($sql);
