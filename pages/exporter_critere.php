@@ -12,11 +12,10 @@
       <?php require('header.php');  ?>
       <div class="container">
 	      <div class="row" id="content">
-		      <h1 class="text-center"> Exporter avec sÃ©lÃ©ction de critÃ¨res </h1>
-		      </br>
+		      <h1 class="text-center"> Exporter avec séléction de critères </h1>
 		      <div class="panel panel-primary">
 			      <div class="panel-heading">
-			         <h3 class="panel-title text-center">Choix des critÃ¨res </h3>
+			         <h3 class="panel-title text-center">Choix des critères </h3>
 			      </div>
 
 			         <div class="panel-body">

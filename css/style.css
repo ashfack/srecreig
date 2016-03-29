@@ -1,3 +1,8 @@
+/* ajoutEntreprise */ 
+.input-group, input-group {
+    margin-bottom: 7px !important;
+}
+/*
 body{
   line-height:1;
   font-family:Verdana, Arial, Helvetica, sans-serif;
@@ -11,15 +16,18 @@ body{
 	font-size:68.5%;
 	line-height:18px;
 	}
+*/
 
-/* ajoutEntreprise */ 
-.input-group {
-    margin-bottom: 7px;
-}
 
 #sizing-addon1{
- width: 45px;
+	//width: 45px !important;
 }
+
+.h1, h1 {
+	margin-bottom: 25px !important;
+
+}
+
 /**DATATABLE**/
 .paging_two_button .ui-button {
   float: left;

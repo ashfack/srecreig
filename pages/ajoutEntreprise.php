@@ -17,7 +17,6 @@
       <div class="container">
          <div class="row" id="content">
             <h1 class="text-center"> Fiche d'ajout d'une entreprise </h1>
-            </br>
             <form action="#" method="post" class="form-vertical" >
                <div class="panel panel-primary">
                   <div class="panel-heading">
