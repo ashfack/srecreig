@@ -13,7 +13,7 @@ $(document).ready( function () {
                 }
                 else // si la connexion en php n'a pas fonctionnée
                 {
-                    if (msg!=0)
+                    if (msg==0)
                         alert('Vous vous êtes trompés'); 
                 }
            }

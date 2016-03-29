@@ -12,6 +12,7 @@
 	}
 	catch(PDOException $e)
 	{
-	    echo "Connection failed: " . $e->getMessage();
+	    // echo "Connection failed: " . $e->getMessage();
+	    echo "Impossible de joindre le serveur de la base de données";
 	}
 ?>
