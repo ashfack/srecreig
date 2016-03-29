@@ -14,7 +14,7 @@
 	{
 		$membre = $req->fetch(); 
 		$_SESSION['id']=$membre['id'];
-		$_SESSION['profile']=$membre['profile'];
+		$_SESSION['profil']=$membre['profil'];
 		echo "1"; // on 'retourne' la valeur 1 au javascript si la connexion est bonne
 	}
 	else 
