@@ -28,19 +28,11 @@ session_start();
                 <div class="col-md-3">
                     <div class="input-group">
                         <span class="input-group-addon">Identifiant</span>
-                        <!-- <label for="pseudo">Identifiant :</label> -->
-                        <input type="text" class="form-control" placeholder="Identifiant" aria-describedby="sizing-addon1" id="pseudo" required/><br/> 
-                        <!-- <label for="mdp">Mot de passe :</label> -->
-                        <!-- <input type="password" class="form-control" placeholder="Mot de passe" aria-describedby="sizing-addon1" id="mdp" required/><br/>
-                        <input type="submit" id ="submit" value="Se connecter">                               -->
+                        <input type="text" class="form-control" placeholder="Identifiant" aria-describedby="sizing-addon1" id="pseudo" required/>
                     </div>
                     <div class="input-group">
                         <span class="input-group-addon">Mot de passe</span>
-                        <!-- <label for="pseudo">Identifiant :</label> -->
-                        <!-- <input type="text" class="form-control" placeholder="Identifiant" aria-describedby="sizing-addon1" id="pseudo" required/><br/>  -->
-                        <!-- <label for="mdp">Mot de passe :</label> -->
-                        <input type="password" class="form-control" placeholder="Mot de passe" aria-describedby="sizing-addon1" id="mdp" required/><br/>
-                                                      
+                        <input type="password" class="form-control" placeholder="Mot de passe" aria-describedby="sizing-addon1" id="mdp" required/>
                     </div>
                     <input type="submit" class="btn btn-success btn-responsive" id ="submit" value="Se connecter">
                 </div>
