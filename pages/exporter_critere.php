@@ -4,9 +4,10 @@
 		<title>Exporter avec critÃ¨res </title>
 		<meta charset="UTF-8">
 		<link rel="stylesheet" href="../css/style.css">
-		<?php
-			require('header_link.html');
-		?>
+      <?php
+         require('header_link.html');
+         require('header_script.html');
+      ?>
    </head>
    <body>
       <?php require('header.php');  ?>

@@ -5,9 +5,10 @@
 	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 	    <link href="../css/agenda.css" rel="stylesheet" type="text/css" />
 
-	    <?php
-			require('header_link.html');
-		?>
+      <?php
+         require('header_link.html');
+         require('header_script.html');
+      ?>
 	</head>
     <body>
 

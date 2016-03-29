@@ -39,7 +39,7 @@
                         
             <li class="dropdown">
                 <a class="dropdown-toggle" href="exporter_critere.php">
-                    <i class="fa fa-save fa-fw"></i> 
+                    <i class="glyphicon glyphicon-download"></i> 
                 </a>
             </li>
 

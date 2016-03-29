@@ -6,8 +6,6 @@
       <link rel="stylesheet" href="../css/style.css">
       <?php
          require('header_link.html');
-      ?>
-      <?php
          require('header_script.html');
       ?>
       
@@ -54,18 +52,18 @@
                            <input type="text"  id="complAdr" name="complAdr" class="form-control" placeholder="Complément d'adresse" aria-describedby="sizing-addon1">
                         </div>
                         <div class="input-group">
-                           <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-map-marker"></i></span>
+                           <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-map-marker"></i></span>
                            <input type="text"  id="codeP" name="codeP" class="form-control" placeholder="Code postal" aria-describedby="sizing-addon1">
                         </div>
                         <div class="input-group">
-                           <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-map-marker"></i></span>
+                           <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-map-marker"></i></span>
                            <input type="text"  id="ville" name="ville" class="form-control" placeholder="Ville" aria-describedby="sizing-addon1">
                         </div>
                         <div class="input-group">
-                           <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-map"></i></span>
+                           <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-map-marker"></i></span>
                            <input type="text"  id="pays" name="pays" class="form-control" value="France" placeholder="Pays" aria-describedby="sizing-addon1">
                         </div>
-                        <select  class="require form-control " name="formations" id="formations" rows ="10" type="select" multiple size="4">
+                        <select class="form-control " name="formations" id="formations" type="select" multiple size="4">
                            <optgroup label = "Formations">
                            <option value="tout">Tout</option>
                            <option value="air">AIR</option>
@@ -124,8 +122,53 @@
                      <div class="col-md-4">
                         <div class="form-group">
                            <label for="comment">Commentaires:</label>
-                           <textarea class="form-control" rows="24" id="comment"></textarea>
+                           <textarea class="form-control" rows="10" id="comment"></textarea>
                         </div>
+
+
+                        <div class="form-group">
+	                        <select class="form-control " name="cycle" id="cycle" type="select" multiple size="3">
+	                           <optgroup label = "Cycle">
+	                           <option value="Licences">Licences</option>
+	                           <option value="air">Masters</option>
+	                           <option value="enera">Ingénieurs</option>
+	                           <option value="gp">Institut Galilée</option>
+	                        </select>
+                        </div>
+                        
+                        <div class="form-group">
+	                        <select class="form-control " name="mention" id="formations" type="select" multiple size="3">
+	                           <optgroup label = "Mention">
+	                           <option value="air">AIR</option>
+	                           <option value="enera">ENERA</option>
+	                           <option value="gp">Génie des procédés</option>
+	                           <option value="info">Informatique</option>
+	                           <option value="isb">Ingénierie de la Santé Biomatériaux</option>
+	                           <option value="3ir">Ingénierie et Innovation en Images et Réseaux</option>
+	                           <option value="macs">MACS</option>
+	                           <option value="maths">Mathématiques</option>
+	                           <option value="psm">Physique en Sciences des Matériaux</option>
+	                           <option value="tr">Télécomunications et Réseaux</option>
+	                        </select>
+                        </div>
+
+                        <div class="form-group">
+                           <select class="form-control " name="specialite" id="specialite" type="select" multiple size="3">
+                           <optgroup label = "Spécialité">
+                           <option value="tout">Tout</option>
+                           <option value="air">AIR</option>
+                           <option value="enera">ENERA</option>
+                           <option value="gp">Génie des procédés</option>
+                           <option value="info">Informatique</option>
+                           <option value="isb">Ingénierie de la Santé Biomatériaux</option>
+                           <option value="3ir">Ingénierie et Innovation en Images et Réseaux</option>
+                           <option value="macs">MACS</option>
+                           <option value="maths">Mathématiques</option>
+                           <option value="psm">Physique en Sciences des Matériaux</option>
+                           <option value="tr">Télécomunications et Réseaux</option>
+                	        </select>
+                        </div>
+
                      </div>
                      <div class="col-md-12">
                      </div>
@@ -135,12 +178,12 @@
                               <h3 class="panel-title">Contact Principal</h3>
                            </div>
                            <div class="panel-body">
-                              <label required="true" >Civilite :</label>
+                              <label>Civilite :</label>
                               <label for="civiliteCP" class="radio-inline"><input type="radio"  name="optradio">Monsieur</label>
-                              <label for="civiliteCP" class="radio-inline"><input type="radio"  name="optradio">Madame</label><span class="require"> * </span><br />
+                              <label for="civiliteCP" class="radio-inline"><input type="radio"  name="optradio">Madame</label><br />
                               <div class="input-group">
                                  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
-                                 <input type="text"  id ="nomCP" name="nomCP" class="form-control" required="true" placeholder="Nom" aria-describedby="sizing-addon1">
+                                 <input type="text"  id ="nomCP" name="nomCP" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">
                               </div>
                               <div class="input-group">
                                  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
@@ -148,7 +191,7 @@
                               </div>
                               <div class="input-group">
                                  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-briefcase"></i></span>
-                                 <input type="text"  id="fonctionCP" name="fonctionCP" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1" required="true">
+                                 <input type="text"  id="fonctionCP" name="fonctionCP" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1">
                               </div>
                               <div class="input-group">
                                  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
@@ -156,7 +199,7 @@
                               </div>
                               <div class="input-group">
                                  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mail"></i>@</span>
-                                 <input type="email"  id="emailCP" name="emailCP" class="form-control" placeholder="Email" aria-describedby="sizing-addon1" required="true">
+                                 <input type="email"  id="emailCP" name="emailCP" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
                               </div>
                            </div>
                         </div>
@@ -167,12 +210,12 @@
                               <h3 class="panel-title">Contact Secondaire</h3>
                            </div>
                            <div class="panel-body">
-                           	 <label required="true" >Civilite :</label>
+                           	 <label>Civilite :</label>
                               <label for="civiliteCS" class="radio-inline"><input type="radio"  name="optradio">Monsieur</label>
-                              <label for="civiliteCS" class="radio-inline"><input type="radio"  name="optradio">Madame</label><span class="require"> * </span><br />
+                              <label for="civiliteCS" class="radio-inline"><input type="radio"  name="optradio">Madame</label><br />
                               <div class="input-group">
                                  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
-                                 <input type="text"  id ="nomCS" name="nomCS" class="form-control" required="true" placeholder="Nom" aria-describedby="sizing-addon1">
+                                 <input type="text"  id ="nomCS" name="nomCS" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">
                               </div>
                               <div class="input-group">
                                  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
@@ -180,7 +223,7 @@
                               </div>
                               <div class="input-group">
                                  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-briefcase"></i></span>
-                                 <input type="text"  id="fonctionCS" name="fonctionCS" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1" required="true">
+                                 <input type="text"  id="fonctionCS" name="fonctionCS" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1">
                               </div>
                               <div class="input-group">
                                  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
@@ -188,7 +231,7 @@
                               </div>
                               <div class="input-group">
                                  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mail"></i>@</span>
-                                 <input type="email"  id="emailCS" name="emailCS" class="form-control" placeholder="Email" aria-describedby="sizing-addon1" required="true">
+                                 <input type="email"  id="emailCS" name="emailCS" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
                               </div>
                            </div>
                         </div>
@@ -199,12 +242,12 @@
                               <h3 class="panel-title">Contact TA-LR</h3>
                            </div>
                            <div class="panel-body">
-                           	  <label required="true" >Civilite :</label>
+                           	  <label>Civilite :</label>
                               <label for="civiliteTA" class="radio-inline"><input type="radio"  name="optradio">Monsieur</label>
-                              <label for="civiliteTA" class="radio-inline"><input type="radio"  name="optradio">Madame</label><span class="require"> * </span><br />
+                              <label for="civiliteTA" class="radio-inline"><input type="radio"  name="optradio">Madame</label><br/>
                               <div class="input-group">
                                  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
-                                 <input type="text"  id ="nomTA" name="nomTA" class="form-control" required="true" placeholder="Nom" aria-describedby="sizing-addon1">
+                                 <input type="text"  id ="nomTA" name="nomTA" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">
                               </div>
                               <div class="input-group">
                                  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
@@ -212,7 +255,7 @@
                               </div>
                               <div class="input-group">
                                  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-briefcase"></i></span>
-                                 <input type="text"  id="fonctionTA" name="fonctionTA" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1" required="true">
+                                 <input type="text"  id="fonctionTA" name="fonctionTA" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1">
                               </div>
                               <div class="input-group">
                                  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
@@ -220,7 +263,7 @@
                               </div>
                               <div class="input-group">
                                  <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mail"></i>@</span>
-                                 <input type="email"  id="emailTA" name="emailTA" class="form-control" placeholder="Email" aria-describedby="sizing-addon1" required="true">
+                                 <input type="email"  id="emailTA" name="emailTA" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
                               </div>
 
 
