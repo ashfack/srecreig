@@ -53,7 +53,7 @@
                           </select>
                        </div>
                        <div class="col-md-3">
-                          <button class="supprimer">Supprimer</button>
+                          <button class="supprimer btn btn-danger btn-responsive">Supprimer</button>
                        </div>    
                     </div>
                  <?php  
@@ -62,6 +62,6 @@
                  ?>
            </div>
         </div>
-         <button id="add">Nouvelle personne</button>    
+         <button id="add" class="btn btn-info btn-responsive">Nouvelle personne</button>    
    </body>
 </html>
