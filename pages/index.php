@@ -14,6 +14,9 @@ session_start();
         <?php
             require('header_link.html');
         ?>
+        <?php
+            require('header_script.html');
+        ?>
         <script src="../js/jquery-2.2.2.min.js"></script>
         <script src="../js/script_connexion.js"></script>
     </head>

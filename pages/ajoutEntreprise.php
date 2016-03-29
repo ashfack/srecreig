@@ -7,6 +7,9 @@
       <?php
          require('header_link.html');
       ?>
+      <?php
+         require('header_script.html');
+      ?>
       
    </head>
    <body>

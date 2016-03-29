@@ -4,10 +4,13 @@
 		<meta charset="utf-8">
 		<title>Demonstration</title>
 		
-	   	<link rel="stylesheet" href="../css/jquery-ui.css">
-		<link rel="stylesheet" type="text/css" href="../css/style.css" />
+		
 		<?php
 	        require('header_link.html');
+	    ?>
+	    <link rel="stylesheet" type="text/css" href="../css/style.css" />
+	    <?php
+	        require('header_script.html');
 	    ?>
 		<script src="../js/jquery-ui.min.js"></script>
 		<script src="../js/jquery.dataTables.min.js"></script>
