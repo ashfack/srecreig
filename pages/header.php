@@ -23,7 +23,7 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa fa-search fa-fw"></i>  <i class="fa fa-caret-down"></i>
                 </a>
-                <ul class="dropdown-menu dropdown-user">
+                <ul class="dropdown-menu ">
                     <li><a href="rechercher.php"><i class="fa fa-university fa-fw"></i> Entreprise</a>
                     </li>
                     <li><a href="rechercher.php"><i class="fa fa-globe fa-fw"></i> Globale</a>
