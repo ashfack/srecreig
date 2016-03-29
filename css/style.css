@@ -5,6 +5,12 @@ body{
   font-size:68.5%;
   line-height:18px;
   }
+	line-height:1;
+	font-family:Verdana, Arial, Helvetica, sans-serif;
+	color:#333;
+	font-size:68.5%;
+	line-height:18px;
+	}
 
 /* ajoutEntreprise */ 
 .input-group {
@@ -18,13 +24,21 @@ body{
 .paging_two_button .ui-button {
   float: left;
   cursor: pointer;
-  * cursor: hand;
+  /*cursor: hand;*/
 }
 .paging_full_numbers .ui-button {
   padding: 2px 6px;
   margin: 0;
   cursor: pointer;
-  * cursor: hand;
+  /*cursor: hand;*/
+	float: left;
+	
+}
+.paging_full_numbers .ui-button {
+	padding: 2px 6px;
+	margin: 0;
+	cursor: pointer;
+	/*cursor: hand;*/
 }
 .dataTables_paginate .ui-button {margin-right: -0.1em !important;}
 .paging_full_numbers {width: 400px !important;}
@@ -48,6 +62,16 @@ table.display thead th div.DataTables_sort_wrapper span {
   top: 50%;
   margin-top: -8px;
   right: 0;
+
+	position: relative;
+	padding-right: 20px;
+	padding-right: 20px;
+}
+table.display thead th div.DataTables_sort_wrapper span {
+	position: absolute;
+	top: 50%;
+	margin-top: -8px;
+	right: 0;
 }
 
 /**DataTables features**/
@@ -109,6 +133,43 @@ table.display th {
 table.display tfoot th {
   padding: 3px 0px 3px 10px;
   font-weight: bold;
+	/*position: relative;
+	min-height: 302px;
+	_height: 302px;
+	margin-top:10px;*/
+	clear: both;
+}
+.dataTables_length { /*liste déroulante*/
+	width: 40%;
+	float: left;
+}
+.dataTables_filter { /*zone de recherche*/
+	width: 50%;
+	float: right;
+	text-align: right;
+}
+.dataTables_info { /*affichage nombre d'enregistrement*/
+	width: 50%;
+	float: left;
+}
+.dataTables_paginate {
+	float: right;
+	text-align: right;
+}
+/**DataTables display**/
+table.display {
+	margin: 0 auto;
+	width: 100%;
+	border-collapse: collapse;
+}
+
+table.display th {
+	font-weight: bold;
+	text-align:left;
+}
+table.display tfoot th {
+	padding: 3px 0px 3px 10px;
+	font-weight: bold;
 }
 table.display tr.heading2 td {border-bottom: 1px solid #aaa;}
 table.display td {padding: 3px 10px;}
@@ -124,10 +185,10 @@ table.display tr.odd.row_selected td {background-color: #9FAFD1;}
 }
 /**ligne tableau grise**/
 #menuTable tr.odd:hover {
-  background-color: #fef1ec;
-  color: #cd0a0a;
-  font-weight: 200;
-  cursor: pointer;
+	background-color: #fef1ec;
+	color: #cd0a0a;
+	font-weight: 200;
+	cursor: pointer;
 }
 .selected {
     background-color: brown;

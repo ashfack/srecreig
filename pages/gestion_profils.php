@@ -4,10 +4,10 @@
         <title>Gestion des profils</title>
         <meta charset="UTF-8">
         
+        <link rel="stylesheet" href="../css/style.css">
         <?php
             require('header_link.html');
         ?>
-        <link rel="stylesheet" href="../css/style.css">
         <?php
           require('header_script.html');
         ?>

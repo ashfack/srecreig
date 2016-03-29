@@ -3,10 +3,10 @@
     <head>
         <title>Rechercher Entreprise</title>
         <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="../css/style.css" />
         <?php
             require('header_link.html');
         ?>
-        <link rel="stylesheet" type="text/css" href="../css/style.css" />
         <?php
             require('header_script.html');
         ?>

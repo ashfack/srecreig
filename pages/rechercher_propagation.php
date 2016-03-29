@@ -4,11 +4,10 @@
 		<meta charset="utf-8">
 		<title>Demonstration</title>
 		
-		
+		<link rel="stylesheet" type="text/css" href="../css/style.css" />
 		<?php
 	        require('header_link.html');
 	    ?>
-	    <link rel="stylesheet" type="text/css" href="../css/style.css" />
 	    <?php
 	        require('header_script.html');
 	    ?>
