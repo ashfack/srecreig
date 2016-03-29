@@ -171,6 +171,7 @@ function requeteAjaxTable()
 
 				$("#datatable_entreprise").dataTable({
 					"bJQueryUI": true,
+					responsive : true,
 					"sPaginationType": "full_numbers",
 					"oLanguage": { "sUrl": "../js/fr_FR.txt" }
 				});

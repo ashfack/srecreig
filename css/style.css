@@ -34,7 +34,7 @@ body{
 table.display thead th {
 	padding: 3px 0px 3px 10px;
 	cursor: pointer;
-	* cursor: hand;
+	cursor: hand;
 }
 div.dataTables_wrapper .ui-widget-header {font-weight: normal;}
 /**Sort arrow icon positioning**/
@@ -133,4 +133,3 @@ table.display tr.odd.row_selected td {background-color: #9FAFD1;}
     background-color: brown;
     color: #FFF;
 }
-

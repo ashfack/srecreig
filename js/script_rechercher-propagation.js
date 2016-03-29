@@ -7,6 +7,7 @@ $(document).ready(function()
 	{
 		$("#"+table_array[i]).dataTable({
 		"bJQueryUI": true,
+		responsive : true,
 		"sPaginationType": "full_numbers",
 		"oLanguage": { "sUrl": "../js/fr_FR.txt" }
 		});	
