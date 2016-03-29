@@ -19,7 +19,7 @@ session_start();
     </head>
 
     <body id="portail">
-        <div id="div0">
+        <div id="div0" style="text-align: center">
             <img src="../img/logoispg.jpg" alt="APPLI CREIG" />
         </div>
         <h1 style="text-align: center"> Bienvenue, connectez vous !</h1>
@@ -42,7 +42,7 @@ session_start();
                         <input type="password" class="form-control" placeholder="Mot de passe" aria-describedby="sizing-addon1" id="mdp" required/><br/>
                                                       
                     </div>
-                    <input type="submit" id ="submit" value="Se connecter">
+                    <input type="submit" class="btn btn-success btn-responsive" id ="submit" value="Se connecter">
                 </div>
 
                 
