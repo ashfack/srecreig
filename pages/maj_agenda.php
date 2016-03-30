@@ -27,9 +27,14 @@
 	}
 	else if($type=="ins")
 	{
-		$profil= $_POST['profil'];
-		$req = $conn->prepare("INSERT INTO Connexion (id,profil) VALUES(?,?) ");
-		$req->execute(array($identifiant,$profil));
+		$personne=$_SESSION['id'];
+		$nomEntreprise=$_POST['nomEntreprise'];
+		$commentaires=$_POST['commentaires'];
+		$module=$_POST['module'];
+		$statut=$_POST['statut'];
+		$dt=$_POST['date'];
+		$req = $conn->prepare("INSERT INTO Agenda (nomEntreprise,personne,commentaires,module,statut,dt) VALUES(?,?,?,?,?,?) ");
+		$req->execute(array($nomEntreprise,$personne,$commentaires,$module,$statut,$dt));
 		echo "1";
 	}
 	else
