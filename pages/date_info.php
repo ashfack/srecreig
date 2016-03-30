@@ -18,12 +18,24 @@
 		?>
 		<table>
 			<tr>
-				<td><strong>Evenement</strong></td>
-				<td><?php echo $data['event'];?></td>
+				<td><strong>Personne</strong></td>
+				<td><?php echo $data['personne'];?></td>
 			</tr>
 			<tr>
-				<td><strong>Lieu</strong></td>
-				<td><?php echo $data['lieu'];?></td>
+				<td><strong>Nom Entreprise</strong></td>
+				<td><?php echo $data['nomEntreprise'];?></td>
+			</tr>
+			<tr>
+				<td><strong>Commentaires</strong></td>
+				<td><?php echo $data['commentaires'];?></td>
+			</tr>
+			<tr>
+				<td><strong>Module</strong></td>
+				<td><?php echo $data['module'];?></td>
+			</tr>
+			<tr>
+				<td><strong>Statut</strong></td>
+				<td><?php echo $data['statut'];?></td>
 			</tr>
 		</table>
 		<?php

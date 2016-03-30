@@ -22,10 +22,17 @@
             <div class="row" id="content">
                 <h1 class="text-center"> Page de recherche </h1>
                 <!-- <form id="form_rechercher" > -->
+                <div class="col-md-4">
+                </div>
+                <div class="col-md-4">
+                
                 <label for="choix_entreprise">Entreprise : </label> <input type="text" id="choix_entreprise" name="choix_entreprise"/>
                 <p> 
                     <input type="button" value="Rechercher" id="bRechercher"/>
                 </p>
+                </div>
+                <div class="col-md-4">
+                </div>
                 <!-- </form> -->
                 <div id="div_datatable">    
                 </div>
