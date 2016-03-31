@@ -1,14 +1,25 @@
-INSERT INTO `CoordonneesPersonne`(`civilite`, `nom`, `prenom`, `fonction`, `telephoneFixe`, `telephoneMobile`, `mail`, `commentaires`, `type`) VALUES ("Monsieur","Abdoul Azid","Ashfack","Chef de projet","0000000000","0000000000","abdoulazid.ashfack@gmail.com","Un petit commentaire pour ashfack","Primaire");
-INSERT INTO `CoordonneesPersonne`(`civilite`, `nom`, `prenom`, `fonction`, `telephoneFixe`, `telephoneMobile`, `mail`, `commentaires`, `type`) VALUES ("Monsieur","Bouanaoui","Brahim","Developpeur","0000000000","0000000000","b.bouanaoui@gmail.com","Un petit commentaire pour brahim","Secondaire");
-INSERT INTO `CoordonneesPersonne`(`civilite`, `nom`, `prenom`, `fonction`, `telephoneFixe`, `telephoneMobile`, `mail`, `commentaires`, `type`) VALUES ("Monsieur","Dkhissi","Salah","Analyste fonctionnel","0000000000","0000000000","dkhssi.salah@gmail.com","Un petit commentaire pour salah","TA");
-INSERT INTO `CoordonneesPersonne`(`civilite`, `nom`, `prenom`, `fonction`, `telephoneFixe`, `telephoneMobile`, `mail`, `commentaires`, `type`) VALUES ("Madame","Joundi","Sahar","Responsable BDD","0000000000","0000000000","joundi.sahar@gmail.com","Un petit commentaire pour sahar","Primaire");
-INSERT INTO `CoordonneesPersonne`(`civilite`, `nom`, `prenom`, `fonction`, `telephoneFixe`, `telephoneMobile`, `mail`, `commentaires`, `type`) VALUES ("Monsieur","Kacel","Nacim","Developpeur","0000000000","0000000000","nacim.kacel@gmail.com","Un petit commentaire pour nacim","Secondaire");
-INSERT INTO `CoordonneesPersonne`(`civilite`, `nom`, `prenom`, `fonction`, `telephoneFixe`, `telephoneMobile`, `mail`, `commentaires`, `type`) VALUES ("Monsieur","Zgoda","Rafal","Developpeur et Responsable BDD","0000000000","0000000000","zgoda.rafal@gmail.com","Un petit commentaire pour rafal","TA");
-INSERT INTO `CoordonneesPersonne`(`civilite`, `nom`, `prenom`, `fonction`, `telephoneFixe`, `telephoneMobile`, `mail`, `commentaires`) VALUES ("Monsieur","Boudjraf","Moustapha","Developpeur","0000000000","0000000000","boudjraf@gmail.com","Un petit commentaire pour moustapha l'alternant de CGP SRE");
-INSERT INTO `CoordonneesPersonne`(`civilite`, `nom`, `prenom`, `fonction`, `telephoneFixe`, `telephoneMobile`, `mail`, `commentaires`) VALUES ("Monsieur","Alaoui","zoubair","Developpeur","0000000000","0000000000","alaoui@gmail.com","Un petit commentaire pour moustapha l'alternant de CGP SRE");
-INSERT INTO `CoordonneesPersonne`(`civilite`, `nom`, `prenom`, `fonction`, `telephoneFixe`, `telephoneMobile`, `mail`, `commentaires`) VALUES ("Monsieur","Alternant","sonPrenom","Developpeur","0000000000","0000000000","alternant@gmail.com","Un petit commentaire pour l'alternant de CGP SRE 2");
-INSERT INTO `Entreprise`(`nomEntreprise`, `groupe`, `adresse`, `complementAdresse`, `codePostal`, `ville`, `pays`, `CoordonneesPersonne_primaire`, `CoordonneesPersonne_secondaire`, `CoordonneesPersonne_TA`,`typeContact`, `partenariatOfficiel`, `taille`, `commentaires`) VALUES ("CGP SRE","groupe 3","99 avenue jean baptiste clement","Universite paris 13",93430,"Villetaneuse","France",1,2,3,"Entreprise","OUI","petite","Un commentaire pour l'entreprise cgp sre");
-INSERT INTO `Entreprise`(`nomEntreprise`, `groupe`, `adresse`, `complementAdresse`, `codePostal`, `ville`, `pays`, `CoordonneesPersonne_primaire`, `CoordonneesPersonne_secondaire`, `CoordonneesPersonne_TA`,`typeContact`, `partenariatOfficiel`, `taille`, `commentaires`) VALUES ("CGP SRE 2","groupe 3","99 avenue jean baptiste clement","Universite paris 13",93430,"Villetaneuse","France",4,5,6,"Entreprise","OUI","petite","Un commentaire pour l'entreprise cgp sre 2");
-INSERT INTO `Alternance`(`Entreprise_nomEntreprise`, `formationAlternance`, `anneEntree`, `typeContrat`, `CoordonneesPersonne_alternant`, `CoordonneesPersonne_maitre`, `CoordonneesPersonne_RH`, `dateRVPreparation`, `dateRVSimulation`, `dateDebutContrat`, `dateFinContrat`, `commentaires`) VALUES ("CGP SRE","AIR",2016,"apprentissage",7,2,3,"01/01/2016","01/02/2016","01/03/2016","01/07/2017","Bienvenue moustapha chez CGP SRE");
-INSERT INTO `Alternance`(`Entreprise_nomEntreprise`, `formationAlternance`, `anneEntree`, `typeContrat`, `CoordonneesPersonne_alternant`, `CoordonneesPersonne_maitre`, `CoordonneesPersonne_RH`, `dateRVPreparation`, `dateRVSimulation`, `dateDebutContrat`, `dateFinContrat`, `commentaires`) VALUES ("CGP SRE","AIR",2016,"apprentissage",8,2,3,"01/02/2016","01/03/2016","01/04/2016","01/07/2018","Bienvenue zoubair chez CGP SRE");
-INSERT INTO `Alternance` ( `Entreprise_nomEntreprise` , `formationAlternance` , `anneEntree` , `typeContrat` , `CoordonneesPersonne_alternant` , `CoordonneesPersonne_maitre` , `CoordonneesPersonne_RH` , `dateRVPreparation` , `dateRVSimulation` , `dateDebutContrat` , `dateFinContrat` , `commentaires` ) VALUES ("CGP SRE 2", "AIR", 2016, "apprentissage", 9, 2, 3, "01/02/2016", "01/03/2016", "01/04/2016", "01/07/2018", "Bienvenue à l'alternant chez CGP SRE 2")
+INSERT INTO `Entreprise` (`nomEntreprise`, `groupe`, `adresse`, `complementAdresse`, `codePostal`, `ville`, `pays`, `numeroSIRET`, `Naf_codeNAF`, `typeContact`, `partenariatOfficiel`, `taille`, `alias`, `commentaires`) VALUES
+('CGP SRE', 'groupe 3', '99 avenue jean baptiste clement', 'Universite paris 13', '93430', 'Villetaneuse', 'France', NULL, NULL, 'Entreprise', 'OUI', 'petite', NULL, 'Un commentaire pour l''entreprise cgp sre'),
+('CGP SRE 2', 'groupe 3', '99 avenue jean baptiste clement', 'Universite paris 13', '93430', 'Villetaneuse', 'France', NULL, NULL, 'Entreprise', 'OUI', 'petite', NULL, 'Un commentaire pour l''entreprise cgp sre 2');
+
+INSERT INTO `CoordonneesPersonne` (`idCoordonneesPersonne`, `civilite`, `nom`, `prenom`, `fonction`, `telephoneFixe`, `telephoneMobile`, `mail`, `commentaires`) VALUES
+(1, 'Monsieur', 'Abdoul Azid', 'Ashfack', 'Chef de projet', '0000000000', '0000000000', 'abdoulazid.ashfack@gmail.com', 'Un petit commentaire pour ashfack'),
+(2, 'Monsieur', 'Bouanaoui', 'Brahim', 'Developpeur', '0000000000', '0000000000', 'b.bouanaoui@gmail.com', 'Un petit commentaire pour brahim'),
+(3, 'Monsieur', 'Dkhissi', 'Salah', 'Analyste fonctionnel', '0000000000', '0000000000', 'dkhssi.salah@gmail.com', 'Un petit commentaire pour salah'),
+(4, 'Madame', 'Joundi', 'Sahar', 'Responsable BDD', '0000000000', '0000000000', 'joundi.sahar@gmail.com', 'Un petit commentaire pour sahar'),
+(5, 'Monsieur', 'Kacel', 'Nacim', 'Developpeur', '0000000000', '0000000000', 'nacim.kacel@gmail.com', 'Un petit commentaire pour nacim'),
+(6, 'Monsieur', 'Zgoda', 'Rafal', 'Developpeur et Responsable BDD', '0000000000', '0000000000', 'zgoda.rafal@gmail.com', 'Un petit commentaire pour rafal'),
+(7, 'Monsieur', 'Boudjraf', 'Moustapha', 'Developpeur', '0000000000', '0000000000', 'boudjraf@gmail.com', 'Un petit commentaire pour moustapha l''alternant de CGP SRE'),
+(8, 'Monsieur', 'Alaoui', 'zoubair', 'Developpeur', '0000000000', '0000000000', 'alaoui@gmail.com', 'Un petit commentaire pour moustapha l''alternant de CGP SRE'),
+(9, 'Monsieur', 'Alternant', 'sonPrenom', 'Developpeur', '0000000000', '0000000000', 'alternant@gmail.com', 'Un petit commentaire pour l''alternant de CGP SRE 2');
+
+INSERT INTO a_Entreprise_CoordonneesPersonne VALUES 
+( 'CGP SRE', 1 , 'Primaire'),
+( 'CGP SRE', 2 , 'Secondaire'),
+( 'CGP SRE', 3 , 'TA'),
+( 'CGP SRE 2', 4 , 'Primaire'),
+( 'CGP SRE 2', 5 , 'Secondaire'),
+( 'CGP SRE 2', 6, 'Secondaire'),
+( 'CGP SRE', 7 , NULL),
+( 'CGP SRE', 8 , NULL),
+( 'CGP SRE 2', 9 , NULL);
