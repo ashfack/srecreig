@@ -78,9 +78,7 @@
 						elseif($table_array[$i]=="CoordonneesPersonne")
 						{
 							$sql=" SELECT ".implode($colonne_array,",")." FROM $table_array[$i] WHERE idCoordonneesPersonne in ".
-							"(select CoordonneesPersonne_primaire from Entreprise where nomEntreprise = :nomEntreprise) ".
-							"or idCoordonneesPersonne in (select CoordonneesPersonne_secondaire from Entreprise where nomEntreprise = :nomEntreprise) ".
-							"or idCoordonneesPersonne in (select CoordonneesPersonne_TA from Entreprise where nomEntreprise = :nomEntreprise)";
+							"(select CoordonneesPersonne_id from a_Entreprise_CoordonneesPersonne where Entreprise_nomEntreprise = :nomEntreprise and type!=NULL)";
 
 							//echo $sql;
 						}
