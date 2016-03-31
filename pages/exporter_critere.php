@@ -36,7 +36,7 @@
       Groupe</li>
   </ul>
 </li>
-      <li data-jstree='{"icon":"glyphicon glyphicon-flash"}'>Contact
+      <li data-jstree='{"icon":"fa fa-graduation-cap"}'>Contact
         <ul>
           <li id="child_node_1"> Nom    
 </li>
