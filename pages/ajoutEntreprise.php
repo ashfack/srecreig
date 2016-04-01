@@ -8,7 +8,9 @@
          require('header_link.html');
          require('header_script.html');
       ?>
-      
+      <script src="../js/script_ajout_entreprise.js"></script>
+    <link rel="stylesheet" href="../framework/jsTree/dist/themes/default/style.min.css" />
+
    </head>
    <body>
       <?php require('header.php'); ?>
@@ -32,12 +34,12 @@
                            <input type="text" id="groupe" name="groupe" class="form-control" placeholder="Groupe" aria-describedby="sizing-addon1">
                         </div>
                         <div class="input-group">
-                           <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-hashtag">#</i></span>
+                           <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-pencil-square-o"></i></span>
                            <input type="text" id="codeNAF" name="codeNAF" class="form-control" placeholder="Code NAF" aria-describedby="sizing-addon1">
                         </div>
                         <div class="input-group">
-                           <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-pencil-square-o"></i></span>
-                           <input type="text" id="libelleNAF" name="libelleNAF" class="form-control" disabled="disabled"  placeholder="-> Libellé NAF" aria-describedby="sizing-addon1">
+                           <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-arrow-right"></i></span>
+                           <input type="text" id="libelleNAF" name="libelleNAF" class="form-control" disabled="disabled"  placeholder="Libellé NAF" aria-describedby="sizing-addon1">
                         </div>
                         <div class="input-group">
                            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-group"></i></span>
@@ -60,24 +62,9 @@
                            <input type="text"  id="ville" name="ville" class="form-control" placeholder="Ville" aria-describedby="sizing-addon1">
                         </div>
                         <div class="input-group">
-                           <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-map-marker"></i></span>
+                           <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-globe"></i></span>
                            <input type="text"  id="pays" name="pays" class="form-control" value="France" placeholder="Pays" aria-describedby="sizing-addon1">
                         </div>
-                        <select class="form-control " name="formations" id="formations" type="select" multiple size="4">
-                           <optgroup label = "Formations">
-                           <option value="tout">Tout</option>
-                           <option value="air">AIR</option>
-                           <option value="enera">ENERA</option>
-                           <option value="gp">Génie des procédés</option>
-                           <option value="info">Informatique</option>
-                           <option value="isb">Ingénierie de la Santé Biomatériaux</option>
-                           <option value="3ir">Ingénierie et Innovation en Images et Réseaux</option>
-                           <option value="macs">MACS</option>
-                           <option value="maths">Mathématiques</option>
-                           <option value="psm">Physique en Sciences des Matériaux</option>
-                           <option value="tr">Télécomunications et Réseaux</option>
-                        </select>
-                        <span >  </span> <br/>
                      </div>
                      <div class="col-md-4">
                         <div class="panel panel-primary">
@@ -85,7 +72,7 @@
                               <h3 class="panel-title">Origine</h3>
                            </div>
                            <div class="panel-body">
-                              <select name="origineContact" id="origineContact" type="select" multiple size="15">
+                              <select name="origineContact" id="origineContact" type="select" multiple size="10">
                                  <optgroup label = "Origine du contact : ">
                                  <option value="aisg">AISG</option>
                                  <option value="aimg">AMIG</option>
@@ -118,56 +105,110 @@
                               </div>
                            </div>
                         </div>
-                     </div>
+                     </div>                     
+
+                      
+
                      <div class="col-md-4">
                         <div class="form-group">
                            <label for="comment">Commentaires:</label>
-                           <textarea class="form-control" rows="10" id="comment"></textarea>
+                           <textarea class="form-control" rows="11" id="comment"></textarea>
                         </div>
 
 
-                        <div class="form-group">
-	                        <select class="form-control " name="cycle" id="cycle" type="select" multiple size="3">
-	                           <optgroup label = "Cycle">
-	                           <option value="Licences">Licences</option>
-	                           <option value="air">Masters</option>
-	                           <option value="enera">Ingénieurs</option>
-	                           <option value="gp">Institut Galilée</option>
-	                        </select>
-                        </div>
-                        
-                        <div class="form-group">
-	                        <select class="form-control " name="mention" id="formations" type="select" multiple size="3">
-	                           <optgroup label = "Mention">
-	                           <option value="air">AIR</option>
-	                           <option value="enera">ENERA</option>
-	                           <option value="gp">Génie des procédés</option>
-	                           <option value="info">Informatique</option>
-	                           <option value="isb">Ingénierie de la Santé Biomatériaux</option>
-	                           <option value="3ir">Ingénierie et Innovation en Images et Réseaux</option>
-	                           <option value="macs">MACS</option>
-	                           <option value="maths">Mathématiques</option>
-	                           <option value="psm">Physique en Sciences des Matériaux</option>
-	                           <option value="tr">Télécomunications et Réseaux</option>
-	                        </select>
-                        </div>
+                       <div id="jstree">
+                        <ul >
+                           <li id="Licences" data-jstree='{"icon":"fa fa-graduation-cap"}'>
+                              Licences
+                              <ul>
 
-                        <div class="form-group">
-                           <select class="form-control " name="specialite" id="specialite" type="select" multiple size="3">
-                           <optgroup label = "Spécialité">
-                           <option value="tout">Tout</option>
-                           <option value="air">AIR</option>
-                           <option value="enera">ENERA</option>
-                           <option value="gp">Génie des procédés</option>
-                           <option value="info">Informatique</option>
-                           <option value="isb">Ingénierie de la Santé Biomatériaux</option>
-                           <option value="3ir">Ingénierie et Innovation en Images et Réseaux</option>
-                           <option value="macs">MACS</option>
-                           <option value="maths">Mathématiques</option>
-                           <option value="psm">Physique en Sciences des Matériaux</option>
-                           <option value="tr">Télécomunications et Réseaux</option>
-                	        </select>
-                        </div>
+                                 <li id="l_Informatique" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    Informatique
+                                 </li>
+                                 <li id="l_Mathématiques" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    Mathématiques
+                                 </li>
+                                 <li id="l_Physique" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    Physique, Chimie
+                                 </li>
+                                 <li id="l_Sciences" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    Sciences pour l'ingénieur
+                                 </li>
+                              </ul>
+                           </li>
+                           <li id"Masters" data-jstree='{"icon":"fa fa-graduation-cap"}'>
+                              Masters
+                              <ul>
+
+                                 <li id="MEEF" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    MEEF
+                                 </li>
+                                 <li id="Informatique" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    Informatique
+                                 </li>
+                                 <li id="maths" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    Mathématiques
+                                 </li>
+                                 <li id="physique" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    Physique et sciences des matériaux
+                                    <ul>
+
+                                       <li id="Photonique" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                          Photonique et Nanotechnologies
+                                       </li>
+                                       <li id="l_Mathématiques" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                          Mathématiques
+                                       </li>
+                                    </ul>
+                                 </li>
+                                 <li id="genie" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    Génie des procédés
+                                 </li>
+                                 <li id="santé" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    Ingénieurie de la santé, biomatériaux
+                                 </li>
+                                 <li id="images" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    Ingénierie et innovations en images et réseaux
+                                 </li>
+                              </ul>
+                           </li>
+                           <li id"Ingenieurs" data-jstree='{"icon":"fa fa-graduation-cap"}'>
+                              Ingénieurs
+                              <ul>
+
+                                 <li id="MACS" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    MACS
+                                 </li>
+                                 <li id="m_Informatique" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    Informatique
+                                 </li>
+                                 <li id="ener" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    Energétique
+                                 </li>
+                                 <li id="telecom" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    Télécommunications et réseaux
+                                 </li>
+                                 <li id="Appprentissage_ener" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    Appprentissage : Energétique
+                                 </li>
+                                 <li id="Appprentissage_info" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
+                                    Appprentissage : Informatique et réseaux
+                                 </li>
+                              </ul>
+                           </li>
+                           <li id"institut_g" data-jstree='{"icon":"fa fa-graduation-cap"}'>
+                              Institut Galilée
+                           </li>
+                        </ul>
+                     </div>
+
+
+                     <div class="col-md-10"></div>
+
+                      <button id="add" class="btn">
+                           <span id="sizing-addon1"><i class="glyphicon glyphicon-plus"></i></span>
+                      </button>
+
 
                      </div>
                      <div class="col-md-12">
@@ -287,3 +328,36 @@
       </div></div> </div>						
    </body>
 </html>
+  <script src="../js/jquery.min.js"></script>
+  <script src="../framework/jsTree/dist/jstree.min.js"></script>
+
+  <script>
+  $(function () {
+    $('#jstree').jstree({  
+      "plugins" : [ "wholerow", "checkbox", "types" ]
+    });
+
+    $('#jstree').on("changed.jstree", function (e, data) {
+      console.log(data.selected);
+    });
+
+
+    $("#plugins1").jstree({
+      "checkbox" : {
+        "keep_selected_style" : false ,
+         "whole_node" : true
+        }
+    });
+        $("#plugins7").jstree({
+    "types" : {
+      "default" : {
+        "icon" : "glyphicon glyphicon-flash"
+      },
+      "child_node_1" : {
+        "icon" : "glyphicon glyphicon-ok"
+      }
+    }
+  });
+  });
+
+  </script>
