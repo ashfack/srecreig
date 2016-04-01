@@ -160,7 +160,7 @@ function requeteAjaxTable()
 				chaine+="</tbody> \
 				    	<tfoot> \
 				    		<tr> \
-				    			<th colspan='4'></th> \
+				    			<th colspan='9'></th> \
 				    		</tr> \
 				    	</tfoot> \
 			    	</table>";
