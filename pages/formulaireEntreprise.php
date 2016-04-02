@@ -9,6 +9,7 @@
          require('header_script.html');
       ?>
       <script src="../js/script_ajout_entreprise.js"></script>
+	  <script type="text/javascript" src="../js/ajout_entreprise.js"></script> 
     <link rel="stylesheet" href="../framework/jsTree/dist/themes/default/style.min.css" />
 
    </head>
@@ -17,7 +18,7 @@
       <div class="container">
          <div class="row" id="content">
             <h1 class="text-center"> Fiche d'ajout d'une entreprise </h1>
-            <form action="#" method="post" class="form-vertical" >
+            <form id="ajoutEntreprise" method="post" class="form-vertical" >
                <div class="panel panel-primary">
                   <div class="panel-heading">
                      <h3 class="panel-title text-center">Informations sur l'entreprise</h3>

@@ -32,7 +32,7 @@
             </li>
 
             <li class="dropdown">
-                <a class="dropdown-toggle" href="ajoutEntreprise.php">
+                <a class="dropdown-toggle" href="formulaireEntreprise.php">
                     <i class="fa fa-plus fa-fw"></i> 
                 </a>
             </li>
