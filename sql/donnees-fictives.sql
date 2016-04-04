@@ -1,4 +1,4 @@
-INSERT INTO `Entreprise` (`nomEntreprise`, `groupe`, `adresse`, `complementAdresse`, `codePostal`, `ville`, `pays`, `numeroSIRET`, `Naf_codeNAF`, `typeContact`, `partenariatOfficiel`, `taille`, `alias`, `commentaires`) VALUES
+INSERT INTO `Entreprise` (`nomEntreprise`, `groupe`, `adresse`, `complementAdresse`, `codePostal`, `ville`, `pays`, `numeroSIRET`, `Naf_codeNAF`, `typeContact`, `partenariatOfficiel`, `taille`, `alias`, `commentairesEntreprise`) VALUES
 ('CGP SRE', 'groupe 3', '99 avenue jean baptiste clement', 'Universite paris 13', '93430', 'Villetaneuse', 'France', NULL, NULL, 'Entreprise', 'OUI', 'petite', NULL, 'Un commentaire pour l''entreprise cgp sre'),
 ('CGP SRE 2', 'groupe 3', '99 avenue jean baptiste clement', 'Universite paris 13', '93430', 'Villetaneuse', 'France', NULL, NULL, 'Entreprise', 'OUI', 'petite', NULL, 'Un commentaire pour l''entreprise cgp sre 2');
 

@@ -6,7 +6,7 @@
 		$username = "srecreig";
 		// $password = "SREPARIS";
 		$dbName = "srecreig_base";
-		//$conn = new PDO('mysql:host=localhost;dbname=test;charset=utf8', 'root', '');
+		//$conn = new PDO('mysql:host=localhost;dbname=srecreig_base;charset=utf8', 'root', '');
 		$conn = new PDO("mysql:host=$servername;dbname=srecreig_base", $username,'sre@paris13');
 		$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	}

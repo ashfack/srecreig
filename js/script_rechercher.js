@@ -36,44 +36,6 @@ $(document).ready(function()
 	        }
 			
 		});
-
-		$("#dialog_info_confirmation").dialog(
-		{
-			height: 250,
-			width:600,
-			autoOpen:false,
-			dialogClass: "alert",
-			position: { my: "center bottom", at: "center top", of: window, within: $("#div_datatable")},
-			draggable: false,
-			modal:true,
-			buttons: 
-			[
-			    {
-			      text: "Oui",
-			      icons: 
-			      {
-			        primary: "ui-icon-check"
-			      },
-			      click: function() 
-			      {
-			      	$( this ).dialog( "close" );
-
-			      	document.location.href="rechercher_propagation.php?nomEntreprise="+nomEntreprise;
-			      }
-			    },
-			    {
-			      text: "Annuler",
-			      icons: 
-			      {
-			        primary: "ui-icon-closethick"
-			      },
-			      click: function() {
-			        $( this ).dialog( "close" );
-			      }
-			    }
-
-			]
-	});
 		
 		$("#dialog_supprimer_confirmation").dialog(
 		{
@@ -126,6 +88,7 @@ function requeteAjaxTable()
 	   data: 'choix_entreprise='+$("#choix_entreprise").val(),
 	   success: function(data)
 	   { 
+	   		//alert("jai trouve qq chose");
 			$("#div_datatable").children().remove();
 			if(data.length>0) 
 			{
@@ -138,7 +101,7 @@ function requeteAjaxTable()
 		    			<th> Complement d'adresse </th>\
 		    			<th> Code postal </th> \
 		    			<th> Ville </th> \
-		    			<th> Commentaires </th> \
+		    			<th> Commentaires Entreprise</th> \
 		    		</tr> \
 		    	</thead> \
 		    	<tbody>";
@@ -153,7 +116,7 @@ function requeteAjaxTable()
 				   chaine+="<td>"+obj['complementAdresse']+"</td>";
 				   chaine+="<td>"+obj['codePostal']+"</td>";
 				   chaine+="<td>"+obj['ville']+"</td>";
-				   chaine+="<td>"+obj['commentaires']+"</td>";
+				   chaine+="<td>"+obj['commentairesEntreprise']+"</td>";
 				   chaine+="</tr>";
 				   //$("tbody").append(chaine);  
 				}
@@ -197,7 +160,8 @@ function requeteAjaxTable()
 					{
 						nomEntreprise=$(".selected").find('td:first').html();
 						$("#emplacement_info_nomEntreprise").text(nomEntreprise);
-						$("#dialog_info_confirmation").dialog("open");
+						
+						document.location.href="rechercher_propagation.php?nomEntreprise="+nomEntreprise;
 					}
 						
 				});

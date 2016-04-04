@@ -17,12 +17,12 @@ body{
 	line-height:18px;
 	}
 */
- .my-group .form-control{
+.my-group .form-control{
     width:50% !important;
 }
 
 #sizing-addon1{
-	//width: 45px !important;
+	width: 45px !important;
 }
 
 .h1, h1 {
@@ -200,6 +200,7 @@ table.display tr.odd.row_selected td {background-color: #9FAFD1;}
 	font-weight: 200;
 	cursor: pointer;
 }
+
 .selected {
     background-color: brown;
     color: #FFF;

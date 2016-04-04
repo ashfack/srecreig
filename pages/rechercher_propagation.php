@@ -6,13 +6,12 @@
 		
 		<link rel="stylesheet" type="text/css" href="../css/style.css" />
 		<?php
-	        require('header_link.html');
-	    ?>
-	    <?php
-	        require('header_script.html');
-	    ?>
-		<script src="../js/jquery-ui.min.js"></script>
-		<script src="../js/jquery.dataTables.min.js"></script>
+            require('header_link.html');
+        ?>
+        <?php
+            require('header_script.html');
+        ?>
+
 		<script type="text/javascript" src="../js/script_rechercher-propagation.js"></script>
 	</head>
 	<body>
@@ -26,7 +25,7 @@
 					$nomEntreprise=$_GET['nomEntreprise'];
 		?>
 
-		<h1 class="text-center"> Informations concernant l'entreprise:  <span> <?php echo $nomEntreprise; ?> </span> </h1>
+		<h1> Informations concernant l'entreprise:  <span> <?php echo $nomEntreprise; ?> </span> </h1>
 		
 		<div id="tabs">
 			<ul> 
@@ -41,77 +40,48 @@
 				}
 				echo "</ul>";
 
-				for($i=0;$i<7;$i++)
+				
+				// faut ajouter la formation, orgine , action mené et naf  !
+				$tab_niveaux_Entreprise=array("niveau1"=>array("nomEntreprise","groupe","adresse","complementAdresse","codePostal","ville","pays","commentairesEntreprise"),
+							"niveau2" => array("nomEntreprise","numeroSIRET","NAF_codeNAF","origine","typeContact","partenariatOfficiel","taille","alias"));
+
+
+				$tab_niveaux_CoordonneesPersonne=array("niveau1"=>array("idCoordonneesPersonne","civilite","nom","prenom","fonction","telephoneFixe","telephoneMobile",
+													"mail","commentaires"));
+
+		
+
+				$tab_niveaux_Alternance=array("niveau1"=>array("formationAlternance","anneeEntree","typeContrat","CoordonneesPersonne_alternant"),
+												"niveau2"=>array("CoordonneesPersonne_alternant","dateRVpreparation","dateRVsimulation","dateDebutContrat","dateFinContrat","dateEnvoiFLAuCFA","docAAttacher"),
+												"niveau3"=>array("CoordonneesPersonne_alternant","CoordonneesPersonne_maitre"),
+												"niveau4"=>array("CoordonneesPersonne_alternant","CoordonneesPersonne_maitre"));
+
+		
+
+				$tab_niveaux_TaxeApprentissage=array("niveau1"=>array("idTA","anneedeVersement","montantPromesseVersement","montantVerse","versementVia","rapprochementAC"),
+													"niveau2"=>array("idTA","OCTA","dateEnregistrement","dateDerniereModification","modePaiement","dateTransmissionCheque","commentairesTaxe"));
+
+				
+
+				$tab_niveaux_AtelierRH=array("niveau1"=>array("dateAtelier","creneauAtelier","CoordonneesPersonne_RH","commentairesAtelier"));
+
+		
+
+				$tab_niveaux_Conference=array("niveau1"=>array("typeConference","dateConference","heureDebut","heureFin","lieuConference","themeConference"),
+												"niveau2"=>array("CoordonneesPersonne_conferencier","commentairesConference"));	
+
+		
+
+				$tab_niveaux_ForumSG=array("niveau1"=>array("Entreprise_nomEntreprise","anneeDeParticipation","questionDeSatisfaction","commentairesForum"));
+
+				$pk=array("nomEntreprise","idCoordonneesPersonne","CoordonneesPersonne_alternant","idTA","idAtelierRH","idConference","Entreprise_nomEntreprise");
+				$niveaux=array($tab_niveaux_Entreprise,$tab_niveaux_CoordonneesPersonne,$tab_niveaux_Alternance,$tab_niveaux_TaxeApprentissage,$tab_niveaux_AtelierRH,$tab_niveaux_Conference,$tab_niveaux_ForumSG);
+
+				for($i=0;$i<count($table_array);$i++)
 				{
-					try
-					{
-						$sql = "DESCRIBE $table_array[$i]";
-						$rep=$conn->query($sql);
-						//iterate on results row and create new index array of data
-						$colonne_array = array();
-						$pk;
-						while( $row = $rep->fetch()) 
-						{ 
-							$lettre=substr($row['Field'],0,1);
-							//ATTENTION SI PLUSIEURS COLONNE EN CLE PRIMAIRE !!!
-							if(isset($row['Key']) && $row['Key'] == 'PRI')
-								$pk=$row['Field'];
-							if(strtoupper($lettre)!=$lettre || $row['Field']=="OCTA" || $row['Field']=="CoordonneesPersonne_alternant")
-								array_push($colonne_array,$row['Field']);
-						}
-						$colonne_array_affichage=transformeChaine($colonne_array);
-						echo "<div id='menu_".$table_array[$i]."'>";
-						echo "<table width='100%' border='0' cellspacing='0' cellpadding='0' id='$table_array[$i]' class='display'>";
-						echo "<thead><tr>";
-
-						for($j=0;$j<count($colonne_array_affichage);$j++)
-						{
-							echo  "<th> $colonne_array_affichage[$j] </th>";
-						}
-
-						echo '</tr></thead>';
-						echo '<tbody>';
-
-						$sql="Select * from Entreprise";
-						if($table_array[$i]=="Entreprise")
-							$sql=" SELECT ".implode($colonne_array,",")." FROM Entreprise WHERE nomEntreprise = :nomEntreprise";
-						elseif($table_array[$i]=="CoordonneesPersonne")
-						{
-							$sql=" SELECT ".implode($colonne_array,",")." FROM $table_array[$i] WHERE idCoordonneesPersonne in ".
-							"(select CoordonneesPersonne_id from a_Entreprise_CoordonneesPersonne where Entreprise_nomEntreprise = :nomEntreprise and type!=NULL)";
-
-							//echo $sql;
-						}
-						else
-							$sql=" SELECT ".implode($colonne_array,",")." FROM $table_array[$i] WHERE Entreprise_nomEntreprise = :nomEntreprise";
-						
-						//echo $sql;
-						$rep=$conn->prepare($sql);
-						$rep->bindValue(':nomEntreprise',$nomEntreprise,PDO::PARAM_STR);
-						$rep->execute();
 					
-						while($data=$rep->fetch())
-						{
-								echo "<tr>";
-								$valeur_pk=$data[$pk];
-								for ($k=0;$k<count($colonne_array);$k++)
-								{
-									$valeur=$data[$colonne_array[$k]];
-									echo "<td id='$table_array[$i]"."_$pk"."_$valeur_pk"."_$colonne_array[$k]'> $valeur</td>";
-								}
-								echo '</tr>';
-						}
-						echo '</tbody>';
-						echo '<tfoot><tr><th colspan="4"></th></tr></tfoot>';
-						echo '</table>';
-						echo '</div>';	
-					}
-					catch(PDOException $e)
-					{
-					    echo "erreur: " . $e->getMessage();
-					}
-					
-				}
+					genererDataTable($table_array[$i],$nomEntreprise,$pk[$i],$niveaux[$i]);
+				}	
 		  ?>
 
 		  <?php

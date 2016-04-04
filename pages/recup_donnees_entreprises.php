@@ -13,7 +13,7 @@
         {
             $entreprise=array('nomEntreprise' => $donnees['nomEntreprise'],'groupe'=> $donnees['groupe'],
                 'adresse'=>$donnees['adresse'],'complementAdresse'=>$donnees['complementAdresse'],
-                'codePostal'=>$donnees['codePostal'],'ville'=>$donnees['ville'],'commentaires'=> $donnees['commentaires']);
+                'codePostal'=>$donnees['codePostal'],'ville'=>$donnees['ville'],'commentairesEntreprise'=> $donnees['commentairesEntreprise']);
             array_push($tab_donnees, $entreprise);  
         }
     }
