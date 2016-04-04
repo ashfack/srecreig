@@ -15,7 +15,7 @@
    <body>
       <?php require('header.php');  ?>
       <div class="container">
-      <h1 class="text-center"> Exporter avec séléction de critères </h1>
+      <h1 class="text-center"> Exporter avec sélection de critères </h1>
       <div class="col-md-4"> 
       </div>
       <div class="col-md-4">
