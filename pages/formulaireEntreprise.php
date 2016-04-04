@@ -322,31 +322,24 @@ echo "     </div> ";
 <script src="../framework/jsTree/dist/jstree.min.js"></script>
 <script>
    $(function () {
-     $('#jstree').jstree({  
-       "plugins" : [ "wholerow", "checkbox", "types" ]
-     });
-   
-     $('#jstree').on("changed.jstree", function (e, data) {
+     $('#jstree')
+      .on("init.jstree", function (e, data) {
+      data.instance.settings.checkbox.cascade = '';
+     })
+     .on("changed.jstree", function (e, data) {
        console.log(data.selected);
-     });
-   
-   
-     $("#plugins1").jstree({
-       "checkbox" : {
-         "keep_selected_style" : false ,
-          "whole_node" : true
-         }
-     });
-         $("#plugins7").jstree({
-     "types" : {
+     })   
+
+     .jstree({  
+      checkbox : {
+        three_state : false,
+    },
+       types : {
        "default" : {
          "icon" : "glyphicon glyphicon-flash"
-       },
-       "child_node_1" : {
-         "icon" : "glyphicon glyphicon-ok"
        }
-     }
-   });
-   });
-   
+    }, 
+       plugins : [ 'wholerow', 'checkbox', 'types' ]
+     })
+ });
 </script>

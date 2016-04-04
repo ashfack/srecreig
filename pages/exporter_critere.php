@@ -61,51 +61,46 @@
                 }
                 echo"     </div> ";                             
               ?>
+                         <div id="div_datatable">    
          </div>
+                  <div class="col-md-4">  </div>
+                  <div class="col-md-12">
+                     <div class="col-md-5">  
+                     </div>
+                     <p>
+                     </br>
+                        <input type="submit" value="Envoyer" />
+                     </p>
+                  </div>
       </div>
       <div class="col-md-4"> 
       </div>
-      <div class="col-md-12">
-         <div class="col-md-6"> 
-         </div>
-         <div class="col-md-6">
-            <p>
-               <br/>
-               <input type="submit" value="Envoyer" />
-               <input type="reset" value="Annuler" />
-            </p>
-         </div>
-      </div>
+
    </body>
 </html>
 <script src="../js/jquery.min.js"></script>
 <script src="../framework/jsTree/dist/jstree.min.js"></script>
 <script>
    $(function () {
-     $('#jstree').jstree({  
-       "plugins" : [ "wholerow", "checkbox", "types" ]
-     });
-   
-     $('#jstree').on("changed.jstree", function (e, data) {
+     $('#jstree')
+      .on("init.jstree", function (e, data) {
+      data.instance.settings.checkbox.cascade = '';
+     })
+     .on("changed.jstree", function (e, data) {
        console.log(data.selected);
-     });
-   
-   
-     $("#plugins1").jstree({
-       "checkbox" : {
-         "keep_selected_style" : false
-         }
-     });
-         $("#plugins7").jstree({
-     "types" : {
+     })   
+
+     .jstree({  
+      checkbox : {
+        three_state : false,
+    },
+       types : {
        "default" : {
          "icon" : "glyphicon glyphicon-flash"
-       },
-       "child_node_1" : {
-         "icon" : "glyphicon glyphicon-ok"
        }
-     }
-   });
-   });
-   
+    }, 
+       plugins : [ 'wholerow', 'checkbox', 'types' ]
+     })
+ });
+
 </script>
