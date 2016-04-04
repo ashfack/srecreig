@@ -113,7 +113,7 @@
                      <div class="col-md-4">
                         <div class="form-group">
                            <label for="comment">Commentaires:</label>
-                           <textarea class="form-control" rows="11" id="comment"></textarea>
+                           <textarea class="form-control" rows="14" id="comment"></textarea>
                         </div>
 
 
@@ -206,9 +206,6 @@
 
                      <div class="col-md-10"></div>
 
-                      <button id="add" class="btn">
-                           <span id="sizing-addon1"><i class="glyphicon glyphicon-plus"></i></span>
-                      </button>
 
 
                      </div>
