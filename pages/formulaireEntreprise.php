@@ -119,22 +119,8 @@ require ('header.php');
                         <?php
 require ("db_connect.php");
 
-$table_onglet_array = array(
-   "Cycle",
-   "Contacts",
-   "Alternance",
-   "Taxe d'apprentissage",
-   "Atelier RH",
-   "Conference",
-   "Forum SG"
-);
-$table_array = array(
-   "cycle",
-   "mention",
-   "specialite"
-);
 echo " <div id=\"jstree\">";
-$sql = "Select distinct cycle from CycleFormation ";
+$sql = "Select idCycleformation, cycle from CycleFormation where mention is null ";
 try
    {
    $rep = $conn->query($sql);
@@ -142,18 +128,15 @@ try
 
 catch(PDOException $e)
    {
-
-   // echo "Incident: " . $e->getMessage();
-
    echo "Impossible de joindre le serveur de base de données";
    }
 
 while ($row = $rep->fetch())
    {
    echo " <ul > 
-                                       <li data-jstree='{\"icon\":\"glyphicon glyphicon-folder-open\"}'>" . $row['cycle'] . " 
-                                         <ul>  ";
-   $sql2 = "Select distinct mention from CycleFormation where mention is not null and cycle = \"" . $row['cycle'] . "\" ";
+             <li id='".$row['idCycleformation']."' data-jstree='{\"icon\":\"fa fa-graduation-cap\"}'>" . $row['cycle'] . " 
+                <ul>  ";
+   $sql2 = "Select idCycleformation, mention from CycleFormation where mention is not null and specialite is null and cycle = \"" . $row['cycle'] . "\" ";
    try
       {
       $rep2 = $conn->query($sql2);
@@ -170,12 +153,10 @@ while ($row = $rep->fetch())
    while ($row2 = $rep2->fetch())
       {
 
-      echo " <li data-jstree='{\"icon\":\"glyphicon glyphicon-file\"}'>";
+      echo " <li id='".$row2['idCycleformation']."'  data-jstree='{\"icon\":\"fa fa-arrow-right\"}'>".$row2['mention']." 
+                  <ul> ";
 
-      echo $row2['mention'];
-                  echo " <ul> ";
-
-      $sql3 = "Select distinct specialite from CycleFormation where specialite is not null and cycle is not null and cycle = \"". $row['cycle'] . "\" and mention = \"" . $row2['mention'] . "\"";
+      $sql3 = "Select idCycleformation, specialite from CycleFormation where specialite is not null and cycle is not null and cycle = \"". $row['cycle'] . "\" and mention = \"" . $row2['mention'] . "\"";
       try
          {
          $rep3 = $conn->query($sql3);
@@ -188,7 +169,7 @@ while ($row = $rep->fetch())
 
       while ($row3 = $rep3->fetch())
          {
-         echo " <li data-jstree='{\"icon\":\"glyphicon glyphicon-file\"}'>".$row3['specialite']." </li>  ";
+         echo " <li id='".$row3['idCycleformation']."' data-jstree='{\"icon\":\"fa fa-long-arrow-righthj\"}'>".$row3['specialite']." </li>  ";
          }
 
       echo "</ul></li> ";
@@ -198,7 +179,6 @@ while ($row = $rep->fetch())
        </li>    
     </ul>  ";
    }
-
 echo "     </div> ";
 ?>
                      <div class="col-md-10"></div>
