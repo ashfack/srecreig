@@ -23,11 +23,12 @@
                 <div class="col-md-4">
                 </div>
                 <div class="col-md-4">
-                
-                <label for="choix_entreprise">Entreprise : </label> <input type="text" id="choix_entreprise" name="choix_entreprise"/>
-                <p> 
+                <center>
+              <input placeholder="Entreprise" type="text" id="choix_entreprise" name="choix_entreprise"/>
+                <p> </br>
                     <input type="button" value="Rechercher" id="bRechercher"/>
                 </p>
+                </center>
                 </div>
                 <div class="col-md-4">
                 </div>

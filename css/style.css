@@ -202,6 +202,6 @@ table.display tr.odd.row_selected td {background-color: #9FAFD1;}
 }
 
 .selected {
-    background-color: brown;
-    color: #FFF;
+    background-color: cadetblue !important;
+    color: white;
 }
