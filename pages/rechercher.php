@@ -10,6 +10,7 @@
             require('header_link.html');
         ?>
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
+		<link rel ="stylesheet" type="text/css" href="../css/contacter.css">
         <script type="text/javascript" src="../js/script_rechercher.js"></script>
     </head>
 
@@ -42,6 +43,52 @@
                       Etes vous sûr de vouloir continuer ?
                     </p>
                 </div>
+				
+				<div id="dialog_editer">
+                    <p>
+                      Edition Entreprise <span id="emplacement_editer_nomEntreprise"> </span>
+			<?php 
+	  		require "db_connect.php";
+			$table_array= array("Entreprise","CoordonneesPersonne","Alternance","TaxeApprentissage","AtelierRH","Conference","ForumSG");
+			
+			$sql = "DESCRIBE $table_array[0]";
+			$rep=$conn->query($sql);
+			//iterate on results row and create new index array of data
+			$colonne_array = array();
+			$pk;
+			while( $row = $rep->fetch()) 
+			{ 
+				$lettre=substr($row['Field'],0,1);
+				if(isset($row['Key']) && $row['Key'] == 'PRI')
+					$pk=$row['Field'];
+				if(strtoupper($lettre)!=$lettre || $row['Field']=="OCTA")
+					array_push($colonne_array,$row['Field']);
+			}
+				echo "<form id=\"\" method='POST'>";
+				echo "<div class=\"champs\">";
+			for($j=0;$j<count($colonne_array);$j++)
+			{
+				echo "
+				<br></br>
+				<label>$colonne_array[$j]
+				</label>
+				<input type=\"text\" name=\"$colonne_array[$j]\"> ";
+				
+							
+				/*echo "$colonne_array[$j]";
+				echo "<input type=\"text\" name=\"$colonne_array[$j]\"><br>";*/
+			}
+			
+				echo "
+						<br/><br/>
+						<input class=\"send\" src=\"../img/Envoyer.png\" type=\"image\">
+						<br></br>
+						</div>
+						</form>";
+			?>
+                    </p>
+                </div>
+
 
                 <div id="dialog_refus"  title="Refus">
                     <p> Vous devez selectionner une entreprise </p>

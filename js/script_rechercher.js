@@ -1,4 +1,5 @@
-var nomEntreprise;
+var nomEntreprise, groupe, adresse, complementAdresse, codePostal,commentaires;
+var ville;
 $(document).ready(function()
 {
 		$("#bRechercher").click(function(){
@@ -73,6 +74,44 @@ $(document).ready(function()
 
 			]
 	});
+	
+	$("#dialog_editer").dialog(
+		{
+			height: 250,
+			width:600,
+			autoOpen:false,
+			dialogClass: "alert",
+			position: { my: "center bottom", at: "center top", of: window, within: $("#div_datatable")},
+			draggable: false,
+			modal:true,
+			buttons: 
+			[
+			    {
+			      text: "Oui",
+			      icons: 
+			      {
+			        primary: "ui-icon-check"
+			      },
+			      click: function() 
+			      {
+			      	$( this ).dialog( "close" );
+
+			      	requeteAjaxEdition(); // oihipihihiii
+			      }
+			    },
+			    {
+			      text: "Annuler",
+			      icons: 
+			      {
+			        primary: "ui-icon-closethick"
+			      },
+			      click: function() {
+			        $( this ).dialog( "close" );
+			      }
+			    }
+
+			]
+	});
 
 	// $("#form_rechercher").submit( requeteAjaxTable );
 });
@@ -131,6 +170,7 @@ function requeteAjaxTable()
 				$("#div_datatable").append(chaine);
 				$("#div_datatable").append("<button id='bInfo'> Voir les informations </button>");
 				$("#div_datatable").append("<button id='bSupprimer'> Supprimer </button>");
+				$("#div_datatable").append("<button id='bEditer'> Editer </button>");
 
 				$("#datatable_entreprise").dataTable({
 					"bJQueryUI": true,
@@ -148,6 +188,26 @@ function requeteAjaxTable()
 				   		$(this).addClass('selected').siblings().removeClass('selected');    
 				   		//$(this).addClass('selected');
 				   }
+						
+				});
+				
+				$("#bEditer").click(function()
+				{
+					var nbSelected=$(".selected").length;
+					if( nbSelected == 0)
+							$("#dialog_refus").dialog("open");
+					else
+					{
+						nomEntreprise=$(".selected").find('td:first').html();
+						groupe=$(".selected").find('td:nth-child(2)').html();
+						adresse=$(".selected").find('td:nth-child(3)').html();
+						complementAdresse=$(".selected").find('td:nth-child(4)').html();
+						codePostal=$(".selected").find('td:nth-child(5)').html();
+						ville=$(".selected").find('td:nth-child(6)').html();
+						commentaires=$(".selected").find('td:nth-child(7)').html();
+						$("#emplacement_editer_nomEntreprise").text(nomEntreprise);
+						$("#dialog_editer").dialog("open");
+					}
 						
 				});
 
@@ -211,4 +271,35 @@ function requeteAjaxSuppression()
 			}
 	   }
 	});
+}
+
+function requeteAjaxEdition()
+{
+
+	$.ajax({
+
+	   type: "POST",
+	   url: "editer_entreprise.php",
+	   dataType: "text",
+	   data: 	'nomEntreprise='+nomEntreprise+
+				' groupe='+groupe+
+				' adresse='+adresse+
+				' complementAdresse='+complementAdresse+
+				' codePostal='+codePostal+
+				' ville='+ville+
+				' commentaires='+commentaires,
+	   success: function(data)
+	   { 
+			if(data=="ok")
+			{
+				requeteAjaxTable();
+			}
+			else 
+			{
+				alert("L'édition n'a pas été effectuée: une erreur est survenue");
+			}
+	   }
+	});
+	
+	
 }

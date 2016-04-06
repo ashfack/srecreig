@@ -1,0 +1,220 @@
+.title{
+	font: 30px/1.55 Verdana,Arial,Helvetica,sans-serif;
+	letter-spacing: 1.85px;
+	text-align: center;
+	background : url(../images/background.jpg) no-repeat ;
+    color : #FFFFFF;
+	text-shadow: black 1px 1px, black -1px 1px, black -1px -1px, black 1px -1px;
+    padding: 8px 0 18px 15px; 
+    margin : 25px 2px 0 2px;
+}
+.title1{
+	font: 40px/1.55 Montserrat,sans-serif;
+	font-weight: bold;
+	letter-spacing: 1.85px;
+	text-align: center;
+	color : rgba(0, 0, 0, 0.57);
+	text-shadow: white 2px 2px, white -2px 2px, white -2px -2px, white 2px -2px;
+    padding: 35px 0 18px 15px; 
+	margin:35px 7px 0 -8px;
+}
+.home{
+	position: absolute;
+	left:10px;
+	width: 80px;
+    height: 80px; 
+
+}
+
+.title2{
+	font: 30px/1.55 Verdana,Arial,Helvetica,sans-serif;
+	letter-spacing: 1.85px;
+	text-align: center;
+	color : black;
+	text-shadow: white 1px 1px, white -1px 1px, white -1px -1px, white 1px -1px;
+    padding: 10px 0 18px 0px; 
+    margin : 2px 250px 0 -50px;
+	width: 100%;
+}
+
+.pic{
+	width: 340px;
+	height: 250px;
+}
+
+.flou img
+{
+        filter: blur(3px);
+        -webkit-filter: blur(3px);
+        -moz-filter: blur(3px);
+        -o-filter: blur(3px);
+        -ms-filter: blur(3px);
+}
+.flou img:hover
+{
+        filter: blur(0);
+        -webkit-filter: blur(0);
+        -moz-filter: blur(0);
+        -o-filter: blur(0);
+        -ms-filter: blur(0);
+}
+
+#footer{
+	clear: both;
+    background-image: url(../images/foot.jpg);
+    position: fixed;
+    bottom: 0px;
+    height: 80px;
+	border-top: 3px solid white;
+    width: 100%;
+	left:0%;
+    margin-top: 30px;
+    padding-top: 10px;
+    margin-bottom: 0px;
+    z-index: 10000;
+    color: white;
+}
+
+label {
+    clear: left;
+    width: 130px;
+    padding: 0px 10px;
+    text-align: right;
+    font-size: 13px;
+    float: left;
+    display: block;
+    margin-right: 10px;
+}
+
+.police{
+	font-size: 20px;
+}
+
+input[type="text"], input[type="email"], input[type="password"], textarea {
+    background: #F2F2F2 no-repeat scroll left top;
+    border: 1px solid #C6C6C6;
+    color: #808080;
+}
+
+sup {
+    color: #E31529;
+}
+
+.message {
+	font: 12px/1.55 Verdana,Arial,Helvetica,sans-serif;
+	margin-left: 27%;
+	color: #E31529;
+	position: absolute;
+}
+
+.send{
+	position: relative;
+    left: 53.3%;
+	width: 137px;
+    height: 30px; 
+}
+
+.champs, .champs1, .champs2{
+	position: relative;
+	left: 28.4%;
+	width: 40%;
+}
+
+.champs1{
+	left: 0%;
+	width: 100%;
+}
+.champs2{
+	left: 0%;
+}
+.champs3{
+	left: 100px;
+	height: 300px;
+	width: 40%;      
+	float: left;
+	position: relative;
+	margin-left: 10px;
+	bottom: -50px;
+}
+
+.contactez-nous , .Connexion{
+	font: 24px/1.55 Verdana,Arial,Helvetica,sans-serif;
+    margin-top: 0px;
+    border-bottom: 2px solid #000;
+    margin-bottom: 14px;
+}
+
+.Connexion{
+	margin-top: 20px;
+	font-size: 30px;
+}
+
+.wholii {
+	background:url(../images/index.jpg) no-repeat;
+	content: "";
+    display: block;
+    position: fixed;
+    top: -46px;
+    bottom: -46px;
+    left: 0;
+    width: 100%;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center top;
+}
+
+.lien, .lien1{
+	position: relative;
+    left: 7%;
+	width: 137px;
+    height: 30px;
+	top:20px;
+}
+
+.lien1{
+    font-size: 20px;
+    text-align: right;
+    text-shadow: 0 1px black;
+    padding-top: 15px;
+    padding-right: 80px;
+	font-style:bold;
+    left: 45%;
+	text-decoration:none;
+}
+
+ .lien1:link {
+    color: white;
+}
+
+
+.lien1:visited {
+    color: white;
+}
+
+
+#footer #copyright {
+    font-size: 15px;
+    text-align: right;
+    text-shadow: 0 1px black;
+    padding-top: 15px;
+    padding-right: 80px;
+}
+
+a:link {
+    color: #01008A;
+}
+
+
+a:visited {
+    color: #01008A;
+}
+
+
+a:hover {
+    color: #FF00FF;
+}
+
+
+a:active {
+    color: #0000FF;
+}
