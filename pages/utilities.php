@@ -15,9 +15,14 @@ function transformeChaine($tab_chaine)
 		if(in_array($chaine,$sigle))
 			array_push($tab_chaine_transforme,$sigle_transforme[$chaine]);
 
-		elseif($chaine=="CoordonneesPersonne_alternant")
+		elseif($chaine=="CoordonneesPersonne_alternant" )
 		{
 			array_push($tab_chaine_transforme,"id alternant");
+		}
+
+		elseif($chaine=="Entreprise_nomEntreprise" )
+		{
+			array_push($tab_chaine_transforme,"nom Entreprise");
 		}
 
 		elseif(strtoupper($lettre)!=$lettre)
@@ -103,7 +108,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 
 			echo "<table width='100%' border='0' cellspacing='0' cellpadding='0' id='dataTable_".$table."_"."$nom_niveau' class='display'>";
 			echo "<thead><tr>";
-
+			
 			for($i=0;$i<count($colonne_array_affichage);$i++)
 			{
 				echo  "<th> $colonne_array_affichage[$i] </th>";
@@ -111,7 +116,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 
 			echo '</tr></thead>';
 			echo '<tbody>';
-
+			
 			//$sql=" SELECT ".implode($tab_niveau,",")." FROM Entreprise WHERE nomEntreprise = :nomEntreprise";
 			if($table=="Entreprise")
 				$sql=" SELECT ".implode($niveau,",")." FROM Entreprise left join NAF on (Entreprise.Naf_codeNAF=NAF.codeNAF) WHERE Entreprise.nomEntreprise = :nomEntreprise";

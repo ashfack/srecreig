@@ -111,7 +111,7 @@ function requeteAjaxTable()
 				{
 				   obj = data[i];
 				   chaine+="<tr>";
-				   chaine+="<td>"+obj['Entrerprise_nomEntreprise']+"</td>";
+				   chaine+="<td>"+obj['Entreprise_nomEntreprise']+"</td>";
 				   chaine+="<td>"+obj['civilite']+"</td>";
 				   chaine+="<td>"+obj['nom']+"</td>";
 				   chaine+="<td>"+obj['prenom']+"</td>";
@@ -134,14 +134,14 @@ function requeteAjaxTable()
 				$("#div_datatable").append("<button id='bInfo'> Voir les informations </button>");
 				$("#div_datatable").append("<button id='bSupprimer'> Supprimer </button>");
 
-				$("#datatable_entreprise").dataTable({
+				$("#datatable_alternant").dataTable({
 					"bJQueryUI": true,
 					responsive : true,
 					"sPaginationType": "full_numbers",
 					"oLanguage": { "sUrl": "../js/fr_FR.txt" }
 				});
 
-				$("#datatable_entreprise tr").click(function(){
+				$("#datatable_alternant tr").click(function(){
 					//alert("Je vais modifier !!");
 				   if($(this).hasClass('selected'))
 				   		$(this).removeClass('selected');

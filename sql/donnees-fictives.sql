@@ -23,3 +23,8 @@ INSERT INTO a_Entreprise_CoordonneesPersonne VALUES
 ( 'CGP SRE', 7 , NULL),
 ( 'CGP SRE', 8 , NULL),
 ( 'CGP SRE 2', 9 , NULL);
+
+INSERT INTO `Alternance`(`Entreprise_nomEntreprise`, `formationAlternance`, `anneeEntree`, `typeContrat`, `CoordonneesPersonne_alternant`, `CoordonneesPersonne_maitre`, `CoordonneesPersonne_RH`, `dateRVPreparation`, `dateRVSimulation`, `dateDebutContrat`, `dateFinContrat`, `dateRuptureContrat`, `dateEnvoiFLAuCFA`, `docAAttacher`, `commentaires`) VALUES 
+('CGP SRE',"AIR",2014,"Apprentissage",7,1,2,"10/02/2016","10/05/2016","10/09/2016","10/08/2018",NULL,"15/06/2016",NULL,"Un ptit com"),
+('CGP SRE',"AIR",2014,"Apprentissage",8,1,2,"10/02/2016","10/05/2016","10/09/2016","10/08/2018",NULL,"15/06/2016",NULL,"Un ptit com"),
+('CGP SRE 2',"AIR",2014,"Apprentissage",9,4,5,"10/02/2016","10/05/2016","10/09/2016","10/08/2018",NULL,"15/06/2016",NULL,"Un ptit com");
