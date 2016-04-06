@@ -117,69 +117,8 @@ require ('header.php');
                            <textarea class="form-control" rows="14" id="comment"></textarea>
                         </div>
                         <?php
-require ("db_connect.php");
+require ("jstree_cycle.php");
 
-echo " <div id=\"jstree\">";
-$sql = "Select idCycleformation, cycle from CycleFormation where mention is null ";
-try
-   {
-   $rep = $conn->query($sql);
-   }
-
-catch(PDOException $e)
-   {
-   echo "Impossible de joindre le serveur de base de données";
-   }
-
-while ($row = $rep->fetch())
-   {
-   echo " <ul > 
-             <li id='".$row['idCycleformation']."' data-jstree='{\"icon\":\"fa fa-graduation-cap\"}'>" . $row['cycle'] . " 
-                <ul>  ";
-   $sql2 = "Select idCycleformation, mention from CycleFormation where mention is not null and specialite is null and cycle = \"" . $row['cycle'] . "\" ";
-   try
-      {
-      $rep2 = $conn->query($sql2);
-      }
-
-   catch(PDOException $e)
-      {
-
-      // echo "Incident: " . $e->getMessage();
-
-      echo "Impossible de joindre le serveur de base de données";
-      }
-
-   while ($row2 = $rep2->fetch())
-      {
-
-      echo " <li id='".$row2['idCycleformation']."'  data-jstree='{\"icon\":\"fa fa-arrow-right\"}'>".$row2['mention']." 
-                  <ul> ";
-
-      $sql3 = "Select idCycleformation, specialite from CycleFormation where specialite is not null and cycle is not null and cycle = \"". $row['cycle'] . "\" and mention = \"" . $row2['mention'] . "\"";
-      try
-         {
-         $rep3 = $conn->query($sql3);
-         }
-
-      catch(PDOException $e)
-         {
-         echo "Impossible de joindre le serveur de base de données";
-         }
-
-      while ($row3 = $rep3->fetch())
-         {
-         echo " <li id='".$row3['idCycleformation']."' data-jstree='{\"icon\":\"fa fa-long-arrow-righthj\"}'>".$row3['specialite']." </li>  ";
-         }
-
-      echo "</ul></li> ";
-      }
-   echo "
-        </ul>      
-       </li>    
-    </ul>  ";
-   }
-echo "     </div> ";
 ?>
                      <div class="col-md-10"></div>
                   </div>
@@ -298,28 +237,3 @@ echo "     </div> ";
       </div></div> </div>                 
    </body>
 </html>
-<script src="../js/jquery.min.js"></script>
-<script src="../framework/jsTree/dist/jstree.min.js"></script>
-<script>
-   $(function () {
-     $('#jstree')
-      .on("init.jstree", function (e, data) {
-      data.instance.settings.checkbox.cascade = '';
-     })
-     .on("changed.jstree", function (e, data) {
-       console.log(data.selected);
-     })   
-
-     .jstree({  
-      checkbox : {
-        three_state : false,
-    },
-       types : {
-       "default" : {
-         "icon" : "glyphicon glyphicon-flash"
-       }
-    }, 
-       plugins : [ 'wholerow', 'checkbox', 'types' ]
-     })
- });
-</script>
