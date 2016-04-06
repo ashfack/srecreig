@@ -2,7 +2,7 @@
 <html>
 	<head>
 		<meta charset="utf-8">
-		<title>Demonstration</title>
+		<title>SRE - Recherche </title>
 		
 		<link rel="stylesheet" type="text/css" href="../css/style.css" />
 		<?php
@@ -25,7 +25,7 @@
 					$nomEntreprise=$_GET['nomEntreprise'];
 		?>
 
-		<h1> Informations concernant l'entreprise:  <span> <?php echo $nomEntreprise; ?> </span> </h1>
+		<h1 class="text-center"> Informations concernant l'entreprise:  <span> <?php echo $nomEntreprise; ?> </span> </h1>
 		
 		<div id="tabs">
 			<ul> 

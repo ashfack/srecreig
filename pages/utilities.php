@@ -155,7 +155,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 					echo '</tr>';
 			}
 			echo '</tbody>';
-			echo '<tfoot><tr><th colspan="4"></th></tr></tfoot>';
+			echo '<tfoot><tr><th colspan="9"></th></tr></tfoot>';
 			echo '</table>';
 			echo '<br/>';
 

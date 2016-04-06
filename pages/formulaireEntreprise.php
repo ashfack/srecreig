@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html>
    <head>
@@ -5,16 +6,19 @@
       <meta charset="UTF-8">
       <link rel="stylesheet" href="../css/style.css">
       <?php
-         require('header_link.html');
-         require('header_script.html');
-      ?>
-      <script src="../js/script_ajout_entreprise.js"></script>
-	  <script type="text/javascript" src="../js/ajout_entreprise.js"></script> 
-    <link rel="stylesheet" href="../framework/jsTree/dist/themes/default/style.min.css" />
+require ('header_link.html');
 
+require ('header_script.html');
+
+?>
+      <script src="../js/script_ajout_entreprise.js"></script>
+      <script type="text/javascript" src="../js/ajout_entreprise.js"></script> 
+      <link rel="stylesheet" href="../framework/jsTree/dist/themes/default/style.min.css" />
    </head>
    <body>
-      <?php require('header.php'); ?>
+      <?php
+require ('header.php');
+ ?>
       <div class="container">
          <div class="row" id="content">
             <h1 class="text-center"> Fiche d'ajout d'une entreprise </h1>
@@ -75,6 +79,7 @@
                            <div class="panel-body">
                               <select name="origineContact" id="origineContact" type="select" multiple size="10">
                                  <optgroup label = "Origine du contact : ">
+                                 <option value="sre">SRE</option>
                                  <option value="aisg">AISG</option>
                                  <option value="aimg">AMIG</option>
                                  <option value="cavam">CAVAM</option>
@@ -89,7 +94,6 @@
                                  <option value="presidence">Présidence</option>
                                  <option value="rp">Responsable pédagogique</option>
                                  <option value="scuio">SCUIO-IP</option>
-                                 <option value="sre">SRE</option>
                               </select>
                               <label for="typeContact" type="radio"> </br>Type de contact : </label>
                               <div class="radio">
@@ -106,259 +110,130 @@
                               </div>
                            </div>
                         </div>
-                     </div>                     
-
-                      
-
+                     </div>
                      <div class="col-md-4">
                         <div class="form-group">
                            <label for="comment">Commentaires:</label>
-                           <textarea class="form-control" rows="11" id="comment"></textarea>
+                           <textarea class="form-control" rows="14" id="comment"></textarea>
                         </div>
+                        <?php
+require ("jstree_cycle.php");
 
-
-                       <div id="jstree">
-                        <ul >
-                           <li id="Licences" data-jstree='{"icon":"fa fa-graduation-cap"}'>
-                              Licences
-                              <ul>
-
-                                 <li id="l_Informatique" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    Informatique
-                                 </li>
-                                 <li id="l_Mathématiques" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    Mathématiques
-                                 </li>
-                                 <li id="l_Physique" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    Physique, Chimie
-                                 </li>
-                                 <li id="l_Sciences" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    Sciences pour l'ingénieur
-                                 </li>
-                              </ul>
-                           </li>
-                           <li id"Masters" data-jstree='{"icon":"fa fa-graduation-cap"}'>
-                              Masters
-                              <ul>
-
-                                 <li id="MEEF" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    MEEF
-                                 </li>
-                                 <li id="Informatique" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    Informatique
-                                 </li>
-                                 <li id="maths" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    Mathématiques
-                                 </li>
-                                 <li id="physique" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    Physique et sciences des matériaux
-                                    <ul>
-
-                                       <li id="Photonique" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                          Photonique et Nanotechnologies
-                                       </li>
-                                       <li id="l_Mathématiques" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                          Mathématiques
-                                       </li>
-                                    </ul>
-                                 </li>
-                                 <li id="genie" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    Génie des procédés
-                                 </li>
-                                 <li id="santé" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    Ingénieurie de la santé, biomatériaux
-                                 </li>
-                                 <li id="images" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    Ingénierie et innovations en images et réseaux
-                                 </li>
-                              </ul>
-                           </li>
-                           <li id"Ingenieurs" data-jstree='{"icon":"fa fa-graduation-cap"}'>
-                              Ingénieurs
-                              <ul>
-
-                                 <li id="MACS" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    MACS
-                                 </li>
-                                 <li id="m_Informatique" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    Informatique
-                                 </li>
-                                 <li id="ener" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    Energétique
-                                 </li>
-                                 <li id="telecom" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    Télécommunications et réseaux
-                                 </li>
-                                 <li id="Appprentissage_ener" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    Appprentissage : Energétique
-                                 </li>
-                                 <li id="Appprentissage_info" data-jstree='{"icon":"glyphicon glyphicon-arrow-right"}'>
-                                    Appprentissage : Informatique et réseaux
-                                 </li>
-                              </ul>
-                           </li>
-                           <li id"institut_g" data-jstree='{"icon":"fa fa-graduation-cap"}'>
-                              Institut Galilée
-                           </li>
-                        </ul>
-                     </div>
-
-
+?>
                      <div class="col-md-10"></div>
-
-                      <button id="add" class="btn">
-                           <span id="sizing-addon1"><i class="glyphicon glyphicon-plus"></i></span>
-                      </button>
-
-
-                     </div>
-                     <div class="col-md-12">
-                     </div>
-                     <div class="col-md-4">
-                        <div class="panel panel-primary">
-                           <div class="panel-heading">
-                              <h3 class="panel-title">Contact Principal</h3>
+                  </div>
+                  <div class="col-md-12">
+                  </div>
+                  <div class="col-md-4">
+                     <div class="panel panel-primary">
+                        <div class="panel-heading">
+                           <h3 class="panel-title">Contact Principal</h3>
+                        </div>
+                        <div class="panel-body">
+                           <label>Civilite :</label>
+                           <label for="civiliteCP" class="radio-inline"><input type="radio"  name="optradio">Monsieur</label>
+                           <label for="civiliteCP" class="radio-inline"><input type="radio"  name="optradio">Madame</label><br />
+                           <div class="input-group">
+                              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
+                              <input type="text"  id ="nomCP" name="nomCP" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">
                            </div>
-                           <div class="panel-body">
-                              <label>Civilite :</label>
-                              <label for="civiliteCP" class="radio-inline"><input type="radio"  name="optradio">Monsieur</label>
-                              <label for="civiliteCP" class="radio-inline"><input type="radio"  name="optradio">Madame</label><br />
-                              <div class="input-group">
-                                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
-                                 <input type="text"  id ="nomCP" name="nomCP" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">
-                              </div>
-                              <div class="input-group">
-                                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-                                 <input type="text"  id="prenomCP" name="prenomCP" class="form-control" placeholder="Prénom" aria-describedby="sizing-addon1">
-                              </div>
-                              <div class="input-group">
-                                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-briefcase"></i></span>
-                                 <input type="text"  id="fonctionCP" name="fonctionCP" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1">
-                              </div>
-                              <div class="input-group">
-                                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
-                                 <input type="tel"  id="telCP" name="telCP" class="form-control"  placeholder="Numéro de téléphone" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
-                              </div>
-                              <div class="input-group">
-                                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mail"></i>@</span>
-                                 <input type="email"  id="emailCP" name="emailCP" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
-                              </div>
+                           <div class="input-group">
+                              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
+                              <input type="text"  id="prenomCP" name="prenomCP" class="form-control" placeholder="Prénom" aria-describedby="sizing-addon1">
+                           </div>
+                           <div class="input-group">
+                              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-briefcase"></i></span>
+                              <input type="text"  id="fonctionCP" name="fonctionCP" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1">
+                           </div>
+                           <div class="input-group">
+                              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
+                              <input type="tel"  id="telCP" name="telCP" class="form-control"  placeholder="Numéro de téléphone" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+                           </div>
+                           <div class="input-group">
+                              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mail"></i>@</span>
+                              <input type="email"  id="emailCP" name="emailCP" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-4">
-                        <div class="panel panel-primary">
-                           <div class="panel-heading">
-                              <h3 class="panel-title">Contact Secondaire</h3>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="panel panel-primary">
+                        <div class="panel-heading">
+                           <h3 class="panel-title">Contact Secondaire</h3>
+                        </div>
+                        <div class="panel-body">
+                           <label>Civilite :</label>
+                           <label for="civiliteCS" class="radio-inline"><input type="radio"  name="optradio">Monsieur</label>
+                           <label for="civiliteCS" class="radio-inline"><input type="radio"  name="optradio">Madame</label><br />
+                           <div class="input-group">
+                              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
+                              <input type="text"  id ="nomCS" name="nomCS" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">
                            </div>
-                           <div class="panel-body">
-                           	 <label>Civilite :</label>
-                              <label for="civiliteCS" class="radio-inline"><input type="radio"  name="optradio">Monsieur</label>
-                              <label for="civiliteCS" class="radio-inline"><input type="radio"  name="optradio">Madame</label><br />
-                              <div class="input-group">
-                                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
-                                 <input type="text"  id ="nomCS" name="nomCS" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">
-                              </div>
-                              <div class="input-group">
-                                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-                                 <input type="text"  id="prenomCS" name="prenomCS" class="form-control" placeholder="Prénom" aria-describedby="sizing-addon1">
-                              </div>
-                              <div class="input-group">
-                                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-briefcase"></i></span>
-                                 <input type="text"  id="fonctionCS" name="fonctionCS" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1">
-                              </div>
-                              <div class="input-group">
-                                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
-                                 <input type="tel"  id="telCS" name="telCS" class="form-control"  placeholder="Numéro de téléphone" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
-                              </div>
-                              <div class="input-group">
-                                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mail"></i>@</span>
-                                 <input type="email"  id="emailCS" name="emailCS" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
-                              </div>
+                           <div class="input-group">
+                              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
+                              <input type="text"  id="prenomCS" name="prenomCS" class="form-control" placeholder="Prénom" aria-describedby="sizing-addon1">
+                           </div>
+                           <div class="input-group">
+                              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-briefcase"></i></span>
+                              <input type="text"  id="fonctionCS" name="fonctionCS" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1">
+                           </div>
+                           <div class="input-group">
+                              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
+                              <input type="tel"  id="telCS" name="telCS" class="form-control"  placeholder="Numéro de téléphone" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+                           </div>
+                           <div class="input-group">
+                              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mail"></i>@</span>
+                              <input type="email"  id="emailCS" name="emailCS" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-4">
-                        <div class="panel panel-primary">
-                           <div class="panel-heading">
-                              <h3 class="panel-title">Contact TA-LR</h3>
+                  </div>
+                  <div class="col-md-4">
+                     <div class="panel panel-primary">
+                        <div class="panel-heading">
+                           <h3 class="panel-title">Contact TA-LR</h3>
+                        </div>
+                        <div class="panel-body">
+                           <label>Civilite :</label>
+                           <label for="civiliteTA" class="radio-inline"><input type="radio"  name="optradio">Monsieur</label>
+                           <label for="civiliteTA" class="radio-inline"><input type="radio"  name="optradio">Madame</label><br/>
+                           <div class="input-group">
+                              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
+                              <input type="text"  id ="nomTA" name="nomTA" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">
                            </div>
-                           <div class="panel-body">
-                           	  <label>Civilite :</label>
-                              <label for="civiliteTA" class="radio-inline"><input type="radio"  name="optradio">Monsieur</label>
-                              <label for="civiliteTA" class="radio-inline"><input type="radio"  name="optradio">Madame</label><br/>
-                              <div class="input-group">
-                                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
-                                 <input type="text"  id ="nomTA" name="nomTA" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">
-                              </div>
-                              <div class="input-group">
-                                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-                                 <input type="text"  id="prenomTA" name="prenomTA" class="form-control" placeholder="Prénom" aria-describedby="sizing-addon1">
-                              </div>
-                              <div class="input-group">
-                                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-briefcase"></i></span>
-                                 <input type="text"  id="fonctionTA" name="fonctionTA" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1">
-                              </div>
-                              <div class="input-group">
-                                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
-                                 <input type="tel"  id="telTA" name="telTA" class="form-control"  placeholder="Numéro de téléphone" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
-                              </div>
-                              <div class="input-group">
-                                 <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mail"></i>@</span>
-                                 <input type="email"  id="emailTA" name="emailTA" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
-                              </div>
-
-
+                           <div class="input-group">
+                              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
+                              <input type="text"  id="prenomTA" name="prenomTA" class="form-control" placeholder="Prénom" aria-describedby="sizing-addon1">
+                           </div>
+                           <div class="input-group">
+                              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-briefcase"></i></span>
+                              <input type="text"  id="fonctionTA" name="fonctionTA" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1">
+                           </div>
+                           <div class="input-group">
+                              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
+                              <input type="tel"  id="telTA" name="telTA" class="form-control"  placeholder="Numéro de téléphone" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+                           </div>
+                           <div class="input-group">
+                              <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mail"></i>@</span>
+                              <input type="email"  id="emailTA" name="emailTA" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
                            </div>
                         </div>
                      </div>
-                     <div class="col-md-4">	</div>
-                     <div class="col-md-12">
-                        <div class="col-md-5">	
-                        </div>
-                        <p>
-                           <input type="submit" value="Envoyer" />
-                           <input type="reset" value="Annuler" />
-                        </p>
+                  </div>
+                  <div class="col-md-4">  </div>
+                  <div class="col-md-12">
+                     <div class="col-md-5">  
                      </div>
+                     <p>
+                        <input type="submit" value="Envoyer" />
+                        <input type="reset" value="Annuler" />
+                     </p>
+                  </div>
             </form>
-            </div>
             </div>
          </div>
       </div>
-      </div></div> </div>						
+      </div>
+      </div></div> </div>                 
    </body>
 </html>
-  <script src="../js/jquery.min.js"></script>
-  <script src="../framework/jsTree/dist/jstree.min.js"></script>
-
-  <script>
-  $(function () {
-    $('#jstree').jstree({  
-      "plugins" : [ "wholerow", "checkbox", "types" ]
-    });
-
-    $('#jstree').on("changed.jstree", function (e, data) {
-      console.log(data.selected);
-    });
-
-
-    $("#plugins1").jstree({
-      "checkbox" : {
-        "keep_selected_style" : false ,
-         "whole_node" : true
-        }
-    });
-        $("#plugins7").jstree({
-    "types" : {
-      "default" : {
-        "icon" : "glyphicon glyphicon-flash"
-      },
-      "child_node_1" : {
-        "icon" : "glyphicon glyphicon-ok"
-      }
-    }
-  });
-  });
-
-  </script>

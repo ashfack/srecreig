@@ -177,7 +177,8 @@
 						echo'<a href="?admin">Passer en mode Admin</a>';
 				?>
             </div>
-
+            <br/>
+		<iframe src="https://calendar.google.com/calendar/embed?showTitle=0&amp;showPrint=0&amp;showCalendars=0&amp;showTz=0&amp;height=600&amp;wkst=2&amp;hl=fr&amp;bgcolor=%233333ff&amp;src=sreparis13%40gmail.com&amp;color=%231B887A&amp;src=fr.french%23holiday%40group.v.calendar.google.com&amp;color=%23125A12&amp;ctz=Europe%2FParis" style="border:solid 1px #777" width="800" height="600" frameborder="0" scrolling="no"></iframe>
         </center>
     </body>
 </html>
