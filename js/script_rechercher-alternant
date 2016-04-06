@@ -10,7 +10,7 @@ $(document).ready(function()
 			width:400,
 			autoOpen:false,
 			dialogClass: "alert",
-			position: { my: "center bottom", at: "center top", of: window, within: window},
+			position: { my: "center bottom", at: "center top", of: window, within:  window},
 			draggable: false,
 		 	open: function() {
 	            var dialog_refus = $(this);
@@ -21,7 +21,7 @@ $(document).ready(function()
 			
 		});
 
-		$( "#dialog_aucune_entreprise" ).dialog({
+		$( "#dialog_aucun_alternant" ).dialog({
 			height:100,
 			width:420,
 			autoOpen:false,
@@ -83,25 +83,26 @@ function requeteAjaxTable()
 	$.ajax({
 
 	   type: "POST",
-	   url: "recup_donnees_entreprises.php",
+	   url: "recup_donnees_alternants.php",
 	   dataType: "json",
-	   data: 'choix_entreprise='+$("#choix_entreprise").val(),
+	   data: 'choix_alternant='+$("#choix_alternant").val(),
 	   success: function(data)
 	   { 
 	   		//alert("jai trouve qq chose");
 			$("#div_datatable").children().remove();
 			if(data.length>0) 
 			{
-				var chaine="<table width='100%' border='0' cellspacing='0' cellpadding='0' id='datatable_entreprise' class='display'> \
+				var chaine="<table width='100%' border='0' cellspacing='0' cellpadding='0' id='datatable_alternant' class='display'> \
 		    	<thead> \
 		    		<tr> \
 		    			<th> Nom entreprise </th> \
-		    			<th> Groupe </th> \
-		    			<th> Adresse </th> \
-		    			<th> Complement d'adresse </th>\
-		    			<th> Code postal </th> \
-		    			<th> Ville </th> \
-		    			<th> Commentaires Entreprise</th> \
+		    			<th> Civilite </th> \
+		    			<th> Nom </th> \
+		    			<th> Prenom </th>\
+		    			<th> Mail </th>\
+		    			<th> Formation alternance </th> \
+		    			<th> Annee d'entrée	 </th> \
+		    			<th> Type contrat </th> \
 		    		</tr> \
 		    	</thead> \
 		    	<tbody>";
@@ -110,13 +111,14 @@ function requeteAjaxTable()
 				{
 				   obj = data[i];
 				   chaine+="<tr>";
-				   chaine+="<td>"+obj['nomEntreprise']+"</td>";
-				   chaine+="<td>"+obj['groupe']+"</td>";
-				   chaine+="<td>"+obj['adresse']+"</td>";
-				   chaine+="<td>"+obj['complementAdresse']+"</td>";
-				   chaine+="<td>"+obj['codePostal']+"</td>";
-				   chaine+="<td>"+obj['ville']+"</td>";
-				   chaine+="<td>"+obj['commentairesEntreprise']+"</td>";
+				   chaine+="<td>"+obj['Entrerprise_nomEntreprise']+"</td>";
+				   chaine+="<td>"+obj['civilite']+"</td>";
+				   chaine+="<td>"+obj['nom']+"</td>";
+				   chaine+="<td>"+obj['prenom']+"</td>";
+				   chaine+="<td>"+obj['mail']+"</td>";
+				   chaine+="<td>"+obj['formationAlternance']+"</td>";
+				   chaine+="<td>"+obj['anneeEntree']+"</td>";
+				   chaine+="<td>"+obj['typeContrat']+"</td>";
 				   chaine+="</tr>";
 				   //$("tbody").append(chaine);  
 				}

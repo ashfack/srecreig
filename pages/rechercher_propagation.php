@@ -41,7 +41,7 @@
 				echo "</ul>";
 
 				
-				// faut ajouter la formation, orgine , action mené et naf  !
+				// faut ajouter la formation, action mené !
 				$tab_niveaux_Entreprise=array("niveau1"=>array("nomEntreprise","groupe","adresse","complementAdresse","codePostal","ville","pays","commentairesEntreprise"),
 							"niveau2" => array("nomEntreprise","numeroSIRET","NAF_codeNAF","origine","typeContact","partenariatOfficiel","taille","alias"));
 
