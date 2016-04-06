@@ -26,7 +26,7 @@
                 <ul class="dropdown-menu ">
                     <li><a href="rechercher.php"><i class="fa fa-university fa-fw"></i> Entreprise</a>
                     </li>
-                    <li><a href="rechercherAlternant.php"><i class="fa fa-graduation-cap"></i> Alternant</a>
+                    <li><a href="rechercher_alternant.php"><i class="fa fa-graduation-cap"></i> Alternant</a>
                     </li>
                 </ul>
             </li>

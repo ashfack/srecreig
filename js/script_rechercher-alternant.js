@@ -26,7 +26,7 @@ $(document).ready(function()
 			width:420,
 			autoOpen:false,
 			dialogClass: "alert",
-			position: { my: "center bottom", at: "center top", of: window, within: window},
+			position: { my: "center bottom", at: "center center", of: window, within: window},
 			draggable: false,
 		 	open: function() {
 	            var dialog_vide = $(this);
@@ -186,7 +186,7 @@ function requeteAjaxTable()
 			}
 			else 
 			{
-				$("#dialog_aucune_entreprise").dialog("open");
+				$("#dialog_aucun_alternant").dialog("open");
 			}
 	   }
 	});

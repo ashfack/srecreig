@@ -10,7 +10,7 @@ $(document).ready(function()
 			width:400,
 			autoOpen:false,
 			dialogClass: "alert",
-			position: { my: "center bottom", at: "center top", of: window, within: window},
+			position: { my: "center bottom", at: "center center", of: window, within: window},
 			draggable: false,
 		 	open: function() {
 	            var dialog_refus = $(this);
@@ -26,7 +26,7 @@ $(document).ready(function()
 			width:420,
 			autoOpen:false,
 			dialogClass: "alert",
-			position: { my: "center bottom", at: "center top", of: window, within: window},
+			position: { my: "center bottom", at: "center center", of: window, within: window},
 			draggable: false,
 		 	open: function() {
 	            var dialog_vide = $(this);
@@ -43,7 +43,7 @@ $(document).ready(function()
 			width:500,
 			autoOpen:false,
 			dialogClass: "alert",
-			position: { my: "center bottom", at: "center top", of: window, within: $("#div_datatable")},
+			position: { my: "center bottom", at: "center center", of: window, within: $("#div_datatable")},
 			draggable: false,
 			modal:true,
 			buttons: 

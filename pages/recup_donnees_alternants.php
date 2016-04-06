@@ -5,9 +5,11 @@
     
     if(isset($_POST['choix_alternant']) && $_POST['choix_alternant']!="")
     {
-        $nomEntreprise=$_POST['choix_alternant'];
+       
+        $nomAlternant=$_POST['choix_alternant'];
+      
         $rep = $conn->prepare("SELECT a.Entreprise_nomEntreprise,cp.civilite,cp.nom,cp.prenom,cp.mail,a.anneeEntree,a.typeContrat,a.formationAlternance".
-            "FROM Alternance a left join CoordonneesPersonne cp on a.CoordonneesPersonne_alternant=cp.idCoordonneesPersonne where cp.nom LIKE :nomAlternant or cp.prenom LIKE :nomAlternant");
+            " FROM Alternance a left join CoordonneesPersonne cp on (a.CoordonneesPersonne_alternant=cp.idCoordonneesPersonne) where (cp.nom LIKE :nomAlternant)");
         $rep->bindValue(':nomAlternant',"%$nomAlternant%",PDO::PARAM_STR);
         $rep->execute();
         while ($donnees = $rep->fetch())

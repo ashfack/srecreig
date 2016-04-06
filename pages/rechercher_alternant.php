@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
     <head>
-        <title>Rechercher Alternant /title>
+        <title>Rechercher Alternant </title>
         <meta charset="UTF-8">
         <?php
             require('header_script.html');
