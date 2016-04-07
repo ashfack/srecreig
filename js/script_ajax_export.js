@@ -77,20 +77,41 @@ $(document).ready(function()
 	// $("#form_rechercher").submit( requeteAjaxTable );
 });
 
+//cleanArray removes all duplicated elements
+function cleanArray(array) {
+  var i, j, len = array.length, out = [], obj = {};
+  for (i = 0; i < len; i++) {
+    obj[array[i]] = 0;
+  }
+  for (j in obj) {
+    out.push(j);
+  }
+  return out;
+}
+
 function requeteAjaxTable()
 {
 	// récupération des champs cochés
 	var longueur = $(".jstree-clicked").length ; 
 	var liste_choix = new Array(longueur);
-	var table ; 
+	var table =new Array(); ; 
 	for(i=0; i < longueur; i++) 
 	{
 		var text_tmp = $($(".jstree-clicked")[i]).attr("id");
 		var champ_tmp = text_tmp.split("_ancho") ; 
 		liste_choix[i] = champ_tmp[0] ;
 		var table_tmp = text_tmp.split(".") ;
-		table = table_tmp[0] ; 
+		table[i] = table_tmp[0] ; 
+
+
 	}
+			console.log("avant");
+			console.log(table);
+
+	 table = cleanArray(table) ;
+				console.log("apré");
+
+					console.log(table);
 	console.log(liste_choix,table);
 
 	$.ajax({
@@ -101,30 +122,33 @@ function requeteAjaxTable()
 	   data: 'choix_entreprise='+$("#choix_entreprise").val()+'&liste_choix='+liste_choix+'&table='+table,
 	   success: function(data)
 	   { 
-	   	alert(data);
+	   	console.log(data);
 	   		//alert("jai trouve qq chose");
 			$("#div_datatable").children().remove();
 			if(data.length>0) 
 			{
 				var chaine="<table width='100%' border='0' cellspacing='0' cellpadding='0' id='datatable_entreprise' class='display'> \
-		    	<thead> \
-		    		<tr> \
-		    			<th> Nom entreprise </th> \
-		    			<th> Groupe </th> \
-		    			<th> Adresse </th> \
-		    			<th> Complement d'adresse </th>\
-		    			<th> Code postal </th> \
-		    			<th> Ville </th> \
-		    			<th> Commentaires Entreprise</th> \
-		    		</tr> \
-		    	</thead> \
-		    	<tbody>";
+		    	<thead> <tr>";
 
+
+		    	for(var i in liste_choix)
+				{
+				
+				   chaine+="<th>"+liste_choix[i]+"</th>";
+				  
+				   //$("tbody").append(chaine);  
+				}
+				chaine+="</tr></thead> <tbody>";
 				for(var i in data)
 				{
+
 				   obj = data[i];
+				   //console.log(obj);
 				   chaine+="<tr>";
-				   chaine+="<td>"+obj[i]+"</td>";
+				   for(var j in obj)
+				   {
+				   		chaine+="<td>"+obj[j]+"</td>";
+				   }
 				   chaine+="</tr>";
 				   //$("tbody").append(chaine);  
 				}
