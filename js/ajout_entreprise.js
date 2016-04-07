@@ -18,7 +18,21 @@ $(document).ready(function(){
 		var fonctionCP = $("#fonctionCP").val();
 		var telCP = $("#telCP").val();
 		var emailCP = $("#emailCP").val();
-		var civiliteCP = $("input[name='civilite_p']:checked").val();
+		var civiliteCP = $("input[name='civiliteCP']:checked").val();
+		
+		var nomCS = $("#nomCS").val();
+		var prenomCS = $("#prenomCS").val();
+		var fonctionCS = $("#fonctionCS").val();
+		var telCS = $("#telCS").val();
+		var emailCS = $("#emailCS").val();
+		var civiliteCS = $("input[name='civiliteCS']:checked").val();
+		
+		var nomTA = $("#nomTA").val();
+		var prenomTA = $("#prenomTA").val();
+		var fonctionTA = $("#fonctionTA").val();
+		var telTA = $("#telTA").val();
+		var emailTA = $("#emailTA").val();
+		var civiliteTA = $("input[name='civiliteTA']:checked").val();
 		
             $.ajax({
 				
@@ -26,7 +40,9 @@ $(document).ready(function(){
                 type: "POST", 
                 data: "nomEntreprise="+nomEntreprise+"&groupe="+groupe+"&codeNAF="+codeNAF+"&siret="+siret+"&adresse="+adresse+"&complAdr="+complAdr+
 					  "&codeP="+codeP+"&ville="+ville+"&pays="+pays+"&nomCP="+nomCP+"&prenomCP="+prenomCP+"&fonctionCP="+fonctionCP+
-					  "&telCP="+telCP+"&emailCP="+emailCP+"&civiliteCP="+civiliteCP, 
+					  "&telCP="+telCP+"&emailCP="+emailCP+"&civiliteCP="+civiliteCP+"&nomCS="+nomCS+"&prenomCS="+prenomCS+"&fonctionCS="+fonctionCS+
+					  "&telCS="+telCS+"&emailCS="+emailCS+"&civiliteCS="+civiliteCS+"&nomTA="+nomTA+"&prenomTA="+prenomTA+"&fonctionTA="+fonctionTA+
+					  "&telTA="+telTA+"&emailTA="+emailTA+"&civiliteTA="+civiliteTA, 
                 success: function(msg){ 
 								
 								

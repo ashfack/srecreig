@@ -131,8 +131,8 @@ require ("jstree_cycle.php");
                         </div>
                         <div class="panel-body">
                            <label>Civilite :</label>
-                           <label for="civiliteCP" class="radio-inline"><input type="radio"  value="Monsieur"name="civilite_p">Monsieur</label>
-                           <label for="civiliteCP" class="radio-inline"><input type="radio"  value="Madame"  name="civilite_p">Madame</label><br />
+                           <label for="civiliteCP" class="radio-inline"><input type="radio"  value="Monsieur" name="civiliteCP">Monsieur</label>
+                           <label for="civiliteCP" class="radio-inline"><input type="radio"  value="Madame"   name="civiliteCP">Madame</label><br />
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
                               <input type="text"  id ="nomCP" name="nomCP" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">
@@ -163,8 +163,8 @@ require ("jstree_cycle.php");
                         </div>
                         <div class="panel-body">
                            <label>Civilite :</label>
-                           <label for="civiliteCS" class="radio-inline"><input type="radio"  name="optradio">Monsieur</label>
-                           <label for="civiliteCS" class="radio-inline"><input type="radio"  name="optradio">Madame</label><br />
+                           <label for="civiliteCS" class="radio-inline"><input type="radio"   value="Monsieur" name="civiliteCS">Monsieur</label>
+                           <label for="civiliteCS" class="radio-inline"><input type="radio"   value="Madame"   name="civiliteCS">Madame</label><br />
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
                               <input type="text"  id ="nomCS" name="nomCS" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">
@@ -195,8 +195,8 @@ require ("jstree_cycle.php");
                         </div>
                         <div class="panel-body">
                            <label>Civilite :</label>
-                           <label for="civiliteTA" class="radio-inline"><input type="radio"  name="optradio">Monsieur</label>
-                           <label for="civiliteTA" class="radio-inline"><input type="radio"  name="optradio">Madame</label><br/>
+                           <label for="civiliteTA" class="radio-inline"><input type="radio"  value="Monsieur" name="civiliteTA">Monsieur</label>
+                           <label for="civiliteTA" class="radio-inline"><input type="radio"  value="Madame"   name="civiliteTA">Madame</label><br/>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
                               <input type="text"  id ="nomTA" name="nomTA" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">

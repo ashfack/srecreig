@@ -26,16 +26,35 @@
 		$pays = $_POST["pays"];
 		$nomEntr = $conn->query("SELECT * FROM Entreprise WHERE nomEntreprise='$nomEntreprise'");
 		
-		//Contact pimaire
+		//Contact primaire
 		
 		$nomCP = $_POST["nomCP"];
 		$prenomCP = $_POST["prenomCP"];
 		$fonctionCP = $_POST["fonctionCP"];
 		$telCP = $_POST["telCP"];
 		$emailCP = $_POST["emailCP"];
-		
 		$civiliteCP=$_POST['civiliteCP'];
 		$typecp="Primaire";
+		
+		//Contact secondaire
+		
+		$nomCS = $_POST["nomCS"];
+		$prenomCS = $_POST["prenomCS"];
+		$fonctionCS = $_POST["fonctionCS"];
+		$telCS = $_POST["telCS"];
+		$emailCS = $_POST["emailCS"];
+		$civiliteCS=$_POST['civiliteCS'];
+		$typeCS="Secondaire";
+		
+		//Contact TA
+		
+		$nomTA = $_POST["nomTA"];
+		$prenomTA = $_POST["prenomTA"];
+		$fonctionTA = $_POST["fonctionTA"];
+		$telTA = $_POST["telTA"];
+		$emailTA = $_POST["emailTA"];
+		$civiliteTA=$_POST['civiliteTA'];
+		$typeTA="TA";
 		
 		try{
 			if($req = $nomEntr->fetch()) { 
@@ -59,6 +78,27 @@
 			$id_cp=$data['res'];
 			$contactP=$conn->prepare("INSERT INTO a_Entreprise_CoordonneesPersonne (Entreprise_nomEntreprise,CoordonneesPersonne_id,type) VALUES (?,?,?)");
 			$contactP->execute(array($nomEntreprise,$id_cp,$typecp));
+		}
+		if($nomCS!="")
+		{
+			$contactP=$conn->prepare("INSERT INTO CoordonneesPersonne (civilite,nom,prenom,fonction,telephoneMobile,mail) VALUES (?,?,?,?,?,?)");
+			$contactP->execute(array($civiliteCS,$nomCS,$prenomCS,$fonctionCS,$telCS,$emailCS));
+			$req=$conn->query("Select LAST_INSERT_ID() as res");
+			$data=$req->fetch();
+			$id_CS=$data['res'];
+			$contactP=$conn->prepare("INSERT INTO a_Entreprise_CoordonneesPersonne (Entreprise_nomEntreprise,CoordonneesPersonne_id,type) VALUES (?,?,?)");
+			$contactP->execute(array($nomEntreprise,$id_CS,$typeCS));
+		}
+		
+		if($nomTA!="")
+		{
+			$contactP=$conn->prepare("INSERT INTO CoordonneesPersonne (civilite,nom,prenom,fonction,telephoneMobile,mail) VALUES (?,?,?,?,?,?)");
+			$contactP->execute(array($civiliteTA,$nomTA,$prenomTA,$fonctionTA,$telTA,$emailTA));
+			$req=$conn->query("Select LAST_INSERT_ID() as res");
+			$data=$req->fetch();
+			$id_TA=$data['res'];
+			$contactP=$conn->prepare("INSERT INTO a_Entreprise_CoordonneesPersonne (Entreprise_nomEntreprise,CoordonneesPersonne_id,type) VALUES (?,?,?)");
+			$contactP->execute(array($nomEntreprise,$id_TA,$typeTA));
 		}
 		
 		echo 1;
