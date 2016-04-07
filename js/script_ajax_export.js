@@ -124,13 +124,7 @@ function requeteAjaxTable()
 				{
 				   obj = data[i];
 				   chaine+="<tr>";
-				   chaine+="<td>"+obj['nomEntreprise']+"</td>";
-				   chaine+="<td>"+obj['groupe']+"</td>";
-				   chaine+="<td>"+obj['adresse']+"</td>";
-				   chaine+="<td>"+obj['complementAdresse']+"</td>";
-				   chaine+="<td>"+obj['codePostal']+"</td>";
-				   chaine+="<td>"+obj['ville']+"</td>";
-				   chaine+="<td>"+obj['commentairesEntreprise']+"</td>";
+				   chaine+="<td>"+obj[i]+"</td>";
 				   chaine+="</tr>";
 				   //$("tbody").append(chaine);  
 				}

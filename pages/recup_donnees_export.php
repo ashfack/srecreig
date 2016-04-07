@@ -14,6 +14,7 @@ if(isset($_POST['table']) && $_POST['table']!="" && isset($_POST['liste_choix'])
     for($i=0;$i<count($list);$i++)
     {
         $champs_tmp[$i]=explode(".",$list[$i]);
+        print_r($champs_tmp);
     }
     for($i=0;$i<count($champs_tmp);$i++)
     {
@@ -25,7 +26,7 @@ if(isset($_POST['table']) && $_POST['table']!="" && isset($_POST['liste_choix'])
         foreach ($champs as $key => $value) 
         {
             $arraytablee[$key]= $donnees[$value];
-           echo $arraytablee[$key]." ";            
+        //   echo $arraytablee[$key]." ";            
         }
         array_push($tab_donnees, $arraytablee);  
     }
