@@ -1,8 +1,8 @@
 $(document).ready(function(){
-    $('#ajoutEntreprise').submit(function() {
-       
-        
-		var nomEntreprise = $("#nom").val();
+    $('#ajoutEntreprise').submit(function() {      
+	  
+
+	    var nomEntreprise = $("#nom").val();
 		var groupe = $("#groupe").val();
 		var codeNAF = $("#codeNAF").val();
 		var siret = $("#siret").val();
@@ -11,13 +11,25 @@ $(document).ready(function(){
 		var codeP = $("#codeP").val();
 		var ville = $("#ville").val();
 		var pays = $("#pays").val();
+		
+		
+		var nomCP = $("#nomCP").val();
+		var prenomCP = $("#prenomCP").val();
+		var fonctionCP = $("#fonctionCP").val();
+		var telCP = $("#telCP").val();
+		var emailCP = $("#emailCP").val();
+		var civiliteCP = $("input[name='civilite_p']:checked").val();
+		
             $.ajax({
 				
                 url: "ajouterEntreprise.php", 
                 type: "POST", 
                 data: "nomEntreprise="+nomEntreprise+"&groupe="+groupe+"&codeNAF="+codeNAF+"&siret="+siret+"&adresse="+adresse+"&complAdr="+complAdr+
-					  "&codeP="+codeP+"&ville="+ville+"&pays="+pays, 
+					  "&codeP="+codeP+"&ville="+ville+"&pays="+pays+"&nomCP="+nomCP+"&prenomCP="+prenomCP+"&fonctionCP="+fonctionCP+
+					  "&telCP="+telCP+"&emailCP="+emailCP+"&civiliteCP="+civiliteCP, 
                 success: function(msg){ 
+								
+								
 								if(msg==1) 
 										{
 											 alert("super bien ajouté");
@@ -26,10 +38,16 @@ $(document).ready(function(){
 										}
 								else 
 										{
-											if (msg.substring(9,14)=="23000")
+											if(msg==0)
 											{
+									            
 												alert("votre entreprise existe déjà");
-											}
+									
+											}	
+											//if (msg.substring(9,14)=="23000")
+											//{
+												
+											//}
 											else
 											{
 												alert(msg.substring(9,14));
@@ -38,9 +56,7 @@ $(document).ready(function(){
 											//alert(msg);
 											 //alert("phpER");
 										}
-				}
-								
-								
+				}							
             });
         return false;
     });
