@@ -31,7 +31,9 @@
 		$nomCP = $_POST["nomCP"];
 		$prenomCP = $_POST["prenomCP"];
 		$fonctionCP = $_POST["fonctionCP"];
-		$telCP = $_POST["telCP"];
+		$telCP_m = $_POST["telCP_m"];
+		$telCP_f = $_POST["telCP_f"];
+		
 		$emailCP = $_POST["emailCP"];
 		$civiliteCP=$_POST['civiliteCP'];
 		$typecp="Primaire";
@@ -41,7 +43,8 @@
 		$nomCS = $_POST["nomCS"];
 		$prenomCS = $_POST["prenomCS"];
 		$fonctionCS = $_POST["fonctionCS"];
-		$telCS = $_POST["telCS"];
+		$telCS_f = $_POST["telCS_f"];
+		$telCS_m = $_POST["telCS_m"];
 		$emailCS = $_POST["emailCS"];
 		$civiliteCS=$_POST['civiliteCS'];
 		$typeCS="Secondaire";
@@ -51,7 +54,8 @@
 		$nomTA = $_POST["nomTA"];
 		$prenomTA = $_POST["prenomTA"];
 		$fonctionTA = $_POST["fonctionTA"];
-		$telTA = $_POST["telTA"];
+		$telTA_f = $_POST["telTA_f"];
+		$telTA_m = $_POST["telTA_m"];
 		$emailTA = $_POST["emailTA"];
 		$civiliteTA=$_POST['civiliteTA'];
 		$typeTA="TA";
@@ -71,8 +75,8 @@
 		probléme table Naf non rempli*/		
 		if($nomCP!="")
 		{
-			$contactP=$conn->prepare("INSERT INTO CoordonneesPersonne (civilite,nom,prenom,fonction,telephoneMobile,mail) VALUES (?,?,?,?,?,?)");
-			$contactP->execute(array($civiliteCP,$nomCP,$prenomCP,$fonctionCP,$telCP,$emailCP));
+			$contactP=$conn->prepare("INSERT INTO CoordonneesPersonne (civilite,nom,prenom,fonction,telephoneMobile,telephoneFixe,mail) VALUES (?,?,?,?,?,?,?)");
+			$contactP->execute(array($civiliteCP,$nomCP,$prenomCP,$fonctionCP,$telCP_m,$telCP_f,$emailCP));
 			$req=$conn->query("Select LAST_INSERT_ID() as res");
 			$data=$req->fetch();
 			$id_cp=$data['res'];
@@ -81,8 +85,8 @@
 		}
 		if($nomCS!="")
 		{
-			$contactP=$conn->prepare("INSERT INTO CoordonneesPersonne (civilite,nom,prenom,fonction,telephoneMobile,mail) VALUES (?,?,?,?,?,?)");
-			$contactP->execute(array($civiliteCS,$nomCS,$prenomCS,$fonctionCS,$telCS,$emailCS));
+			$contactP=$conn->prepare("INSERT INTO CoordonneesPersonne (civilite,nom,prenom,fonction,telephoneMobile,telephoneFixe,mail) VALUES (?,?,?,?,?,?,?)");
+			$contactP->execute(array($civiliteCS,$nomCS,$prenomCS,$fonctionCS,$telCS_m,$telCS_f,$emailCS));
 			$req=$conn->query("Select LAST_INSERT_ID() as res");
 			$data=$req->fetch();
 			$id_CS=$data['res'];
@@ -92,8 +96,8 @@
 		
 		if($nomTA!="")
 		{
-			$contactP=$conn->prepare("INSERT INTO CoordonneesPersonne (civilite,nom,prenom,fonction,telephoneMobile,mail) VALUES (?,?,?,?,?,?)");
-			$contactP->execute(array($civiliteTA,$nomTA,$prenomTA,$fonctionTA,$telTA,$emailTA));
+			$contactP=$conn->prepare("INSERT INTO CoordonneesPersonne (civilite,nom,prenom,fonction,telephoneMobile,telephoneFixe,mail) VALUES (?,?,?,?,?,?,?)");
+			$contactP->execute(array($civiliteTA,$nomTA,$prenomTA,$fonctionTA,$telTA_m,$telTA_f,$emailTA));
 			$req=$conn->query("Select LAST_INSERT_ID() as res");
 			$data=$req->fetch();
 			$id_TA=$data['res'];

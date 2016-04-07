@@ -147,9 +147,13 @@ require ("jstree_cycle.php");
                            </div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
-                              <input type="tel"  id="telCP" name="telCP" class="form-control"  placeholder="Numéro de téléphone" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
-                           </div>
-                           <div class="input-group">
+                              <input type="tel"  id="telCP_f" name="telCP_f" class="form-control"  placeholder="Téléphone fixe" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">							
+						   </div>
+						   <div class="input-group">
+								<span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
+								<input type="tel"  id="telCP_m"   name="telCP_m" class="form-control"  placeholder="Téléphone mobile" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+							</div>
+						   <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mail"></i>@</span>
                               <input type="email"  id="emailCP" name="emailCP" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
                            </div>
@@ -179,8 +183,12 @@ require ("jstree_cycle.php");
                            </div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
-                              <input type="tel"  id="telCS" name="telCS" class="form-control"  placeholder="Numéro de téléphone" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+                              <input type="tel"  id="telCS_f" name="telCS_f" class="form-control"  placeholder="Téléphone fixe" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
                            </div>
+						   <div class="input-group">
+								<span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
+								<input type="tel"  id="telCS_m"   name="telCS_m" class="form-control"  placeholder="Téléphone mobile" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+							</div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mail"></i>@</span>
                               <input type="email"  id="emailCS" name="emailCS" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
@@ -211,8 +219,12 @@ require ("jstree_cycle.php");
                            </div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
-                              <input type="tel"  id="telTA" name="telTA" class="form-control"  placeholder="Numéro de téléphone" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+                              <input type="tel"  id="telTA_f" name="telTA_f" class="form-control"  placeholder="Téléphone fixe" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
                            </div>
+						   <div class="input-group">
+								<span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
+								<input type="tel"  id="telTA_m"   name="telTA_m" class="form-control"  placeholder="Téléphone mobile" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
+							</div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mail"></i>@</span>
                               <input type="email"  id="emailTA" name="emailTA" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
