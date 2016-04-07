@@ -76,13 +76,14 @@
 				
 							
 				/*echo "$colonne_array[$j]";
-				echo "<input type=\"text\" name=\"$colonne_array[$j]\"><br>";*/
+				echo "<input type=\"text\" name=\"$colonne_array[$j]\"><br>";
+				<br/><br/>
+						<input class=\"send\" src=\"../img/Envoyer.png\" type=\"image\">
+						<br></br>*/
 			}
 			
 				echo "
-						<br/><br/>
-						<input class=\"send\" src=\"../img/Envoyer.png\" type=\"image\">
-						<br></br>
+						
 						</div>
 						</form>";
 			?>

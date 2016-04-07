@@ -74,20 +74,19 @@ $(document).ready(function()
 
 			]
 	});
-	
 	$("#dialog_editer").dialog(
 		{
-			height: 250,
-			width:600,
+			height: 350,
+			width:858.778,
 			autoOpen:false,
 			dialogClass: "alert",
-			position: { my: "center bottom", at: "center top", of: window, within: $("#div_datatable")},
+			position: { my: "center bottom", at: "center center", of: window, within: $("#div_datatable")},
 			draggable: false,
 			modal:true,
 			buttons: 
 			[
 			    {
-			      text: "Oui",
+			      text: "Valider",
 			      icons: 
 			      {
 			        primary: "ui-icon-check"
@@ -205,8 +204,20 @@ function requeteAjaxTable()
 						codePostal=$(".selected").find('td:nth-child(5)').html();
 						ville=$(".selected").find('td:nth-child(6)').html();
 						commentaires=$(".selected").find('td:nth-child(7)').html();
+						
 						$("#emplacement_editer_nomEntreprise").text(nomEntreprise);
+						
+						// ouverture pop up
 						$("#dialog_editer").dialog("open");
+						
+						//remplissage automatique des champs
+						$( "input[name*='nomEntreprise']" ).val(nomEntreprise);
+						$( "input[name*='groupe']" ).val(groupe);
+						$( "input[name*='adresse']" ).val(adresse);
+						$( "input[name*='complementAdresse']" ).val(complementAdresse);
+						$( "input[name*='codePostal']" ).val(codePostal);
+						$( "input[name*='ville']" ).val(ville);
+						$( "input[name*='commentaires']" ).val(commentaires);
 					}
 						
 				});
@@ -275,21 +286,34 @@ function requeteAjaxSuppression()
 
 function requeteAjaxEdition()
 {
-
+	
+	nomEntreprise=$( "input[name*='nomEntreprise']" ).val();
+	groupe=$( "input[name*='groupe']" ).val();
+	adresse=$( "input[name*='adresse']" ).val();
+	complementAdresse=$( "input[name*='complementAdresse']" ).val();
+	codePostal=$( "input[name*='codePostal']" ).val();
+	ville=$( "input[name*='ville']" ).val();
+	commentaires=$( "input[name*='commentaires']" ).val();
+	
+	alert(ville); //vérifie les variables sont définies
 	$.ajax({
+	
 
-	   type: "POST",
-	   url: "editer_entreprise.php",
-	   dataType: "text",
-	   data: 	'nomEntreprise='+nomEntreprise+
-				' groupe='+groupe+
-				' adresse='+adresse+
-				' complementAdresse='+complementAdresse+
-				' codePostal='+codePostal+
-				' ville='+ville+
-				' commentaires='+commentaires,
-	   success: function(data)
-	   { 
+		
+
+		type: "POST",
+		url: "editer_entreprise.php",
+		dataType: "text",
+		data: 	'nomEntreprise='+nomEntreprise+
+				'&groupe='+groupe+
+				'&adresse='+adresse+
+				'&complementAdresse='+complementAdresse+
+				'&codePostal='+codePostal+
+				'&ville='+ville+
+				'&commentaires='+commentaires,
+
+		success: function(data)
+		{ 
 			if(data=="ok")
 			{
 				requeteAjaxTable();
@@ -298,7 +322,7 @@ function requeteAjaxEdition()
 			{
 				alert("L'édition n'a pas été effectuée: une erreur est survenue");
 			}
-	   }
+		}
 	});
 	
 	
