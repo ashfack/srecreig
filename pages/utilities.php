@@ -12,19 +12,16 @@ function transformeChaine($tab_chaine)
 	{
 		$lettre=substr($chaine,0,1);
 
+		//c'est un sigle
 		if(in_array($chaine,$sigle))
 			array_push($tab_chaine_transforme,$sigle_transforme[$chaine]);
 
-		elseif($chaine=="CoordonneesPersonne_alternant" )
-		{
-			array_push($tab_chaine_transforme,"id alternant");
-		}
-
 		elseif($chaine=="Entreprise_nomEntreprise" )
 		{
-			array_push($tab_chaine_transforme,"nom Entreprise");
+			array_push($tab_chaine_transforme,"Nom entreprise");
 		}
 
+		//ca commence par une miniscule
 		elseif(strtoupper($lettre)!=$lettre)
 		{
 			$keywords = preg_split('/(?=[A-Z]+)/', $chaine);
@@ -42,7 +39,8 @@ function transformeChaine($tab_chaine)
 		}
 		else
 		{
-			
+			/*if($chaine=="CoordonneesPersonne.commentaires")
+				array_push($tab_chaine_transforme,"Commentaires");*/
 		}
 			
 	}
@@ -76,35 +74,56 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 					continue;
 				}
 
+
 				$res=preg_split("/_/",$colonne_niveau);
 
+				//cle etrangere
 				if(sizeof($res)==2)
 				{
 					$table_req=$res[0];
 					$attribut=$res[1];
 						
 					$indice=array_search($colonne_niveau, $niveau); //indice de la cle etrangere dans le tableau de niveau: à supprimer et remplacer par les colonnes recuperées
-				
 					$cle_CP_presente=true;
-					$sql = "DESCRIBE $table_req";
-					$rep=$GLOBALS['conn']->query($sql);
-					
 					$colonne_cle_array = array();
 					$colonne_cle_affichage_array = array();
-					while( $row = $rep->fetch()) 
-					{ 
-						//echo "<p> je change ------> <p>";
-						if($row['Field']=="commentaires")
-							$row['Field']="CoordonneesPersonne.commentaires";
-						array_push($colonne_cle_affichage_array, $row['Field'].ucfirst($attribut));
-						array_push($colonne_cle_array, $row['Field']);
-					}
 
-						array_splice($niveau,$indice,1,$colonne_cle_array);
+					if($colonne_niveau == "CoordonneesPersonne_alternant" && $nom_niveau!="niveau1")
+					{
+							/*//echo "<p> je change ------> <p>";
+							array_push($colonne_cle_affichage_array, "id Alternant");
+							array_push($colonne_cle_affichage_array, "Nom alternant");
+							array_push($colonne_cle_affichage_array, "Prenom alternant");*/
+							
+							array_push($colonne_cle_array, "idCoordonneesPersonne");
+							array_push($colonne_cle_array, "nom");
+							array_push($colonne_cle_array, "prenom");
+					}
+					else
+					{
+						$sql = "DESCRIBE $table_req";
+						$rep=$GLOBALS['conn']->query($sql);
+						
+						
+						while( $row = $rep->fetch()) 
+						{ 
+							
+							/*if($row['Field']=="commentaires")
+								$row['Field']="CoordonneesPersonne.commentaires";*/
+							//array_push($colonne_cle_affichage_array, $row['Field'].ucfirst($attribut));
+							array_push($colonne_cle_array, $row['Field']);
+						}
+					}
+					
+					//print_r($colonne_cle_array);
+					array_splice($niveau,$indice,1,$colonne_cle_array);
+					//print_r($niveau);
 				}
 				
 			}
+
 			$colonne_array_affichage=transformeChaine($niveau);
+			//print_r($colonne_array_affichage);
 
 			echo "<table width='100%' border='0' cellspacing='0' cellpadding='0' id='dataTable_".$table."_"."$nom_niveau' class='display'>";
 			echo "<thead><tr>";
@@ -137,7 +156,31 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			else
 			{
 				if($cle_CP_presente)
-					$sql=" SELECT ".implode($niveau,",")." FROM $table left join CoordonneesPersonne on ($table.CoordonneesPersonne_$attribut = CoordonneesPersonne.idCoordonneesPersonne) WHERE Entreprise_nomEntreprise = :nomEntreprise";
+				{
+					//echo $nom_niveau;
+					if($nom_niveau=="niveau3" || $nom_niveau=="niveau4")
+					{
+						//$colonne_requete_alternance=array("idA","nomA","prenomA",)
+						if($nom_niveau=="niveau3")
+							$col_req="AL.CoordonneesPersonne_maitre";
+						else
+							$col_req="AL.CoordonneesPersonne_RH";
+
+
+						$sql="SELECT p1.idCoordonneesPersonne as idA,p1.nom as nomA,p1.prenom as prenomA, p2.idCoordonneesPersonne,p2.civilite,p2.nom,p2.prenom,p2.fonction,p2.telephoneFixe,p2.telephoneMobile,p2.mail,p2.commentaires ".
+								"FROM ".
+								    "alternance AL ".
+								        "INNER JOIN CoordonneesPersonne p1 ".
+								            "ON AL.CoordonneesPersonne_alternant = p1.idCoordonneesPersonne ".
+								        "INNER JOIN CoordonneesPersonne p2 ".
+								            "ON $col_req = p2.idCoordonneesPersonne ".
+								"WHERE Entreprise_nomEntreprise=:nomEntreprise";
+					}
+					else
+						$sql=" SELECT ".implode($niveau,",")." FROM $table left join CoordonneesPersonne on ($table.CoordonneesPersonne_$attribut = CoordonneesPersonne.idCoordonneesPersonne) WHERE Entreprise_nomEntreprise = :nomEntreprise";
+					
+					//echo $sql;
+				}
 				else
 					$sql=" SELECT ".implode($niveau,",")." FROM $table WHERE Entreprise_nomEntreprise = :nomEntreprise";
 			}
@@ -148,17 +191,41 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			$rep->bindValue(':nomEntreprise',$nomEntreprise,PDO::PARAM_STR);
 			$rep->execute();
 
+			
+
 			while($data=$rep->fetch())
 			{
 					echo "<tr>";
-					$valeur_pk=$data[$pk];
-					for ($j=0;$j<count($niveau);$j++)
+					if($table=="Alternance")
+						$pk="idCoordonneesPersonne";
+					if($table=="Alternance" && $nom_niveau!="niveau1" && $nom_niveau!="niveau2")
 					{
-						$valeur=$data[$niveau[$j]];
-						echo "<td id='$table"."_".$valeur_pk."_".$niveau[$j]."_"."$nom_niveau'> $valeur</td>";
+						echo "<td id='Alternance_idCoordonneesPersonne_idA_"."$nom_niveau'>".$data['idA']."</td>";
+						echo "<td id='Alternance_idCoordonneesPersonne_nomA_"."$nom_niveau'>".$data['nomA']."</td>";
+						echo "<td id='Alternance_idCoordonneesPersonne_prenomA_"."$nom_niveau'>".$data['prenomA']."</td>";
+						
+						//echo sizeof($niveau);
+						//print_r($niveau);
+						for ($j=3;$j<count($niveau);$j++)
+						{
+							$valeur=$data[$niveau[$j]];
+							echo "<td id='$table"."_".$valeur_pk."_".$niveau[$j]."_"."$nom_niveau'> $valeur</td>";
+						}
+						
 					}
+					else
+					{
+						$valeur_pk=$data[$pk];
+						for ($j=0;$j<count($niveau);$j++)
+						{
+							$valeur=$data[$niveau[$j]];
+							echo "<td id='$table"."_".$valeur_pk."_".$niveau[$j]."_"."$nom_niveau'> $valeur</td>";
+						}
+					}
+					
 					echo '</tr>';
 			}
+			
 			echo '</tbody>';
 			echo '<tfoot><tr><th colspan="9"></th></tr></tfoot>';
 			echo '</table>';
