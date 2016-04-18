@@ -2,19 +2,64 @@
 
 require'db_connect.php';
 $tab_donnees=array();
-
+$selectedFullTxt = " "; 
 if(isset($_POST['table']) && $_POST['table']!="" && isset($_POST['liste_choix']) && $_POST['liste_choix']!="")
 {
     $choix=$_POST['liste_choix'];  
     $list=explode(",",$choix);
     $table=$_POST['table']; 
    // echo $choix;
-    $sql = "SELECT ".$choix." FROM ".$table.";";
+    if($_POST['selectedFullTable'] != "")
+    {
+        $selectedFullTable=$_POST['selectedFullTable']; 
+        $i=0 ;
+            $selectedFull=explode(",",$selectedFullTable);
+
+            if($list[$i] != $selectedFull[$i])
+            {
+               // echo "entrerrr";
+                $selectedFullTxt = $list[$i] ; 
+             //   echo $selectedFullChamp ;
+             }
+             else 
+             {
+                $selectedFullTxt = $list[$i].".*" ; 
+            }
+
+        for($i=1;$i<count($list);$i++)
+        {     
+            if($list[$i] != $selectedFull[$i])
+            {
+               // echo "entrerrr";
+                $selectedFullTxt = $list[$i].",".$selectedFullTxt ; 
+             //   echo $selectedFullChamp ;
+             }
+             else 
+                $selectedFullTxt = $list[$i].".*,".$selectedFullTxt ; 
+
+        }
+
+
+        $sql = "SELECT ".$selectedFullTxt." FROM ".$table.";";
+        //echo $sql; 
+    }
+    else 
+    {
+    //    echo "movai";
+        $sql = "SELECT ".$choix." FROM ".$table.";";
+    }
+    //echo $sql; 
     $rep = $conn->prepare($sql);
     $rep->execute();
+
     for($i=0;$i<count($list);$i++)
     {
-        $champs_tmp[$i]=explode(".",$list[$i])[1];
+            if($_POST['selectedFullTable'] != "")
+           {
+            $champs_tmp[$i] = $list[$i];
+           }
+          else 
+            $champs_tmp[$i]=explode(".",$list[$i])[1];
     }
     /*for($i=0;$i<count($champs_tmp);$i++)
     {

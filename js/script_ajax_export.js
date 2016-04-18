@@ -1,6 +1,8 @@
 var nomEntreprise;
 $(document).ready(function()
 {
+		onClick ="$('#div_datatable').tableExport({type:'pdf',escape:'false'});"
+
 		$("#bRechercher").click(function(){
 				requeteAjaxTable();
 			});
@@ -94,7 +96,11 @@ function requeteAjaxTable()
 	// récupération des champs cochés
 	var longueur = $(".jstree-clicked").length ; 
 	var liste_choix = new Array(longueur);
-	var table =new Array(); ; 
+	var table =new Array(); 
+	var champs = new Array(); 
+	var champ_tmp = new Array(); 
+	var selectedFullTable = new Array ; 
+	var j = 0 ; 
 	for(i=0; i < longueur; i++) 
 	{
 		var text_tmp = $($(".jstree-clicked")[i]).attr("id");
@@ -102,16 +108,21 @@ function requeteAjaxTable()
 		liste_choix[i] = champ_tmp[0] ;
 		var table_tmp = text_tmp.split(".") ;
 		table[i] = table_tmp[0] ; 
-
-
+		var tttt = table_tmp[1] ; 
+		if ( tttt != null) champs[i] = tttt.split("_ancho")[0] ;
+		else { 
+			tttt = table_tmp[0] ; 
+			champs[i] = champ_tmp[0].split("_ancho")[0] ;
+			if( champs[i] != null ) 
+			{
+				table[i] = champs[i]; 
+				selectedFullTable[j] = table[i] ; 
+				j++;
+				console.log("entrer");
+				}
+		}
 	}
-			console.log("avant");
-			console.log(table);
-
-	 table = cleanArray(table) ;
-				console.log("apré");
-
-					console.log(table);
+	table = cleanArray(table) ;
 	console.log(liste_choix,table);
 
 	$.ajax({
@@ -119,7 +130,7 @@ function requeteAjaxTable()
 	   type: "POST",
 	   url: "recup_donnees_export.php",
 	   dataType: "json",
-	   data: 'choix_entreprise='+$("#choix_entreprise").val()+'&liste_choix='+liste_choix+'&table='+table,
+	   data: 'choix_entreprise='+$("#choix_entreprise").val()+'&liste_choix='+liste_choix+'&table='+table+'&selectedFullTable='+selectedFullTable,
 	   success: function(data)
 	   { 
 	   	console.log(data);
@@ -134,7 +145,7 @@ function requeteAjaxTable()
 		    	for(var i in liste_choix)
 				{
 				
-				   chaine+="<th>"+liste_choix[i]+"</th>";
+				   chaine+="<th>"+champs[i]+"</th>";
 				  
 				   //$("tbody").append(chaine);  
 				}
@@ -161,8 +172,6 @@ function requeteAjaxTable()
 			    	</table>";
 
 				$("#div_datatable").append(chaine);
-				$("#div_datatable").append("<button id='bInfo'> Voir les informations </button>");
-				$("#div_datatable").append("<button id='bSupprimer'> Supprimer </button>");
 
 				$("#datatable_entreprise").dataTable({
 					"bJQueryUI": true,
