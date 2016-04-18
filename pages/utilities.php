@@ -3,7 +3,7 @@ function transformeChaine($tab_chaine)
 {
 	$sigle_transforme=array("numeroSIRET"=>"Numero SIRET","codeNAF"=>"Code NAF","libelleNAF"=>"Libelle NAF","dateAtelierRH"=>"Date atelier RH",
 					"rapprochementAC"=>"Rapprochement AC","dateRVPreparation"=>"Date RV preparation","dateRVSimulation"=>"Date RV simulation",
-					"dateEnvoiFLAuCFA"=>"Date envoi FL au CFA","OCTA"=>"OCTA","idTA"=>"id TA","idAtelierRH"=>"id atelier RH");
+					"dateEnvoiFLAuCFA"=>"Date envoi FL au CFA","OCTA"=>"OCTA");
 	$sigle=array_keys($sigle_transforme);
 
 	$tab_chaine_transforme=array();
@@ -11,9 +11,12 @@ function transformeChaine($tab_chaine)
 	foreach ($tab_chaine as $chaine) 
 	{
 		$lettre=substr($chaine,0,1);
+		$deuxLettre=substr($chaine,0,2);
 
+		if($deuxLettre=="id")
+			array_push($tab_chaine_transforme,$chaine);
 		//c'est un sigle
-		if(in_array($chaine,$sigle))
+		elseif(in_array($chaine,$sigle))
 			array_push($tab_chaine_transforme,$sigle_transforme[$chaine]);
 
 		elseif($chaine=="Entreprise_nomEntreprise" )
@@ -130,7 +133,11 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			
 			for($i=0;$i<count($colonne_array_affichage);$i++)
 			{
-				echo  "<th> $colonne_array_affichage[$i] </th>";
+				$nom_col_affichage=$colonne_array_affichage[$i];
+				if(substr($nom_col_affichage, 0,2)=="id" || $nom_col_affichage=="Nom entreprise")
+					echo  "<th name='cacher'> $nom_col_affichage </th>";
+				else
+					echo  "<th> $nom_col_affichage </th>";
 			}
 
 			echo '</tr></thead>';
@@ -200,7 +207,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 						$pk="idCoordonneesPersonne";
 					if($table=="Alternance" && $nom_niveau!="niveau1" && $nom_niveau!="niveau2")
 					{
-						echo "<td id='Alternance_idCoordonneesPersonne_idA_"."$nom_niveau'>".$data['idA']."</td>";
+						echo "<td id='Alternance_idCoordonneesPersonne_idA_"."$nom_niveau' name='cacher'>".$data['idA']."</td>";
 						echo "<td id='Alternance_idCoordonneesPersonne_nomA_"."$nom_niveau'>".$data['nomA']."</td>";
 						echo "<td id='Alternance_idCoordonneesPersonne_prenomA_"."$nom_niveau'>".$data['prenomA']."</td>";
 						
@@ -209,7 +216,10 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 						for ($j=3;$j<count($niveau);$j++)
 						{
 							$valeur=$data[$niveau[$j]];
-							echo "<td id='$table"."_".$valeur_pk."_".$niveau[$j]."_"."$nom_niveau'> $valeur</td>";
+							if($niveau[$j]=="idCoordonneesPersonne")
+								echo "<td id='$table"."_".$valeur_pk."_".$niveau[$j]."_"."$nom_niveau' name='cacher'> $valeur</td>";
+							else
+								echo "<td id='$table"."_".$valeur_pk."_".$niveau[$j]."_"."$nom_niveau'> $valeur</td>";
 						}
 						
 					}
@@ -218,8 +228,13 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 						$valeur_pk=$data[$pk];
 						for ($j=0;$j<count($niveau);$j++)
 						{
-							$valeur=$data[$niveau[$j]];
-							echo "<td id='$table"."_".$valeur_pk."_".$niveau[$j]."_"."$nom_niveau'> $valeur</td>";
+							$nom_col=$niveau[$j];
+
+							$valeur=$data[$nom_col];
+							if(substr($nom_col, 0,2)=="id" || $nom_col=="nomEntreprise")
+									echo "<td id='$table"."_".$valeur_pk."_".$nom_col."_"."$nom_niveau' name='cacher'> $valeur</td>";
+							else
+								echo "<td id='$table"."_".$valeur_pk."_".$nom_col."_"."$nom_niveau'> $valeur</td>";
 						}
 					}
 					

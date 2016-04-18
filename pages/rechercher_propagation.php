@@ -52,7 +52,7 @@
 		
 
 				$tab_niveaux_Alternance=array("niveau1"=>array("formationAlternance","anneeEntree","typeContrat","CoordonneesPersonne_alternant"),
-												"niveau2"=>array("CoordonneesPersonne_alternant","dateRVpreparation","dateRVsimulation","dateDebutContrat","dateFinContrat","dateEnvoiFLAuCFA","docAAttacher","commentairesAlternance"),
+												"niveau2"=>array("CoordonneesPersonne_alternant","dateRVPreparation","dateRVSimulation","dateDebutContrat","dateFinContrat","dateEnvoiFLAuCFA","docAAttacher","commentairesAlternance"),
 												"niveau3"=>array("CoordonneesPersonne_alternant","CoordonneesPersonne_maitre"),
 												"niveau4"=>array("CoordonneesPersonne_alternant","CoordonneesPersonne_RH"));
 
