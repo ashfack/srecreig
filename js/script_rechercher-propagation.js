@@ -2,6 +2,7 @@ $(document).ready(function()
 {
 	$("#tabs").tabs();
 	
+
 	var table_array=new Array("Entreprise","CoordonneesPersonne","Alternance","TaxeApprentissage","AtelierRH","Conference","ForumSG");
 	for(var i=0;i<table_array.length;i++)
 	{
@@ -16,5 +17,12 @@ $(document).ready(function()
 		}
 	
 	}
+
+	var tableau=document.getElementsByName("cacher");
+
+	for(i=0;i<tableau.length;i++)
+    {
+        tableau[i].style.display = "none";   
+    }
 			
 });
