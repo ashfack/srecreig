@@ -55,7 +55,7 @@
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <?php
-                        if($_SESSION['profils']=='super')
+                        if($_SESSION['profil']=='super')
                             echo " <li><a href='gestion_profils.php'><i class='fa fa-gear fa-fw'></i> Gestion des profils</a></li>";
                     ?>
                     <li><a href="deconnexion.php"><i class="fa fa-sign-out fa-fw"></i> Déconnexion</a></li>
