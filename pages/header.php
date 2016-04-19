@@ -54,8 +54,10 @@
                     <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
-
-                    <li><a href="gestion_profils.php"><i class="fa fa-gear fa-fw"></i> Gestion des profils</a></li>
+                    <?php
+                        if($_SESSION['profils']=='super')
+                            echo " <li><a href='gestion_profils.php'><i class='fa fa-gear fa-fw'></i> Gestion des profils</a></li>";
+                    ?>
                     <li><a href="deconnexion.php"><i class="fa fa-sign-out fa-fw"></i> Déconnexion</a></li>
                 </ul>
             </li>

@@ -1,3 +1,12 @@
+function supp()
+{
+  if(confirm("Etes vous sur de supprimer cette personne?")==true)
+  {
+    return 1;
+  }
+  return 0;
+}
+
 function f_new()
 {
    $profil= $("#new").val();
@@ -47,6 +56,9 @@ $(document).ready(function()
 
    $(".supprimer").click(function() 
    {
+
+    if(supp() ==1)
+    {
       $identifiant=$($(this).parents("div")[1]).find("input").val();
       $.ajax(
         { 
@@ -57,11 +69,11 @@ $(document).ready(function()
            { 
                 if(msg==1) //Succes
                 {
-                    // window.location.replace("gestion_profils.php");
                     window.location.reload();
                 }
            }
-        });  
+        });
+    }  
    });
 
 });
