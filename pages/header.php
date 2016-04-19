@@ -36,12 +36,19 @@
                     <i class="fa fa-plus fa-fw"></i> 
                 </a>
             </li>
-                        
-            <li class="dropdown">
-                <a class="dropdown-toggle" href="exporter_critere.php">
-                    <i class="glyphicon glyphicon-download"></i> 
-                </a>
-            </li>
+            <?php
+                if($_SESSION['profil']=='super')
+                {
+            ?>            
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="exporter_critere.php">
+                            <i class="glyphicon glyphicon-download"></i> 
+                        </a>
+                    </li>
+            <?php    
+                }
+            ?>            
+            
 
             <li class="dropdown">
                 <a class="dropdown-toggle" href="agenda.php">
