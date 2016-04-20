@@ -32,13 +32,12 @@
         <br>
         <div class="col-md-4"></div>
         <div class="col-md-4">
-        <input placeholder="Entreprise" type="text" id="choix_entreprise" name="choix_entreprise"/> <br>
 
           <?php 
       require("db_connect.php");   
       $table_onglet_array=array("Entreprise","Contacts","Alternance","Taxe d'apprentissage","Atelier RH","Conference","Forum SG");
-      $table_array= array("Entreprise","CoordonneesPersonne","Alternance","TaxeApprentissage","AtelierRH","Conference","ForumSG");
-      echo " <div id=\"jstree\">
+      $table_array= array("Entreprise","contact","Alternance","TaxeApprentissage","AtelierRH","Conference","ForumSG");
+      echo " <div id=\"choixTable\">
           ";
       
       for($i=0;$i
@@ -57,10 +56,10 @@
       }  
       echo "
             <ul >
-              <li data-jstree='{\"icon\":\"glyphicon glyphicon-folder-open\"}' id =".$table_array[$i]." >
-                ".$table_onglet_array[$i]."
-                <ul>
-                  ";
+              <input type=\"radio\" name=\"table\" value=".$table_array[$i]."> ".$table_array[$i]."<br> 
+";
+  // <li data-jstree='{\"icon\":\"glyphicon glyphicon-folder-open\"}' id =".$table_array[$i]." >   ".$table_onglet_array[$i]."  <ul>
+                //  ";
         while( $row = $rep->fetch()) 
         {
           echo "
@@ -120,28 +119,6 @@ echo"
     -->
     <div id="div_datatable"></div>
 
-    <div id="dialog_supprimer_confirmation" title="Confirmation !">
-      <p>
-        Vous avez allez supprimer l'entreprise
-        <span id="emplacement_supprimer_nomEntreprise"></span>
-        et toutes les données qui lui sont liées (Contacts, alternants, taxe d'apprentissage...)
-        <br/>
-        Etes vous sûr de vouloir continuer ?
-      </p>
-    </div>
-
-    <div id="dialog_refus"  title="Refus">
-      <p>Vous devez selectionner une entreprise</p>
-    </div>
-
-    <div id="dialog_aucune_entreprise"  title="Aucune entreprise !">
-      <p>Aucune entreprise ne répond au nom que vous avez entré !</p>
-    </div>
-  </div>
-
-
-
-
 
 
 </body>
@@ -162,6 +139,13 @@ echo"
          "icon" : "glyphicon glyphicon-flash"
        }
      }, 
+     checkbox: {
+
+          rules:{
+            multiple : false
+          } 
+
+     },
      plugins : [ 'wholerow', 'checkbox', 'types' ]
    })
  });

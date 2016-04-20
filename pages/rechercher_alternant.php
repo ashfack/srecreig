@@ -18,16 +18,21 @@
         <?php require('header.php'); ?>
         <div class="container">
             <div class="row" id="content">
-                <h1 class="text-center"> Page de recherche </h1>
+                <h1 class="text-center"> Rechercher un Alternant </h1>
                 <!-- <form id="form_rechercher" > -->
                 <div class="col-md-4">
                 </div>
                 <div class="col-md-4">
-                
-                <label for="choix_alternant">Alternant : </label> <input type="text" id="choix_alternant" name="choix_alternant"/>
+                <center>
+                        <div class="input-group">
+                           <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-graduation-cap"></i></span>
+                           <input type="text" id="choix_alternant" name="choix_alternant" class="form-control" required="true" placeholder="Alternant" aria-describedby="sizing-addon1">
+                        </div>
                 <p> 
+                </br>
                     <input type="button" value="Rechercher" id="bRechercher"/>
                 </p>
+            </center>
                 </div>
                 <div class="col-md-4">
                 </div>
