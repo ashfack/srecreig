@@ -177,6 +177,10 @@ function requeteAjaxTable()
 					"bJQueryUI": true,
 					responsive : true,
 					"sPaginationType": "full_numbers",
+					"aLengthMenu": [
+[-1, 2, -1],
+["All", 2, 1]
+],
 					"oLanguage": { "sUrl": "../js/fr_FR.txt" }
 				});
 

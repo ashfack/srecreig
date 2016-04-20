@@ -58,7 +58,7 @@
 
 		
 
-				$tab_niveaux_TaxeApprentissage=array("niveau1"=>array("idTA","anneedeVersement","montantPromesseVersement","montantVerse","versementVia","rapprochementAC"),
+				$tab_niveaux_TaxeApprentissage=array("niveau1"=>array("idTA","anneeDeVersement","montantPromesseVersement","montantVerse","versementVia","rapprochementAC"),
 													"niveau2"=>array("idTA","OCTA","dateEnregistrement","dateDerniereModification","modePaiement","dateTransmissionCheque","commentairesTaxe"));
 
 				
