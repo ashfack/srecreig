@@ -36,6 +36,16 @@ $(document).ready(function(){
 		var telTA_m = $("#telTA_m").val();
 		var emailTA = $("#emailTA").val();
 		var civiliteTA = $("input[name='civiliteTA']:checked").val();
+		var typeContact=$("input:checked").map(function() { return $(this).val(); } )
+		var typeContact0= typeContact[0];
+		var typeContact1= typeContact[1];
+		var typeContact2= typeContact[0]+typeContact[1];
+		var commentairesEntreprise= $("#commentairesEntreprise").val();
+		
+		
+		//alert(typeContact2);
+		var origine = $("select").val();
+		//alert(origine);
 		
             $.ajax({
 				
@@ -51,13 +61,17 @@ $(document).ready(function(){
 					  "&emailCS="+emailCS+"&civiliteCS="+civiliteCS+"&nomTA="+nomTA+"&prenomTA="+prenomTA+"&fonctionTA="+fonctionTA+
 					  "&telTA_f="+telTA_f+
 					  "&telTA_m="+telTA_m+
-					  "&emailTA="+emailTA+"&civiliteTA="+civiliteTA, 
+					  "&emailTA="+emailTA+"&civiliteTA="+civiliteTA+
+					  "&origine="+origine+
+					  "&commentairesEntreprise="+commentairesEntreprise+
+					  "&typeContact2="+typeContact2,
+					  
                 success: function(msg){ 
 								
 								
 								if(msg==1) 
 										{
-											 alert("super bien ajouté");
+											 alert("votre entreprise est bien ajouté");
 											window.location.reload();
 											
 										}

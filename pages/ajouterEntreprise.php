@@ -60,6 +60,13 @@
 		$civiliteTA=$_POST['civiliteTA'];
 		$typeTA="TA";
 		
+		//origine
+		$origine = $_POST["origine"];
+		
+		//type contact
+		$typeContact2= $_POST["typeContact2"];
+		
+		$commentairesEntreprise= $_POST["commentairesEntreprise"];
 		try{
 			if($req = $nomEntr->fetch()) { 
 				
@@ -67,8 +74,9 @@
 			}
 			else{
 				
-		$result=$conn->prepare("INSERT INTO Entreprise(nomEntreprise,groupe,adresse,complementAdresse,codePostal,ville,pays,numeroSIRET) VALUES (?,?,?,?,?,?,?,?)");
-		$result->execute(array($nomEntreprise,$groupe,$adresse,$complAdr,$codeP,$ville,$pays,$siret));
+		$result=$conn->prepare("INSERT INTO Entreprise(nomEntreprise,groupe,adresse,complementAdresse,codePostal,ville,pays,numeroSIRET,origine,typeContact,commentairesEntreprise) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+		$result->execute(array($nomEntreprise,$groupe,$adresse,$complAdr,$codeP,$ville,$pays,$siret,$origine,$typeContact2,$commentairesEntreprise));
+		
 		/*verifier si NAF existe dans 
 		$result=$conn->prepare("INSERT INTO Entreprise(NAF_codeNaf) VALUES (?)");
 		$result->execute(array($codeNAF));
@@ -104,6 +112,8 @@
 			$contactP=$conn->prepare("INSERT INTO a_Entreprise_CoordonneesPersonne (Entreprise_nomEntreprise,CoordonneesPersonne_id,type) VALUES (?,?,?)");
 			$contactP->execute(array($nomEntreprise,$id_TA,$typeTA));
 		}
+		
+		
 		
 		echo 1;
 		 

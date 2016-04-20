@@ -97,16 +97,16 @@ require ('header.php');
                               </select>
                               <label for="typeContact" type="radio"> </br>Type de contact : </label>
                               <div class="radio">
-                                 <label> <input  type="radio"  name="optradio" />Entreprise </label>
+                                 <label> <input  type="radio"  name="optradio" value="Entreprise"/>Entreprise </label>
                               </div>
                               <div class="radio">
-                                 <label>   <input type="radio" name="optradio" />Personne</label>
+                                 <label>   <input type="radio" name="optradio" value="Personne" />Personne</label>
                               </div>
                               <div class="radio">
-                                 <label>   <input type="radio" name="typeContact" />Collectivité territoriale </label>
+                                 <label>   <input type="radio" name="typeContact" value="Colectivité territoriale"/>Collectivité territoriale </label>
                               </div>
                               <div class="radio">
-                                 <label>    <input type="radio" name="typeContact" />Communauté d'agglomérations<br /></label>
+                                 <label>    <input type="radio" name="typeContact" value="Communauté d'agglomérations"/>Communauté d'agglomérations<br /></label>
                               </div>
                            </div>
                         </div>
@@ -114,7 +114,7 @@ require ('header.php');
                      <div class="col-md-4">
                         <div class="form-group">
                            <label for="comment">Commentaires:</label>
-                           <textarea class="form-control" rows="14" id="comment"></textarea>
+                           <textarea class="form-control" rows="14" id="commentairesEntreprise"></textarea>
                         </div>
                         <?php
 require ("jstree_cycle.php");
