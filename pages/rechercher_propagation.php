@@ -11,8 +11,6 @@
         <?php
             require('header_script.html');
         ?>
-
-		<script type="text/javascript" src="../js/script_rechercher-propagation.js"></script>
 	</head>
 	<body>
 		<?php 
@@ -58,8 +56,8 @@
 
 		
 
-				$tab_niveaux_TaxeApprentissage=array("niveau1"=>array("idTA","anneedeVersement","montantPromesseVersement","montantVerse","versementVia","rapprochementAC"),
-													"niveau2"=>array("idTA","anneedeVersement","OCTA","dateEnregistrement","dateDerniereModification","modePaiement","dateTransmissionChequeAC","commentairesTaxe"));
+				$tab_niveaux_TaxeApprentissage=array("niveau1"=>array("idTA","anneeDeVersement","montantPromesseVersement","montantVerse","versementVia","rapprochementAC"),
+													"niveau2"=>array("idTA","anneeDeVersement","OCTA","dateEnregistrement","dateDerniereModification","modePaiement","dateTransmissionChequeAC","commentairesTaxe"));
 
 				
 
@@ -91,4 +89,5 @@
 		  ?>
 		</div>
 	</body>
+	<script type="text/javascript" src="../js/script_rechercher-propagation.js"></script>
 </html>

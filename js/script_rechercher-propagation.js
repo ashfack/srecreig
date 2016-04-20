@@ -2,18 +2,39 @@ $(document).ready(function()
 {
 	$("#tabs").tabs();
 	
+	
 
 	var table_array=new Array("Entreprise","CoordonneesPersonne","Alternance","TaxeApprentissage","AtelierRH","Conference","ForumSG");
 	for(var i=0;i<table_array.length;i++)
 	{
-		for(var j=0;j<5;j++)
+		for(var j=1;j<=4;j++)
 		{
-				$("#dataTable_"+table_array[i]+"_niveau"+(j+1)).dataTable({
-				"bJQueryUI": true,
-				responsive : true,
-				"sPaginationType": "full_numbers",
-				"oLanguage": { "sUrl": "../js/fr_FR.txt" }
-				});	
+			var table=table_array[i];
+
+			$("#dataTable_"+table+"_niveau"+j).dataTable({
+			"bJQueryUI": true,
+			"responsive" : true,
+			"sPaginationType": "full_numbers",
+			"oLanguage": { "sUrl": "../js/fr_FR.txt" },
+			"aaSorting": []
+			});
+
+			if(j>1) 
+				$("#dataTable_"+table+"_niveau"+j).css("display","none");
+			
+			$("#menu_"+table).on(
+			  'click',
+			  "#titre_"+table+"_niveau"+j,
+			  (function(true_j,true_table){
+			     return function()
+			     {
+			     	if(true_j>1)
+			      		$("#dataTable_"+true_table+"_niveau"+true_j).toggle();
+			     };
+			  })(j,table)
+			);
+		
+
 		}
 	
 	}

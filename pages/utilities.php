@@ -73,6 +73,8 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 
 	try
 	{
+		//$nb_niveau=sizeof($tab_niveaux);
+		//$niveau_i=1;
 		//boucle sur les niveaux
 		foreach ($tab_niveaux as $nom_niveau => $niveau) 
 		{
@@ -135,10 +137,23 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			}
 
 			$colonne_array_affichage=transformeChaine($niveau);
-			//print_r($colonne_array_affichage);
 
+			$keywords = preg_split('/(?=[0-9]+)/', $nom_niveau);
+			$num_niveau=$keywords[1];
+			if($table=="Alternance" && ($num_niveau==3 || $num_niveau==4))
+			{
+				if($num_niveau==3)
+					echo "<h3 id='titre_".$table."_"."$nom_niveau'> Niveau $num_niveau (Maître d'apprentissage) </h3>";
+				else
+					echo "<h3 id='titre_".$table."_"."$nom_niveau'> Niveau $num_niveau (Responsable RH) </h3>";
+			}
+			else
+				echo "<h3 id='titre_".$table."_"."$nom_niveau'> Niveau $num_niveau </h3>";
+			
 			echo "<table width='100%' border='0' cellspacing='0' cellpadding='0' id='dataTable_".$table."_"."$nom_niveau' class='display'>";
 			echo "<thead><tr>";
+
+
 			
 			for($i=0;$i<count($colonne_array_affichage);$i++)
 			{
@@ -158,7 +173,8 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			elseif($table=="CoordonneesPersonne")
 			{
 				$sql=" SELECT ".implode($niveau,",").", type FROM a_Entreprise_CoordonneesPersonne a right join CoordonneesPersonne cp on (a.CoordonneesPersonne_id = cp.idCoordonneesPersonne)".
-					" WHERE a.type IS NOT NULL and a.Entreprise_nomEntreprise = :nomEntreprise";
+					" WHERE a.type IS NOT NULL and a.Entreprise_nomEntreprise = :nomEntreprise ".
+					"ORDER BY (CASE WHEN type='Autre' THEN 1 ELSE 0 END) ASC,type";
 
 				//echo $sql;
 			}
@@ -207,8 +223,6 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			$rep->bindValue(':nomEntreprise',$nomEntreprise,PDO::PARAM_STR);
 			$rep->execute();
 
-			
-
 			while($data=$rep->fetch())
 			{
 					echo "<tr>";
@@ -256,6 +270,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			echo '<br/>';
 
 			$cle_CP_presente=false;
+			
 		}
 		
 		echo "</div>";
