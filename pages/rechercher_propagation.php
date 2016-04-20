@@ -39,7 +39,8 @@
 				
 				// faut ajouter la formation, action mené !
 				$tab_niveaux_Entreprise=array("niveau1"=>array("nomEntreprise","groupe","adresse","complementAdresse","codePostal","ville","pays","commentairesEntreprise"),
-							"niveau2" => array("nomEntreprise","numeroSIRET","NAF_codeNAF","origine","typeContact","partenariatOfficiel","taille","alias"));
+											  "niveau2" => array("nomEntreprise","numeroSIRET","NAF_codeNAF","origine","typeContact","partenariatOfficiel","taille","alias"));
+				
 				$tab_niveaux_CoordonneesPersonne=array("niveau1"=>array("idCoordonneesPersonne","civilite","nom","prenom","fonction","telephoneFixe","telephoneMobile",
 													"mail","commentaires","type"));
 		
@@ -48,15 +49,15 @@
 												"niveau3"=>array("CoordonneesPersonne_alternant","CoordonneesPersonne_maitre"),
 												"niveau4"=>array("CoordonneesPersonne_alternant","CoordonneesPersonne_RH"));
 		
-<<<<<<< HEAD
+
 
 				$tab_niveaux_TaxeApprentissage=array("niveau1"=>array("idTA","anneeDeVersement","montantPromesseVersement","montantVerse","versementVia","rapprochementAC"),
 													"niveau2"=>array("idTA","anneeDeVersement","OCTA","dateEnregistrement","dateDerniereModification","modePaiement","dateTransmissionChequeAC","commentairesTaxe"));
 
-=======
+
 				$tab_niveaux_TaxeApprentissage=array("niveau1"=>array("idTA","anneedeVersement","montantPromesseVersement","montantVerse","versementVia","rapprochementAC"),
 													"niveau2"=>array("idTA","anneedeVersement","OCTA","dateEnregistrement","dateDerniereModification","modePaiement","dateTransmissionChequeAC","commentairesTaxe"));
->>>>>>> origin/master
+
 				
 				$tab_niveaux_AtelierRH=array("niveau1"=>array("dateAtelier","creneauAtelier","CoordonneesPersonne_RH"));
 		
@@ -66,6 +67,7 @@
 				$tab_niveaux_ForumSG=array("niveau1"=>array("Entreprise_nomEntreprise","anneeDeParticipation","questionnaireDeSatisfaction","commentairesForum"));
 				$pk=array("nomEntreprise","idCoordonneesPersonne","CoordonneesPersonne_alternant","idTA","idAtelierRH","idConference","Entreprise_nomEntreprise");
 				$niveaux=array($tab_niveaux_Entreprise,$tab_niveaux_CoordonneesPersonne,$tab_niveaux_Alternance,$tab_niveaux_TaxeApprentissage,$tab_niveaux_AtelierRH,$tab_niveaux_Conference,$tab_niveaux_ForumSG);
+				
 				for($i=0;$i<count($table_array);$i++)
 				{
 					
@@ -80,9 +82,6 @@
 		  ?>
 		</div>
 	</body>
-<<<<<<< HEAD
 	<script type="text/javascript" src="../js/script_rechercher-propagation.js"></script>
 </html>
-=======
-</html>
->>>>>>> origin/master
+
