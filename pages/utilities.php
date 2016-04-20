@@ -2,8 +2,8 @@
 function transformeChaine($tab_chaine)
 {
 	$sigle_transforme=array("numeroSIRET"=>"Numero SIRET","codeNAF"=>"Code NAF","libelleNAF"=>"Libelle NAF","dateAtelierRH"=>"Date atelier RH",
-					"rapprochementAC"=>"Rapprochement AC","dateRVPreparation"=>"Date RV preparation","dateRVSimulation"=>"Date RV simulation",
-					"dateEnvoiFLAuCFA"=>"Date envoi FL au CFA","OCTA"=>"OCTA");
+					"rapprochementAC"=>"Rapprochement AC","dateTransmissionChequeAC"=>"Date transmission cheque AC","dateRVPreparation"=>
+					"Date RV preparation","dateRVSimulation"=>"Date RV simulation","dateEnvoiFLAuCFA"=>"Date envoi FL au CFA","OCTA"=>"OCTA");
 	$sigle=array_keys($sigle_transforme);
 
 	$tab_chaine_transforme=array();
@@ -50,6 +50,15 @@ function transformeChaine($tab_chaine)
 
 	//print_r($tab_chaine_transforme);
 	return $tab_chaine_transforme;
+}
+
+function colonne_null(&$tab_donnees)
+{
+	foreach ($tab_donnees as $key => $value) 
+	{
+		if(is_null($value))
+			$tab_donnees[$key]="";
+	}
 }
 
 
@@ -231,7 +240,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 							$nom_col=$niveau[$j];
 
 							$valeur=$data[$nom_col];
-							if(substr($nom_col, 0,2)=="id" || $nom_col=="nomEntreprise")
+							if(substr($nom_col, 0,2)=="id" || $nom_col=="nomEntreprise"  || $nom_col=="Entreprise_nomEntreprise")
 									echo "<td id='$table"."_".$valeur_pk."_".$nom_col."_"."$nom_niveau' name='cacher'> $valeur</td>";
 							else
 								echo "<td id='$table"."_".$valeur_pk."_".$nom_col."_"."$nom_niveau'> $valeur</td>";

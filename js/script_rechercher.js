@@ -2,6 +2,12 @@ var nomEntreprise, groupe, adresse, complementAdresse, codePostal,commentaires;
 var ville;
 $(document).ready(function()
 {
+		$( "#choix_entreprise" ).keypress(function(event) 
+		{
+			  if(event.which==13)
+			  	requeteAjaxTable();	  		
+		});
+		
 		$("#bRechercher").click(function(){
 				requeteAjaxTable();
 			});
@@ -173,7 +179,7 @@ function requeteAjaxTable()
 
 				$("#datatable_entreprise").dataTable({
 					"bJQueryUI": true,
-					responsive : true,
+					"responsive" : true,
 					"sPaginationType": "full_numbers",
 					"oLanguage": { "sUrl": "../js/fr_FR.txt" }
 				});

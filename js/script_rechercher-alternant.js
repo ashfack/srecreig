@@ -1,6 +1,13 @@
 var nomEntreprise;
 $(document).ready(function()
 {
+		
+		$( "#choix_alternant" ).keypress(function(event) 
+		{
+			  if(event.which==13)
+			  	requeteAjaxTable();	  		
+		});
+		
 		$("#bRechercher").click(function(){
 				requeteAjaxTable();
 			});
@@ -100,8 +107,8 @@ function requeteAjaxTable()
 		    			<th> Nom </th> \
 		    			<th> Prenom </th>\
 		    			<th> Mail </th>\
+    					<th> Telelephone mobile </th> \
 		    			<th> Formation alternance </th> \
-		    			<th> Annee d'entrée	 </th> \
 		    			<th> Type contrat </th> \
 		    		</tr> \
 		    	</thead> \
@@ -116,8 +123,8 @@ function requeteAjaxTable()
 				   chaine+="<td>"+obj['nom']+"</td>";
 				   chaine+="<td>"+obj['prenom']+"</td>";
 				   chaine+="<td>"+obj['mail']+"</td>";
+				   chaine+="<td>"+obj['telephoneMobile']+"</td>";
 				   chaine+="<td>"+obj['formationAlternance']+"</td>";
-				   chaine+="<td>"+obj['anneeEntree']+"</td>";
 				   chaine+="<td>"+obj['typeContrat']+"</td>";
 				   chaine+="</tr>";
 				   //$("tbody").append(chaine);  

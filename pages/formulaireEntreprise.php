@@ -150,7 +150,7 @@ require ("jstree_cycle.php");
                               <input type="tel"  id="telCP_f" name="telCP_f" class="form-control"  placeholder="Téléphone fixe" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">							
 						   </div>
 						   <div class="input-group">
-								<span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
+								<span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mobile"></i></span>
 								<input type="tel"  id="telCP_m"   name="telCP_m" class="form-control"  placeholder="Téléphone mobile" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
 							</div>
 						   <div class="input-group">
@@ -186,7 +186,7 @@ require ("jstree_cycle.php");
                               <input type="tel"  id="telCS_f" name="telCS_f" class="form-control"  placeholder="Téléphone fixe" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
                            </div>
 						   <div class="input-group">
-								<span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
+								<span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mobile"></i></span>
 								<input type="tel"  id="telCS_m"   name="telCS_m" class="form-control"  placeholder="Téléphone mobile" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
 							</div>
                            <div class="input-group">
@@ -222,7 +222,7 @@ require ("jstree_cycle.php");
                               <input type="tel"  id="telTA_f" name="telTA_f" class="form-control"  placeholder="Téléphone fixe" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
                            </div>
 						   <div class="input-group">
-								<span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
+								<span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mobile"></i></span>
 								<input type="tel"  id="telTA_m"   name="telTA_m" class="form-control"  placeholder="Téléphone mobile" aria-describedby="sizing-addon1" pattern="^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$">
 							</div>
                            <div class="input-group">
@@ -237,7 +237,7 @@ require ("jstree_cycle.php");
                      <div class="col-md-5">  
                      </div>
                      <p>
-                        <input type="submit" value="Envoyer" />
+                        <input type="submit" value="Ajouter" />
                         <input type="reset" value="Annuler" />
                      </p>
                   </div>

@@ -19,7 +19,6 @@
 	}
 	else 
 	{
-		//echo mysql_error();
-		echo "0"; // on 'retourne' la valeur 0 au javascript si la connexion n'est pas bonne
+		echo "0"; 
 	}
 ?>
