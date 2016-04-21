@@ -10,7 +10,17 @@
         ?>
         <?php
             require('header_script.html');
+            require('../framework/Zip_php/zip.lib.php');
+
         ?>
+        <script type="text/javascript" src="../framework/tableExport/tableExport.js"></script>
+<script type="text/javascript" src="../framework/tableExport/jquery.base64.js"></script>
+<script type="text/javascript" src="../framework/tableExport/html2canvas.js"></script>
+<script type="text/javascript" src="../framework/tableExport/jspdf/libs/sprintf.js"></script>
+<script type="text/javascript" src="../framework/tableExport/jspdf/jspdf.js"></script>
+<script type="text/javascript" src="../framework/tableExport/jspdf/libs/base64.js"></script>
+	
+
 	</head>
 	<body>
 		<?php 
@@ -23,7 +33,13 @@
 		?>
 
 		<h1 class="text-center"> <span> <?php echo $nomEntreprise; ?> </span> </h1>
-		
+			        <div class="btn-group">
+              <button class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Table Data</button>
+              <ul class="dropdown-menu " role="menu">
+                <li><a href="#" onClick ="$('#tabs').tableExport({type:'excel',escape:'false', tableName:'#dataTable_Entreprise_niveau1_wrapper'});"> <img src='../img/xls.png' width='18px'>  XLS</a></li>
+              </ul>
+            </div>                
+
 		<div id="tabs">
 			<ul> 
 		  	<?php 

@@ -75,26 +75,12 @@
     color: white;
 }
 
-label {
-    clear: left;
-    width: 290px;
-    padding: 0px 10px;
-    text-align: right;
-    font-size: 13px;
-    float: left;
-    display: block;
-    margin-right: 10px;
-}
+
 
 .police{
 	font-size: 20px;
 }
 
-input[type="text"], input[type="email"], input[type="password"], textarea {
-    background: #F2F2F2 no-repeat scroll left top;
-    border: 1px solid #C6C6C6;
-    color: #808080;
-}
 
 sup {
     color: #E31529;
@@ -217,4 +203,30 @@ a:hover {
 
 a:active {
     color: #0000FF;
+}
+
+
+
+input#choix_entreprise
+{
+    width: 300px !important;
+    height: 42px !important;
+}
+
+input#bRechercher
+{
+    width: 180px !important;
+    height: 30px !important;
+}
+
+button#bInfo, button#bSupprimer, button#bEditer
+{
+    margin-top: 5px ; 
+    margin-right: 25px ; 
+    width: 180px !important;
+    height: 35px !important;
+}
+
+button#bInfo {
+    margin-left: 250px;
 }
