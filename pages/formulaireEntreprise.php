@@ -40,7 +40,7 @@ require ('header.php');
                         </div>
                         <div class="input-group">
                            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-pencil-square-o"></i></span>
-                           <input type="text" id="codeNAF" name="codeNAF" class="form-control" placeholder="Code NAF" aria-describedby="sizing-addon1">
+                           <input type="text" id="codeNAF" name="codeNAF" class="form-control" placeholder="Code NAF" pattern="[0-9]{3}[A-Z]" aria-describedby="sizing-addon1">
                         </div>
                         <div class="input-group">
                            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-arrow-right"></i></span>
@@ -48,7 +48,7 @@ require ('header.php');
                         </div>
                         <div class="input-group">
                            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-group"></i></span>
-                           <input type="text" id="siret" name="siret" class="form-control" placeholder="N° SIRET" aria-describedby="sizing-addon1">
+                           <input type="text" id="siret" name="siret" class="form-control" placeholder="N° SIRET" pattern="[0-9]{14}" aria-describedby="sizing-addon1">
                         </div>
                         <div class="input-group">
                            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-home"></i></span>
@@ -60,7 +60,7 @@ require ('header.php');
                         </div>
                         <div class="input-group">
                            <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-map-marker"></i></span>
-                           <input type="text"  id="codeP" name="codeP" class="form-control" placeholder="Code postal" aria-describedby="sizing-addon1">
+                           <input type="text"  id="codeP" name="codeP" class="form-control" placeholder="Code postal" pattern="[0-9]{5}" aria-describedby="sizing-addon1">
                         </div>
                         <div class="input-group">
                            <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-map-marker"></i></span>
@@ -135,11 +135,11 @@ require ("jstree_cycle.php");
                            <label for="civiliteCP" class="radio-inline"><input type="radio"  value="Madame"   name="civiliteCP">Madame</label><br />
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
-                              <input type="text"  id ="nomCP" name="nomCP" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">
+                              <input type="text"  id ="nomCP" name="nomCP" class="form-control" placeholder="Nom" pattern="[a-zA-Z-_]*" aria-describedby="sizing-addon1">
                            </div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-                              <input type="text"  id="prenomCP" name="prenomCP" class="form-control" placeholder="Prénom" aria-describedby="sizing-addon1">
+                              <input type="text"  id="prenomCP" name="prenomCP" class="form-control" placeholder="Prénom" pattern="[a-zA-Z-_]*" aria-describedby="sizing-addon1">
                            </div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-briefcase"></i></span>
@@ -155,7 +155,7 @@ require ("jstree_cycle.php");
 							</div>
 						   <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mail"></i>@</span>
-                              <input type="email"  id="emailCP" name="emailCP" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
+                              <input type="email"  id="emailCP" name="emailCP" class="form-control" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" aria-describedby="sizing-addon1">
                            </div>
                         </div>
                      </div>
@@ -171,11 +171,11 @@ require ("jstree_cycle.php");
                            <label for="civiliteCS" class="radio-inline"><input type="radio"   value="Madame"   name="civiliteCS">Madame</label><br />
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
-                              <input type="text"  id ="nomCS" name="nomCS" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">
+                              <input type="text"  id ="nomCS" name="nomCS" class="form-control" placeholder="Nom" pattern="[a-zA-Z-_]*" aria-describedby="sizing-addon1">
                            </div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-                              <input type="text"  id="prenomCS" name="prenomCS" class="form-control" placeholder="Prénom" aria-describedby="sizing-addon1">
+                              <input type="text"  id="prenomCS" name="prenomCS" class="form-control" placeholder="Prénom" pattern="[a-zA-Z-_]*" aria-describedby="sizing-addon1">
                            </div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-briefcase"></i></span>
@@ -191,7 +191,7 @@ require ("jstree_cycle.php");
 							</div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mail"></i>@</span>
-                              <input type="email"  id="emailCS" name="emailCS" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
+                              <input type="email"  id="emailCS" name="emailCS" class="form-control" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" aria-describedby="sizing-addon1">
                            </div>
                         </div>
                      </div>
@@ -207,11 +207,11 @@ require ("jstree_cycle.php");
                            <label for="civiliteTA" class="radio-inline"><input type="radio"  value="Madame"   name="civiliteTA">Madame</label><br/>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
-                              <input type="text"  id ="nomTA" name="nomTA" class="form-control" placeholder="Nom" aria-describedby="sizing-addon1">
+                              <input type="text"  id ="nomTA" name="nomTA" class="form-control" placeholder="Nom" pattern="[a-zA-Z-_]*" aria-describedby="sizing-addon1">
                            </div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user"></i></span>
-                              <input type="text"  id="prenomTA" name="prenomTA" class="form-control" placeholder="Prénom" aria-describedby="sizing-addon1">
+                              <input type="text"  id="prenomTA" name="prenomTA" class="form-control" placeholder="Prénom" pattern="[a-zA-Z-_]*" aria-describedby="sizing-addon1">
                            </div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-briefcase"></i></span>
@@ -227,7 +227,7 @@ require ("jstree_cycle.php");
 							</div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-mail"></i>@</span>
-                              <input type="email"  id="emailTA" name="emailTA" class="form-control" placeholder="Email" aria-describedby="sizing-addon1">
+                              <input type="email"  id="emailTA" name="emailTA" class="form-control" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$" aria-describedby="sizing-addon1">
                            </div>
                         </div>
                      </div>

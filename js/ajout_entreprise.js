@@ -36,7 +36,7 @@ $(document).ready(function(){
 		var telTA_m = $("#telTA_m").val();
 		var emailTA = $("#emailTA").val();
 		var civiliteTA = $("input[name='civiliteTA']:checked").val();
-		var typeContact=$("input:checked").map(function() { return $(this).val(); } )
+		var typeContact=$("input:checked").map(function() { return $(this).val(); } );
 		var typeContact0= typeContact[0];
 		var typeContact1= typeContact[1];
 		var typeContact2= typeContact[0]+typeContact[1];
@@ -90,7 +90,7 @@ $(document).ready(function(){
 											else
 											{
 												alert(msg.substring(9,14));
-												alert("un incident est survenu, contactez les développeurs, surtout Sahar");
+												alert("un incident d'ajout est survenu, contactez les développeurs");
 											}
 											//alert(msg);
 											 //alert("phpER");
