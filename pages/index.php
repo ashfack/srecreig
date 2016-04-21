@@ -30,13 +30,18 @@
     </head>
 
     <body id="portail">
+            <div class="container">
+            <div class="row" id="content">
+
         <div id="div0" style="text-align: center">
             <img src="../img/logoispg.jpg" alt="APPLI CREIG" />
         </div>
+        <center>
         <h1 style="text-align: center"> Bienvenue, connectez vous !</h1>
         <div id="div1">
         	<form name="connexion" id ="Connect">
-                <div class="col-md-3">
+                <div class="col-md-4"> </div>
+                <div class="col-md-4">
                     <div class="input-group">
                         <span class="input-group-addon">Identifiant</span>
                         <input type="text" class="form-control" placeholder="Identifiant" aria-describedby="sizing-addon1" id="pseudo" required/>
@@ -51,5 +56,9 @@
                 
         	</form>	
         </div>
+    </center>
+    </div>
+    </div>
+
     </body>
 </html>

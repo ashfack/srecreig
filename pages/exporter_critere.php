@@ -22,22 +22,22 @@
 <body>
   <?php require('header.php');  ?>
   <div class="container">
-    <h1 class="text-center">Exporter avec sélection de champs</h1>
+    <h1 class="text-center">Exporter avec sélection de critères</h1>
     <div class="col-md-4"></div>
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title text-center">Choix des champs</h3>
+        <h3 class="panel-title text-center">Choix des critères</h3>
       </div>
       <div class="panel-body">
         <br>
         <div class="col-md-4"></div>
         <div class="col-md-4">
-
           <?php 
       require("db_connect.php");   
       $table_onglet_array=array("Entreprise","Contacts","Alternance","Taxe d'apprentissage","Atelier RH","Conference","Forum SG");
       $table_array= array("Entreprise","Contact","Alternance","TaxeApprentissage","AtelierRH","Conference","ForumSG");
-      echo " <div id=\"jsTree\"> ";
+      echo " <div id=\"jstree\">
+          ";
       
       for($i=0;$i
           <count($table_array);$i++)
@@ -55,8 +55,9 @@
       }  
       echo "
             <ul >
-  
-   <li data-jstree='{\"icon\":\"glyphicon glyphicon-folder-open\"}' id =".$table_array[$i]." >   ".$table_onglet_array[$i]."  <ul>
+              <li data-jstree='{\"icon\":\"glyphicon glyphicon-folder-open\"}' id =".$table_array[$i]." >
+                ".$table_onglet_array[$i]."
+                <ul>
                   ";
         while( $row = $rep->fetch()) 
         {
@@ -85,9 +86,19 @@ echo"
         <div class="btn-group">
               <button class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Table Data</button>
               <ul class="dropdown-menu " role="menu">
-
-                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'excel',escape:'false'});"> <img src='../img/xls.png' width='24px'> XLS</a></li>
-
+                <li class="divider"></li>
+                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'csv',escape:'false'});"> <img src='icons/csv.png' width='24px'> CSV</a></li>
+                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'txt',escape:'false'});"> <img src='icons/txt.png' width='24px'> TXT</a></li>
+                <li class="divider"></li>       
+                
+                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'excel',escape:'false'});"> <img src='icons/xls.png' width='24px'> XLS</a></li>
+                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'doc',escape:'false'});"> <img src='icons/word.png' width='24px'> Word</a></li>
+                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'powerpoint',escape:'false'});"> <img src='icons/ppt.png' width='24px'> PowerPoint</a></li>
+                <li class="divider"></li>
+                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'png',escape:'false'});"> <img src='icons/png.png' width='24px'> PNG</a></li>
+                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"> <img src='icons/pdf.png' width='24px'> PDF</a></li>
+                
+                
               </ul>
             </div>                
 
@@ -107,6 +118,28 @@ echo"
     -->
     <div id="div_datatable"></div>
 
+    <div id="dialog_supprimer_confirmation" title="Confirmation !">
+      <p>
+        Vous avez allez supprimer l'entreprise
+        <span id="emplacement_supprimer_nomEntreprise"></span>
+        et toutes les données qui lui sont liées (Contacts, alternants, taxe d'apprentissage...)
+        <br/>
+        Etes vous sûr de vouloir continuer ?
+      </p>
+    </div>
+
+    <div id="dialog_refus"  title="Refus">
+      <p>Vous devez selectionner une entreprise</p>
+    </div>
+
+    <div id="dialog_aucune_entreprise"  title="Aucune entreprise !">
+      <p>Aucune entreprise ne répond au nom que vous avez entré !</p>
+    </div>
+  </div>
+
+
+
+
 
 
 </body>
@@ -115,27 +148,16 @@ echo"
 <script>
  $(function () {
    $('#jstree')
-
    .on("changed.jstree", function (e, data) {
      console.log(data.selected);
    })   
-
    .jstree({  
-
      types : {
        "default" : {
          "icon" : "glyphicon glyphicon-flash"
        }
      }, 
-     checkbox: {
-
-          rules:{
-            multiple : false
-          } 
-
-     },
      plugins : [ 'wholerow', 'checkbox', 'types' ]
    })
  });
-
 </script>
