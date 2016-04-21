@@ -10,6 +10,7 @@
             require('header_link.html');
         ?>
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
+        <link rel ="stylesheet" type="text/css" href="../css/contacter.css">
         <script type="text/javascript" src="../js/script_rechercher-alternant.js"></script>
     </head>
 
@@ -18,7 +19,7 @@
         <?php require('header.php'); ?>
         <div class="container">
             <div class="row" id="content">
-                <h1 class="text-center"> Rechercher un Alternant </h1>
+                <h1 class="text-center"> Rechercher un alternant </h1>
                 <!-- <form id="form_rechercher" > -->
                 <div class="col-md-4">
                 </div>

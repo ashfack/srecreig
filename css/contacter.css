@@ -60,19 +60,15 @@
 }
 
 #footer{
-	clear: both;
-    background-image: url(../images/foot.jpg);
     position: fixed;
     bottom: 0px;
-    height: 80px;
-	border-top: 3px solid white;
+    height: 35px;
+	border-top: 1px solid grey;
     width: 100%;
 	left:0%;
-    margin-top: 30px;
-    padding-top: 10px;
+    margin-top: 5px;
+    padding-top: 5px;
     margin-bottom: 0px;
-    z-index: 10000;
-    color: white;
 }
 
 
@@ -207,7 +203,7 @@ a:active {
 
 
 
-input#choix_entreprise
+input#choix_entreprise, input#choix_alternant
 {
     width: 300px !important;
     height: 42px !important;
@@ -221,7 +217,7 @@ input#bRechercher
 
 button#bInfo, button#bSupprimer, button#bEditer
 {
-    margin-top: 5px ; 
+    margin-top: 10px ; 
     margin-right: 25px ; 
     width: 180px !important;
     height: 35px !important;

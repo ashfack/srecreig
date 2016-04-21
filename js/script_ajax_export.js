@@ -1,8 +1,7 @@
 var nomEntreprise;
 $(document).ready(function()
 {
-		onClick ="$('#div_datatable').tableExport({type:'pdf',escape:'false'});"
-
+		//$("#radio").click(function(){
 		$("#bRechercher").click(function(){
 				requeteAjaxTable();
 			});

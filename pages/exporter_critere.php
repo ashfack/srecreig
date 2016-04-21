@@ -22,11 +22,11 @@
 <body>
   <?php require('header.php');  ?>
   <div class="container">
-    <h1 class="text-center">Exporter avec sélection de critères</h1>
+    <h1 class="text-center">Exporter avec sélection de champs</h1>
     <div class="col-md-4"></div>
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title text-center">Choix des critères</h3>
+        <h3 class="panel-title text-center">Choix des champs</h3>
       </div>
       <div class="panel-body">
         <br>
@@ -37,8 +37,7 @@
       require("db_connect.php");   
       $table_onglet_array=array("Entreprise","Contacts","Alternance","Taxe d'apprentissage","Atelier RH","Conference","Forum SG");
       $table_array= array("Entreprise","Contact","Alternance","TaxeApprentissage","AtelierRH","Conference","ForumSG");
-      echo " <div id=\"choixTable\">
-          ";
+      echo " <div id=\"jsTree\"> ";
       
       for($i=0;$i
           <count($table_array);$i++)
@@ -56,10 +55,9 @@
       }  
       echo "
             <ul >
-              <input type=\"radio\" name=\"table\" value=".$table_array[$i]."> ".$table_array[$i]."<br> 
-";
-  // <li data-jstree='{\"icon\":\"glyphicon glyphicon-folder-open\"}' id =".$table_array[$i]." >   ".$table_onglet_array[$i]."  <ul>
-                //  ";
+  
+   <li data-jstree='{\"icon\":\"glyphicon glyphicon-folder-open\"}' id =".$table_array[$i]." >   ".$table_onglet_array[$i]."  <ul>
+                  ";
         while( $row = $rep->fetch()) 
         {
           echo "
@@ -87,19 +85,9 @@ echo"
         <div class="btn-group">
               <button class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Table Data</button>
               <ul class="dropdown-menu " role="menu">
-                <li class="divider"></li>
-                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'csv',escape:'false'});"> <img src='icons/csv.png' width='24px'> CSV</a></li>
-                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'txt',escape:'false'});"> <img src='icons/txt.png' width='24px'> TXT</a></li>
-                <li class="divider"></li>       
-                
-                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'excel',escape:'false'});"> <img src='icons/xls.png' width='24px'> XLS</a></li>
-                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'doc',escape:'false'});"> <img src='icons/word.png' width='24px'> Word</a></li>
-                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'powerpoint',escape:'false'});"> <img src='icons/ppt.png' width='24px'> PowerPoint</a></li>
-                <li class="divider"></li>
-                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'png',escape:'false'});"> <img src='icons/png.png' width='24px'> PNG</a></li>
-                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"> <img src='icons/pdf.png' width='24px'> PDF</a></li>
-                
-                
+
+                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'excel',escape:'false'});"> <img src='../img/xls.png' width='24px'> XLS</a></li>
+
               </ul>
             </div>                
 
