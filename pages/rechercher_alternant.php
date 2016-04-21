@@ -42,7 +42,7 @@
 
                 <div id="dialog_supprimer_confirmation" title="Confirmation !">
                     <p>
-                      Vous avez allez supprimer l'alternant <span id="emplacement_supprimer_alternant"> </span> <br/>
+                      Vous allez supprimer l'alternant <span id="emplacement_supprimer_alternant"> </span> <br/>
                       Etes vous sûr de vouloir continuer ?
                     </p>
                 </div>
