@@ -35,7 +35,7 @@
           <?php 
       require("db_connect.php");   
       $table_onglet_array=array("Entreprise","Contacts","Alternance","Taxe d'apprentissage","Atelier RH","Conference","Forum SG");
-      $table_array= array("Entreprise","Contact","Alternance","TaxeApprentissage","AtelierRH","Conference","ForumSG");
+      $table_array= array("vueEntreprise","vueContact","vueAlternance","vueTaxeApprentissage","vueAtelierRH","vueConference","vueForumSG");
       echo " <div id=\"jstree\">
           ";
       
