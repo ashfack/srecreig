@@ -27,7 +27,6 @@ body{
 
 .h1, h1 {
 	margin-bottom: 25px !important;
-
 }
 
 /**DATATABLE**/
@@ -204,4 +203,22 @@ table.display tr.odd.row_selected td {background-color: #9FAFD1;}
 .selected {
     background-color: cadetblue !important;
     color: white;
+}
+
+#tabs 
+{
+  position:fixed;
+  width:100%;
+}
+.panel
+{
+    height: 500px;
+    overflow: auto;
+}
+
+p 
+{
+  /*font-weight: bold;*/
+  font-size: 22px;
+  max-width: 400px;
 }
