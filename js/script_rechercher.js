@@ -4,7 +4,6 @@ var colVal=new Array();
 var colonnes=new Array();
 $(document).ready(function()
 { 
-		
 
 		$( "#choix_entreprise" ).keypress(function(event) 
 		{

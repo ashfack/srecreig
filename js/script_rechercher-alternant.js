@@ -145,7 +145,8 @@ function requeteAjaxTable()
 					"bJQueryUI": true,
 					responsive : true,
 					"sPaginationType": "full_numbers",
-					"oLanguage": { "sUrl": "../js/fr_FR.txt" }
+					"oLanguage": { "sUrl": "../js/fr_FR.txt",
+					"aaSorting": [2] }
 				});
 
 				$("#datatable_alternant tr").click(function(){

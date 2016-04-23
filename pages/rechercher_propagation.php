@@ -31,14 +31,18 @@
 			{
 					$nomEntreprise=$_GET['nomEntreprise'];
 		?>
-
-		<h1 class="text-center"> <span> <?php echo $nomEntreprise; ?> </span> </h1>
-			        <div class="btn-group">
+		
+			<div id="div_titre_nomEntreprise">
+				<h1 class="text-center" id="titre_nomEntreprise">  <?php echo $nomEntreprise; ?> </h1>
+			</div>
+	
+			<div class="btn-group">
               <button class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Table Data</button>
               <ul class="dropdown-menu " role="menu">
                 <li><a href="#" onClick ="$('#tabs').tableExport({type:'excel',escape:'false', tableName:'#dataTable_Entreprise_niveau1_wrapper'});"> <img src='../img/xls.png' width='18px'>  XLS</a></li>
               </ul>
-            </div>                
+            </div>
+                    
 
 		<div id="tabs">
 			<ul> 
@@ -97,7 +101,15 @@
 		  		echo "Erreur le nom de l'entreprise n'est pas specifié ";
 		  ?>
 		</div>
+
+		<div id="dialog_cycle"  title="Cycle Formation">
+            <p> Les cycles de l'entreprise sont pré-cochés </p>
+            <?php
+                require ("jstree_cycle.php");
+            ?>
+        </div>
 	</body>
 	<script type="text/javascript" src="../js/script_rechercher-propagation.js"></script>
+	<link rel="stylesheet" href="../framework/jsTree/dist/themes/default/style.min.css" />
 </html>
 

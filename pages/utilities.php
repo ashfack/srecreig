@@ -56,8 +56,9 @@ function colonne_null(&$tab_donnees)
 {
 	foreach ($tab_donnees as $key => $value) 
 	{
-		if(is_null($value))
+		if($value=="NaN" || $value=="null" || $value=="undefined")
 			$tab_donnees[$key]="";
+			
 	}
 }
 
@@ -68,7 +69,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 	//$cle_etrangere=array("Naf_codeNaf","CoordonneesPersonne_alternant","CoordonneesPersonne_maitre","CoordonneesPersonne_RH");
 
 	//$pk="nomEntreprise";
-	echo "<div id='menu_$table'>";
+	echo "<div id='menu_$table' class='panel'>";
 	$cle_CP_presente=false;
 
 	try
@@ -135,37 +136,6 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 				}
 				
 			}
-
-			$colonne_array_affichage=transformeChaine($niveau);
-
-			$keywords = preg_split('/(?=[0-9]+)/', $nom_niveau);
-			$num_niveau=$keywords[1];
-			if($table=="Alternance" && ($num_niveau==3 || $num_niveau==4))
-			{
-				if($num_niveau==3)
-					echo "<h3 id='titre_".$table."_"."$nom_niveau'> Niveau $num_niveau (Maître d'apprentissage) </h3>";
-				else
-					echo "<h3 id='titre_".$table."_"."$nom_niveau'> Niveau $num_niveau (Responsable RH) </h3>";
-			}
-			else
-				echo "<h3 id='titre_".$table."_"."$nom_niveau'> Niveau $num_niveau </h3>";
-			
-			echo "<table width='100%' border='0' cellspacing='0' cellpadding='0' id='dataTable_".$table."_"."$nom_niveau' class='display'>";
-			echo "<thead><tr>";
-
-
-			
-			for($i=0;$i<count($colonne_array_affichage);$i++)
-			{
-				$nom_col_affichage=$colonne_array_affichage[$i];
-				if(substr($nom_col_affichage, 0,2)=="id" || $nom_col_affichage=="Nom entreprise")
-					echo  "<th name='cacher'> $nom_col_affichage </th>";
-				else
-					echo  "<th> $nom_col_affichage </th>";
-			}
-
-			echo '</tr></thead>';
-			echo '<tbody>';
 			
 			//$sql=" SELECT ".implode($tab_niveau,",")." FROM Entreprise WHERE nomEntreprise = :nomEntreprise";
 			if($table=="Entreprise")
@@ -206,10 +176,10 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 								            "ON AL.CoordonneesPersonne_alternant = p1.idCoordonneesPersonne ".
 								        "INNER JOIN CoordonneesPersonne p2 ".
 								            "ON $col_req = p2.idCoordonneesPersonne ".
-								"WHERE Entreprise_nomEntreprise=:nomEntreprise";
+								"WHERE Entreprise_nomEntreprise=:nomEntreprise ORDER BY nomA";
 					}
 					else
-						$sql=" SELECT ".implode($niveau,",")." FROM $table left join CoordonneesPersonne on ($table.CoordonneesPersonne_$attribut = CoordonneesPersonne.idCoordonneesPersonne) WHERE Entreprise_nomEntreprise = :nomEntreprise";
+						$sql=" SELECT ".implode($niveau,",")." FROM $table left join CoordonneesPersonne on ($table.CoordonneesPersonne_$attribut = CoordonneesPersonne.idCoordonneesPersonne) WHERE Entreprise_nomEntreprise = :nomEntreprise ORDER BY nom";
 					
 					//echo $sql;
 				}
@@ -223,8 +193,56 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			$rep->bindValue(':nomEntreprise',$nomEntreprise,PDO::PARAM_STR);
 			$rep->execute();
 
+			$style;
+			$rowCount=$rep->rowCount();
+			if($rowCount>0)
+				$style="style='cursor:pointer'";
+			else
+				$style="style='cursor:default'";
+			$keywords = preg_split('/(?=[0-9]+)/', $nom_niveau);
+			$num_niveau=$keywords[1];
+
+			if($nom_niveau != "niveau1")
+			{
+				if($table=="Alternance" && ($num_niveau==3 || $num_niveau==4))
+				{
+					if($num_niveau==3)
+						echo "<p id='titre_".$table."_"."$nom_niveau' $style> <img src='../css/images/more.png' alt='Icon zoom'> Niveau $num_niveau (Maître d'apprentissage) </p>";
+					else
+						echo "<p id='titre_".$table."_"."$nom_niveau' $style> <img src='../css/images/more.png' alt='Icon zoom'> Niveau $num_niveau (Responsable RH) </p>";
+				}
+				else
+					echo "<p id='titre_".$table."_"."$nom_niveau' $style> <img src='../css/images/more.png' alt='Icon zoom'> Niveau $num_niveau </p>";
+			}
+			
+			
+			echo "<table width='100%' border='0' cellspacing='0' cellpadding='0' id='dataTable_".$table."_"."$nom_niveau' class='display'>";
+			echo "<thead><tr>";
+
+			$colonne_array_affichage=transformeChaine($niveau);
+
+			if($table=="Entreprise" && $nom_niveau=="niveau1")
+			{
+				$colonne_array_affichage[count($colonne_array_affichage)]="Cycle Formation";
+			}
+			
+			
+			for($i=0;$i<count($colonne_array_affichage);$i++)
+			{
+				$nom_col_affichage=$colonne_array_affichage[$i];
+				if(substr($nom_col_affichage, 0,2)=="id" || $nom_col_affichage=="Nom entreprise")
+					echo  "<th name='cacher'> $nom_col_affichage </th>";
+				else
+					echo  "<th> $nom_col_affichage </th>";
+			}
+
+			echo '</tr></thead>';
+			echo '<tbody>';
+
 			while($data=$rep->fetch())
 			{
+					
+					colonne_null($data);
 					echo "<tr>";
 					if($table=="Alternance")
 						$pk="idCoordonneesPersonne";
@@ -259,6 +277,9 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 							else
 								echo "<td id='$table"."_".$valeur_pk."_".$nom_col."_"."$nom_niveau'> $valeur</td>";
 						}
+
+						if($table=="Entreprise" && $nom_niveau=="niveau1")
+							echo "<td id='cycleFormation'> <input type='button' value='Voir les cycles' id='bVoirCycle'/> </td>";
 					}
 					
 					echo '</tr>';
@@ -270,7 +291,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			echo '<br/>';
 
 			$cle_CP_presente=false;
-			
+			$colonne_array_affichage=array();
 		}
 		
 		echo "</div>";
