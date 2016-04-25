@@ -21,26 +21,35 @@
       for (var i = 0; i < tables.length; i++) {
         if (!tables[i].nodeType) tables[i] = document.getElementById(tables[i]);
         for (var j = 0; j < tables[i].rows.length; j++) {
+       // 	if('Row' != "Cycle Formation")
+     //  	{
           rowsXML += '<Row>'
           for (var k = 0; k < tables[i].rows[j].cells.length; k++) {
+          
             var dataType = tables[i].rows[j].cells[k].getAttribute("data-type");
             var dataStyle = tables[i].rows[j].cells[k].getAttribute("data-style");
             var dataValue = tables[i].rows[j].cells[k].getAttribute("data-value");
             dataValue = (dataValue)?dataValue:tables[i].rows[j].cells[k].innerHTML;
             var dataFormula = tables[i].rows[j].cells[k].getAttribute("data-formula");
-            dataFormula = (dataFormula)?dataFormula:(appname=='Calc' && dataType=='DateTime')?dataValue:null;
-            ctx = {  attributeStyleID: (dataStyle=='Currency' || dataStyle=='Date')?' ss:StyleID="'+dataStyle+'"':''
-                   , nameType: (dataType=='Number' || dataType=='DateTime' || dataType=='Boolean' || dataType=='Error')?dataType:'String'
-                   , data: (dataFormula)?'':dataValue
-                   , attributeFormula: (dataFormula)?' ss:Formula="'+dataFormula+'"':''
-                  };
-            rowsXML += format(tmplCellXML, ctx);
+           	console.log(dataValue) ; 
+           	//if(dataValue == " <input type=\"button\" value=\"Voir les cycles\" id=\"bVoirCycle\"> ") console.log("GGGG") ;
+            if(dataValue != " <input type=\"button\" value=\"Voir les cycles\" id=\"bVoirCycle\"> ")
+          	{
+	            dataFormula = (dataFormula)?dataFormula:(appname=='Calc' && dataType=='DateTime')?dataValue:null;
+	            ctx = {  attributeStyleID: (dataStyle=='Currency' || dataStyle=='Date')?' ss:StyleID="'+dataStyle+'"':''
+	                   , nameType: (dataType=='Number' || dataType=='DateTime' || dataType=='Boolean' || dataType=='Error')?dataType:'String'
+	                   , data: (dataFormula)?'':dataValue
+	                   , attributeFormula: (dataFormula)?' ss:Formula="'+dataFormula+'"':''
+	                  };
+	            rowsXML += format(tmplCellXML, ctx);
+			}
           }
           rowsXML += '</Row>'
         }
         ctx = {rows: rowsXML, nameWS: wsnames[i] || 'Sheet' + i};
         worksheetsXML += format(tmplWorksheetXML, ctx);
         rowsXML = "";
+        //}
       }
 
       ctx = {created: (new Date()).getTime(), worksheets: worksheetsXML};
