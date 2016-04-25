@@ -81,21 +81,13 @@ echo"
               <br>
               <input type="button" value="Rechercher" id="bRechercher"/>
                   <div class="col-md-4">
-        <div class="btn-group">
+                   <div class="btn-group">
               <button class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Table Data</button>
               <ul class="dropdown-menu " role="menu">
-                <li class="divider"></li>
-                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'csv',escape:'false'});"> <img src='icons/csv.png' width='24px'> CSV</a></li>
-                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'txt',escape:'false'});"> <img src='icons/txt.png' width='24px'> TXT</a></li>
-                <li class="divider"></li>       
-                
-                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'excel',escape:'false'});"> <img src='icons/xls.png' width='24px'> XLS</a></li>
-                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'doc',escape:'false'});"> <img src='icons/word.png' width='24px'> Word</a></li>
-                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'powerpoint',escape:'false'});"> <img src='icons/ppt.png' width='24px'> PowerPoint</a></li>
-                <li class="divider"></li>
-                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'png',escape:'false'});"> <img src='icons/png.png' width='24px'> PNG</a></li>
-                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"> <img src='icons/pdf.png' width='24px'> PDF</a></li>
-                
+
+                <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'excel',escape:'false'});"> <img src='../img/xls.png' width='24px'> XLS</a></li>
+
+
                 
               </ul>
             </div>                
