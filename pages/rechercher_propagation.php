@@ -10,20 +10,9 @@
 	?>
 	<?php
 	require('header_script.html');
-	require('../framework/Zip_php/zip.lib.php');
-
 	?>
-	<script type="text/javascript" src="../framework/tableExport/tableExport.js"></script>
-	<script type="text/javascript" src="../framework/tableExport/jquery.base64.js"></script>
-	<script type="text/javascript" src="../framework/tableExport/html2canvas.js"></script>
-	<script type="text/javascript" src="../framework/tableExport/jspdf/libs/sprintf.js"></script>
-	<script type="text/javascript" src="../framework/tableExport/jspdf/jspdf.js"></script>
-	<script type="text/javascript" src="../framework/tableExport/jspdf/libs/base64.js"></script>
 
 	<script type="text/javascript" src="../js/export_zip.js"></script>
-	<script type="text/javascript" src="../framework/Zip_export/dist/jszip.js"></script>
-	<script type="text/javascript" src="../framework/Zip_export/dist/jszip.min.js"></script>
-	<script type="text/javascript" src="../framework/Zip_export/vendor/FileSaver.js"></script>
 
 </head>
 <body>
@@ -39,14 +28,7 @@
 		<div id="div_titre_nomEntreprise">
 			<h1 class="text-center" id="titre_nomEntreprise">  <?php echo $nomEntreprise; ?> </h1>
 		</div>
-		<button onClick = "tableToExcelE()" data-toggle="dropdown"><i class="fa fa-bars"></i> Exporter </button>
-
-		<div class="btn-group">
-			<button class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Table Data</button>
-			<ul class="dropdown-menu " role="menu">
-				<li><a href="#" onClick ="$('#tabs').tableExport({type:'excel',escape:'false', tableName:'#dataTable_Entreprise_niveau1_wrapper'});"> <img src='../img/xls.png' width='18px'>  XLS</a></li>
-			</ul>
-		</div>
+		<button style="margin-left: 15px;" onclick="tablesToExcel(['dataTable_Entreprise_niveau2','dataTable_CoordonneesPersonne_niveau1','dataTable_Alternance_niveau1','dataTable_Alternance_niveau2','dataTable_Alternance_niveau3','dataTable_Alternance_niveau4','dataTable_TaxeApprentissage_niveau1','dataTable_TaxeApprentissage_niveau2','dataTable_AtelierRH_niveau1','dataTable_Conference_niveau1', 'dataTable_Conference_niveau2', 'dataTable_ForumSG_niveau1'], ['Entreprise 2','CoordonneesPersonne','Alternance 1','Alternance 2','Alternance 3','Alternance 4','Taxe apprentissage 1','Taxe apprentissage 2','Atelier RH', 'Conférence 1', 'Conférence 2', 'Forum SG'], '<?php echo $nomEntreprise; ?>.xls', 'Excel')" data-toggle="	dropdown"><i class="fa fa-bars"></i> Exporter </button>
 		
 
 		<div id="tabs">
