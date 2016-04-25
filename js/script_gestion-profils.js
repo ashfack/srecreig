@@ -1,6 +1,6 @@
 function supp()
 {
-  if(confirm("Etes vous sur de supprimer cette personne?")==true)
+  if(confirm("Etes vous sur de supprimer cet Utilisateur?")==true)
   {
     return 1;
   }
@@ -25,13 +25,34 @@ function f_new()
      }
    });
 }
+function surligne(champ, erreur)
+{
+   if(erreur)
+      champ.style.backgroundColor = "#fba";
+   else
+      champ.style.backgroundColor = "rgb(170, 255, 177)";
+}
+function verifFormat(champ)
+{
+   var regex = /^[a-zA-Z]+\.[a-zA-Z]+$/;
+   if(!regex.test(champ.value))
+   {
+      surligne(champ, true);
+      return false;
+   }
+   else
+   {
+      surligne(champ, false);
+      return true;
+   }
+}
 
 $(document).ready(function() 
 {
    
    $("#add").click(function() 
    {
-      $("#add").replaceWith("<div> <div class=\"input-group my-group\"> <input type=\"text\" class=\"form-control\" name=\"snpid\" placeholder=\"Identifiant\" id=\"new_nom\"value=\"\"> <select name=\"profils\" class=\"selectpicker form-control\" id=\"new\" type=\"select\"> <option value=\"read\">Lecture</option> <option value=\"write\">Ecriture</option> <option value=\"super\">Super Utilisateur</option> </select> <span class=\"input-group-btn\"> <button class=\"btn btn-success btn-responsive\" id=\"ajouter\" onclick=\"f_new()\">Ajouter</button> </span> </div> </div>");
+      $("#add").replaceWith("<div> <div class=\"input-group my-group\"> <input type=\"text\" class=\"form-control\" name=\"snpid\" placeholder=\"Identifiant\" id=\"new_nom\"value=\"\" onblur=\"verifFormat(this)\"> <select name=\"profils\" class=\"selectpicker form-control\" id=\"new\" type=\"select\"> <option value=\"read\">Lecture</option> <option value=\"write\">Ecriture</option> <option value=\"super\">Super Utilisateur</option> </select> <span class=\"input-group-btn\"> <button class=\"btn btn-success btn-responsive\" id=\"ajouter\" onclick=\"f_new()\">Ajouter</button> </span> </div> </div>");
    });
    
    $("select").change(function() 
@@ -59,6 +80,24 @@ $(document).ready(function()
 
     if(supp() ==1)
     {
+      
+      profil=$($(this).parents("div")[1]).find("select").val();      
+      if(profil =='super')
+      {
+        cpt=0;
+        for(j=0;j<$("select").length;j++)
+        {
+          if($($("select")[j]).val()=="super")
+          {
+            cpt++;
+          }
+        }
+        if (cpt ==1)
+        {
+            alert('impossible de supprimer cet Utilisateur car c\'est le seul administrateur');
+            return;
+        }
+      }
       $identifiant=$($(this).parents("div")[1]).find("input").val();
       $.ajax(
         { 
