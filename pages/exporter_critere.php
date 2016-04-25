@@ -24,6 +24,8 @@
   <div class="container">
     <h1 class="text-center">Exporter</h1>
     <div class="col-md-4"></div>
+            <div class="col-md-4">
+
     <div class="panel panel-primary">
       <div class="panel-heading">
         <h3 class="panel-title text-center">Choix des critères</h3>
@@ -31,7 +33,6 @@
       <div class="panel-body">
         <br>
         <div class="col-md-4"></div>
-        <div class="col-md-4">
           <?php 
             require("db_connect.php");   
       $table_onglet_array=array("Entreprise","Contacts","Alternance","Taxe d'apprentissage","Atelier RH","Conference","Forum SG");
@@ -101,35 +102,11 @@ echo"
       </div>
     </div>
 
-    <div class="col-md-4"></div>
 
     <div class="col-md-4"></div>
     <!-- </form>
     -->
     <div id="div_datatable"></div>
-
-    <div id="dialog_supprimer_confirmation" title="Confirmation !">
-      <p>
-        Vous avez allez supprimer l'entreprise
-        <span id="emplacement_supprimer_nomEntreprise"></span>
-        et toutes les données qui lui sont liées (Contacts, alternants, taxe d'apprentissage...)
-        <br/>
-        Etes vous sûr de vouloir continuer ?
-      </p>
-    </div>
-
-    <div id="dialog_refus"  title="Refus">
-      <p>Vous devez selectionner une entreprise</p>
-    </div>
-
-    <div id="dialog_aucune_entreprise"  title="Aucune entreprise !">
-      <p>Aucune entreprise ne répond au nom que vous avez entré !</p>
-    </div>
-  </div>
-
-
-
-
 
 
 </body>
