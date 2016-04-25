@@ -42,8 +42,12 @@ $(document).ready(function()
 			"bJQueryUI": true,
 			"responsive" : true,
 			"sPaginationType": "full_numbers",
-			"oLanguage": { "sUrl": "../js/fr_FR.txt" },
+			"oLanguage": 
+			{ 
+				"sUrl": "../js/fr_FR.txt"
+			},
 			"aaSorting": []
+			
 			});
 
 			if(j>1) 

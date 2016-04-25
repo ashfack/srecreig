@@ -212,7 +212,7 @@ table.display tr.odd.row_selected td {background-color: #9FAFD1;}
 }
 .panel
 {
-    height: 500px;
+    height: 450px;
     overflow: auto;
 }
 
