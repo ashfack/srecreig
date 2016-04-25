@@ -33,25 +33,23 @@
         <div class="col-md-4"></div>
         <div class="col-md-4">
           <?php 
-      require("db_connect.php");   
+            require("db_connect.php");   
       $table_onglet_array=array("Entreprise","Contacts","Alternance","Taxe d'apprentissage","Atelier RH","Conference","Forum SG");
       $table_array= array("vueEntreprise","vueContact","vueAlternance","vueTaxeApprentissage","vueAtelierRH","vueConference","vueForumSG");
       echo " <div id=\"jstree\">
           ";
       
-      for($i=0;$i
-          <count($table_array);$i++)
+      for($i=0;$i<count($table_array);$i++)
       {
        $sql = "Describe ".$table_array[$i]."";
        try
        {
-        $rep=$conn->
-            query($sql); 
+        $rep=$conn->query($sql); 
       }
       catch(PDOException $e)
       {
                   // echo "Incident: " . $e->getMessage();
-        echo "Impossible de joindre le serveur de base de données";
+        echo "Impossible d'accéder aux vues";
       }  
       echo "
             <ul >
