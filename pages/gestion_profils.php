@@ -22,7 +22,7 @@
         <div class="col-md-3">
         </div>
         <div class="col-md-6">
-            <h1 class="text-center"> Fiche de gestion des profils </h1>
+            <h1 class="text-center"> Gestion des profils </h1>
         </br>
         <div class="panel panel-primary">
             <div class="panel-heading">
