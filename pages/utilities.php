@@ -207,12 +207,12 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 				if($table=="Alternance" && ($num_niveau==3 || $num_niveau==4))
 				{
 					if($num_niveau==3)
-						echo "<p id='titre_".$table."_"."$nom_niveau' $style> <img src='../css/images/more.png' alt='Icon zoom'> Niveau $num_niveau (Maître d'apprentissage) </p>";
+						echo "<h3 id='titre_".$table."_"."$nom_niveau' $style > <img src='../css/images/more.png' alt='Icon zoom'> Niveau $num_niveau (Maître d'apprentissage) </h3>";
 					else
-						echo "<p id='titre_".$table."_"."$nom_niveau' $style> <img src='../css/images/more.png' alt='Icon zoom'> Niveau $num_niveau (Responsable RH) </p>";
+						echo "<h3 id='titre_".$table."_"."$nom_niveau' $style> <img src='../css/images/more.png' alt='Icon zoom'> Niveau $num_niveau (Responsable RH) </h3>";
 				}
 				else
-					echo "<p id='titre_".$table."_"."$nom_niveau' $style> <img src='../css/images/more.png' alt='Icon zoom'> Niveau $num_niveau </p>";
+					echo "<h3 id='titre_".$table."_"."$nom_niveau' $style > <img src='../css/images/more.png' alt='Icon zoom'> Niveau $num_niveau </h3>";
 			}
 			
 			

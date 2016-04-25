@@ -4,8 +4,8 @@ $(document).ready(function()
 
 	$("#dialog_cycle").dialog(
 	{
-		height: 520,
-		width:500,
+		height:542,
+		width:542,
 		autoOpen:false,
 		dialogClass: "alert",
 		position: { my: "center bottom", at: "center center", of: window, within: $("#tabs")},
@@ -14,7 +14,7 @@ $(document).ready(function()
 		buttons: 
 		[
 		    {
-		      text: "Valider",
+		      text: "OK",
 		      icons: 
 		      {
 		        primary: "ui-icon-check"
@@ -22,24 +22,13 @@ $(document).ready(function()
 		      click: function() 
 		      {
 		      	$( this ).dialog( "close" );
-		      	requeteAjaxCycle();
-		      }
-		    },
-		    {
-		      text: "Annuler",
-		      icons: 
-		      {
-		        primary: "ui-icon-closethick"
-		      },
-		      click: function() {
-		        $( this ).dialog( "close" );
 		      }
 		    }
 
 		]
 	});
 
-	var nomEntreprise=$("#titre_nomEntreprise").text();
+	var nomEntreprise=($("#titre_nomEntreprise").text()).trim();
 
 	// datatable + systeme pyramidale
 	var table_array=new Array("Entreprise","CoordonneesPersonne","Alternance","TaxeApprentissage","AtelierRH","Conference","ForumSG");
@@ -69,7 +58,7 @@ $(document).ready(function()
 			     	if(true_j>1)
 			     	{
 			     		var img=$(this).children()[0];
-			     		console.log(img);
+			    
 			     		var src = ($(img).attr('src') === '../css/images/more.png')
 									? '../css/images/minus.png'
 									: '../css/images/more.png';
@@ -99,32 +88,46 @@ $(document).ready(function()
     $("#bVoirCycle").click(function()
     {
     	$("#dialog_cycle").dialog("open");
-    	//requeteAjaxCycle(nomEntreprise);
+    	requeteAjaxCycle(nomEntreprise);
     });
 
 
 			
 });
 
-function requeteAjaxEntreprise(nomEntreprise)
+function requeteAjaxCycle(nomEntreprise)
 {
 
 	$.ajax({
 
 	   type: "POST",
-	   url: "afficher_cyleFormation.php",
-	   dataType: "text",
+	   url: "recup_cycleFormation.php",
+	   dataType: "json",
 	   data: 'nomEntreprise='+nomEntreprise,
 	   success: function(data)
-	   { 
-			if(data=="ok")
+	   {
+	   		//$.jstree.defaults.checkbox.whole_node=false;
+	   		//$.jstree.defaults.checkbox.tie_selection=false;
+	   		//$.jstree.reference('#jstree').redraw();
+	   		$('#jstree').jstree("deselect_all");
+			if(data.length>0) 
 			{
-				requeteAjaxTable();
+				for(var i in data)
+					$('#jstree').jstree('select_node', data[i].toString());
+			
 			}
-			else 
-			{
-				alert("La suppression n'a pas été effectué: une erreur est survenue");
-			}
+			var test = $('#jstree').jstree(true).get_json('#', { 'flat': true });
+			$.each(test, function( key, value ) {
+				
+			    if (value.state.selected == false) {
+			         $('#jstree').jstree('disable_node', value.id);
+			    }
+			    else
+			    	$('#jstree').jstree('disable_checkbox', value.id);
+			});
+						//$.jstree.reference('#jstree').disable_checkbox();
+			//$.jstree.reference('#jstree').hide_checkboxes();
+
 	   }
 	});
 

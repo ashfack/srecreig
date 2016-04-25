@@ -103,7 +103,7 @@
 		</div>
 
 		<div id="dialog_cycle"  title="Cycle Formation">
-            <p> Les cycles de l'entreprise sont pré-cochés </p>
+            <p> En bleu, les cycles/formations liés à l'entreprise :  </p>
             <?php
                 require ("jstree_cycle.php");
             ?>
