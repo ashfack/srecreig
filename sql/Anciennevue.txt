@@ -31,3 +31,25 @@ CREATE OR REPLACE VIEW vueForumSG
 AS 
 select `srecreig_base`.`forumsg`.`Entreprise_nomEntreprise` AS `Nom Entreprise`,`srecreig_base`.`forumsg`.`anneeDeParticipation` AS `Annee De Participation`,`srecreig_base`.`forumsg`.`questionnaireDeSatisfaction` AS `Questionnaire De Satisfaction`,`srecreig_base`.`forumsg`.`commentairesForum` AS `Commentaires Forum` from `srecreig_base`.`forumsg`
 ;
+
+CREATE OR REPLACE CorrespondanceNom 
+(
+  nomSql VARCHAR2(25) ;
+  nomCorrespondant ;  
+)
+
+
+INSERT INTO CorrespondanceNom (nomSql, nomCorrespondant) VALUES 
+('nomEntreprise', 'Nom Entreprise') , 
+('civilite', 'Civilité'),                             
+('nom', 'Nom'), 
+('', ''), 
+('', ''), 
+('', ''), 
+('', ''), 
+('', ''), 
+('', ''), 
+('', ''), 
+('', ''), 
+('', ''), 
+('', ''),

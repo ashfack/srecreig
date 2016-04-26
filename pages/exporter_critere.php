@@ -23,8 +23,8 @@
   <?php require('header.php');  ?>
   <div class="container">
     <h1 class="text-center">Exporter</h1>
-    <div class="col-md-4"></div>
-            <div class="col-md-4">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
 
     <div class="panel panel-primary">
       <div class="panel-heading">
@@ -60,10 +60,22 @@
                   ";
         while( $row = $rep->fetch()) 
         {
+          //echo $row['Field'];
+          //echo " = " ; 
+          $sql4 = "Select nomCorrespondant FROM correspondancenom where nomSql = '".$row['Field']."' ";
+          $stmt = $conn->prepare($sql4);
+          //echo "Requete = ".$sql4 ;
+          $stmt->execute();
+        
+
+
+      $row3 = $stmt->fetch(PDO::FETCH_NUM, PDO::FETCH_ORI_NEXT) ; 
+      $data = $row3[0] ;
+    
           echo "
                   <li data-jstree='{\"icon\":\"glyphicon glyphicon-file\"}'    id=".$table_array[$i].".".$row['Field'].">
-                    ";                      
-          echo $row['Field'];  
+                    ";           print $data;
+                 
         }
         echo"
                   </li>
@@ -103,7 +115,7 @@ echo"
     </div>
 
 
-    <div class="col-md-4"></div>
+    <div class="col-md-3"></div>
     <!-- </form>
     -->
     <div id="div_datatable"></div>
