@@ -65,17 +65,12 @@ function colonne_null(&$tab_donnees)
 
 function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 {
-
-	//$cle_etrangere=array("Naf_codeNaf","CoordonneesPersonne_alternant","CoordonneesPersonne_maitre","CoordonneesPersonne_RH");
-
-	//$pk="nomEntreprise";
 	echo "<div id='menu_$table' class='panel'>";
 	$cle_CP_presente=false;
 
 	try
 	{
-		//$nb_niveau=sizeof($tab_niveaux);
-		//$niveau_i=1;
+	
 		//boucle sur les niveaux
 		foreach ($tab_niveaux as $nom_niveau => $niveau) 
 		{
@@ -85,7 +80,6 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 
 				if($colonne_niveau == "Entreprise_nomEntreprise")
 				{
-					//$cle_Entreprise_presente=true;
 					continue;
 				}
 
@@ -105,14 +99,9 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 
 					if($colonne_niveau == "CoordonneesPersonne_alternant" && $nom_niveau!="niveau1")
 					{
-							/*//echo "<p> je change ------> <p>";
-							array_push($colonne_cle_affichage_array, "id Alternant");
-							array_push($colonne_cle_affichage_array, "Nom alternant");
-							array_push($colonne_cle_affichage_array, "Prenom alternant");*/
-							
-							array_push($colonne_cle_array, "idCoordonneesPersonne");
-							array_push($colonne_cle_array, "nom");
-							array_push($colonne_cle_array, "prenom");
+						array_push($colonne_cle_array, "idCoordonneesPersonne");
+						array_push($colonne_cle_array, "nom");
+						array_push($colonne_cle_array, "prenom");
 					}
 					else
 					{
@@ -122,22 +111,17 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 						
 						while( $row = $rep->fetch()) 
 						{ 
-							
-							/*if($row['Field']=="commentaires")
-								$row['Field']="CoordonneesPersonne.commentaires";*/
-							//array_push($colonne_cle_affichage_array, $row['Field'].ucfirst($attribut));
 							array_push($colonne_cle_array, $row['Field']);
 						}
 					}
 					
-					//print_r($colonne_cle_array);
 					array_splice($niveau,$indice,1,$colonne_cle_array);
-					//print_r($niveau);
+					
 				}
 				
 			}
 			
-			//$sql=" SELECT ".implode($tab_niveau,",")." FROM Entreprise WHERE nomEntreprise = :nomEntreprise";
+			
 			if($table=="Entreprise")
 				$sql=" SELECT ".implode($niveau,",")." FROM Entreprise left join NAF on (Entreprise.Naf_codeNAF=NAF.codeNAF) WHERE Entreprise.nomEntreprise = :nomEntreprise";
 			elseif($table=="CoordonneesPersonne")
@@ -145,8 +129,6 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 				$sql=" SELECT ".implode($niveau,",").", type FROM a_Entreprise_CoordonneesPersonne a right join CoordonneesPersonne cp on (a.CoordonneesPersonne_id = cp.idCoordonneesPersonne)".
 					" WHERE a.type IS NOT NULL and a.Entreprise_nomEntreprise = :nomEntreprise ".
 					"ORDER BY (CASE WHEN type='Autre' THEN 1 ELSE 0 END) ASC,type";
-
-				//echo $sql;
 			}
 			else if($table=="Conference" || $table=="AtelierRH")
 			{
@@ -154,15 +136,18 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 				$sql=" SELECT ".implode($niveau,",")." FROM $table_asso join $table on ($table_asso.".$table."_id = ".$table.".id".$table.") ".
 					"join CoordonneesPersonne on ($table_asso.CoordonneesPersonne_id = CoordonneesPersonne.idCoordonneesPersonne) WHERE $table.Entreprise_nomEntreprise = :nomEntreprise";
 			}
+			else if($table=="TaxeApprentissage" && $nom_niveau=="niveau2")
+			{
+
+				$sql=" SELECT ".implode($niveau,",")." FROM taxeapprentissage join a_taxeapprentissage_cycleformation on (idTA=TaxeApprentissage_id) join cycleformation on ( CycleFormation_id=idCycleFormation) WHERE Entreprise_nomEntreprise=:nomEntreprise";
+			}
 				
 			else
 			{
 				if($cle_CP_presente)
 				{
-					//echo $nom_niveau;
 					if($nom_niveau=="niveau3" || $nom_niveau=="niveau4")
 					{
-						//$colonne_requete_alternance=array("idA","nomA","prenomA",)
 						if($nom_niveau=="niveau3")
 							$col_req="AL.CoordonneesPersonne_maitre";
 						else
@@ -181,7 +166,6 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 					else
 						$sql=" SELECT ".implode($niveau,",")." FROM $table left join CoordonneesPersonne on ($table.CoordonneesPersonne_$attribut = CoordonneesPersonne.idCoordonneesPersonne) WHERE Entreprise_nomEntreprise = :nomEntreprise ORDER BY nom";
 					
-					//echo $sql;
 				}
 				else
 					$sql=" SELECT ".implode($niveau,",")." FROM $table WHERE Entreprise_nomEntreprise = :nomEntreprise";
@@ -220,7 +204,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			echo "<thead><tr>";
 
 			$colonne_array_affichage=transformeChaine($niveau);
-
+			
 			if($table=="Entreprise" && $nom_niveau=="niveau1")
 			{
 				$colonne_array_affichage[count($colonne_array_affichage)]="Cycle Formation";
@@ -252,8 +236,6 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 						echo "<td id='Alternance_idCoordonneesPersonne_nomA_"."$nom_niveau'>".$data['nomA']."</td>";
 						echo "<td id='Alternance_idCoordonneesPersonne_prenomA_"."$nom_niveau'>".$data['prenomA']."</td>";
 						
-						//echo sizeof($niveau);
-						//print_r($niveau);
 						for ($j=3;$j<count($niveau);$j++)
 						{
 							$valeur=$data[$niveau[$j]];
@@ -290,6 +272,9 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			echo '</table>';
 			echo '<br/>';
 
+			echo "<input type='button' value='Modifier' id='bModifier_".$table."_"."$nom_niveau'/>";
+			echo "<input type='button' value='Supprimer' id='bSupprimer_".$table."_"."$nom_niveau'/>";
+			echo "<input type='button' value='Ajouter' id='bAjouter_".$table."_"."$nom_niveau'/>";
 			$cle_CP_presente=false;
 			$colonne_array_affichage=array();
 		}

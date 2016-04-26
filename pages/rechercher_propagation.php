@@ -59,11 +59,8 @@
 
 
 				$tab_niveaux_TaxeApprentissage=array("niveau1"=>array("idTA","anneeDeVersement","montantPromesseVersement","montantVerse","versementVia","rapprochementAC"),
-					"niveau2"=>array("idTA","anneeDeVersement","OCTA","dateEnregistrement","dateDerniereModification","modePaiement","dateTransmissionChequeAC","commentairesTaxe"));
-
-
-				$tab_niveaux_TaxeApprentissage=array("niveau1"=>array("idTA","anneedeVersement","montantPromesseVersement","montantVerse","versementVia","rapprochementAC"),
-					"niveau2"=>array("idTA","anneedeVersement","OCTA","dateEnregistrement","dateDerniereModification","modePaiement","dateTransmissionChequeAC","commentairesTaxe"));
+					"niveau2"=>array("idTA","anneeDeVersement","cycle","mention","specialite","categorie","montant"),
+					"niveau3"=>array("idTA","anneeDeVersement","OCTA","dateEnregistrement","dateDerniereModification","modePaiement","dateTransmissionChequeAC","commentairesTaxe"));
 
 				
 				$tab_niveaux_AtelierRH=array("niveau1"=>array("dateAtelier","creneauAtelier","CoordonneesPersonne_RH"));
@@ -95,7 +92,22 @@
 			require ("jstree_cycle.php");
 			?>
 		</div>
+
+		<div id="dialog_cycle_vide"  title="Cycle Formation">
+			<p> L'entreprise n'est liée à aucun cycle/formation <br/> <br/> Cliquez sur le bouton "Ajouter" pour lui attribuer des cycles/formations </p>
+		</div>
 	</body>
+	<!--
+	<script type="text/javascript" > 
+
+		$('body').css("margin-top","-1000000px"); 
+		$('body').prepend("<div id='wait' style='position:absolute;width:220px;top:40%;left:40%;text-align:center;font-weight:bold;' >Chargement en cours . . .<br/><img src='../css/images/chargement.gif'></img></div>"); 
+
+		function body_ready(){$('body').css('margin-top','');$('#wait').css('display','none');} 
+		$(document).ready(function(){body_ready();}); 
+
+	</script>
+	-->
 	<script type="text/javascript" src="../js/script_rechercher-propagation.js"></script>
 	<link rel="stylesheet" href="../framework/jsTree/dist/themes/default/style.min.css" />
 	</html>

@@ -28,6 +28,22 @@ $(document).ready(function()
 		]
 	});
 
+	$( "#dialog_cycle_vide" ).dialog({
+		height:180,
+		width:400,
+		autoOpen:false,
+		dialogClass: "alert",
+		position: { my: "center bottom", at: "center center", of: window, within: window},
+		draggable: false,
+	 	open: function() {
+            var dialog_refus = $(this);
+            setTimeout(function() {
+              dialog_refus.dialog('close');
+            }, 2500);
+        }
+		
+	});
+
 	var nomEntreprise=($("#titre_nomEntreprise").text()).trim();
 
 	// datatable + systeme pyramidale
@@ -50,8 +66,15 @@ $(document).ready(function()
 			
 			});
 
-			if(j>1) 
+			if(j>1)
+			{
 				$("#dataTable_"+table+"_niveau"+j).css("display","none");
+				
+				$("#bModifier_"+table+"_niveau"+j).css("display","none");
+				$("#bSupprimer_"+table+"_niveau"+j).css("display","none");
+				$("#bAjouter_"+table+"_niveau"+j).css("display","none");
+			}
+				
 			
 			$("#menu_"+table).on(
 			  'click',
@@ -69,6 +92,10 @@ $(document).ready(function()
 						
 						$(img).attr('src', src);
 			     		$("#dataTable_"+true_table+"_niveau"+true_j).toggle();
+
+			     		$("#bModifier_"+true_table+"_niveau"+true_j).toggle();
+						$("#bSupprimer_"+true_table+"_niveau"+true_j).toggle();
+						$("#bAjouter_"+true_table+"_niveau"+true_j).toggle();
 			     	}
 			      		
 			     };
@@ -79,6 +106,17 @@ $(document).ready(function()
 		}
 	
 	}
+
+ 	$("tr").click(function(){
+	   if($(this).hasClass('selected'))
+	   		$(this).removeClass('selected');
+	   else
+	   {
+	   		$(this).addClass('selected').siblings().removeClass('selected');    
+	   		//$(this).addClass('selected');
+	   }
+				
+	});
 
 	// cacher les id et autres !!
 	var tableau=document.getElementsByName("cacher");
@@ -91,7 +129,6 @@ $(document).ready(function()
     // jstree pour les cycles
     $("#bVoirCycle").click(function()
     {
-    	$("#dialog_cycle").dialog("open");
     	requeteAjaxCycle(nomEntreprise);
     });
 
@@ -110,28 +147,38 @@ function requeteAjaxCycle(nomEntreprise)
 	   data: 'nomEntreprise='+nomEntreprise,
 	   success: function(data)
 	   {
-	   		//$.jstree.defaults.checkbox.whole_node=false;
-	   		//$.jstree.defaults.checkbox.tie_selection=false;
-	   		//$.jstree.reference('#jstree').redraw();
-	   		$('#jstree').jstree("deselect_all");
 			if(data.length>0) 
 			{
+				//$.jstree.defaults.checkbox.whole_node=false;
+		   		//$.jstree.defaults.checkbox.tie_selection=false;
+		   		//$.jstree.reference('#jstree').redraw();
+		   		$('#jstree').jstree("deselect_all");
+
 				for(var i in data)
+				{
 					$('#jstree').jstree('select_node', data[i].toString());
+				}
+					
+				var test = $('#jstree').jstree(true).get_json('#', { 'flat': true });
+				$.each(test, function( key, value ) 
+				{
+					
+				    if (value.state.selected == false) 
+				    {
+				        $('#jstree').jstree('disable_node', value.id);
+				    }
+				    else
+				    	$('#jstree').jstree('disable_checkbox', value.id);
+				});
+				
+				//$.jstree.reference('#jstree').disable_checkbox();
+				//$.jstree.reference('#jstree').hide_checkboxes();
+
+				$("#dialog_cycle").dialog("open");
 			
 			}
-			var test = $('#jstree').jstree(true).get_json('#', { 'flat': true });
-			$.each(test, function( key, value ) {
-				
-			    if (value.state.selected == false) {
-			         $('#jstree').jstree('disable_node', value.id);
-			    }
-			    else
-			    	$('#jstree').jstree('disable_checkbox', value.id);
-			});
-						//$.jstree.reference('#jstree').disable_checkbox();
-			//$.jstree.reference('#jstree').hide_checkboxes();
-
+			else
+				$("#dialog_cycle_vide").dialog("open");
 	   }
 	});
 
