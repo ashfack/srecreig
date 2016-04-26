@@ -3,6 +3,7 @@
 "sLengthMenu": "Afficher _MENU_ Enregistrements",
 "sZeroRecords": "Aucun élément à afficher",
 "sInfo": "Informations _START_ a _END_ sur _TOTAL_ enregistrements",
+"sInfoEmpty": "Pas d'informations",
 "sInfoFiltered": "(filtrer sur _MAX_ total enregistrements)",
 "sInfoPostFix": "",
 "sSearch": "Recherche:",

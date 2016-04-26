@@ -7,35 +7,17 @@ function supp()
   return 0;
 }
 
-function f_new()
-{
-   $profil= $("#new").val();
-   $identifiant=$("#new_nom").val();
-   $.ajax(
-   { 
-     type: "POST", 
-     url : "maj_profil.php", 
-     data: "id="+$identifiant+"&profil="+$profil+"&type=ins", 
-     success: function(msg)
-     { 
-          if(msg==1) //Succes
-          {
-              window.location.reload();
-          }
-     }
-   });
-}
 function surligne(champ, erreur)
 {
    if(erreur)
-      champ.style.backgroundColor = "#fba";
+      $(champ).css("backgroundColor", "#fba");
    else
-      champ.style.backgroundColor = "rgb(170, 255, 177)";
+      $(champ).css("backgroundColor", "rgb(170, 255, 177)");
 }
 function verifFormat(champ)
 {
    var regex = /^[a-zA-Z]+\.[a-zA-Z]+$/;
-   if(!regex.test(champ.value))
+   if(!regex.test($(champ).val()))
    {
       surligne(champ, true);
       return false;
@@ -45,6 +27,34 @@ function verifFormat(champ)
       surligne(champ, false);
       return true;
    }
+}
+
+function f_new()
+{
+   // alert(verifFormat($("#new_nom")));
+   if(verifFormat($("#new_nom"))==true)
+    {
+     $profil= $("#new").val();
+     $identifiant=$("#new_nom").val();
+     $.ajax(
+     { 
+       type: "POST", 
+       url : "maj_profil.php", 
+       data: "id="+$identifiant+"&profil="+$profil+"&type=ins", 
+       success: function(msg)
+       { 
+            if(msg==1) //Succes
+            {
+                window.location.reload();
+            }
+       }
+     }); 
+    }
+    else
+    {
+      alert('Vous alliez ajouter un Utilisateur avec un nom incorrect');
+    }
+   
 }
 
 $(document).ready(function() 
