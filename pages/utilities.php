@@ -139,7 +139,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			else if($table=="TaxeApprentissage" && $nom_niveau=="niveau2")
 			{
 
-				$sql=" SELECT ".implode($niveau,",")." FROM taxeapprentissage join a_taxeapprentissage_cycleformation on (idTA=TaxeApprentissage_id) join cycleformation on ( CycleFormation_id=idCycleFormation) WHERE Entreprise_nomEntreprise=:nomEntreprise";
+				$sql=" SELECT ".implode($niveau,",")." FROM TaxeApprentissage join a_TaxeApprentissage_CycleFormation on (idTA=TaxeApprentissage_id) join CycleFormation on ( CycleFormation_id=idCycleFormation) WHERE Entreprise_nomEntreprise=:nomEntreprise";
 			}
 				
 			else
@@ -156,7 +156,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 
 						$sql="SELECT p1.idCoordonneesPersonne as idA,p1.nom as nomA,p1.prenom as prenomA, p2.idCoordonneesPersonne,p2.civilite,p2.nom,p2.prenom,p2.fonction,p2.telephoneFixe,p2.telephoneMobile,p2.mail,p2.commentaires ".
 								"FROM ".
-								    "alternance AL ".
+								    "Alternance AL ".
 								        "INNER JOIN CoordonneesPersonne p1 ".
 								            "ON AL.CoordonneesPersonne_alternant = p1.idCoordonneesPersonne ".
 								        "INNER JOIN CoordonneesPersonne p2 ".
