@@ -28,7 +28,7 @@
 
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title text-center">Choix des critères</h3>t
+        <h3 class="panel-title text-center">Choix des critères</h3>t2
       </div>
       <div class="panel-body">
         <br>
