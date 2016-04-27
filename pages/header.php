@@ -8,6 +8,9 @@
     } 
 	// header('Content-Type: text/html; charset=utf-8');
 ?>
+<link rel="icon" type="image/png" href="favicon.png" />
+<!--[if IE]><link rel="shortcut icon" type="image/x-icon" href="favicon.ico" /><![endif]-->
+
 <div id="wrapper">
 
     <!-- Navigation -->

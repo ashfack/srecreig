@@ -28,7 +28,7 @@
 
     <div class="panel panel-primary">
       <div class="panel-heading">
-        <h3 class="panel-title text-center">Choix des critères</h3>t2
+        <h3 class="panel-title text-center">Choix des critères</h3>
       </div>
       <div class="panel-body">
         <br>
@@ -36,7 +36,7 @@
           <?php 
             require("db_connect.php");   
       $table_onglet_array=array("Entreprise","Contacts","Alternance","Taxe d'apprentissage","Atelier RH","Conference","Forum SG");
-      $table_array= array("vueEntreprise","vueContact","vueAlternance","vueTaxeApprentissage","vueAtelierRH","vueConference","vueForumSG");
+      $table_array= array("vueEntreprise","vueContact","vueAlternance","vueTaxeApprentissage","vueAtelierRh","vueConference","vueForumSG");
       echo " <div id=\"jstree\">
           ";
       
