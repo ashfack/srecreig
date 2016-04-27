@@ -1,6 +1,16 @@
 CREATE OR REPLACE VIEW vueContact
 AS 
-select `srecreig_base`.`entreprise`.`nomEntreprise`,`srecreig_base`.`coordonneespersonne`.`civilite` ,`srecreig_base`.`coordonneespersonne`.`nom`,`srecreig_base`.`coordonneespersonne`.`prenom`,`srecreig_base`.`coordonneespersonne`.`fonction` ,`srecreig_base`.`coordonneespersonne`.`telephoneFixe` ,`srecreig_base`.`coordonneespersonne`.`telephoneMobile` ,`srecreig_base`.`coordonneespersonne`.`mail` ,`srecreig_base`.`coordonneespersonne`.`commentaires`  from ((`srecreig_base`.`entreprise` join `srecreig_base`.`coordonneespersonne`) join `srecreig_base`.`a_entreprise_coordonneespersonne`) where ((`srecreig_base`.`a_entreprise_coordonneespersonne`.`CoordonneesPersonne_id` = `srecreig_base`.`coordonneespersonne`.`idCoordonneesPersonne`) and (`srecreig_base`.`a_entreprise_coordonneespersonne`.`Entreprise_nomEntreprise` = `srecreig_base`.`a_entreprise_coordonneespersonne`.`Entreprise_nomEntreprise`)); 
+select `srecreig_base`.`Entreprise`.`nomEntreprise`,`srecreig_base`.`CoordonneesPersonne`.`civilite` ,
+`srecreig_base`.`CoordonneesPersonne`.`nom`,`srecreig_base`.`CoordonneesPersonne`.`prenom`,
+`srecreig_base`.`CoordonneesPersonne`.`fonction` ,`srecreig_base`.`CoordonneesPersonne`.`telephoneFixe` ,
+`srecreig_base`.`CoordonneesPersonne`.`telephoneMobile` ,`srecreig_base`.`CoordonneesPersonne`.`mail` ,
+`srecreig_base`.`CoordonneesPersonne`.`commentaires`  
+from ((`srecreig_base`.`Entreprise` join `srecreig_base`.`CoordonneesPersonne`) join 
+	`srecreig_base`.`a_Entreprise_CoordonneesPersonne`) 
+where ((`srecreig_base`.`a_Entreprise_CoordonneesPersonne`.`CoordonneesPersonne_id` = 
+	`srecreig_base`.`CoordonneesPersonne`.`idCoordonneesPersonne`) and 
+(`srecreig_base`.`a_Entreprise_CoordonneesPersonne`.`Entreprise_nomEntreprise` = 
+	`srecreig_base`.`a_Entreprise_CoordonneesPersonne`.`Entreprise_nomEntreprise`)); 
 
 
 CREATE OR REPLACE VIEW vueEntreprise
@@ -10,24 +20,42 @@ select * from Entreprise ;
 
 CREATE OR REPLACE VIEW vueAlternance
 AS 
-Select `srecreig_base`.`alternance`.`Entreprise_nomEntreprise` ,`srecreig_base`.`alternance`.`formationAlternance` ,`srecreig_base`.`alternance`.`anneeEntree` ,`srecreig_base`.`alternance`.`typeContrat` ,`srecreig_base`.`alternance`.`CoordonneesPersonne_alternant` ,`srecreig_base`.`alternance`.`CoordonneesPersonne_maitre` ,`srecreig_base`.`alternance`.`CoordonneesPersonne_RH` ,`srecreig_base`.`alternance`.`dateRVPreparation` ,`srecreig_base`.`alternance`.`dateRVSimulation` ,`srecreig_base`.`alternance`.`dateDebutContrat` ,`srecreig_base`.`alternance`.`dateFinContrat` ,`srecreig_base`.`alternance`.`dateRuptureContrat` ,`srecreig_base`.`alternance`.`dateEnvoiFLAuCFA` ,`srecreig_base`.`alternance`.`docAAttacher`  from `srecreig_base`.`alternance` ;
+Select `srecreig_base`.`Alternance`.`Entreprise_nomEntreprise` ,
+`srecreig_base`.`Alternance`.`formationAlternance` ,`srecreig_base`.`Alternance`.`anneeEntree` ,
+`srecreig_base`.`Alternance`.`typeContrat` ,`srecreig_base`.`Alternance`.`CoordonneesPersonne_alternant` ,
+`srecreig_base`.`Alternance`.`CoordonneesPersonne_maitre` ,`srecreig_base`.`Alternance`.`CoordonneesPersonne_RH` ,
+`srecreig_base`.`Alternance`.`dateRVPreparation` ,`srecreig_base`.`Alternance`.`dateRVSimulation` ,
+`srecreig_base`.`Alternance`.`dateDebutContrat` ,`srecreig_base`.`Alternance`.`dateFinContrat` ,
+`srecreig_base`.`Alternance`.`dateRuptureContrat` ,`srecreig_base`.`Alternance`.`dateEnvoiFLAuCFA` ,
+`srecreig_base`.`Alternance`.`docAAttacher`  from `srecreig_base`.`Alternance` ;
 
 CREATE OR REPLACE VIEW vueTaxeApprentissage
 AS 
-select `srecreig_base`.`taxeapprentissage`.`Entreprise_nomEntreprise` ,`srecreig_base`.`taxeapprentissage`.`anneeDeVersement` ,`srecreig_base`.`taxeapprentissage`.`montantPromesseVersement` ,`srecreig_base`.`taxeapprentissage`.`montantVerse` ,`srecreig_base`.`taxeapprentissage`.`OCTA` ,`srecreig_base`.`taxeapprentissage`.`dateEnregistrement`,`srecreig_base`.`taxeapprentissage`.`dateDerniereModification`,`srecreig_base`.`taxeapprentissage`.`modePaiement` ,`srecreig_base`.`taxeapprentissage`.`versementVia` ,`srecreig_base`.`taxeapprentissage`.`dateTransmissionChequeAC`,`srecreig_base`.`taxeapprentissage`.`rapprochementAC` ,`srecreig_base`.`taxeapprentissage`.`commentairesTaxe`  from `srecreig_base`.`taxeapprentissage` ;
+select `srecreig_base`.`TaxeApprentissage`.`Entreprise_nomEntreprise` ,`srecreig_base`.`TaxeApprentissage`.`anneeDeVersement` ,
+`srecreig_base`.`TaxeApprentissage`.`montantPromesseVersement` ,`srecreig_base`.`TaxeApprentissage`.`montantVerse` ,
+`srecreig_base`.`TaxeApprentissage`.`OCTA` ,`srecreig_base`.`TaxeApprentissage`.`dateEnregistrement`,
+`srecreig_base`.`TaxeApprentissage`.`dateDerniereModification`,`srecreig_base`.`TaxeApprentissage`.`modePaiement` ,
+`srecreig_base`.`TaxeApprentissage`.`versementVia` ,`srecreig_base`.`TaxeApprentissage`.`dateTransmissionChequeAC`,
+`srecreig_base`.`TaxeApprentissage`.`rapprochementAC` ,`srecreig_base`.`TaxeApprentissage`.`commentairesTaxe`  
+from `srecreig_base`.`TaxeApprentissage` ;
 
 CREATE OR REPLACE VIEW vueAtelierRh
 AS 
-select `srecreig_base`.`atelierrh`.`Entreprise_nomEntreprise` ,`srecreig_base`.`atelierrh`.`dateAtelier`,`srecreig_base`.`atelierrh`.`creneauAtelier` from `srecreig_base`.`atelierrh`
+select * from AtelierRH ; 
 ;
 
 CREATE OR REPLACE VIEW vueConference
 AS 
-select `srecreig_base`.`conference`.`Entreprise_nomEntreprise` ,`srecreig_base`.`conference`.`typeConference` ,`srecreig_base`.`conference`.`dateConference` ,`srecreig_base`.`conference`.`heureDebut` ,`srecreig_base`.`conference`.`heureFin` ,`srecreig_base`.`conference`.`lieuConference` ,`srecreig_base`.`conference`.`themeConference`  from `srecreig_base`.`conference`
+select `srecreig_base`.`Conference`.`Entreprise_nomEntreprise` ,`srecreig_base`.`Conference`.`typeConference` ,
+`srecreig_base`.`Conference`.`dateConference` ,`srecreig_base`.`Conference`.`heureDebut` ,
+`srecreig_base`.`Conference`.`heureFin` ,`srecreig_base`.`Conference`.`lieuConference` ,
+`srecreig_base`.`Conference`.`themeConference`  from `srecreig_base`.`Conference`
 ;
 
 
 CREATE OR REPLACE VIEW vueForumSG
 AS 
-select `srecreig_base`.`forumsg`.`Entreprise_nomEntreprise` ,`srecreig_base`.`forumsg`.`anneeDeParticipation` ,`srecreig_base`.`forumsg`.`questionnaireDeSatisfaction` ,`srecreig_base`.`forumsg`.`commentairesForum` from `srecreig_base`.`forumsg`
+select `srecreig_base`.`ForumSG`.`Entreprise_nomEntreprise` ,`srecreig_base`.`ForumSG`.`anneeDeParticipation` ,
+`srecreig_base`.`ForumSG`.`questionnaireDeSatisfaction` ,`srecreig_base`.`ForumSG`.`commentairesForum` 
+from `srecreig_base`.`ForumSG`
 ;

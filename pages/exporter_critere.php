@@ -62,7 +62,7 @@
         {
           //echo $row['Field'];
           //echo " = " ; 
-          $sql4 = "Select nomCorrespondant FROM correspondancenom where nomSql = '".$row['Field']."' ";
+          $sql4 = "Select nomCorrespondant FROM CorrespondanceNom where nomSql = '".$row['Field']."' ";
           $stmt = $conn->prepare($sql4);
           //echo "Requete = ".$sql4 ;
           $stmt->execute();

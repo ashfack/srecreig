@@ -4,7 +4,7 @@ CREATE TABLE IF NOT EXISTS CorrespondanceNom
   nomCorrespondant VARCHAR(70)
 ); 
 
-ALTER TABLE correspondancenom MODIFY COLUMN nomCorrespondant VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ;
+ALTER TABLE CorrespondanceNom MODIFY COLUMN nomCorrespondant VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL ;
 
 INSERT INTO CorrespondanceNom (nomSql, nomCorrespondant) VALUES 
 ('nomEntreprise', 'Nom Entreprise') , 
