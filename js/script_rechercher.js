@@ -32,7 +32,7 @@ $(document).ready(function()
 		});
 		
 		$( "#dialog_aucune_entreprise" ).dialog({
-			height:100,
+			height:200,
 			width:420,
 			autoOpen:false,
 			dialogClass: "alert",

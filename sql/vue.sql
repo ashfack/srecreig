@@ -5,12 +5,13 @@ select `srecreig_base`.`Entreprise`.`nomEntreprise`,`srecreig_base`.`Coordonnees
 `srecreig_base`.`CoordonneesPersonne`.`fonction` ,`srecreig_base`.`CoordonneesPersonne`.`telephoneFixe` ,
 `srecreig_base`.`CoordonneesPersonne`.`telephoneMobile` ,`srecreig_base`.`CoordonneesPersonne`.`mail` ,
 `srecreig_base`.`CoordonneesPersonne`.`commentaires`  
-from ((`srecreig_base`.`Entreprise` join `srecreig_base`.`CoordonneesPersonne`) join 
-	`srecreig_base`.`a_Entreprise_CoordonneesPersonne`) 
-where ((`srecreig_base`.`a_Entreprise_CoordonneesPersonne`.`CoordonneesPersonne_id` = 
-	`srecreig_base`.`CoordonneesPersonne`.`idCoordonneesPersonne`) and 
-(`srecreig_base`.`a_Entreprise_CoordonneesPersonne`.`Entreprise_nomEntreprise` = 
-	`srecreig_base`.`a_Entreprise_CoordonneesPersonne`.`Entreprise_nomEntreprise`)); 
+from ( 
+	(`srecreig_base`.`Entreprise`) inner join (`srecreig_base`.`a_Entreprise_CoordonneesPersonne`) 
+	on (`srecreig_base`.`a_Entreprise_CoordonneesPersonne`.`Entreprise_nomEntreprise` = `srecreig_base`.`Entreprise`.`nomEntreprise`)
+	)  
+	inner join  (`srecreig_base`.`CoordonneesPersonne`) on  
+	((`srecreig_base`.`a_Entreprise_CoordonneesPersonne`.`CoordonneesPersonne_id` = 
+	`srecreig_base`.`CoordonneesPersonne`.`idCoordonneesPersonne`)); 
 
 
 CREATE OR REPLACE VIEW vueEntreprise
