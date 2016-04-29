@@ -4,6 +4,7 @@
       data.instance.settings.checkbox.cascade = '';
      })
      .on("changed.jstree", function (e, data) {
+	console.log("toto");
        console.log(data.selected);
      })   
 

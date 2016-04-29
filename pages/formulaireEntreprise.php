@@ -64,7 +64,7 @@ require ('header.php');
                         </div>
                         <div class="input-group">
                            <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-map-marker"></i></span>
-                           <input type="text"  id="ville" name="ville" class="form-control" placeholder="Ville" aria-describedby="sizing-addon1">
+                           <input type="text"  id="ville" name="ville" style='text-transform:uppercase' class="form-control" placeholder="Ville" aria-describedby="sizing-addon1">
                         </div>
                         <div class="input-group">
                            <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-globe"></i></span>
@@ -97,10 +97,10 @@ require ('header.php');
                               </select>
                               <label for="typeContact" type="radio"> </br>Type de contact : </label>
                               <div class="radio">
-                                 <label> <input  type="radio"  name="optradio" value="Entreprise"/>Entreprise </label>
+                                 <label> <input  type="radio"  name="typeContact" value="Entreprise"/>Entreprise </label>
                               </div>
                               <div class="radio">
-                                 <label>   <input type="radio" name="optradio" value="Personne" />Personne</label>
+                                 <label>   <input type="radio" name="typeContact" value="Personne" />Personne</label>
                               </div>
                               <div class="radio">
                                  <label>   <input type="radio" name="typeContact" value="Colectivité territoriale"/>Collectivité territoriale </label>
