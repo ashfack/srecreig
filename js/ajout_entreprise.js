@@ -46,57 +46,50 @@ $(document).ready(function(){
 		
 		var origine = $("select").val();
 		
-		var jstree=$.jstree.reference('#jstree');
-        var checked=jstree.get_checked();
-		
-            $.ajax({
-				
+		// var jstree=$.jstree.reference('#jstree');
+        // var checked=jstree.get_checked();
+		var liste_cycle_id= $('#jstree').jstree(true).get_selected();
+
+            $.ajax({		
                 url: "ajouterEntreprise.php", 
                 type: "POST", 
                 data: "nomEntreprise="+nomEntreprise+"&groupe="+groupe+"&codeNAF="+codeNAF+"&siret="+siret+"&adresse="+adresse+"&complAdr="+complAdr+
-					  "&codeP="+codeP+"&ville="+ville+"&pays="+pays+"&nomCP="+nomCP+"&prenomCP="+prenomCP+"&fonctionCP="+fonctionCP+
-					  "&telCP_f="+telCP_f+
-					  "&telCP_m="+telCP_m+
-					  "&emailCP="+emailCP+"&civiliteCP="+civiliteCP+"&nomCS="+nomCS+"&prenomCS="+prenomCS+"&fonctionCS="+fonctionCS+
-					  "&telCS_f="+telCS_f+
-					  "&telCS_m="+telCS_m+
-					  "&emailCS="+emailCS+"&civiliteCS="+civiliteCS+"&nomTA="+nomTA+"&prenomTA="+prenomTA+"&fonctionTA="+fonctionTA+
-					  "&telTA_f="+telTA_f+
-					  "&telTA_m="+telTA_m+
-					  "&emailTA="+emailTA+"&civiliteTA="+civiliteTA+
+					  "&codeP="+codeP+"&ville="+ville+"&pays="+pays+
+					  
+					  "&nomCP="+nomCP+"&prenomCP="+prenomCP+"&fonctionCP="+fonctionCP+
+					  "&telCP_f="+telCP_f+"&telCP_m="+telCP_m+"&emailCP="+emailCP+"&civiliteCP="+civiliteCP+
+					  
+					  "&nomCS="+nomCS+"&prenomCS="+prenomCS+"&fonctionCS="+fonctionCS+
+					  "&telCS_f="+telCS_f+"&telCS_m="+telCS_m+"&emailCS="+emailCS+"&civiliteCS="+civiliteCS+
+					  
+					  "&nomTA="+nomTA+"&prenomTA="+prenomTA+"&fonctionTA="+fonctionTA+
+					  "&telTA_f="+telTA_f+"&telTA_m="+telTA_m+"&emailTA="+emailTA+"&civiliteTA="+civiliteTA+
+					  
+					  "&liste_cycle_id="+liste_cycle_id+
 					  "&origine="+origine+
 					  "&commentairesEntreprise="+commentairesEntreprise+
 					  "&typeContact2="+typeContact2,
-					  
-                success: function(msg){ 
-								
-								
-								if(msg==1) 
-										{
-											 alert("votre entreprise est bien ajouté");
-											window.location.reload();
-											
-										}
-								else 
-										{
-											if(msg==0)
-											{
-									            
-												alert("votre entreprise existe déjà");
-									
-											}	
-											//if (msg.substring(9,14)=="23000")
-											//{
-												
-											//}
-											else
-											{
-												alert(msg.substring(9,14));
-												alert("un incident d'ajout est survenu, contactez les développeurs");
-											}
-											//alert(msg);
-											 //alert("phpER");
-										}
+
+                success: function(msg)
+                { 			
+					if(msg==1) 
+					{
+						alert("Votre entreprise est bien ajoutée");
+						window.location.reload();
+					}
+					else 
+					{
+						if(msg==0)
+						{
+							alert("Votre entreprise existe déjà");
+						}	
+						else
+						{
+							// alert(msg.substring(9,14));
+							alert("un incident d'ajout est survenu, contactez les développeurs");
+
+						}
+					}
 				}							
             });
         return false;
