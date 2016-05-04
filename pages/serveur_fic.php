@@ -1,12 +1,15 @@
 <?php
 	set_time_limit(300); 
-	// $paths=$_POST['pathserver']; // chemin vers le dossier d'upload
-	$paths="/www/srecreig/files";
+	
+	// $paths="/www/srecreig/files"; // A modifier par rapport au chemin du serveur
+	$paths="../files/"; // A modifier par rapport au chemin du serveur
 	$filep=$_FILES['userfile']['tmp_name']; // le fichier
 	$ftp_server= 'ftp-srecreig.alwaysdata.net';	  
 	$ftp_user_name='srecreig';  
 	$ftp_user_pass='SREPARIS';  
-	$name=$_FILES['userfile']['name'];	  
+	$name=$_FILES['userfile']['name'];
+	// To-do : changer le nom de sorte qu'il y ait l'ID (nomEntreprise_conf_nom_fic)
+	// Ajouter le nom dans la bdd et faire un hyperlien , alternative, rediriger le client vers la zone de ddl	  
 	$conn_id = ftp_connect($ftp_server);	  
 	// login
 	$login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);  
