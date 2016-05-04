@@ -1,8 +1,9 @@
 <?php
 	set_time_limit(300); 
 	
-	// $paths="/www/srecreig/files"; // A modifier par rapport au chemin du serveur
-	$paths="../files/"; // A modifier par rapport au chemin du serveur
+	/$paths="/www/srecreig/files"; // A modifier par rapport au chemin du serveur !!!
+	
+	// INFORMATIONS SERVEUR FTP
 	$filep=$_FILES['userfile']['tmp_name']; // le fichier
 	$ftp_server= 'ftp-srecreig.alwaysdata.net';	  
 	$ftp_user_name='srecreig';  
