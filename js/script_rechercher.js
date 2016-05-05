@@ -179,10 +179,15 @@ function requeteAjaxTable()
 			    	</table>";
 
 				$("#div_datatable").append(chaine);
-				$("#div_datatable").append("<button id='bInfo'> Voir les informations </button>");
-				$("#div_datatable").append("<button id='bSupprimer'> Supprimer </button>");
-				$("#div_datatable").append("<button id='bEditer'> Editer </button>");
-
+				$("#div_datatable").append("<div class=\"col-md-2\"></div> 
+											<div class=\"col-md-8\">
+												<center> 
+													<button id='bInfo'> Voir les informations </button>
+													<button id='bSupprimer'> Supprimer </button>
+													<button id='bEditer'> Editer </button>
+												</center> 
+											</div>
+											<div class=\"col-md-2\"></div> ");
 				$("#datatable_entreprise").dataTable({
 					"bJQueryUI": true,
 					"responsive" : true,

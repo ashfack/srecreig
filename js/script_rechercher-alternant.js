@@ -138,7 +138,6 @@ function requeteAjaxTable()
 			    	</table>";
 
 				$("#div_datatable").append(chaine);
-				$("#div_datatable").append("<button id='bInfo'> Voir les informations </button>");
 				//$("#div_datatable").append("<button id='bSupprimer'> Supprimer </button>");
 
 				$("#datatable_alternant").dataTable({
