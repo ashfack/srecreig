@@ -185,12 +185,12 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 				if($table=="Alternance" && ($num_niveau==3 || $num_niveau==4))
 				{
 					if($num_niveau==3)
-						echo "<h3 id='titre_".$table."_"."niveau3' style='cursor:pointer' > <img src='../css/images/minus.png' alt='Icon zoom'> Niveau 3 (Maître d'apprentissage) </h3>";
+						echo "<h3 id='titre_".$table."_"."niveau3' style='cursor:pointer' class='titreDataTable'> <img src='../css/images/minus.png' alt='Icon zoom'> Niveau 3 (Maître d'apprentissage) </h3>";
 					else
-						echo "<h3 id='titre_".$table."_"."niveau4' style='cursor:pointer' > <img src='../css/images/minus.png' alt='Icon zoom'> Niveau 4 (Responsable RH) </h3>";
+						echo "<h3 id='titre_".$table."_"."niveau4' style='cursor:pointer' class='titreDataTable' > <img src='../css/images/minus.png' alt='Icon zoom'> Niveau 4 (Responsable RH) </h3>";
 				}
 				else
-					echo "<h3 id='titre_".$table."_"."$nom_niveau' style='cursor:pointer' > <img src='../css/images/minus.png' alt='Icon zoom'> Niveau $num_niveau </h3>";
+					echo "<h3 id='titre_".$table."_"."$nom_niveau' style='cursor:pointer' class='titreDataTable' > <img src='../css/images/minus.png' alt='Icon zoom'> Niveau $num_niveau </h3>";
 			}
 			
 			
