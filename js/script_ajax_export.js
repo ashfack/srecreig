@@ -194,12 +194,11 @@ function requeteAjaxTable()
 
 				$("#datatable_entreprise").dataTable({
 					"bJQueryUI": true,
-					responsive : true,
+					"responsive" : true,
+					"iDisplayLength": -1,
+
 					"sPaginationType": "full_numbers",
-					"aLengthMenu": [
-[400, 2, 1],
-["All", 2, 1]
-],
+					"aLengthMenu": [[-1,10],["tous les",10]],
 					"oLanguage": { "sUrl": "../js/fr_FR.txt" }
 				});
 

@@ -26,7 +26,7 @@
         </br>
         <div class="panel panel-primary">
             <div class="panel-heading">
-                <h3 class="panel-title">Gestion des profils</h3>
+                <h4 class="panel-title text-center">Profils disponibles</h4>
             </div>
             <div class="panel-body">
                 <?php

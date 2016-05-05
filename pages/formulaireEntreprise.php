@@ -25,7 +25,7 @@ require ('header.php');
             <form id="ajoutEntreprise" method="post" class="form-vertical" >
                <div class="panel panel-primary">
                   <div class="panel-heading">
-                     <h3 class="panel-title text-center">Informations sur l'entreprise</h3>
+                     <h4 class="panel-title text-center">Informations sur l'entreprise</h4>
                   </div>
                   <div class="panel-body">
                      </br>
@@ -74,7 +74,7 @@ require ('header.php');
                      <div class="col-md-4">
                         <div class="panel panel-primary">
                            <div class="panel-heading">
-                              <h3 class="panel-title">Origine</h3>
+                              <h4 class="panel-title text-center">Origine</h4>
                            </div>
                            <div class="panel-body">
                               <select name="origineContact" id="origineContact" type="select" multiple size="10">
@@ -127,7 +127,7 @@ require ("jstree_cycle.php");
                   <div class="col-md-4">
                      <div class="panel panel-primary">
                         <div class="panel-heading">
-                           <h3 class="panel-title">Contact Principal</h3>
+                           <h3 class="panel-title text-center">Contact Principal</h3>
                         </div>
                         <div class="panel-body">
                            <label>Civilite :</label>
@@ -163,7 +163,7 @@ require ("jstree_cycle.php");
                   <div class="col-md-4">
                      <div class="panel panel-primary">
                         <div class="panel-heading">
-                           <h3 class="panel-title">Contact Secondaire</h3>
+                           <h3 class="panel-title text-center">Contact Secondaire</h3>
                         </div>
                         <div class="panel-body">
                            <label>Civilite :</label>
@@ -199,7 +199,7 @@ require ("jstree_cycle.php");
                   <div class="col-md-4">
                      <div class="panel panel-primary">
                         <div class="panel-heading">
-                           <h3 class="panel-title">Contact TA-LR</h3>
+                           <h3 class="panel-title text-center">Contact TA-LR</h3>
                         </div>
                         <div class="panel-body">
                            <label>Civilite :</label>
