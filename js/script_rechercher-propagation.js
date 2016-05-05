@@ -66,14 +66,14 @@ $(document).ready(function()
 			
 			});
 
-			if(j>1)
+			/*if(j>1)
 			{
 				$("#dataTable_"+table+"_niveau"+j).css("display","none");
 				
 				$("#bModifier_"+table+"_niveau"+j).css("display","none");
 				$("#bSupprimer_"+table+"_niveau"+j).css("display","none");
 				$("#bAjouter_"+table+"_niveau"+j).css("display","none");
-			}
+			}*/
 				
 			
 			$("#menu_"+table).on(

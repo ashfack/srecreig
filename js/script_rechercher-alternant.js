@@ -44,7 +44,7 @@ $(document).ready(function()
 			
 		});
 		
-		$("#dialog_supprimer_confirmation").dialog(
+		/*$("#dialog_supprimer_confirmation").dialog(
 		{
 			height: 220,
 			width:500,
@@ -79,7 +79,7 @@ $(document).ready(function()
 			    }
 
 			]
-	});
+	});*/
 
 	// $("#form_rechercher").submit( requeteAjaxTable );
 });
@@ -95,7 +95,7 @@ function requeteAjaxTable()
 	   data: 'choix_alternant='+$("#choix_alternant").val(),
 	   success: function(data)
 	   { 
-	   		//alert("jai trouve qq chose");
+	   		
 			$("#div_datatable").children().remove();
 			if(data.length>0) 
 			{
@@ -139,7 +139,7 @@ function requeteAjaxTable()
 
 				$("#div_datatable").append(chaine);
 				$("#div_datatable").append("<button id='bInfo'> Voir les informations </button>");
-				$("#div_datatable").append("<button id='bSupprimer'> Supprimer </button>");
+				//$("#div_datatable").append("<button id='bSupprimer'> Supprimer </button>");
 
 				$("#datatable_alternant").dataTable({
 					"bJQueryUI": true,
@@ -150,7 +150,7 @@ function requeteAjaxTable()
 				});
 
 				$("#datatable_alternant tr").click(function(){
-					//alert("Je vais modifier !!");
+
 				   if($(this).hasClass('selected'))
 				   		$(this).removeClass('selected');
 				   else
@@ -176,7 +176,7 @@ function requeteAjaxTable()
 						
 				});
 
-				$("#bSupprimer").click(function()
+				/*$("#bSupprimer").click(function()
 				{
 					var nbSelected=$(".selected").length;
 					if( nbSelected == 0)
@@ -188,7 +188,7 @@ function requeteAjaxTable()
 						$("#dialog_supprimer_confirmation").dialog("open");
 					}
 						
-				});
+				});*/
 
 				
 			}
@@ -200,7 +200,7 @@ function requeteAjaxTable()
 	});
 }
 
-function requeteAjaxSuppression()
+/*function requeteAjaxSuppression()
 {
 
 	$.ajax({
@@ -221,4 +221,4 @@ function requeteAjaxSuppression()
 			}
 	   }
 	});
-}
+}*/

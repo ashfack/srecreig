@@ -41,19 +41,19 @@
                 <div id="div_datatable">    
                 </div>
 
-                <div id="dialog_supprimer_confirmation" title="Confirmation !">
+              <!--   <div id="dialog_supprimer_confirmation" title="Confirmation !">
                     <p>
                       Vous allez supprimer l'alternant <span id="emplacement_supprimer_alternant"> </span> <br/>
                       Etes vous sûr de vouloir continuer ?
                     </p>
-                </div>
+                </div> -->
 
                 <div id="dialog_refus"  title="Refus">
                     <p> Vous devez selectionner une alternant </p>
                 </div>
 
                 <div id="dialog_aucun_alternant"  title="Aucun alternant !">
-                    <p> Aucun alternant ne répond au nom que vous avez entré ! </p>
+                    <p> Aucun alternant ne répond à vos critères de recherche ! </p>
                 </div>
             </div>
         </div>

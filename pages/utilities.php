@@ -177,12 +177,6 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			$rep->bindValue(':nomEntreprise',$nomEntreprise,PDO::PARAM_STR);
 			$rep->execute();
 
-			$style;
-			$rowCount=$rep->rowCount();
-			if($rowCount>0)
-				$style="style='cursor:pointer'";
-			else
-				$style="style='cursor:default'";
 			$keywords = preg_split('/(?=[0-9]+)/', $nom_niveau);
 			$num_niveau=$keywords[1];
 
@@ -191,12 +185,12 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 				if($table=="Alternance" && ($num_niveau==3 || $num_niveau==4))
 				{
 					if($num_niveau==3)
-						echo "<h3 id='titre_".$table."_"."$nom_niveau' $style > <img src='../css/images/more.png' alt='Icon zoom'> Niveau $num_niveau (Maître d'apprentissage) </h3>";
+						echo "<h3 id='titre_".$table."_"."niveau3' style='cursor:pointer' > <img src='../css/images/minus.png' alt='Icon zoom'> Niveau 3 (Maître d'apprentissage) </h3>";
 					else
-						echo "<h3 id='titre_".$table."_"."$nom_niveau' $style> <img src='../css/images/more.png' alt='Icon zoom'> Niveau $num_niveau (Responsable RH) </h3>";
+						echo "<h3 id='titre_".$table."_"."niveau4' style='cursor:pointer' > <img src='../css/images/minus.png' alt='Icon zoom'> Niveau 4 (Responsable RH) </h3>";
 				}
 				else
-					echo "<h3 id='titre_".$table."_"."$nom_niveau' $style > <img src='../css/images/more.png' alt='Icon zoom'> Niveau $num_niveau </h3>";
+					echo "<h3 id='titre_".$table."_"."$nom_niveau' style='cursor:pointer' > <img src='../css/images/minus.png' alt='Icon zoom'> Niveau $num_niveau </h3>";
 			}
 			
 			
@@ -241,6 +235,11 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 							$valeur=$data[$niveau[$j]];
 							if($niveau[$j]=="idCoordonneesPersonne")
 								echo "<td id='$table"."_".$valeur_pk."_".$niveau[$j]."_"."$nom_niveau' name='cacher'> $valeur</td>";
+							/*if (substr($niveau[$j],0,4)=="comm")
+							{
+								echo "je change le commentaires";
+								echo "<td id='$table"."_".$valeur_pk."_".$niveau[$j]."_"."$nom_niveau' name='cacher' style='height:100px;'> <div style='overflow:scroll; height:100%'>$valeur</div></td>";
+							}*/	
 							else
 								echo "<td id='$table"."_".$valeur_pk."_".$niveau[$j]."_"."$nom_niveau'> $valeur</td>";
 						}
@@ -256,6 +255,12 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 							$valeur=$data[$nom_col];
 							if(substr($nom_col, 0,2)=="id" || $nom_col=="nomEntreprise"  || $nom_col=="Entreprise_nomEntreprise")
 									echo "<td id='$table"."_".$valeur_pk."_".$nom_col."_"."$nom_niveau' name='cacher'> $valeur</td>";
+
+							/*if(substr($niveau[$j],0,4)=="comm")
+							{
+								echo "je change le commentaires";
+								echo "<td id='$table"."_".$valeur_pk."_".$niveau[$j]."_"."$nom_niveau' name='cacher' style='height:200px;'> <div style='overflow:scroll; height:100%'>$valeur</div></td>";
+							}*/
 							else
 								echo "<td id='$table"."_".$valeur_pk."_".$nom_col."_"."$nom_niveau'> $valeur</td>";
 						}
