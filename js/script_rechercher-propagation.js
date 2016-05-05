@@ -33,7 +33,7 @@ $(document).ready(function()
 		width:400,
 		autoOpen:false,
 		dialogClass: "alert",
-		position: { my: "center bottom", at: "center center", of: window, within: window},
+		position: { my: "center bottom", at: "center center", of: window, within: $("#tabs")},
 		draggable: false,
 	 	open: function() {
             var dialog_refus = $(this);
@@ -41,6 +41,22 @@ $(document).ready(function()
               dialog_refus.dialog('close');
             }, 2500);
         }
+		
+	});
+
+	$( "#dialog_refus" ).dialog({
+		height:100,
+		width:400,
+		autoOpen:false,
+		dialogClass: "alert",
+		position: { my: "center center", at: "center top", of: window, within: $("#tabs")},
+		draggable: false,
+	 	open: function() {
+	        var dialog_refus = $(this);
+	        setTimeout(function() {
+	          dialog_refus.dialog('close');
+	        }, 1500);
+	    }
 		
 	});
 
@@ -97,6 +113,26 @@ $(document).ready(function()
 						$("#bSupprimer_"+true_table+"_niveau"+true_j).toggle();
 						$("#bAjouter_"+true_table+"_niveau"+true_j).toggle();
 			     	}
+			      		
+			     };
+			  })(j,table)
+			);
+
+			$("#menu_"+table).on(
+			  'click',
+			  "#bSupprimer_"+table+"_niveau"+j,
+			  (function(true_j,true_table){
+			     return function()
+			     {
+			     	var nbSelected=$(".selected").length;
+					if( nbSelected == 0)
+						$("#dialog_refus").dialog("open");
+					else
+					{
+						valueRecup=$(".selected").find('td:first').html();
+						supprimer(true_table,true_j,valueRecup);
+					}
+						
 			      		
 			     };
 			  })(j,table)
@@ -182,4 +218,9 @@ function requeteAjaxCycle(nomEntreprise)
 	   }
 	});
 
+}
+
+function supprimer(table,niveau,value)
+{
+	alert("table = "+table+" et niveau = "+niveau+" value = "+value);
 }

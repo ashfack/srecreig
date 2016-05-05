@@ -96,6 +96,10 @@
 		<div id="dialog_cycle_vide"  title="Cycle Formation">
 			<p> L'entreprise n'est liée à aucun cycle/formation <br/> <br/> Cliquez sur le bouton "Ajouter" pour lui attribuer des cycles/formations </p>
 		</div>
+
+		<div id="dialog_refus"  title="Refus">
+            <p> Vous devez selectionner une ligne </p>
+        </div>
 	</body>
 	<!--
 	<script type="text/javascript" > 
