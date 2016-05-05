@@ -9,6 +9,8 @@
         <?php
             require('header_link.html');
         ?>
+             <!-- JQUERY DATATABLE CSS -->
+        <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
         <link rel ="stylesheet" type="text/css" href="../css/contacter.css">
         <script type="text/javascript" src="../js/script_rechercher-alternant.js"></script>
@@ -16,7 +18,11 @@
 
 
     <body>
-        <?php require('header.php'); ?>
+        
+      <div class="se-pre-con">
+        <?php require('header.php');  ?>
+      </div>
+      <?php require('header.php');  ?>
         <div class="container">
             <div class="row" id="content">
                 <h1 class="text-center"> Rechercher un alternant </h1>

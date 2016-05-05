@@ -1,6 +1,8 @@
 <?php
-    session_start();
-    if (! isset($_SESSION['id']))
+    if(!isset($_SESSION)) {
+        session_start();
+    }
+    if (!isset($_SESSION['id']))
     {
         echo 'Session expirée, veuillez vous reconnecter !';
         echo "Cliquez <a href=\"index.php\">ici</a>"; 
@@ -73,7 +75,5 @@
                 </ul>
             </li>
         </ul>
-    </div>
-    <!-- /#page-wrapper -->
+    </nav>
 </div>
-<!-- /#wrapper -->

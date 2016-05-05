@@ -7,17 +7,18 @@
 	<link rel="stylesheet" type="text/css" href="../css/style.css" />
 	<?php
 	require('header_link.html');
-	?>
-	<?php
 	require('header_script.html');
 	?>
-
+     <!-- JQUERY DATATABLE CSS -->
+    <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
 	<script type="text/javascript" src="../js/export_zip.js"></script>
 
 </head>
 <body>
-	<?php 
-	require "header.php";
+	<div class="se-pre-con">
+      <?php require('header.php');  ?>
+    </div>
+    <?php require('header.php');  
 	require "db_connect.php";
 	require "utilities.php";
 	if(isset($_GET['nomEntreprise']) && $_GET['nomEntreprise']!="")

@@ -3,20 +3,26 @@
 <head>
   <title>Exporter</title>
   <meta charset="UTF-8">
+
   <link rel="stylesheet" href="../css/style.css">
-  <link rel="stylesheet" href="../framework/jsTree/dist/themes/default/style.min.css" />
+  <link rel="stylesheet" href="../framework/jsTree/dist/themes/default/style.min.css">
+
   <?php
     require('header_link.html');
     require('header_script.html');
   ?>
+<script src="../js/script_ajax_export.js" ></script>
+
+
 </head>
-<script src="../framework/jsTree/dist/jstree.min.js"></script>
-
-<script src="../js/script_ajax_export.js"></script>
-
-<body>
+<body >
+  <div class="se-pre-con">
+    <?php require('header.php');  ?>
+  </div>
   <?php require('header.php');  ?>
+
   <div class="container">
+
     <h1 class="text-center">Exporter</h1>
     <div class="col-md-3"></div>
     <div class="col-md-6">
@@ -114,15 +120,17 @@ echo"
     -->
     <div id="div_datatable"></div>
 
-
 </body>
 </html>
-<script type="text/javascript" src="../framework/tableExport/tableExport.js"></script>
-<script type="text/javascript" src="../framework/tableExport/jquery.base64.js"></script>
-<script type="text/javascript" src="../framework/tableExport/html2canvas.js"></script>
-<script type="text/javascript" src="../framework/tableExport/jspdf/libs/sprintf.js"></script>
-<script type="text/javascript" src="../framework/tableExport/jspdf/jspdf.js"></script>
-<script type="text/javascript" src="../framework/tableExport/jspdf/libs/base64.js"></script>
+<!-- JQUERY DATATABLE CSS -->
+<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
+<script type="text/javascript" src="../framework/tableExport/tableExport.js" async ></script>
+<script type="text/javascript" src="../framework/tableExport/jquery.base64.js" async></script>
+<script type="text/javascript" src="../framework/tableExport/html2canvas.js" async></script>
+<script type="text/javascript" src="../framework/tableExport/jspdf/libs/sprintf.js" async></script>
+<script type="text/javascript" src="../framework/tableExport/jspdf/jspdf.js" async></script>
+<script type="text/javascript" src="../framework/tableExport/jspdf/libs/base64.js"  async></script>
+<script src="../framework/jsTree/dist/jstree.min.js" ></script>
 
 <script>
  $(function () {

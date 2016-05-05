@@ -16,9 +16,10 @@ require ('header_script.html');
       <link rel="stylesheet" href="../framework/jsTree/dist/themes/default/style.min.css" />
    </head>
    <body>
-      <?php
-require ('header.php');
- ?>
+  <div class="se-pre-con">
+        <?php require('header.php');  ?>
+      </div>
+      <?php require('header.php');  ?>
       <div class="container">
          <div class="row" id="content">
             <h1 class="text-center"> Fiche d'ajout d'une entreprise </h1>
