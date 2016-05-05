@@ -43,7 +43,7 @@
 
                 <div id="dialog_supprimer_confirmation" title="Confirmation !">
                     <p>
-                      Vous avez allez supprimer l'entreprise <span id="emplacement_supprimer_nomEntreprise"> </span> et toutes les données qui lui sont liées (Contacts, alternants, taxe d'apprentissage...) <br/>
+                      Vous allez supprimer l'entreprise <span id="emplacement_supprimer_nomEntreprise"> </span> et toutes les données qui lui sont liées (Contacts, alternants, taxe d'apprentissage...) <br/>
                       Etes vous sûr de vouloir continuer ?
                     </p>
                 </div>
