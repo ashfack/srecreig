@@ -29,6 +29,7 @@ onclick="show();">
 */
 
 /* You may edit the following variables */
+
 var find_window_background = "white"; // the color of the pop-up window
 var find_window_border = "blue"; // the border color of pop-up window
 var find_text_color = "black"; // the color of the text in window
@@ -771,6 +772,8 @@ function selectElementContents(el)
 
 // This part creates a visible button on the HTML page to
 // where the script is pasted in the HTML code
+
+
 document.write('<input type="button" value="Find on this page..."'
 	+ ' onclick="show();">');
 	
@@ -779,7 +782,7 @@ var findwindow = document.createElement("div");
 create_div();
 
 
-
+$(document).ready(function(){
 var find_msg = document.getElementById('find_msg');
-
+});
 
