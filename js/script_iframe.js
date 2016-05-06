@@ -34,3 +34,12 @@ var s = document.querySelector('input[type="search"]'),
     };
 s.addEventListener('keydown', find , false);
 s.addEventListener('keyup', find , false);
+
+$(document).ready(function(){
+    $('#Rechercher').submit(function() {
+    	var nom = $("#nom").val();
+    	$("iframe").contents().find("body").highlight(nom);
+    	$("iframe").contents().find(".highlight").css({ backgroundColor: "#8888ff" });
+    }
+});
+

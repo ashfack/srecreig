@@ -42,6 +42,7 @@
  * Licensed under MIT license.
  *
  */
+$(".highlight").css({ backgroundColor: "#8888ff" });
 
 jQuery.extend({
     highlight: function (node, re, nodeName, className) {
