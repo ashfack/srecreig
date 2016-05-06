@@ -3,8 +3,8 @@
     if (isset($_SESSION['id']))
     {
         echo 'Vous êtes déja connectez, redirection en cours !';
-        echo "Cliquez <a href=\"agenda.php\">ici</a> si vous ne voulez pas attendre."; 
-        header('Location: agenda.php');
+        echo "Cliquez <a href=\"rechercher.php\">ici</a> si vous ne voulez pas attendre."; 
+        header('Location: rechercher.php');
         exit();
     } 
     // header('Content-Type: text/html; charset=utf-8');

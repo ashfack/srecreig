@@ -7,95 +7,6 @@ $(document).ready(function()
 				requeteAjaxTable();
 			});
 
-		$( "#vueEntreprise" ).hide ();
-		$( "#vueContact" ).hide ();
-		$( "#choixChamps" ).hide ();
-
-
-		$("#radiovueEntreprise").click(function(){
-				$("#choixChamps").show();  
-				var x = document.getElementById("choixChamps");
-				var y = x.getElementsByClassName("Choix");
-  				var i, len = y.length ;
-  				for (i = 0; i < len; i++) {
-					$(y[i]).hide();
-				}
-				$("#nomTableChoixvueEntreprise").show();
-				$("#choixTable").hide();  
-
-		});
-		$("#radiovueContact").click(function(){
-				$("#choixChamps").show();  
-				var x = document.getElementById("choixChamps");
-				var y = x.getElementsByClassName("Choix");
-  				var i, len = y.length ;
-  				for (i = 0; i < len; i++) {
-					$(y[i]).hide();
-				}
-				$("#nomTableChoixvueContact").show();
-				$("#choixTable").hide();  
-
-		});
-		$("#radiovueAlternance").click(function(){
-				$("#choixChamps").show();  
-				var x = document.getElementById("choixChamps");
-				var y = x.getElementsByClassName("Choix");
-  				var i, len = y.length ;
-  				for (i = 0; i < len; i++) {
-					$(y[i]).hide();
-				}
-				$("#nomTableChoixvueAlternance").show();
-				$("#choixTable").hide();  
-
-		});
-		$("#radiovueTaxeApprentissage").click(function(){
-				$("#choixChamps").show();  
-				var x = document.getElementById("choixChamps");
-				var y = x.getElementsByClassName("Choix");
-  				var i, len = y.length ;
-  				for (i = 0; i < len; i++) {
-					$(y[i]).hide();
-				}
-				$("#nomTableChoixvueTaxeApprentissage").show();
-				$("#choixTable").hide();  
-
-		});	
-		$("#radiovueAtelierRh").click(function(){
-				$("#choixChamps").show();  
-				var x = document.getElementById("choixChamps");
-				var y = x.getElementsByClassName("Choix");
-  				var i, len = y.length ;
-  				for (i = 0; i < len; i++) {
-					$(y[i]).hide();
-				}
-				$("#nomTableChoixvueAtelierRh").show();
-				$("#choixTable").hide();  
-
-		});	
-		$("#radiovueConference").click(function(){
-				$("#choixChamps").show();  
-				var x = document.getElementById("choixChamps");
-				var y = x.getElementsByClassName("Choix");
-  				var i, len = y.length ;
-  				for (i = 0; i < len; i++) {
-					$(y[i]).hide();
-				}
-				$("#nomTableChoixvueConference").show();
-				$("#choixTable").hide();  
-
-		});	
-		$("#radiovueForumSG").click(function(){
-				$("#choixChamps").show();  
-				var x = document.getElementById("choixChamps");
-				var y = x.getElementsByClassName("Choix");
-  				var i, len = y.length ;
-  				for (i = 0; i < len; i++) {
-					$(y[i]).hide();
-				}
-				$("#nomTableChoixvueForumSG").show();
-				$("#choixTable").hide();  
-
-		});
 });
 
 //cleanArray removes all duplicated elements
@@ -166,7 +77,6 @@ function requeteAjaxTable()
 				
 				   chaine+="<th>"+champs[i]+"</th>";
 				  
-				   //$("tbody").append(chaine);  
 				}
 				chaine+="</tr></thead> <tbody>";
 				for(var i in data)
@@ -180,7 +90,6 @@ function requeteAjaxTable()
 				   		chaine+="<td>"+obj[j]+"</td>";
 				   }
 				   chaine+="</tr>";
-				   //$("tbody").append(chaine);  
 				}
 				chaine+="</tbody> \
 				    	<tfoot> \

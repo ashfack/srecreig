@@ -65,7 +65,7 @@ require ('header_script.html');
                         </div>
                         <div class="input-group">
                            <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-map-marker"></i></span>
-                           <input type="text"  id="ville" name="ville" style='text-transform:uppercase' class="form-control" placeholder="Ville" aria-describedby="sizing-addon1">
+                           <input type="text"  id="ville" name="ville" style="text-transform: capitalize;"  class="form-control" placeholder="Ville" aria-describedby="sizing-addon1">
                         </div>
                         <div class="input-group">
                            <span class="input-group-addon" id="sizing-addon1"><i class="glyphicon glyphicon-globe"></i></span>
@@ -144,7 +144,7 @@ require ("jstree_cycle.php");
                            </div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-briefcase"></i></span>
-                              <input type="text"  id="fonctionCP" name="fonctionCP" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1">
+                              <input type="text"  id="fonctionCP" name="fonctionCP" class="form-control" style="text-transform: capitalize;"  placeholder="Fonction" aria-describedby="sizing-addon1">
                            </div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
@@ -180,7 +180,7 @@ require ("jstree_cycle.php");
                            </div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-briefcase"></i></span>
-                              <input type="text"  id="fonctionCS" name="fonctionCS" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1">
+                              <input type="text"  id="fonctionCS" name="fonctionCS" class="form-control" placeholder="Fonction" style="text-transform: capitalize;" aria-describedby="sizing-addon1">
                            </div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>
@@ -216,7 +216,7 @@ require ("jstree_cycle.php");
                            </div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-briefcase"></i></span>
-                              <input type="text"  id="fonctionTA" name="fonctionTA" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1">
+                              <input type="text" style="text-transform: capitalize;"  id="fonctionTA" name="fonctionTA" class="form-control" placeholder="Fonction" aria-describedby="sizing-addon1">
                            </div>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-phone"></i></span>

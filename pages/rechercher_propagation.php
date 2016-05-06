@@ -3,22 +3,21 @@
 <head>
 	<meta charset="utf-8">
 	<title>SRE - Recherche </title>
-	
 	<link rel="stylesheet" type="text/css" href="../css/style.css" />
 	<?php
 	require('header_link.html');
 	require('header_script.html');
 	?>
-     <!-- JQUERY DATATABLE CSS -->
-    <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
+	<!-- JQUERY DATATABLE CSS -->
+	<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
 	<script type="text/javascript" src="../js/export_zip.js"></script>
 
 </head>
 <body>
 	<div class="se-pre-con">
-      <?php require('header.php');  ?>
-    </div>
-    <?php require('header.php');  
+		<?php require('header.php');  ?>
+	</div>
+	<?php require('header.php');  
 	require "db_connect.php";
 	require "utilities.php";
 	if(isset($_GET['nomEntreprise']) && $_GET['nomEntreprise']!="")
@@ -29,14 +28,15 @@
 		<div id="div_titre_nomEntreprise">
 			<h1 class="text-center" id="titre_nomEntreprise">  <?php echo $nomEntreprise; ?> </h1>
 		</div>
-		<button style="margin-left: 15px;" onclick="tablesToExcel(['dataTable_Entreprise_niveau1','dataTable_Entreprise_niveau2','dataTable_CoordonneesPersonne_niveau1','dataTable_Alternance_niveau1','dataTable_Alternance_niveau2','dataTable_Alternance_niveau3','dataTable_Alternance_niveau4','dataTable_TaxeApprentissage_niveau1','dataTable_TaxeApprentissage_niveau2','dataTable_AtelierRH_niveau1','dataTable_Conference_niveau1', 'dataTable_Conference_niveau2', 'dataTable_ForumSG_niveau1'], ['Entreprise 1','Entreprise 2','CoordonneesPersonne','Alternance 1','Alternance 2','Alternance 3','Alternance 4','Taxe apprentissage 1','Taxe apprentissage 2','Atelier RH', 'Conférence 1', 'Conférence 2', 'Forum SG'], '<?php echo $nomEntreprise; ?>.xls', 'Excel')" data-toggle="	dropdown"><i class="fa fa-bars"></i> Exporter </button>
-		
+		<?php
+		if($_SESSION['profil']=='super') {   ?>  
+			<button style="margin-left: 15px;" onclick="tablesToExcel(['dataTable_Entreprise_niveau1','dataTable_Entreprise_niveau2','dataTable_CoordonneesPersonne_niveau1','dataTable_Alternance_niveau1','dataTable_Alternance_niveau2','dataTable_Alternance_niveau3','dataTable_Alternance_niveau4','dataTable_TaxeApprentissage_niveau1','dataTable_TaxeApprentissage_niveau2','dataTable_AtelierRH_niveau1','dataTable_Conference_niveau1', 'dataTable_Conference_niveau2', 'dataTable_ForumSG_niveau1'], ['Entreprise 1','Entreprise 2','CoordonneesPersonne','Alternance 1','Alternance 2','Alternance 3','Alternance 4','Taxe apprentissage 1','Taxe apprentissage 2','Atelier RH', 'Conférence 1', 'Conférence 2', 'Forum SG'], '<?php echo $nomEntreprise; ?>.xls', 'Excel')" data-toggle="	dropdown"><i class="fa fa-bars"></i> Exporter </button>
+		<?php  } ?>  
 
 		<div id="tabs">
 			<ul> 
 				<?php 
-				
-				
+							
 				$table_onglet_array=array("Entreprise","Contacts","Alternance","Taxe d'apprentissage","Atelier RH","Conference","Forum SG");
 				$table_array= array("Entreprise","CoordonneesPersonne","Alternance","TaxeApprentissage","AtelierRH","Conference","ForumSG");
 				for($i=0;$i<count($table_array);$i++)
@@ -74,8 +74,7 @@
 				$niveaux=array($tab_niveaux_Entreprise,$tab_niveaux_CoordonneesPersonne,$tab_niveaux_Alternance,$tab_niveaux_TaxeApprentissage,$tab_niveaux_AtelierRH,$tab_niveaux_Conference,$tab_niveaux_ForumSG);
 				
 				for($i=0;$i<count($table_array);$i++)
-				{
-					
+				{					
 					genererDataTable($table_array[$i],$nomEntreprise,$pk[$i],$niveaux[$i]);
 				}	
 				?>
@@ -99,8 +98,8 @@
 		</div>
 
 		<div id="dialog_refus"  title="Refus">
-            <p> Vous devez selectionner une ligne </p>
-        </div>
+			<p> Vous devez selectionner une ligne </p>
+		</div>
 	</body>
 	<!--
 	<script type="text/javascript" > 
@@ -112,8 +111,8 @@
 		$(document).ready(function(){body_ready();}); 
 
 	</script>
-	-->
-	<script type="text/javascript" src="../js/script_rechercher-propagation.js"></script>
-	<link rel="stylesheet" href="../framework/jsTree/dist/themes/default/style.min.css" />
-	</html>
+-->
+<script type="text/javascript" src="../js/script_rechercher-propagation.js"></script>
+<link rel="stylesheet" href="../framework/jsTree/dist/themes/default/style.min.css" />
+</html>
 

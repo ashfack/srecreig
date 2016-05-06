@@ -52,7 +52,7 @@ function f_new()
     }
     else
     {
-      alert('Vous alliez ajouter un Utilisateur avec un nom incorrect');
+      alert('Utilisateur avec un format d\'identifiant incorrect !');
     }
    
 }
@@ -104,7 +104,7 @@ $(document).ready(function()
         }
         if (cpt ==1)
         {
-            alert('impossible de supprimer cet Utilisateur car c\'est le seul administrateur');
+            alert('Impossible de supprimer cet utilisateur car c\'est le seul administrateur');
             return;
         }
       }

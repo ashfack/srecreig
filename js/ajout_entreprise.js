@@ -74,19 +74,19 @@ $(document).ready(function(){
                 { 			
 					if(msg==1) 
 					{
-						alert("Votre entreprise est bien ajoutée");
+						alert("L'entreprise a été créée avec succès !");
 						window.location.reload();
 					}
 					else 
 					{
 						if(msg==0)
 						{
-							alert("Votre entreprise existe déjà");
+							alert("L'entreprise existe déjà ! ");
 						}	
 						else
 						{
 							// alert(msg.substring(9,14));
-							alert("un incident d'ajout est survenu, contactez les développeurs");
+							alert("Un incident technique est survenu ! ");
 
 						}
 					}
