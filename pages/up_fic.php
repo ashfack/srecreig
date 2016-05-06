@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>Gestion des profils</title>
+    <title>Upload de fichier</title>
     <meta charset="UTF-8">
 
     <link rel="stylesheet" href="../css/style.css">

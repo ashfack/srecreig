@@ -67,7 +67,7 @@
                 <ul class="dropdown-menu ">
                     <li><a href="up_fic.php"><i class="glyphicon glyphicon-upload"></i> Joindre Fichier</a>
                     </li>
-                    <li><a href="../files/"><i class="glyphicon glyphicon-download"></i> Espace stockage</a>
+                    <li><a href="Stockage.php"><i class="glyphicon glyphicon-download"></i> Espace stockage</a>
                     </li>
                 </ul>
             </li>           

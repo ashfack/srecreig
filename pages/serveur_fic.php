@@ -24,7 +24,11 @@
 	$resultat = move_uploaded_file($_FILES['userfile']['tmp_name'],$paths.'/'.$prefix."_".$name);
 	if ($resultat) 
 	{
-		echo "Transfert réussi";
+		header("Location: rechercher.php");
+	}
+	else
+	{
+		echo "<h1>Problème survenu lors du chargement, veuillez réessayer</h1>";
 	}
 	/*
 	$conn_id = ftp_connect($ftp_server);	  
