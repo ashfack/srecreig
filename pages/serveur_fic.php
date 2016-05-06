@@ -1,7 +1,7 @@
 <?php
 	set_time_limit(300); 
 	
-	$paths="/www/srecreig/files"; // A modifier par rapport au chemin du serveur !!!
+	$paths="../files"; // A modifier par rapport au chemin du serveur !!!
 	
 	if ($_FILES['userfile']['error'] > 0) 
 	{
