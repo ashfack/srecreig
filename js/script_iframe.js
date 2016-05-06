@@ -32,8 +32,8 @@ var s = document.querySelector('input[type="search"]'),
         }
         p.innerHTML = words.join(' ');
     };
-s.addEventListener('keydown', find , false);
-s.addEventListener('keyup', find , false);
+// s.addEventListener('keydown', find , false);
+// s.addEventListener('keyup', find , false);
 
 $(document).ready(function(){
     $('#Rechercher').click(function() {
