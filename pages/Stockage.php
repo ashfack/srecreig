@@ -19,6 +19,11 @@
 
 <body>
     <?php require('header.php'); ?>
+    
+    <form name="Recherche" onSubmit="return Rechercher(this.mot.value);">
+        <input name="mot" type="text" size=20 onChange="n = 0;">
+        <input type="submit" value="Rechercher">
+    </form>
     <iframe src="http://srecreig.alwaysdata.net/srecreig/files/" width="100%" height="500px" id="iframe1" marginheight="0" 
         frameborder="0" onLoad="autoResize('iframe1');">
       <p>Navigateur incompatible.</p>
