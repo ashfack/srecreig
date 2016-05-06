@@ -25,10 +25,8 @@
 <body>
     <?php require('header.php'); ?>
 
-    <form id="Rechercher" method="post" name="Rechercher">
         <input id="nom" name="mot" type="search" size=20>
-        <input type="submit" value="Rechercher">    
-    </form>
+        <input type="button" id="Rechercher" value="Rechercher">    
     
     
     <iframe src="http://srecreig.alwaysdata.net/srecreig/files/" width="100%" height="500px" id="iframe1" marginheight="0" 
