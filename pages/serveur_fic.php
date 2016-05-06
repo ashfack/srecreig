@@ -1,7 +1,7 @@
 <?php
 	set_time_limit(300); 
 	
-	/$paths="/www/srecreig/files"; // A modifier par rapport au chemin du serveur !!!
+	$paths="/www/srecreig/files"; // A modifier par rapport au chemin du serveur !!!
 	
 	// INFORMATIONS SERVEUR FTP
 	$filep=$_FILES['userfile']['tmp_name']; // le fichier
@@ -11,6 +11,7 @@
 	$name=$_FILES['userfile']['name'];
 	// To-do : changer le nom de sorte qu'il y ait l'ID (nomEntreprise_conf_nom_fic)
 	// Ajouter le nom dans la bdd et faire un hyperlien , alternative, rediriger le client vers la zone de ddl	  
+	$prefix=$_POST['nom'];
 	$conn_id = ftp_connect($ftp_server);	  
 	// login
 	$login_result = ftp_login($conn_id, $ftp_user_name, $ftp_user_pass);  
@@ -20,13 +21,13 @@
        echo "Problème de connexion au serveur";
        exit;
 	} 
-	else 
+	/*else 
 	{
 	    echo "Connexion établie";
-	}
+	}*/
 	  
 	// upload
-	echo $paths.'/'.$name;
+	// echo $paths.'/'.$prefix."_".$name;
 	$upload = ftp_put($conn_id, $paths.'/'.$name, $filep, FTP_BINARY);
 	  
 	// résultat de l'uplaod'
@@ -36,7 +37,8 @@
 	} 
 	else 
 	{
-	    echo "Le fichier $name à bien été uploadé ";
+	    // echo "Le fichier $name à bien été uploadé ";
+	    header("Location: rechercher.php");
 	}  
 	// pas oublier de fermer la connexion
 	ftp_close($conn_id);
