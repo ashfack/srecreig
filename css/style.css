@@ -222,3 +222,28 @@ table.display tr.odd.row_selected td {background-color: #9FAFD1;}
   font-size: 22px;*/
   max-width: 400px;
 }
+
+
+
+
+input#choix_entreprise, input#choix_alternant
+{
+    width: 300px !important;
+    height: 42px !important;
+}
+
+input#bRechercher
+{
+    width: 180px !important;
+    height: 30px !important;
+}
+
+button#bInfo, button#bSupprimer, button#bEditer
+{
+    margin-top: 10px ; 
+    margin-right: 25px ; 
+    width: 180px !important;
+    height: 35px !important;
+}
+
+
