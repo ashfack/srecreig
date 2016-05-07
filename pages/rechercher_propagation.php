@@ -91,7 +91,7 @@
 		</div>
 
 		<div id="dialog_cycle"  title="Cycle Formation">
-			<p> En bleu, les cycles/formations liés à l'entreprise :  </p>
+			<p> En bleu, les cycles/formations liés à l'entreprise (Pour modifier les cycles cliquez sur le bouton "Modifier"):  </p>
 			<?php
 			require ("jstree_cycle.php");
 			?>

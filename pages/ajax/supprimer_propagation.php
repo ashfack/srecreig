@@ -66,12 +66,13 @@
 
                     
             }
-
-            //echo "<p> $sql </p>";
+            /*echo "oooooooooooooooook";
+            echo "<p>".trim($donnees[0])."</p>";
+            echo "<p> $sql ".trim($donnees[0])." </p>";*/
             $rep=$conn->prepare($sql);
-            $rep->bindValue(':donnee1',$donnees[0],PDO::PARAM_STR);
+            $rep->bindValue(':donnee1',trim($donnees[0]),PDO::PARAM_STR);
             if($deuxColonnes)
-                $rep->bindValue(':donnee2',$donnees[1],PDO::PARAM_INT);
+                $rep->bindValue(':donnee2',trim($donnees[1]),PDO::PARAM_INT);
 
             if($rep->execute())
             {
