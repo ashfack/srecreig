@@ -52,25 +52,24 @@
             <?php    
                 }
             ?>            
-            
+           
+            <li class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                    <i class="fa"></i>  <i class="glyphicon glyphicon-cloud"></i>
+                </a>
+                <ul class="dropdown-menu ">
+                    <li><a href="up_fic.php"><i class="glyphicon glyphicon-cloud-upload"></i> Joindre Fichier</a>
+                    </li>
+                    <li><a href="Stockage.php"><i class="glyphicon glyphicon-cloud"></i> Espace stockage</a>
+                    </li>
+                </ul>
+            </li>   
 
             <li class="dropdown">
                 <a class="dropdown-toggle" href="agenda.php">
                     <i class="fa fa-calendar fa-fw"></i> 
                 </a>
             </li>
-
-            <li class="dropdown">
-                <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa"></i>  <i class="fa fa-caret-up"></i>
-                </a>
-                <ul class="dropdown-menu ">
-                    <li><a href="up_fic.php"><i class="glyphicon glyphicon-upload"></i> Joindre Fichier</a>
-                    </li>
-                    <li><a href="Stockage.php"><i class="glyphicon glyphicon-download"></i> Espace stockage</a>
-                    </li>
-                </ul>
-            </li>           
             
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">

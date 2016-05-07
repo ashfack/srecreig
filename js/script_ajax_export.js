@@ -24,7 +24,7 @@ function cleanArray(array) {
 function requeteAjaxTable()
 {
 	// récupération des champs cochés
-	var longueur = $(".jstree-clicked").length ; 
+	var longueur = $(".jstree").jstree("get_bottom_checked").length ; 
 	var liste_choix = new Array(longueur);
 	var table =new Array(); 
 	var champs = new Array(); 
@@ -33,9 +33,10 @@ function requeteAjaxTable()
 	var j = 0 ; 
 	for(i=0; i < longueur; i++) 
 	{
-		var text_tmp = $($(".jstree-clicked")[i]).attr("id");
-		var champ_tmp = text_tmp.split("_ancho") ; 
-		liste_choix[i] = champ_tmp[0] ;
+		var text_tmp = $(".jstree").jstree("get_bottom_checked")[i];
+		console.log(text_tmp);
+		liste_choix[i] = text_tmp;
+		if(text_tmp != "undefined")
 		var table_tmp = text_tmp.split(".") ;
 		table[i] = table_tmp[0] ; 
 		var tttt = table_tmp[1] ; 
@@ -60,7 +61,7 @@ function requeteAjaxTable()
 	   type: "POST",
 	   url: "ajax/recup_donnees_export.php",
 	   dataType: "json",
-	   data: 'choix_entreprise='+$("#choix_entreprise").val()+'&liste_choix='+liste_choix+'&table='+table+'&selectedFullTable='+selectedFullTable,
+	   data: '&liste_choix='+liste_choix+'&table='+table+'&selectedFullTable='+selectedFullTable,
 	   success: function(data)
 	   { 
 	   	console.log(data);

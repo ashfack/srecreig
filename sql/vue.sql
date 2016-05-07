@@ -21,6 +21,20 @@ select * from Entreprise ;
 
 CREATE OR REPLACE VIEW vueAlternance
 AS 
+
+Select `srecreig_base`.`Alternance`.`Entreprise_nomEntreprise` ,
+`srecreig_base`.`Alternance`.`formationAlternance` ,`srecreig_base`.`Alternance`.`anneeEntree` ,
+`srecreig_base`.`Alternance`.`typeContrat` , Coord1.civilite AS civiliteAlternant , Coord1.nom AS nomAlternant ,Coord1.prenom AS prenomAlternant ,Coord1.fonction AS fonctionAlternant ,Coord1.telephoneFixe AS telephoneFixeAlternant ,Coord1.telephoneMobile AS telephoneMobileAlternant ,Coord1.mail AS mailAlternant ,Coord1.commentaires AS commentaireAlternant , `srecreig_base`.`Alternance`.`CoordonneesPersonne_maitre`,`srecreig_base`.`Alternance`.`CoordonneesPersonne_RH` ,
+`srecreig_base`.`Alternance`.`dateRVPreparation` ,`srecreig_base`.`Alternance`.`dateRVSimulation` ,
+`srecreig_base`.`Alternance`.`dateDebutContrat` ,`srecreig_base`.`Alternance`.`dateFinContrat` ,
+`srecreig_base`.`Alternance`.`dateRuptureContrat` ,`srecreig_base`.`Alternance`.`dateEnvoiFLAuCFA` ,
+`srecreig_base`.`Alternance`.`docAAttacher`
+	from  `srecreig_base`.`Alternance`
+	inner join `srecreig_base`.`CoordonneesPersonne` AS Coord1 on ( `srecreig_base`.`Alternance`.`CoordonneesPersonne_alternant` = Coord1.`idCoordonneesPersonne`)
+;
+/*
+CREATE OR REPLACE VIEW vueAlternance
+AS 
 Select `srecreig_base`.`Alternance`.`Entreprise_nomEntreprise` ,
 `srecreig_base`.`Alternance`.`formationAlternance` ,`srecreig_base`.`Alternance`.`anneeEntree` ,
 `srecreig_base`.`Alternance`.`typeContrat` ,`srecreig_base`.`Alternance`.`CoordonneesPersonne_alternant` ,
@@ -29,6 +43,43 @@ Select `srecreig_base`.`Alternance`.`Entreprise_nomEntreprise` ,
 `srecreig_base`.`Alternance`.`dateDebutContrat` ,`srecreig_base`.`Alternance`.`dateFinContrat` ,
 `srecreig_base`.`Alternance`.`dateRuptureContrat` ,`srecreig_base`.`Alternance`.`dateEnvoiFLAuCFA` ,
 `srecreig_base`.`Alternance`.`docAAttacher`  from `srecreig_base`.`Alternance` ;
+
+
+Select `srecreig_base`.`Alternance`.`Entreprise_nomEntreprise` ,
+`srecreig_base`.`Alternance`.`formationAlternance` ,`srecreig_base`.`Alternance`.`anneeEntree` ,
+`srecreig_base`.`Alternance`.`typeContrat` , Coord1.nom , `srecreig_base`.`Alternance`.`CoordonneesPersonne_maitre`,`srecreig_base`.`Alternance`.`CoordonneesPersonne_RH` ,
+`srecreig_base`.`Alternance`.`dateRVPreparation` ,`srecreig_base`.`Alternance`.`dateRVSimulation` ,
+`srecreig_base`.`Alternance`.`dateDebutContrat` ,`srecreig_base`.`Alternance`.`dateFinContrat` ,
+`srecreig_base`.`Alternance`.`dateRuptureContrat` ,`srecreig_base`.`Alternance`.`dateEnvoiFLAuCFA` ,
+`srecreig_base`.`Alternance`.`docAAttacher`
+	from  `srecreig_base`.`Alternance`
+	inner join `srecreig_base`.`CoordonneesPersonne` AS Coord1 on ( `srecreig_base`.`Alternance`.`CoordonneesPersonne_alternant` = Coord1.`idCoordonneesPersonne`)
+
+Select Alternance1.Entreprise_nomEntreprise,  Coord1.nom , Coord2.nom , Alternance1.dateRVPreparation from 
+	Alternance AS Alternance1
+    inner join CoordonneesPersonne AS Coord1
+	on (Alternance1.`CoordonneesPersonne_alternant` = Coord1.`idCoordonneesPersonne`)
+	inner join CoordonneesPersonne AS Coord2
+	on (Alternance1.`CoordonneesPersonne_alternant` = Coord2.`idCoordonneesPersonne`)
+       
+;
+
+Select `srecreig_base`.`Alternance`.`Entreprise_nomEntreprise` ,
+`srecreig_base`.`Alternance`.`formationAlternance` ,`srecreig_base`.`Alternance`.`anneeEntree` ,
+`srecreig_base`.`Alternance`.`typeContrat` ,  Coord1.nom , Coord2.nom ,  `srecreig_base`.`Alternance`.dateRVPreparation ,`srecreig_base`.`Alternance`.`dateRVSimulation` ,
+`srecreig_base`.`Alternance`.`dateDebutContrat` ,`srecreig_base`.`Alternance`.`dateFinContrat` ,
+`srecreig_base`.`Alternance`.`dateRuptureContrat` ,`srecreig_base`.`Alternance`.`dateEnvoiFLAuCFA` ,
+`srecreig_base`.`Alternance`.`docAAttacher` from 
+	`srecreig_base`.`Alternance` 
+    inner join `srecreig_base`.`CoordonneesPersonne` AS Coord1
+	on (`srecreig_base`.`Alternance`.`CoordonneesPersonne_alternant` = Coord1.`idCoordonneesPersonne`)
+	inner join `srecreig_base`.`CoordonneesPersonne` AS Coord2
+	on ( `srecreig_base`.`Alternance`.`CoordonneesPersonne_RH` = Coord2.`idCoordonneesPersonne`)
+       
+;
+
+*/
+
 
 CREATE OR REPLACE VIEW vueTaxeApprentissage
 AS 
@@ -42,7 +93,9 @@ from `srecreig_base`.`TaxeApprentissage` ;
 
 CREATE OR REPLACE VIEW vueAtelierRh
 AS 
-select * from AtelierRH ; 
+select `AtelierRH`.`Entreprise_nomEntreprise` AS `Entreprise_nomEntreprise`,
+`AtelierRH`.`dateAtelier` AS `dateAtelier`,`AtelierRH`.`creneauAtelier` AS `creneauAtelier` 
+from `AtelierRH`
 ;
 
 CREATE OR REPLACE VIEW vueConference

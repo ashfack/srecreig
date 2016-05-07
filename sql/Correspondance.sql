@@ -65,5 +65,32 @@ INSERT INTO CorrespondanceNom (nomSql, nomCorrespondant) VALUES
 ('questionnaireDeSatisfaction', 'Questionnaire de Satisfaction ?'), 
 ('commentairesForum', 'Commentaires Forum'),
 ('Entreprise_nomEntreprise', 'Nom Entreprise'),
-('numeroSIRET', 'N° SIRET ') 
+('numeroSIRET', 'N° SIRET '),
+('civiliteAlternant', 'Civilité Alternant'),
+('nomAlternant', 'Nom Alternant'),
+('prenomAlternant', 'Prénom Alternant'),
+('fonctionAlternant', 'Fonction Alternant'),
+('telephoneFixeAlternant', 'Téléphone Fixe Alternant'),
+('telephoneMobileAlternant', 'Téléphone Mobile Alternant'),
+('mailAlternant', 'Mail Alternant'),
+('commentaireAlternant', 'Commentaire sur l\'alternant'),
+
+('zer', 'azeez'),
+('ag', 'kytk'),
+('eb', 'tzer'),
+('theh', 'zefsd'),
+('fq', 'tky'),
+('tzet', 'raeraz'),
+('fqsqjh', 'tuktk'),
+('ukul', 'ort'),
+
+('jyhrth', 'aesdq'),
+('utyu', 'gsht'),
+('ztet', 'yuzert'),
+('raer', 'yjytrt'),
+('kuyk', 'fgdgkt'),
+('oipl', 'rzer'),
+('yre', 'ry'),
+('eaze', 'azertejyzrez')
+
  ;
