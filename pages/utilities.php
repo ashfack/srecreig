@@ -130,7 +130,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 					" WHERE a.type IS NOT NULL and a.Entreprise_nomEntreprise = :nomEntreprise ".
 					"ORDER BY (CASE WHEN type='Autre' THEN 1 ELSE 0 END) ASC,type";
 			}
-			else if($table=="Conference" || $table=="AtelierRH")
+			else if(($table=="Conference" || $table=="AtelierRH") && $nom_niveau=="niveau2") 
 			{
 				$table_asso="a_".$table."_CoordonneesPersonne";
 				$sql=" SELECT ".implode($niveau,",")." FROM $table_asso join $table on ($table_asso.".$table."_id = ".$table.".id".$table.") ".
