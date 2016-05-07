@@ -1,6 +1,6 @@
 function supp()
 {
-  if(confirm("Etes vous sur de supprimer cet Utilisateur?")==true)
+  if(confirm("Etes vous sur de supprimer cet utilisateur?")==true)
   {
     return 1;
   }
@@ -39,7 +39,7 @@ function f_new()
      $.ajax(
      { 
        type: "POST", 
-       url : "maj_profil.php", 
+       url : "ajax/maj_profil.php", 
        data: "id="+$identifiant+"&profil="+$profil+"&type=ins", 
        success: function(msg)
        { 
@@ -73,7 +73,7 @@ $(document).ready(function()
       $.ajax(
         { 
            type: "POST", 
-           url : "maj_profil.php", 
+           url : "ajax/maj_profil.php", 
            data: "id="+$identifiant+"&profil="+$profil+"&type=upd", 
            success: function(msg)
            { 
@@ -112,7 +112,7 @@ $(document).ready(function()
       $.ajax(
         { 
            type: "POST", 
-           url : "maj_profil.php", 
+           url : "ajax/maj_profil.php", 
            data: "id="+$identifiant+"&type=del", 
            success: function(msg)
            { 
