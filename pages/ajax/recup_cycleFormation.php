@@ -1,8 +1,8 @@
 <?php
+    require("security.php");    
+    require("../db_connect.php");
     
-    require'db_connect.php';
-    
-     $idCycle=array();
+    $idCycle=array();
     if(isset($_POST['nomEntreprise']) && $_POST['nomEntreprise']!="")
     {
         $nomEntreprise=$_POST['nomEntreprise'];
@@ -13,7 +13,6 @@
        
         while($data=$rep->fetch())
         {
-            //echo "<p> ".$data['CycleFormation_id'];
             array_push($idCycle, $data['CycleFormation_id']);
         }
         

@@ -90,7 +90,7 @@ function requeteAjaxTable()
 	$.ajax({
 
 	   type: "POST",
-	   url: "recup_donnees_alternants.php",
+	   url: "ajax/recup_donnees_alternants.php",
 	   dataType: "json",
 	   data: 'choix_alternant='+$("#choix_alternant").val(),
 	   success: function(data)
@@ -206,7 +206,7 @@ function requeteAjaxTable()
 	$.ajax({
 
 	   type: "POST",
-	   url: "supprimer_entreprise.php",
+	   url: "ajax/supprimer_entreprise.php",
 	   dataType: "text",
 	   data: 'nomEntreprise='+nomEntreprise,
 	   success: function(data)

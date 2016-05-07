@@ -1,7 +1,6 @@
 <?php
-    
-    require'db_connect.php';
-    
+    require("security.php");
+    require("../db_connect.php");
     if(isset($_POST['nomEntreprise']) && $_POST['nomEntreprise']!="")
     {
         $nomEntreprise=$_POST['nomEntreprise'];

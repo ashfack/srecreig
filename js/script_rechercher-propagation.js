@@ -178,7 +178,7 @@ function requeteAjaxCycle(nomEntreprise)
 	$.ajax({
 
 	   type: "POST",
-	   url: "recup_cycleFormation.php",
+	   url: "ajax/recup_cycleFormation.php",
 	   dataType: "json",
 	   data: 'nomEntreprise='+nomEntreprise,
 	   success: function(data)

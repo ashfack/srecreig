@@ -1,7 +1,6 @@
 <?php
 	try
 	{
-	//	session_start();
 		$servername ="mysql-srecreig.alwaysdata.net";
 		$username = "srecreig";
 		// $password = "SREPARIS";

@@ -1,16 +1,9 @@
 <?php
-    session_start();
-
-    if (! isset($_SESSION['id']))
-    {
-        echo 'Session expirée, veuillez vous reconnecter !';
-        echo "Cliquez <a href=\"index.php\">ici</a>"; 
-        exit();
-    } 
+	require("security.php");
 	try
 	{
 
-		include("db_connect.php");
+		require("../db_connect.php");
 		//Entreprise
 		$nomEntreprise = $_POST["nomEntreprise"];
 		$groupe = $_POST["groupe"];

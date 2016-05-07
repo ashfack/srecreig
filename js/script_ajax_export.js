@@ -58,7 +58,7 @@ function requeteAjaxTable()
 	$.ajax({
 
 	   type: "POST",
-	   url: "recup_donnees_export.php",
+	   url: "ajax/recup_donnees_export.php",
 	   dataType: "json",
 	   data: 'choix_entreprise='+$("#choix_entreprise").val()+'&liste_choix='+liste_choix+'&table='+table+'&selectedFullTable='+selectedFullTable,
 	   success: function(data)

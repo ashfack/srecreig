@@ -1,6 +1,8 @@
 <?php
+
 	session_start();
-	include("db_connect.php");
+	// require("security.php");
+	require("../db_connect.php");
 	$conn->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 	
 	$pseudo= $_POST['pseudo'];

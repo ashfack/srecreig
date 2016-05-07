@@ -51,7 +51,7 @@ $(document).ready(function(){
 		var liste_cycle_id= $('#jstree').jstree(true).get_selected();
 
             $.ajax({		
-                url: "ajouterEntreprise.php", 
+                url: "ajax/ajouterEntreprise.php", 
                 type: "POST", 
                 data: "nomEntreprise="+nomEntreprise+"&groupe="+groupe+"&codeNAF="+codeNAF+"&siret="+siret+"&adresse="+adresse+"&complAdr="+complAdr+
 					  "&codeP="+codeP+"&ville="+ville+"&pays="+pays+

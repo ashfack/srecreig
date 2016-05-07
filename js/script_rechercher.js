@@ -161,7 +161,7 @@ function requeteAjaxTable()
     {
 
         type: "POST",
-        url: "recup_donnees_entreprises.php",
+        url: "ajax/recup_donnees_entreprises.php",
         dataType: "json",
         data: 'choix_entreprise=' + $("#choix_entreprise").val(),
         success: function(data) 
@@ -308,7 +308,7 @@ function requeteAjaxSuppression()
     $.ajax({
 
         type: "POST",
-        url: "supprimer_entreprise.php",
+        url: "ajax/supprimer_entreprise.php",
         dataType: "text",
         data: 'nomEntreprise=' + nomEntreprise,
         success: function(data) 
@@ -345,7 +345,7 @@ function requeteAjaxEdition()
     {
         // pour l'ajax, on spécifie les colonnes statiquement récupérées grace à l'id et on attribut les valeurs
         type: "POST",
-        url: "editer_entreprise.php",
+        url: "ajax/editer_entreprise.php",
         dataType: "text",
         data: 'nomEntreprise=' + colVal[0] +
             '&groupe=' + colVal[1] +

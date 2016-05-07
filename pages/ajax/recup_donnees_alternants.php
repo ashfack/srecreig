@@ -1,6 +1,6 @@
 <?php
-    
-    require'db_connect.php';
+    require("security.php");    
+    require("../db_connect.php");
     function colonne_null(&$tab_donnees)
     {
         foreach ($tab_donnees as $key => $value) 

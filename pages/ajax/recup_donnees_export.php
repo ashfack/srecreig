@@ -1,6 +1,7 @@
 <?php
+require("security.php");
+require("../db_connect.php");
 
-require'db_connect.php';
 $tab_donnees=array();
 $selectedFullTxt = " "; 
 if(isset($_POST['table']) && $_POST['table']!="" && isset($_POST['liste_choix']) && $_POST['liste_choix']!="")

@@ -1,9 +1,7 @@
 <?php
-    
-    require'db_connect.php';
-    
-	
-	
+    require("security.php");    
+    require("../db_connect.php");
+  	
     if(isset($_POST['nomEntreprise']) && $_POST['nomEntreprise']!="")
     {
         $nomEntreprise=$_POST['nomEntreprise'];
@@ -21,18 +19,7 @@
 												codePostal= ?,
 												ville= ?,
 												commentairesEntreprise= ?
-												where nomEntreprise = ? ");
-		
-		
-	   /* $rep=$conn->prepare("UPDATE Entreprise SET 
-												groupe='".addslashes($groupe)."',
-												adresse='".addslashes($adresse)."',
-												complementAdresse='".addslashes($complementAdresse)."',
-												codePostal='".addslashes($codePostal)."',
-												ville='".addslashes($ville)."'
-												where nomEntreprise = :nomEntreprise ");
-        $rep->bindValue(':nomEntreprise',"$nomEntreprise",PDO::PARAM_STR);*/
-      
+												where nomEntreprise = ? ");      
         if($req->execute(array($groupe,$adresse,$complementAdresse,$codePostal,$ville,$commentaires,$nomEntreprise)))
         {
             echo "ok";
