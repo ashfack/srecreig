@@ -174,15 +174,10 @@ $(document).ready(function()
 							tabDonnees.push($(ligne).find('td:first').html());
 							tabDonnees.push($(ligne).find('td:nth-child(4)').html());
 						}
-						else if(true_table=="TaxeApprentissage" && true_j==2)
-						{
-							popupMessage("#dialog_message","<p> Impossible de supprimer sur cette table pour des raisons de coherences: <br/> <br/> Utilisez l'edition pour effectuer des modifications ou bien supprimez la TA associé et ajouter en une nouvelle. </p>");
-							return;
-						}
 						else if( (true_table=="AtelierRH" || true_table=="Conference")  && true_j==2 )
 						{
 							tabDonnees.push($(ligne).find('td:first').html());
-							tabDonnees.push($(ligne).find('td:nth-child(2)').html());
+							tabDonnees.push($(ligne).find('td:nth-child(3)').html());
 						}
 						else if(true_table=="ForumSG")
 						{
@@ -197,14 +192,6 @@ $(document).ready(function()
 						else
 							tabDonnees.push($(ligne).find('td:first').html());
 
-						//valueRecup=$(tabSelectionTable[0]).find('td:first').html();
-						//supprimer(nomEntreprise,true_table,true_j,tabDonnees);
-						/*var data = $("#dialog_supprimer_confirmation").data();   
-						data.table = true_table;  
-						data.niveau = true_j;
-						data.tabDonnees = tabDonnees;
-						$("#dialog_supprimer_confirmation").dialog("open");*/
-						//$("#dialog_supprimer_confirmation").dialog("open");
 						
 						$("#dialog_supprimer_confirmation").data("donneesDialog", { table: true_table, niveau: true_j, tabDonnees: tabDonnees });
 						if(true_table=="Entreprise")

@@ -16,12 +16,9 @@
       
 
            $tabCorrespondanceColonnes=array("EntrepriseNiveau1"=>array("nomEntreprise"),
-                                                "EntrepriseNiveau2"=>array("nomEntreprise"),
                                                 "CoordonneesPersonneNiveau1"=>array("Entreprise_nomEntreprise","CoordonneesPersonne_id"),
                                                 "AlternanceNiveau1"=>array("Entreprise_nomEntreprise","CoordonneesPersonne_alternant"),
-                                                "AlternanceNiveau2"=>array("Entreprise_nomEntreprise","CoordonneesPersonne_alternant"),
                                                 "TaxeApprentissageNiveau1"=>array("idTA"),
-                                                "TaxeApprentissageNiveau3"=>array("idTA"),
                                                 "AtelierRHNiveau1"=>array("idAtelierRH"),
                                                 "AtelierRHNiveau2"=>array("AtelierRH_id","CoordonneesPersonne_id"),
                                                 "ConferenceNiveau1"=>array("idConference"),
@@ -31,12 +28,9 @@
 
 
            $tabCorrespondanceTables=array("EntrepriseNiveau1"=>"Entreprise",
-                                            "EntrepriseNiveau2"=>"Entreprise",
                                             "CoordonneesPersonneNiveau1"=>"a_Entreprise_CoordonneesPersonne",
                                             "AlternanceNiveau1"=>"Alternance",
-                                            "AlternanceNiveau2"=>"Alternance",
                                             "TaxeApprentissageNiveau1"=>"TaxeApprentissage",
-                                            "TaxeApprentissageNiveau3"=>"TaxeApprentissage",
                                             "AtelierRHNiveau1"=>"AtelierRH",
                                             "AtelierRHNiveau2"=>"a_AtelierRH_CoordonneesPersonne",
                                             "ConferenceNiveau1"=>"Conference",
@@ -66,9 +60,7 @@
 
                     
             }
-            /*echo "oooooooooooooooook";
-            echo "<p>".trim($donnees[0])."</p>";
-            echo "<p> $sql ".trim($donnees[0])." </p>";*/
+       
             $rep=$conn->prepare($sql);
             $rep->bindValue(':donnee1',trim($donnees[0]),PDO::PARAM_STR);
             if($deuxColonnes)

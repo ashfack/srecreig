@@ -276,13 +276,21 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			echo '<tfoot><tr><th colspan="9"></th></tr></tfoot>';
 			echo '</table>';
 			echo '<br/>';
+
+
+		    $tablePasBoutonAjouter=array("EntrepriseNiveau1","EntrepriseNiveau2","AlternanceNiveau2","TaxeApprentissageNiveau2","TaxeApprentissageNiveau3");
+		    $tablePasBoutonSupprimer=array("EntrepriseNiveau2","AlternanceNiveau2","TaxeApprentissageNiveau2","TaxeApprentissageNiveau3");
+			$cle=$table.ucfirst($nom_niveau);
+
 			if($_SESSION['profil']=='write' || $_SESSION['profil']=='super')
 			{
 				echo "<input type='button' value='Modifier' id='bModifier_".$table."_"."$nom_niveau'/>";
-				echo "<input type='button' value='Ajouter' id='bAjouter_".$table."_"."$nom_niveau'/>";
+				if(!in_array($cle, $tablePasBoutonAjouter ))
+					echo "<input type='button' value='Ajouter' id='bAjouter_".$table."_"."$nom_niveau'/>";
 			}
 			if($_SESSION['profil']=='super')
 			{
+				if(!in_array($cle, $tablePasBoutonSupprimer ))
 				echo "<input type='button' value='Supprimer' id='bSupprimer_".$table."_"."$nom_niveau'/>";
 			}
 			$cle_CP_presente=false;

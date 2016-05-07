@@ -60,20 +60,19 @@
 
 
 				$tab_niveaux_TaxeApprentissage=array("niveau1"=>array("idTA","anneeDeVersement","montantPromesseVersement","montantVerse","versementVia","rapprochementAC"),
-					"niveau2"=>array("idTA","anneeDeVersement","CycleFormation_id","categorie","montant"),
-					"niveau3"=>array("idTA","anneeDeVersement","OCTA","dateEnregistrement","dateDerniereModification","modePaiement","dateTransmissionChequeAC","commentairesTaxe"));
+					"niveau2"=>array("idTA","anneeDeVersement","dateEnregistrement","CycleFormation_id","categorie","montant"),
+					"niveau3"=>array("idTA","anneeDeVersement","dateEnregistrement","OCTA","dateDerniereModification","modePaiement","dateTransmissionChequeAC","commentairesTaxe"));
 
 				
 				$tab_niveaux_AtelierRH=array("niveau1"=>array("idAtelierRH","dateAtelier","creneauAtelier"),
-											"niveau2"=>array("idAtelierRH","CoordonneesPersonne_RH"));
+											"niveau2"=>array("idAtelierRH","dateAtelier","CoordonneesPersonne_RH"));
 
 				$tab_niveaux_Conference=array("niveau1"=>array("idConference","typeConference","dateConference","heureDebut","heureFin","lieuConference","themeConference"),
-					"niveau2"=>array("idConference","CoordonneesPersonne_conferencier"));	
+					"niveau2"=>array("idConference","dateConference","CoordonneesPersonne_conferencier"));	
 				
-				$tab_niveaux_Conference=array("niveau1"=>array("typeConference","dateConference","heureDebut","heureFin","lieuConference","themeConference"),
-					"niveau2"=>array("CoordonneesPersonne_conferencier"));	
 				
 				$tab_niveaux_ForumSG=array("niveau1"=>array("Entreprise_nomEntreprise","anneeDeParticipation","questionnaireDeSatisfaction","commentairesForum"));
+				
 				$pk=array("nomEntreprise","idCoordonneesPersonne","CoordonneesPersonne_alternant","idTA","idAtelierRH","idConference","Entreprise_nomEntreprise");
 				$niveaux=array($tab_niveaux_Entreprise,$tab_niveaux_CoordonneesPersonne,$tab_niveaux_Alternance,$tab_niveaux_TaxeApprentissage,$tab_niveaux_AtelierRH,$tab_niveaux_Conference,$tab_niveaux_ForumSG);
 				
