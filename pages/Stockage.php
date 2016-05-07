@@ -29,7 +29,7 @@
         <input type="button" id="Rechercher" value="Rechercher">    
     
     
-    <iframe src="http://srecreig.alwaysdata.net/srecreig/files/" width="100%" height="500px" id="iframe1" marginheight="0" 
+    <iframe src="../files/" width="100%" height="500px" id="iframe1" marginheight="0" 
         frameborder="0" onLoad="autoResize('iframe1');">
       <p>Navigateur incompatible.</p>
     </iframe>
