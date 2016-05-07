@@ -10,7 +10,6 @@
             require('header_link.html');
         ?>
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
-		<link rel ="stylesheet" type="text/css" href="../css/contacter.css">
        <!-- JQUERY DATATABLE CSS -->
         <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
         <script type="text/javascript" src="../js/script_rechercher.js"></script>

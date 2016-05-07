@@ -102,9 +102,9 @@ $(document).ready(function()
 			     	{
 			     		var img=$(this).children()[0];
 			    
-			     		var src = ($(img).attr('src') === '../css/images/more.png')
-									? '../css/images/minus.png'
-									: '../css/images/more.png';
+			     		var src = ($(img).attr('src') === '../img/more.png')
+									? '../img/minus.png'
+									: '../img/more.png';
 						
 						$(img).attr('src', src);
 			     		$("#dataTable_"+true_table+"_niveau"+true_j).toggle();

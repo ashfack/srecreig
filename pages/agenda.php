@@ -2,7 +2,6 @@
 	<head>
 	    <title>Agenda en PHP</title>
 	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-	    <link href="../css/agenda.css" rel="stylesheet" type="text/css" />
 
       <?php
          require('header_link.html');

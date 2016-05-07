@@ -12,7 +12,6 @@
              <!-- JQUERY DATATABLE CSS -->
         <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
         <link rel="stylesheet" type="text/css" href="../css/style.css" />
-        <link rel ="stylesheet" type="text/css" href="../css/contacter.css">
         <script type="text/javascript" src="../js/script_rechercher-alternant.js"></script>
     </head>
 
