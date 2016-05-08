@@ -107,6 +107,16 @@
         <div id="dialog_ajouter" title="ajouter">
         
         </div>
+		
+		<div id="dialog_editer">
+			<p>
+			  Edition selon Entreprise <span id="emplacement_editer_nomEntreprise"> </span>
+			</p>
+			<?php
+			require('jstree_cycle.php');
+			?>
+		</div>
+
 
 	</body>
 	
