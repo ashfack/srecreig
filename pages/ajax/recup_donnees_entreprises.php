@@ -13,7 +13,7 @@
 
     $tab_donnees=array();
     
-    if(isset($_POST['choix_entreprise']) && $_POST['choix_entreprise']!="")
+    if(isset($_POST['choix_entreprise'])/* && $_POST['choix_entreprise']!=""*/)
     {
         $nomEntreprise=$_POST['choix_entreprise'];
         $rep = $conn->prepare("SELECT * FROM Entreprise where nomEntreprise LIKE :nomEntreprise");
