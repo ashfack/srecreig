@@ -54,53 +54,20 @@ Coord2.civilite AS civiliteMaitre , Coord2.nom AS nomMaitre ,Coord2.prenom AS pr
 
 
 
-/*
 CREATE OR REPLACE VIEW vueAlternance
 AS 
-Select `srecreig_base`.`Alternance`.`Entreprise_nomEntreprise` ,
-`srecreig_base`.`Alternance`.`formationAlternance` ,`srecreig_base`.`Alternance`.`anneeEntree` ,
-`srecreig_base`.`Alternance`.`typeContrat` ,`srecreig_base`.`Alternance`.`CoordonneesPersonne_alternant` ,
-`srecreig_base`.`Alternance`.`CoordonneesPersonne_maitre` ,`srecreig_base`.`Alternance`.`CoordonneesPersonne_RH` ,
-`srecreig_base`.`Alternance`.`dateRVPreparation` ,`srecreig_base`.`Alternance`.`dateRVSimulation` ,
-`srecreig_base`.`Alternance`.`dateDebutContrat` ,`srecreig_base`.`Alternance`.`dateFinContrat` ,
-`srecreig_base`.`Alternance`.`dateRuptureContrat` ,`srecreig_base`.`Alternance`.`dateEnvoiFLAuCFA` ,
-`srecreig_base`.`Alternance`.`docAAttacher`  from `srecreig_base`.`Alternance` ;
-
-
-Select `srecreig_base`.`Alternance`.`Entreprise_nomEntreprise` ,
-`srecreig_base`.`Alternance`.`formationAlternance` ,`srecreig_base`.`Alternance`.`anneeEntree` ,
-`srecreig_base`.`Alternance`.`typeContrat` , Coord1.nom , `srecreig_base`.`Alternance`.`CoordonneesPersonne_maitre`,`srecreig_base`.`Alternance`.`CoordonneesPersonne_RH` ,
-`srecreig_base`.`Alternance`.`dateRVPreparation` ,`srecreig_base`.`Alternance`.`dateRVSimulation` ,
-`srecreig_base`.`Alternance`.`dateDebutContrat` ,`srecreig_base`.`Alternance`.`dateFinContrat` ,
-`srecreig_base`.`Alternance`.`dateRuptureContrat` ,`srecreig_base`.`Alternance`.`dateEnvoiFLAuCFA` ,
-`srecreig_base`.`Alternance`.`docAAttacher`
-	from  `srecreig_base`.`Alternance`
-	inner join `srecreig_base`.`CoordonneesPersonne` AS Coord1 on ( `srecreig_base`.`Alternance`.`CoordonneesPersonne_alternant` = Coord1.`idCoordonneesPersonne`)
-
-Select Alternance1.Entreprise_nomEntreprise,  Coord1.nom , Coord2.nom , Alternance1.dateRVPreparation from 
-	Alternance AS Alternance1
-    inner join CoordonneesPersonne AS Coord1
-	on (Alternance1.`CoordonneesPersonne_alternant` = Coord1.`idCoordonneesPersonne`)
-	inner join CoordonneesPersonne AS Coord2
-	on (Alternance1.`CoordonneesPersonne_alternant` = Coord2.`idCoordonneesPersonne`)
-       
+Select `srecreig_base`.`vueAlternance2`.`Entreprise_nomEntreprise` ,
+`srecreig_base`.`vueAlternance2`.`formationAlternance` ,`srecreig_base`.`vueAlternance2`.`anneeEntree` ,
+`srecreig_base`.`vueAlternance2`.`typeContrat` , `srecreig_base`.`vueAlternance2`.civiliteAlternant , `srecreig_base`.`vueAlternance2`.nomAlternant ,  `srecreig_base`.`vueAlternance2`.prenomAlternant , `srecreig_base`.`vueAlternance2`.fonctionAlternant , `srecreig_base`.`vueAlternance2`.telephoneFixeAlternant , `srecreig_base`.`vueAlternance2`.telephoneMobileAlternant , `srecreig_base`.`vueAlternance2`.mailAlternant , `srecreig_base`.`vueAlternance2`.commentaireAlternant ,
+`srecreig_base`.`vueAlternance2`.civiliteMaitre , `srecreig_base`.`vueAlternance2`.nomMaitre ,  `srecreig_base`.`vueAlternance2`.prenomMaitre , `srecreig_base`.`vueAlternance2`.fonctionMaitre , `srecreig_base`.`vueAlternance2`.telephoneFixeMaitre , `srecreig_base`.`vueAlternance2`.telephoneMobileMaitre , `srecreig_base`.`vueAlternance2`.mailMaitre , `srecreig_base`.`vueAlternance2`.commentaireMaitre , 
+Coord3.civilite AS civiliteRH , Coord3.nom AS nomRH ,Coord3.prenom AS prenomRH ,Coord3.fonction AS fonctionRH ,Coord3.telephoneFixe AS telephoneFixeRH ,Coord3.telephoneMobile AS telephoneMobileRH ,Coord3.mail AS mailRH ,Coord3.commentaires AS commentaireRH ,
+`srecreig_base`.`vueAlternance2`.`dateRVPreparation` ,`srecreig_base`.`vueAlternance2`.`dateRVSimulation` ,
+`srecreig_base`.`vueAlternance2`.`dateDebutContrat` ,`srecreig_base`.`vueAlternance2`.`dateFinContrat` ,
+`srecreig_base`.`vueAlternance2`.`dateRuptureContrat` ,`srecreig_base`.`vueAlternance2`.`dateEnvoiFLAuCFA` ,
+`srecreig_base`.`vueAlternance2`.`docAAttacher`
+	from  `srecreig_base`.`vueAlternance2`
+	left join `srecreig_base`.`CoordonneesPersonne` AS Coord3 on ( `srecreig_base`.`vueAlternance2`.`CoordonneesPersonne_RH` = Coord3.`idCoordonneesPersonne`)
 ;
-
-Select `srecreig_base`.`Alternance`.`Entreprise_nomEntreprise` ,
-`srecreig_base`.`Alternance`.`formationAlternance` ,`srecreig_base`.`Alternance`.`anneeEntree` ,
-`srecreig_base`.`Alternance`.`typeContrat` ,  Coord1.nom , Coord2.nom ,  `srecreig_base`.`Alternance`.dateRVPreparation ,`srecreig_base`.`Alternance`.`dateRVSimulation` ,
-`srecreig_base`.`Alternance`.`dateDebutContrat` ,`srecreig_base`.`Alternance`.`dateFinContrat` ,
-`srecreig_base`.`Alternance`.`dateRuptureContrat` ,`srecreig_base`.`Alternance`.`dateEnvoiFLAuCFA` ,
-`srecreig_base`.`Alternance`.`docAAttacher` from 
-	`srecreig_base`.`Alternance` 
-    inner join `srecreig_base`.`CoordonneesPersonne` AS Coord1
-	on (`srecreig_base`.`Alternance`.`CoordonneesPersonne_alternant` = Coord1.`idCoordonneesPersonne`)
-	inner join `srecreig_base`.`CoordonneesPersonne` AS Coord2
-	on ( `srecreig_base`.`Alternance`.`CoordonneesPersonne_RH` = Coord2.`idCoordonneesPersonne`)
-       
-;
-
-*/
 
 
 CREATE OR REPLACE VIEW vueTaxeApprentissage
