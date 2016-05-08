@@ -479,10 +479,7 @@ $(document).ready(function()
     	requeteAjaxCycle(nomEntreprise);
     });
 	
-	$("#bEditerCycle").click(function()
-    {	alert("joj");
-    	requeteAjaxCycle(nomEntreprise);
-    });
+
 
 
 			
@@ -491,60 +488,61 @@ $(document).ready(function()
 
 function editer(true_table,true_j,valueRecup)
 {				
-				
-				//alert("j "+true_j+", table "+true_table);
-				$("#bModifier_"+true_table+"_niveau"+true_j).click(function()
-				{
-					var nbSelected=$(".selected").length;
-					if( nbSelected == 0)
-							$("#dialog_refus").dialog("open");
-					else
-					{
-						$("#dialog_editer").children().next().remove();
-						//colonnes= $($("#dataTable_"+true_table+"_niveau"+true_j+" th")).text();
-						
-						var j=0;
-						while(($($("#dataTable_"+true_table+"_niveau"+true_j+" th")[j]).text())!="")
-						{
-							
-							colonnes[j]= $($("#dataTable_"+true_table+"_niveau"+true_j+" th")[j]).text();
-							j++;
-						}
-						
-						//console.log("#dataTable_"+true_table+"_niveau"+true_j+" th");
-						//console.log(colonnes);
-						var chaine="<form class='form-group' action='editer_entreprise.php' method='POST'>";
-						//colVal=$("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected");
-						colVal=[];
-						for(var i=0;i<colonnes.length;i++)
-						{
-							if ($("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected").last().find('td:nth-child('+(i+1)+')').is(":visible"))
-							{
-								colVal[i]=$("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected").last().find('td:nth-child('+(i+1)+')').text();
-								chaine+="<label>"+colonnes[i]+"</label>";
-								chaine+="<input type='text' class='form-control' name='"+colonnes[i]+"' id='"+colonnes[i]+"' value='"+ colVal[i] +"'/> <br/>";
-								
-							}
-						}
-						if(true_table=="Entreprise" && true_j==1)
-						{
-							chaine+="<td id='cycleFormation'> <input type='button' value='Editer les cycles' id='bEditerCycle'/> </td>";
-						}
-						chaine+="</form>";
-						$("#dialog_editer").append(chaine);
-						//console.log(colVal);
-						nomEntreprise=$(".selected").find('td:first').html();
-
-						$("#emplacement_editer_nomEntreprise").text(nomEntreprise);
-						
-						// ouverture pop up
-						$("#dialog_editer").data("donneesDialog", { table: true_table, niveau: true_j, colVal: colVal });
-						//$("#dialog_cycle").dialog("open");
-						$("#dialog_editer").dialog("open");
-						
-					}
-						
+				$("#bEditerCycle").click(function()
+				{	alert("joj");
+					requeteAjaxCycle(nomEntreprise);
 				});
+				//alert("j "+true_j+", table "+true_table);
+				var nbSelected=$(".selected").length;
+				if( nbSelected == 0)
+						$("#dialog_refus").dialog("open");
+				else
+				{
+					$("#dialog_editer").children().next().remove();
+					//colonnes= $($("#dataTable_"+true_table+"_niveau"+true_j+" th")).text();
+					
+					var j=0;
+					while(($($("#dataTable_"+true_table+"_niveau"+true_j+" th")[j]).text())!="")
+					{
+						
+						colonnes[j]= $($("#dataTable_"+true_table+"_niveau"+true_j+" th")[j]).text();
+						j++;
+					}
+					
+					//console.log("#dataTable_"+true_table+"_niveau"+true_j+" th");
+					//console.log(colonnes);
+					var chaine="<form class='form-group' action='editer_entreprise.php' method='POST'>";
+					//colVal=$("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected");
+					colVal=[];
+					for(var i=0;i<colonnes.length;i++)
+					{
+						if ($("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected").last().find('td:nth-child('+(i+1)+')').is(":visible"))
+						{
+							colVal[i]=$("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected").last().find('td:nth-child('+(i+1)+')').text();
+							chaine+="<label>"+colonnes[i]+"</label>";
+							chaine+="<input type='text' class='form-control' name='"+colonnes[i]+"' id='"+colonnes[i]+"' value='"+ colVal[i] +"'/> <br/>";
+							
+						}
+					}
+					if(true_table=="Entreprise" && true_j==1)
+					{
+						chaine+="<td id='cycleFormation'> <input type='button' value='Editer les cycles' id='bEditerCycle'/> </td>";
+					}
+					chaine+="</form>";
+					$("#dialog_editer").append(chaine);
+					//console.log(colVal);
+					nomEntreprise=$(".selected").find('td:first').html();
+
+					$("#emplacement_editer_nomEntreprise").text(nomEntreprise);
+					
+					// ouverture pop up
+					$("#dialog_editer").data("donneesDialog", { table: true_table, niveau: true_j, colVal: colVal });
+					//$("#dialog_cycle").dialog("open");
+					$("#dialog_editer").dialog("open");
+					
+				}
+						
+				
 
 			
 
