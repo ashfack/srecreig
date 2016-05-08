@@ -91,6 +91,8 @@
           ";                             
           ?>
           <div class="col-md-4"></div>
+              <?php
+    if($_SESSION['profil']=='super') {   ?>  
           <div class="col-md-12">
             <center>
               <p>
@@ -99,13 +101,13 @@
                   <div class="btn-group">
                     <button class="btn btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Exporter la table</button>
                       <ul class="dropdown-menu " role="menu">
-                      <li><a href="#" onClick ="$('#div_datatable').tableExport({type:'excel',escape:'false'});"> <img src='../img/xls.png' width='24px'> Excel</a></li>
+                      <li><a href="#" onclick="tablesToExcel(['datatable_entreprise'], ['Export'], 'Export.xls', 'Excel')"> <img src='../img/xls.png' width='24px'> Excel</a></li>
                     </ul>
                 </div>
               </center>
             </p>
           </div>
-
+    <?php  } ?>  
           <div class="col-md-4"></div>
         </div>
       </div>
@@ -126,13 +128,8 @@ else {
 </html>
 <!-- JQUERY DATATABLE CSS -->
 <link href="../css/jquery.dataTables.min.css" rel="stylesheet">
-<script type="text/javascript" src="../framework/tableExport/tableExport.js" async ></script>
-<script type="text/javascript" src="../framework/tableExport/jquery.base64.js" async></script>
-<script type="text/javascript" src="../framework/tableExport/html2canvas.js" async></script>
-<script type="text/javascript" src="../framework/tableExport/jspdf/libs/sprintf.js" async></script>
-<script type="text/javascript" src="../framework/tableExport/jspdf/jspdf.js" async></script>
-<script type="text/javascript" src="../framework/tableExport/jspdf/libs/base64.js"  async></script>
 <script src="../framework/jsTree/dist/jstree.min.js" ></script>
+  <script type="text/javascript" src="../js/export_zip.js"></script>
 
 <script>
 $(function () {
