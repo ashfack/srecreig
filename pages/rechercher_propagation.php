@@ -108,7 +108,7 @@
         
         </div>
 		
-		<div id="dialog_editer">
+		<div id="dialog_editer" title="Edition">
 			<p>
 			  Edition selon Entreprise <span id="emplacement_editer_nomEntreprise"> </span>
 			</p>

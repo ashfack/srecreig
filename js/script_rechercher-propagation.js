@@ -97,48 +97,48 @@ $(document).ready(function()
     });
 	
 	$("#dialog_editer").dialog(
+	{
+		height: 600,
+		width:810,
+		autoOpen:false,
+		dialogClass: "alert",
+		position: { my: "center bottom", at: "center center", of: window, within: $("#tabs")},
+		draggable: false,
+		modal:true,
+		buttons: 
+		[
 			{
-				height: 350,
-				width:858.778,
-				autoOpen:false,
-				dialogClass: "alert",
-				position: { my: "center bottom", at: "center center", of: window, within: $("#tabs")},
-				draggable: false,
-				modal:true,
-				buttons: 
-				[
-					{
-					  text: "Valider",
-					  icons: 
-					  {
-						primary: "ui-icon-check"
-					  },
-					  click: function() 
-					  {
-						 
-						$( this ).dialog( "close" );
-						var obj=$(this).data('donneesDialog');
-						console.log(obj['table']);
-						console.log(obj['niveau']);
-						console.log(obj['colVal']);
-						
-						editionAjax(nomEntreprise,obj['table'],obj['niveau'],obj['colVal']);
-						
-						
-					  }
-					},
-					{
-					  text: "Annuler",
-					  icons: 
-					  {
-						primary: "ui-icon-closethick"
-					  },
-					  click: function() {
-						$( this ).dialog( "close" );
-					  }
-					}
+			  text: "Valider",
+			  icons: 
+			  {
+				primary: "ui-icon-check"
+			  },
+			  click: function() 
+			  {
+				 
+				$( this ).dialog( "close" );
+				var obj=$(this).data('donneesDialog');
+				console.log(obj['table']);
+				console.log(obj['niveau']);
+				console.log(obj['colVal']);
+				
+				editionAjax(nomEntreprise,obj['table'],obj['niveau'],obj['colVal']);
+				
+				
+			  }
+			},
+			{
+			  text: "Annuler",
+			  icons: 
+			  {
+				primary: "ui-icon-closethick"
+			  },
+			  click: function() {
+				$( this ).dialog( "close" );
+			  }
+			}
 
-				]
+		]
 		});
 
 
@@ -168,9 +168,9 @@ $(document).ready(function()
                 {
 
                     $(this).dialog("close");
-                    var dataTable=$(this).data('dataTable');
-
-                    requeteAjaxAjout(dataTable);
+                    var obj=$(this).data('donneesDialog');
+                    //recuperer les valeurs des inputs
+                    requeteAjaxAjout(nomEntreprise,obj['table'],obj['niveau'], []);
                 }
         }, {
                 text: "Annuler",
@@ -344,7 +344,7 @@ $(document).ready(function()
 			     	var tabSelectionTable=$("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected");
 					//console.log(tabSelectionTable[0]);
 					if( tabSelectionTable.length == 0)
-						$("#dialog_refus").dialog("open");
+						popupMessage("#dialog_message","<p> Vous devez selectionner une ligne </p>");
 					else
 					{
 						//console.log(tabSelectionTable);
@@ -357,97 +357,107 @@ $(document).ready(function()
 			);
 
 			$("#menu_"+table).on(
-			  'click',
-			  "#bAjouter_"+table+"_niveau"+j,
-			  (function(true_j,true_table){
-			     return function()
-			     {
-			     	var datatable = "#dataTable_"+true_table+"_niveau"+true_j;
+              'click',
+              "#bAjouter_"+table+"_niveau"+j,
+              (function(true_j,true_table){
+                 return function()
+                 {
+                    var datatable = "#dataTable_"+true_table+"_niveau"+true_j;
 
-					$("#dialog_ajouter").children().remove();
-					
+                    $("#dialog_ajouter").children().remove();
+                    
                     colonnes= $(datatable+" th").map(function() 
-							                    	{ 
-							                    		if($(this).attr('name')!="cacher" && $(this).text()!="")
-							                    		{
-							                    			return $(this).text();
-							                    		}
-							                    			
-							                    	});
+                                                    { 
+                                                        if($(this).attr('name')!="cacher" && $(this).text()!="")
+                                                        {
+                                                            return $(this).text();
+                                                        }
+                                                            
+                                                    });
 
 
                     var chaine="<form action='#' method='POST' id='form_"+datatable+"'>";
                     var idDatePicker= new Array();
                     for(var i=0;i<colonnes.length;i++) 
                     {
-                    	var colonneSansEspace = colonnes[i].replace(/\s/g,"");
-                    
-                        chaine+=" <div class='form-group row'> \
-								    <label for='"+colonneSansEspace+"' class='col-sm-3 form-control-label'>"+colonnes[i]+": </label> \
-								    <div class='col-sm-10'>";
+                        var colonneSansEspace = colonnes[i].replace(/\s/g,"");
+                        
+                        //provisoire --> je vais lies les deux selects
+                        if(true_table=="Alternance" && colonneSansEspace=="Prenom" && i==1)
+                            continue;
+                        else
+                        {
+                            chaine+=" <div class='form-group row'> \
+                                    <label for='"+colonneSansEspace+"' class='col-sm-3 form-control-label'>"+colonnes[i]+": </label> \
+                                    <div class='col-sm-10'>";
 
-						if((colonneSansEspace=="Dateatelier" || colonneSansEspace=="Dateconference") && true_j==2)
-						{
-							var data=$("#dataTable_"+true_table+"_niveau1").dataTable().fnGetData();
-							
-							chaine+="<select name='"+colonneSansEspace+"_niveau2' id='"+colonneSansEspace+"_niveau2' class='form-control' >"
-							
-							for(var k=0;k<data.length;k++)
-							{
-								chaine+="<option value='"+data[k][1]+"'>"+data[k][1]+"</option>";
-							}
-							chaine+="</select>";
+                            if(true_table=="Alternance" && colonneSansEspace=="Nom" && i==0 )
+                            {
+                                
 
-							
-						}
-						else if(true_table=="Alternance" && (colonneSansEspace=="Nom" || colonneSansEspace=="Prenom") && (i==0 || i==1))
-						{
-							var data=$("#dataTable_Alternance_niveau1").dataTable().fnGetData();
-							
-							chaine+="<select name='"+colonneSansEspace+"_niveau"+true_j+"_Alternant' id='"+colonneSansEspace+"_niveau"+true_j+"_Alternant' class='form-control'>"
-							
-							for(var k=0;k<data.length;k++)
-							{
-								var choixData= (i==0) ? data[k][6] : data[k][7];
-								chaine+="<option value='"+choixData+"'>"+choixData+"</option>";
-							}
-							chaine+="</select>";
-						}
-						else
-						{
-							if(has(colonnesType_ajout,colonneSansEspace)) // elle a un type autre que text (sauf pr celles qui seront des datepicker)
-							{
-								chaine+="<input type='"+colonnesType_ajout[colonneSansEspace]+"' class='form-control' id='"+colonneSansEspace+"_niveau"+true_j+"'";
+                                var data=$("#dataTable_Alternance_niveau1").dataTable().fnGetData();
+                                
+                                chaine+="<select name='"+colonneSansEspace+"_niveau"+true_j+"_Alternant' id='"+colonneSansEspace+"_niveau"+true_j+"_Alternant' class='form-control'>"
+                                
+                                for(var k=0;k<data.length;k++)
+                                {
+                                    //var choixData= (i==0) ? data[k][6] : data[k][7];
+                                    chaine+="<option value='"+data[k][6]+"'>"+data[k][6]+"</option>";
+                                }
+                                chaine+="</select>";
+                            }
 
-								if(colonnesType_ajout[colonneSansEspace]=="text")
-									idDatePicker.push(colonneSansEspace);
-							}
-							else
-								chaine+="<input type='text' class='form-control' id='"+colonneSansEspace+"_niveau"+true_j+"'";
+                            else if((colonneSansEspace=="Dateatelier" || colonneSansEspace=="Dateconference") && true_j==2)
+                            {
+                                var data=$("#dataTable_"+true_table+"_niveau1").dataTable().fnGetData();
+                                
+                                chaine+="<select name='"+colonneSansEspace+"_niveau2' id='"+colonneSansEspace+"_niveau2' class='form-control' >"
+                                
+                                for(var k=0;k<data.length;k++)
+                                {
+                                    chaine+="<option value='"+data[k][1]+"'>"+data[k][1]+"</option>";
+                                }
+                                chaine+="</select>";
 
-							if(has(colonnesPattern_ajout,colonneSansEspace))
-								chaine+=" pattern='"+colonnesPattern_ajout[colonneSansEspace]+"' >";
-							else
-							chaine+=">";
-						}
-								   
-						chaine+="</div> </div>";
+                                
+                            }
+                            else
+                            {
+                                if(has(colonnesType_ajout,colonneSansEspace)) // elle a un type autre que text (sauf pr celles qui seront des datepicker)
+                                {
+                                    chaine+="<input type='"+colonnesType_ajout[colonneSansEspace]+"' class='form-control' id='"+colonneSansEspace+"_niveau"+true_j+"'";
+
+                                    if(colonnesType_ajout[colonneSansEspace]=="text")
+                                        idDatePicker.push(colonneSansEspace+"_niveau"+true_j);
+                                }
+                                else
+                                    chaine+="<input type='text' class='form-control' id='"+colonneSansEspace+"_niveau"+true_j+"'";
+
+                                if(has(colonnesPattern_ajout,colonneSansEspace))
+                                    chaine+=" pattern='"+colonnesPattern_ajout[colonneSansEspace]+"' >";
+                                else
+                                chaine+=">";
+                            }
+                                       
+                            chaine+="</div> </div>";
+                        }
+                       
                     }
                     chaine+="</form>";
                     $("#dialog_ajouter").append(chaine);
-                 	
-                 	for(var i=0; i< idDatePicker.length;i++)
-                 	{
-                 		console.log("#"+idDatePicker[i]);
-                 		$("#"+idDatePicker[i]).datepicker();
-                 	}
+                    
+                    for(var i=0; i< idDatePicker.length;i++)
+                    {
+                        console.log("#"+idDatePicker[i]);
+                        $("#"+idDatePicker[i]).datepicker();
+                    }
 
-                    $("#dialog_ajouter").data('dataTable', datatable ).dialog("open");
-					
-			      		
-			     };
-			  })(j,table)
-			);
+                    $("#dialog_ajouter").data("donneesDialog", { table: true_table, niveau: true_j}).dialog("open");
+                    
+                        
+                 };
+              })(j,table)
+            );
 		
 
 		}
@@ -488,66 +498,60 @@ $(document).ready(function()
 
 function editer(true_table,true_j,valueRecup)
 {				
-				$("#bEditerCycle").click(function()
-				{	alert("joj");
-					requeteAjaxCycle(nomEntreprise);
-				});
-				//alert("j "+true_j+", table "+true_table);
-				var nbSelected=$(".selected").length;
-				if( nbSelected == 0)
-						$("#dialog_refus").dialog("open");
-				else
+		$("#bEditerCycle").click(function()
+		{	alert("joj");
+			requeteAjaxCycle(nomEntreprise);
+		});
+		//alert("j "+true_j+", table "+true_table);
+		var nbSelected=$(".selected").length;
+		if( nbSelected == 0)
+				$("#dialog_refus").dialog("open");
+		else
+		{
+			$("#dialog_editer").children().next().remove();
+			//colonnes= $($("#dataTable_"+true_table+"_niveau"+true_j+" th")).text();
+			
+			var j=0;
+			while(($($("#dataTable_"+true_table+"_niveau"+true_j+" th")[j]).text())!="")
+			{
+				
+				colonnes[j]= $($("#dataTable_"+true_table+"_niveau"+true_j+" th")[j]).text();
+				j++;
+			}
+			
+			//console.log("#dataTable_"+true_table+"_niveau"+true_j+" th");
+			//console.log(colonnes);
+			var chaine="<form class='form-group' action='editer_entreprise.php' method='POST'>";
+			//colVal=$("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected");
+			colVal=[];
+			for(var i=0;i<colonnes.length;i++)
+			{
+				if ($("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected").last().find('td:nth-child('+(i+1)+')').is(":visible"))
 				{
-					$("#dialog_editer").children().next().remove();
-					//colonnes= $($("#dataTable_"+true_table+"_niveau"+true_j+" th")).text();
-					
-					var j=0;
-					while(($($("#dataTable_"+true_table+"_niveau"+true_j+" th")[j]).text())!="")
-					{
-						
-						colonnes[j]= $($("#dataTable_"+true_table+"_niveau"+true_j+" th")[j]).text();
-						j++;
-					}
-					
-					//console.log("#dataTable_"+true_table+"_niveau"+true_j+" th");
-					//console.log(colonnes);
-					var chaine="<form class='form-group' action='editer_entreprise.php' method='POST'>";
-					//colVal=$("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected");
-					colVal=[];
-					for(var i=0;i<colonnes.length;i++)
-					{
-						if ($("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected").last().find('td:nth-child('+(i+1)+')').is(":visible"))
-						{
-							colVal[i]=$("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected").last().find('td:nth-child('+(i+1)+')').text();
-							chaine+="<label>"+colonnes[i]+"</label>";
-							chaine+="<input type='text' class='form-control' name='"+colonnes[i]+"' id='"+colonnes[i]+"' value='"+ colVal[i] +"'/> <br/>";
-							
-						}
-					}
-					if(true_table=="Entreprise" && true_j==1)
-					{
-						chaine+="<td id='cycleFormation'> <input type='button' value='Editer les cycles' id='bEditerCycle'/> </td>";
-					}
-					chaine+="</form>";
-					$("#dialog_editer").append(chaine);
-					//console.log(colVal);
-					nomEntreprise=$(".selected").find('td:first').html();
-
-					$("#emplacement_editer_nomEntreprise").text(nomEntreprise);
-					
-					// ouverture pop up
-					$("#dialog_editer").data("donneesDialog", { table: true_table, niveau: true_j, colVal: colVal });
-					//$("#dialog_cycle").dialog("open");
-					$("#dialog_editer").dialog("open");
+					colVal[i]=$("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected").last().find('td:nth-child('+(i+1)+')').text();
+					chaine+="<label>"+colonnes[i]+"</label>";
+					chaine+="<input type='text' class='form-control' name='"+colonnes[i]+"' id='"+colonnes[i]+"' value='"+ colVal[i] +"'/> <br/>";
 					
 				}
-						
-				
+			}
+			if(true_table=="Entreprise" && true_j==1)
+			{
+				chaine+="<td id='cycleFormation'> <input type='button' value='Editer les cycles' id='bEditerCycle'/> </td>";
+			}
+			chaine+="</form>";
+			$("#dialog_editer").append(chaine);
+			//console.log(colVal);
+			nomEntreprise=$(".selected").find('td:first').html();
 
+			$("#emplacement_editer_nomEntreprise").text(nomEntreprise);
 			
+			// ouverture pop up
+			$("#dialog_editer").data("donneesDialog", { table: true_table, niveau: true_j, colVal: colVal });
+			//$("#dialog_cycle").dialog("open");
+			$("#dialog_editer").dialog("open");
+			
+		}   
 
-	   
-	
 }
 
 
@@ -656,31 +660,33 @@ function requeteAjaxSuppression(nomEntreprise,table,niveau,donnees)
 	});
 }
 
-function requeteAjaxSuppression(datatable)
-{	
-	$.ajax({
+function requeteAjaxAjout(nomEntreprise,table,niveau,donnees)
+{   
+    console.log("nomEntreprise : "+nomEntreprise+" table : "+table+" niveau: "+niveau+" donnees: "+donnees);
+    popupMessage("#dialog_message","<p> L'ajout n'est pas encore opérationnel !! <br/> On travaille dessus actuellement ! </p>");
+    /*$.ajax({
 
-	   type: "POST",
-	   url: "ajax/supprimer_propagation.php",
-	   dataType: "text",
-	   data: {nomEntreprise: nomEntreprise, table: table, niveau: niveau, donnees: donnees},
-	   success: function(data)
-	   {
-			if(data=="ok") 
-			{
-				popupMessage("#dialog_message","<p> Suppression effectuée avec succès !! </p>");
-				if(table=="Entreprise")
-					document.location.href="rechercher.php";
-				else
-					location.reload();
-			}
-			else
-			{
-				popupMessage("#dialog_message","<p> La suppression a echouée </p>");
-			}
-				
-	   }
-	});
+       type: "POST",
+       url: "ajax/supprimer_propagation.php",
+       dataType: "text",
+       data: {nomEntreprise: nomEntreprise, table: table, niveau: niveau, donnees: donnees},
+       success: function(data)
+       {
+            if(data=="ok") 
+            {
+                popupMessage("#dialog_message","<p> Suppression effectué avec succès !! </p>");
+                if(table=="Entreprise")
+                    document.location.href="rechercher.php";
+                else
+                    location.reload();
+            }
+            else
+            {
+                popupMessage("#dialog_message","<p> La suppression a echoué </p>");
+            }
+                
+       }
+    });*/
 }
 
 function popupMessage(idPopup,msg)
