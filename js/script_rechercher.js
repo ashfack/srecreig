@@ -242,13 +242,13 @@ function requeteAjaxTable()
                         $("#dialog_editer").children().next().remove();
                         colonnes= $("th").map(function() { return $(this).attr("id")});
 
-                        var chaine="<form action='editer_entreprise.php' method='POST'>";
+                        var chaine="<form class='form-group' action='editer_entreprise.php' method='POST'>";
 
                         for(var i=0;i<colonnes.length;i++)
                         {
-                            colVal[i]=$(".selected").find('td:nth-child('+(i+1)+')').html();
-                            chaine+="<label>"+colonnes[i]+"</label>";
-                            chaine+="<input type='text' name='"+colonnes[i]+"' id='"+colonnes[i]+"' value='"+ colVal[i] +"'/> <br/>";
+                            colVal[i]=$(".selected").find('td:nth-child('+(i+1)+')').text();
+							chaine+="<label>"+colonnes[i]+"</label>";
+							chaine+="<input type='text' class='form-control' name='"+colonnes[i]+"' id='"+colonnes[i]+"' value='"+ colVal[i] +"'/> <br/>";
                         }
                         chaine+="</form>";
                         $("#dialog_editer").append(chaine);
