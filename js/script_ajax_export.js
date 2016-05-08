@@ -1,10 +1,12 @@
 var nomEntreprise;
 $(document).ready(function()
 {
-
+		$("#bExport").hide();
 		//$("#radio").click(function(){
 		$("#bRechercher").click(function(){
 				requeteAjaxTable();
+				$("#bExport").show();
+
 			});
 
 });

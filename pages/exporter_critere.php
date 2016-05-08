@@ -99,9 +99,7 @@
                 <br>
                 <input type="button" value="Rechercher" id="bRechercher"/>
                   <div class="btn-group">
-                    <button class="btn btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Exporter la table</button>
-                      <ul class="dropdown-menu " role="menu">
-                      <li><a href="#" onclick="tablesToExcel(['datatable_entreprise'], ['Export'], 'Export.xls', 'Excel')"> <img src='../img/xls.png' width='24px'> Excel</a></li>
+                    <button id="bExport" class="btn btn-sm dropdown-toggle" onclick="tablesToExcel(['datatable_entreprise'], ['Export'], 'Export.xls', 'Excel')"  data-toggle="dropdown"><i class="fa fa-bars"></i> Exporter la table</button>
                     </ul>
                 </div>
               </center>
