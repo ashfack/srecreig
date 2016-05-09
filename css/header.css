@@ -4,7 +4,7 @@
 
 
 
-i span{
+a span{
      position:absolute;                
      margin-top:23px;
      margin-left:-35px;
@@ -20,7 +20,7 @@ i span{
 }
 
 
-i:hover span, i:focus span{
+a:hover span, a:focus span{
      transform:scale(1) rotate(0);        
      opacity:1;
 
