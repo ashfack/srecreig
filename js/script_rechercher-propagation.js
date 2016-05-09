@@ -118,11 +118,12 @@ $(document).ready(function()
 				 
 				$( this ).dialog( "close" );
 				var obj=$(this).data('donneesDialog');
+				var idSelected = $("tr.selected").children().attr('id').split('_')[1] ; 
 				console.log(obj['table']);
 				console.log(obj['niveau']);
 				console.log(obj['colVal']);
 				
-				editionAjax(nomEntreprise,obj['table'],obj['niveau'],obj['colVal']);
+				editionAjax(nomEntreprise, idSelected, obj['table'],obj['niveau'],obj['colVal']);
 				
 				
 			  }
@@ -555,7 +556,7 @@ function editer(true_table,true_j,valueRecup)
 }
 
 
-function editionAjax(nomEntreprise,table,niveau,donnees)
+function editionAjax(nomEntreprise, idSelected, table,niveau,donnees)
 {
 	donnees[0]=$( "input[name*='"+colonnes[0]+"']" ).val();
 	for(var i=1;i<donnees.length;i++)
@@ -568,7 +569,7 @@ function editionAjax(nomEntreprise,table,niveau,donnees)
 	   type: "POST",
 	   url: "ajax/editer_propagation.php",
 	   dataType: "text",
-	   data: {nomEntreprise: nomEntreprise, table: table, niveau: niveau, donnees: donnees},
+	   data: {nomEntreprise: nomEntreprise, idSelected: idSelected, table: table, niveau: niveau, donnees: donnees},
 	   success: function(data)
 	   {
 			if(data=="ok") 

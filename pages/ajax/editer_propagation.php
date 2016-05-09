@@ -2,11 +2,12 @@
     
     require'../db_connect.php';
     
-    if(isset($_POST['nomEntreprise']) && isset($_POST['table'])  && isset($_POST['niveau']) && isset($_POST['donnees'])  )
+    if(isset($_POST['nomEntreprise']) && isset($_POST['idSelected']) && isset($_POST['table'])  && isset($_POST['niveau']) && isset($_POST['donnees'])  )
     {
-        if($_POST['nomEntreprise']!="" && $_POST['table']!="" && $_POST['niveau']!="" && $_POST['donnees']!="")
+        if($_POST['nomEntreprise']!="" && $_POST['idSelected']!="" && $_POST['table']!="" && $_POST['niveau']!="" && $_POST['donnees']!="")
         {
             $nomEntreprise=$_POST['nomEntreprise'];
+            $idSelected=$_POST['idSelected'];
             $table=$_POST['table'];
 
             $donnees=$_POST['donnees'];
@@ -107,7 +108,7 @@
 			
 			elseif($table=="CoordonneesPersonne")
             {
-				$sql ="UPDATE CoordonneesPersonne,a_Entreprise_CoordonneesPersonne SET 
+				$sql ="UPDATE CoordonneesPersonne SET 
 										".$tabCorrespondanceColonnes[$cle][0]." = :donnee1,
 										".$tabCorrespondanceColonnes[$cle][1]." = :donnee2,
 										".$tabCorrespondanceColonnes[$cle][2]." = :donnee3,
@@ -115,15 +116,23 @@
 										".$tabCorrespondanceColonnes[$cle][4]." = :donnee5,
 										".$tabCorrespondanceColonnes[$cle][5]." = :donnee6,
 										".$tabCorrespondanceColonnes[$cle][6]." = :donnee7,
-										".$tabCorrespondanceColonnes[$cle][7]." = :donnee8,
-										".$tabCorrespondanceColonnes[$cle][8]." = :donnee9
-										where Entreprise_nomEntreprise= :nomEntreprise and CoordonneesPersonne_id=idCoordonneesPersonne "; //and codeNAF=:donnee2			PROBLEME			
+										".$tabCorrespondanceColonnes[$cle][7]." = :donnee8
+										where idCoordonneesPersonne = :idSelected ; 
+						UPDATE a_Entreprise_CoordonneesPersonne SET ".$tabCorrespondanceColonnes[$cle][8]." = :donnee9
+						where CoordonneesPersonne_id = :idSelected and Entreprise_nomEntreprise = :nomEntreprise ;  ";
+						 //and codeNAF=:donnee2			PROBLEME		
+
+
+										/*	.$tabCorrespondanceColonnes[$cle][8]." = :donnee9	,
+										':donnee9'=>trim($donnees[9])
+										type 
+										*/
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
 				print_r($tabCorrespondanceColonnes[$cle][5]);
 				print_r(trim($donnees[6]));
 				$rep=$conn->prepare($sql);
-				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
+				if($rep->execute(array(':idSelected'=>$idSelected, ':nomEntreprise'=>$nomEntreprise, 
 										':donnee1'=>trim($donnees[1]),
 										':donnee2'=>trim($donnees[2]),
 										':donnee3'=>trim($donnees[3]),
@@ -135,6 +144,7 @@
 										':donnee9'=>trim($donnees[9]))))
 				{
 					echo "ok";
+
 				}
 				else
 				{
