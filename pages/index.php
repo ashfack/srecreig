@@ -12,7 +12,7 @@
 
 <html>
     <head>
-        <title>Connexion appli SRE CREIG</title>
+        <title>Connexion SRE CREIG</title>
         <meta charset="UTF-8">
         <noscript>
              Pour accéder à toutes les fonctionnalités de ce site, vous devez activer JavaScript.
