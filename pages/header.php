@@ -34,12 +34,18 @@
                     </li>
                 </ul>
             </li>
-
-            <li class="dropdown">
-                <a class="dropdown-toggle" href="formulaireEntreprise.php">
-                    <i class="fa fa-plus fa-fw"></i> 
-                </a>
-            </li>
+            <?php
+                if($_SESSION['profil']!='read')
+                {
+            ?>
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" href="formulaireEntreprise.php">
+                            <i class="fa fa-plus fa-fw"></i> 
+                        </a>
+                    </li>
+            <?php    
+                }
+            ?>        
             <?php
                 if($_SESSION['profil']=='super')
                 {
