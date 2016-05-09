@@ -25,7 +25,7 @@
         
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-search fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-search fa-fw"><span>Rechercher</span></i>  <i class="fa fa-caret-down"><span>Rechercher</span></i>
                 </a>
                 <ul class="dropdown-menu ">
                     <li><a href="rechercher.php"><i class="fa fa-university fa-fw"></i> Entreprise</a>
@@ -40,7 +40,7 @@
             ?>
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="formulaireEntreprise.php">
-                            <i class="fa fa-plus fa-fw"></i> 
+                            <i class="fa fa-plus fa-fw"><span>Ajouter</span></i> 
                         </a>
                     </li>
             <?php    
@@ -52,7 +52,7 @@
             ?>            
                     <li class="dropdown">
                         <a class="dropdown-toggle" href="exporter_critere.php">
-                            <i class="glyphicon glyphicon-download"></i> 
+                            <i class="glyphicon glyphicon-download"><span>Exporter</span></i> 
                         </a>
                     </li>
             <?php    
@@ -61,7 +61,7 @@
            
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa"></i>  <i class="glyphicon glyphicon-cloud"></i>
+                    <i class="fa"></i>  <i class="glyphicon glyphicon-cloud"><span>Stockage</span></i>
                 </a>
                 <ul class="dropdown-menu ">
                     <li><a href="up_fic.php"><i class="glyphicon glyphicon-cloud-upload"></i> Joindre Fichier</a>
@@ -73,13 +73,13 @@
 
             <li class="dropdown">
                 <a class="dropdown-toggle" href="agenda.php">
-                    <i class="fa fa-calendar fa-fw"></i> 
+                    <i class="fa fa-calendar fa-fw"><span>Agenda</span></i> 
                 </a>
             </li>
             
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"></i>
+                    <i class="fa fa-user fa-fw"><span>Mon profil</span></i>  <i class="fa fa-caret-down"><span>Mon profil</span></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <?php
