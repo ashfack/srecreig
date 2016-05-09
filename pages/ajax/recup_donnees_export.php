@@ -2,6 +2,22 @@
 require("security.php");
 require("../db_connect.php");
 
+
+function colonne_null(&$tab_donnees)
+{
+    foreach ($tab_donnees as $key => $value) 
+    {
+            // echo ("A : \n");
+            // echo $value;
+
+        if($value=="NaN" || $value=="null" || $value=="undefined" || $value=="")
+        {
+            $tab_donnees[$key]="";
+            }
+    }
+}
+
+
 $tab_donnees=array();
 $selectedFullTxt = " "; 
 if(isset($_POST['table']) && $_POST['table']!="" && isset($_POST['liste_choix']) && $_POST['liste_choix']!="")
@@ -71,7 +87,8 @@ if(isset($_POST['table']) && $_POST['table']!="" && isset($_POST['liste_choix'])
    
     while ($donnees = $rep->fetch())
     {
-         $arraytablee=array();
+        colonne_null($donnees);
+        $arraytablee=array();
         foreach ($champs_tmp as $value) 
         {
             array_push($arraytablee,$donnees[$value]);
@@ -88,4 +105,10 @@ if(isset($_POST['table']) && $_POST['table']!="" && isset($_POST['liste_choix'])
     
 }
      echo json_encode( $tab_donnees);
+
+
+
+
 ?>
+
+
