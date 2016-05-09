@@ -116,12 +116,14 @@
     <!-- </form>
   -->
   <div id="div_datatable"></div>
+  </div>
   <?php
 }     
 else {
   echo "Vous n'avez pas les droits ! " ;
 }
 ?>  
+
 </body>
 </html>
 <!-- JQUERY DATATABLE CSS -->

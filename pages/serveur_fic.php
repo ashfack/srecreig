@@ -1,3 +1,27 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Upload de fichier</title>
+    <meta charset="UTF-8">
+
+    <link rel="stylesheet" href="../css/style.css">
+    <?php
+    	require('header_link.html');
+    ?>
+    <?php
+    	require('header_script.html');
+    ?>
+</head>
+
+<body>
+    <?php require('header.php'); ?>
+    <div class="container">
+        <div class="col-md-3"></div>
+        <div class="col-md-6">
+        <h1 class="text-center">Fichier :  </h1><br>
+
+
 <?php
 	set_time_limit(300); 
 	
@@ -59,3 +83,9 @@
 	// pas oublier de fermer la connexion
 	// ftp_close($conn_id);
 ?>
+
+        </div>
+        <div class="col-md-3"></div>
+    </div>
+</body>
+</html>	
