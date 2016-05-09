@@ -1,5 +1,13 @@
 var colVal = new Array();
 var colonnes = new Array();
+var colonnesPattern_ajout={Telephonefixe:"^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$", 
+								Telephonemobile: "^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$", 
+								Mail: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$", 
+								Anneeentree: "[1-9]{1}", Datedebutcontrat: "20[0-9]{2}", Datefincontrat: "20[0-9]{2}",  
+								Anneedeversement: "20[0-9]{2}", Montantpromesseversement: "\d+", Montantverse: "\d+", 
+								Montant:"\d+", Heuredebut: "([01]?[0-9]|2[0-3]):[0-5][0-9]", Heurefin: "([01]?[0-9]|2[0-3]):[0-5][0-9]", 
+								Anneedeparticipation: "20[0-9]{2}", Nom: "[a-zA-Z-_]*", Prenom: "[a-zA-Z-_]*", NumeroSIRET: "[0-9]{14}", Codepostal: "[0-9]{5}"   
+							};
 $(document).ready(function() 
 {
 	$("#tabs").tabs();
@@ -159,7 +167,7 @@ $(document).ready(function()
         draggable: false,
         modal: true,
         buttons: [
-        {
+       {
                 text: "Valider",
                 icons: 
                 {
@@ -168,10 +176,27 @@ $(document).ready(function()
                 click: function() 
                 {
 
-                    $(this).dialog("close");
+                    
                     var obj=$(this).data('donneesDialog');
+                    var table=obj['table'];
+                    var niveau=obj['niveau'];
+                   	
                     //recuperer les valeurs des inputs
-                    requeteAjaxAjout(nomEntreprise,obj['table'],obj['niveau'], []);
+                   var fils=$("#form_"+table+"_niveau"+niveau).children();
+                   var elem;
+                   var data= new Array();
+                   for(var i=0;i<fils.length;i++)
+                   {
+                   		elem=$(fils[i]).find('input');
+                   	
+                   		if(elem.length!=0)
+                   			data.push($(elem).val());
+                   		else
+                   			data.push($(fils[i]).find('option:selected').val());
+                   }
+                    $(this).dialog("close");
+                    requeteAjaxAjout(nomEntreprise,obj['table'],obj['niveau'], data);
+
                 }
         }, {
                 text: "Annuler",
@@ -198,14 +223,7 @@ $(document).ready(function()
 								Heuredebut: "time", Heurefin: "time", Anneedeparticipation: "number"    
 							};
 
-	var colonnesPattern_ajout={Telephonefixe:"^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$", 
-								Telephonemobile: "^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$", 
-								Mail: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$", 
-								Anneeentree: "[1-9]{1}", Datedebutcontrat: "20[0-9]{2}", Datefincontrat: "20[0-9]{2}",  
-								Anneedeversement: "20[0-9]{2}", Montantpromesseversement: "\d+", Montantverse: "\d+", 
-								Montant:"\d+", Heuredebut: "([01]?[0-9]|2[0-3]):[0-5][0-9]", Heurefin: "([01]?[0-9]|2[0-3]):[0-5][0-9]", 
-								Anneedeparticipation: "20[0-9]{2}", Nom: "[a-zA-Z-_]*", Prenom: "[a-zA-Z-_]*", NumeroSIRET: "[0-9]{14}", Codepostal: "[0-9]{5}"   
-							};
+	
 
 
 
@@ -363,6 +381,12 @@ $(document).ready(function()
               (function(true_j,true_table){
                  return function()
                  {
+                 	if(true_j != 1 && $("#dataTable_"+true_table+"_niveau1").dataTable().fnGetData().length==0)
+                 	{
+                 		popupMessage("#dialog_message","<p> Veuillez d'abord entrer des données dans le niveau 1 </p>");
+                 		return;
+                 	}
+
                     var datatable = "#dataTable_"+true_table+"_niveau"+true_j;
 
                     $("#dialog_ajouter").children().remove();
@@ -377,20 +401,23 @@ $(document).ready(function()
                                                     });
 
 
-                    var chaine="<form action='#' method='POST' id='form_"+datatable+"'>";
+                    var chaine="<form action='#' method='POST' id='form_"+true_table+"_niveau"+true_j+"'>";
                     var idDatePicker= new Array();
                     for(var i=0;i<colonnes.length;i++) 
                     {
                         var colonneSansEspace = colonnes[i].replace(/\s/g,"");
-                        
+                        var objet_OptionCiviliteType={Civilite: ["Madame", "Monsieur"], Type: ["Primaire","Secondaire","TA","Autre"]};
                         //provisoire --> je vais lies les deux selects
                         if(true_table=="Alternance" && colonneSansEspace=="Prenom" && i==1)
-                            continue;
+                        {
+                        	continue;
+                        }
+                           
                         else
                         {
-                            chaine+=" <div class='form-group row'> \
-                                    <label for='"+colonneSansEspace+"' class='col-sm-3 form-control-label'>"+colonnes[i]+": </label> \
-                                    <div class='col-sm-10'>";
+                            chaine+=" <div class='form-group row'>";
+                            chaine+="<label for='"+true_table+"_"+colonneSansEspace+"' class='col-sm-3 form-control-label'>"+colonnes[i]+": </label>";
+                            chaine+="<div class='col-sm-10'>";
 
                             if(true_table=="Alternance" && colonneSansEspace=="Nom" && i==0 )
                             {
@@ -398,7 +425,7 @@ $(document).ready(function()
 
                                 var data=$("#dataTable_Alternance_niveau1").dataTable().fnGetData();
                                 
-                                chaine+="<select name='"+colonneSansEspace+"_niveau"+true_j+"_Alternant' id='"+colonneSansEspace+"_niveau"+true_j+"_Alternant' class='form-control'>"
+                                chaine+="<select name='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"_Alternant' id='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"_Alternant' class='form-control'>"
                                 
                                 for(var k=0;k<data.length;k++)
                                 {
@@ -412,7 +439,7 @@ $(document).ready(function()
                             {
                                 var data=$("#dataTable_"+true_table+"_niveau1").dataTable().fnGetData();
                                 
-                                chaine+="<select name='"+colonneSansEspace+"_niveau2' id='"+colonneSansEspace+"_niveau2' class='form-control' >"
+                                chaine+="<select name='"+true_table+"_"+colonneSansEspace+"_niveau2' id='"+true_table+"_"+colonneSansEspace+"_niveau2' class='form-control' >"
                                 
                                 for(var k=0;k<data.length;k++)
                                 {
@@ -422,29 +449,45 @@ $(document).ready(function()
 
                                 
                             }
+                            else if(colonneSansEspace=="Civilite" || colonneSansEspace=="Type")
+                            {
+                            	
+	                        	chaine+="<select name='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"' id='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"' class='form-control' >";
+	                        	
+	                        	var tabOption= objet_OptionCiviliteType[colonneSansEspace];
+	                        	for(var k=0;k<tabOption.length;k++)
+                                {
+                                    chaine+="<option value='"+tabOption[k]+"'>"+tabOption[k]+"</option>";
+                                }
+	                        	chaine+="</select>";
+                            }
                             else
                             {
                                 if(has(colonnesType_ajout,colonneSansEspace)) // elle a un type autre que text (sauf pr celles qui seront des datepicker)
                                 {
-                                    chaine+="<input type='"+colonnesType_ajout[colonneSansEspace]+"' class='form-control' id='"+colonneSansEspace+"_niveau"+true_j+"'";
+                                    chaine+="<input type='"+colonnesType_ajout[colonneSansEspace]+"' class='form-control' id='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"'>";
 
                                     if(colonnesType_ajout[colonneSansEspace]=="text")
                                         idDatePicker.push(colonneSansEspace+"_niveau"+true_j);
                                 }
                                 else
-                                    chaine+="<input type='text' class='form-control' id='"+colonneSansEspace+"_niveau"+true_j+"'";
+                                    chaine+="<input type='text' class='form-control' id='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"' >";
 
-                                if(has(colonnesPattern_ajout,colonneSansEspace))
-                                    chaine+=" pattern='"+colonnesPattern_ajout[colonneSansEspace]+"' >";
+                                /*if(has(colonnesPattern_ajout,colonneSansEspace))
+                                    chaine+=" pattern='"+colonnesPattern_ajout[colonneSansEspace]+"' required>";
                                 else
-                                chaine+=">";
+                                chaine+=">";*/
                             }
                                        
                             chaine+="</div> </div>";
                         }
                        
                     }
+
+                    //chaine+="<button type='submit' class='btn btn-default'>Valider</button>";
                     chaine+="</form>";
+                    
+                    //console.log(chaine);
                     $("#dialog_ajouter").append(chaine);
                     
                     for(var i=0; i< idDatePicker.length;i++)
@@ -700,6 +743,11 @@ function popupMessage(idPopup,msg)
 function has(object, key) 
 {
       return object ? hasOwnProperty.call(object, key) : false;
+}
+
+function verifierPattern(tabDonnees)
+{
+
 }
 
 
