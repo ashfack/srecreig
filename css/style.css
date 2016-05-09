@@ -1,3 +1,12 @@
+ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all 
+{
+  padding: 0 0 0 !important;
+}
+button.btn.btn-sm.dropdown-toggle 
+{
+    margin-left: 65px;
+    margin-bottom: -70px;
+}
 /* ajoutEntreprise */ 
 .input-group, input-group {
     margin-bottom: 7px !important;
