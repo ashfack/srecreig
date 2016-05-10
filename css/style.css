@@ -6,8 +6,8 @@ ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all
 }
 button.btn.btn-sm.dropdown-toggle 
 {
-    margin-left: 65px;
-    margin-bottom: -70px;
+    margin-left: 230px;
+    margin-bottom: -45px;
 }
 /* ajoutEntreprise */ 
 .input-group, input-group {
@@ -27,6 +27,31 @@ th.Commentaires.entreprise.ui-state-default {
     width: 350px !important;
 }
 
+div#tabs {
+    border: 0px !important;
+}
+
+ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all {
+    background-color: white;
+    border-color: white;
+}
+
+li.ui-state-default.ui-corner-top {
+    border-bottom-width: 1px !important;
+    border-bottom-right-radius: 3px;
+    border-bottom-left-radius: 3px;
+
+}
+
+
+th 
+{
+  border-color:rgb(221, 221, 221) !important;
+}
+td 
+{
+  border-color:floralwhite !important;
+}
 /*
 body{
   line-height:1;

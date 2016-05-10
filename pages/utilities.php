@@ -194,7 +194,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			}
 			
 			
-			echo "<table width='100%' border='0' cellspacing='0' cellpadding='0' id='dataTable_".$table."_"."$nom_niveau' class='display'>";
+			echo "<table width='100%' border='1' cellspacing='0' cellpadding='0' id='dataTable_".$table."_"."$nom_niveau' class='display'>";
 			echo "<thead><tr>";
 
 			$colonne_array_affichage=transformeChaine($niveau);
@@ -273,7 +273,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			}
 			
 			echo '</tbody>';
-			echo '<tfoot><tr><th colspan="9"></th></tr></tfoot>';
+			echo '<tfoot><tr></tr></tfoot>';
 			echo '</table>';
 			echo '<br/>';
 
