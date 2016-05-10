@@ -368,6 +368,9 @@
 			
 			elseif($table=="TaxeApprentissage" && $niveau==3) 
             {
+            		date_default_timezone_set('Europe/Paris');
+				$donnees[4]= date('Y-m-d', time());				 
+
 				$sql ="UPDATE TaxeApprentissage SET 
 										".$tabCorrespondanceColonnes[$cle][0]." = :donnee1,
 										".$tabCorrespondanceColonnes[$cle][1]." = :donnee2,

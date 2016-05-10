@@ -15,7 +15,7 @@ button.btn.btn-sm.dropdown-toggle
 }
 
 /** Taille colonne a ajuster selon l'écran **/
-th.Commentaires.ui-state-default {
+/*th.Commentaires.ui-state-default {
     width: 350px;
 }
 
@@ -30,7 +30,7 @@ th.Annee.ui-state-default, th.Date.ui-state-default {
 th.Commentaires.entreprise.ui-state-default {
     width: 350px !important;
 }
-
+*/
 div#tabs {
     border: 0px !important;
 }
