@@ -211,7 +211,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 				if(substr($nom_col_affichage, 0,2)=="id" || $nom_col_affichage=="Nom entreprise")
 					echo  "<th name='cacher'> $nom_col_affichage </th>";
 				else
-					echo  "<th> $nom_col_affichage </th>";
+					echo  "<th class=\"$nom_col_affichage\"> $nom_col_affichage </th>";
 			}
 
 			echo '</tr></thead>';

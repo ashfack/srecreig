@@ -1,6 +1,8 @@
 ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all 
 {
   padding: 0 0 0 !important;
+  margin-top: -3px;
+  margin-left: -3px;
 }
 button.btn.btn-sm.dropdown-toggle 
 {
@@ -11,6 +13,20 @@ button.btn.btn-sm.dropdown-toggle
 .input-group, input-group {
     margin-bottom: 7px !important;
 }
+
+/** Taille colonne a ajuster selon l'écran **/
+th.Commentaires.ui-state-default {
+    width: 350px;
+}
+
+th.Civilite.ui-state-default {
+    width: 50px;
+}
+
+th.Commentaires.entreprise.ui-state-default {
+    width: 350px !important;
+}
+
 /*
 body{
   line-height:1;
