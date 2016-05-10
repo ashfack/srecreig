@@ -24,15 +24,15 @@
 	{
 		$nomEntreprise=$_GET['nomEntreprise'];
 		?>
-		<div class="col-md-3"> 
+		<div class="col-md-1"> 
 
 		</div> 
-		<div class="col-md-6"> 
+		<div class="col-md-10"> 
 		<div id="div_titre_nomEntreprise">
 			<h1 class="text-center" id="titre_nomEntreprise">  <?php echo $nomEntreprise; ?> </h1>
 		</div>
 		</div> 
-		<div class="col-md-3"> 		<?php
+		<div class="col-md-1"> 		<?php
 		if($_SESSION['profil']=='super') {   ?>  
 		      <button class="btn btn-sm dropdown-toggle" onclick="tablesToExcel(['dataTable_Entreprise_niveau1','dataTable_Entreprise_niveau2','dataTable_CoordonneesPersonne_niveau1','dataTable_Alternance_niveau1','dataTable_Alternance_niveau2','dataTable_Alternance_niveau3','dataTable_Alternance_niveau4','dataTable_TaxeApprentissage_niveau1','dataTable_TaxeApprentissage_niveau2','dataTable_AtelierRH_niveau1','dataTable_Conference_niveau1', 'dataTable_Conference_niveau2', 'dataTable_ForumSG_niveau1'], ['Entreprise 1','Entreprise 2','CoordonneesPersonne','Alternance 1','Alternance 2','Alternance 3','Alternance 4','Taxe apprentissage 1','Taxe apprentissage 2','Atelier RH', 'Conférence 1', 'Conférence 2', 'Forum SG'], '<?php echo $nomEntreprise; ?>.xls', 'Excel')" data-toggle="	dropdown">
 		      <i class="fa fa-download"></i> Exporter 
@@ -44,8 +44,8 @@
 		<div id="tabs" >
 					
 <div class="col-md-2"> </div>
-<div class="col-md-8"> 		 		
-<ul style="margin-left:50px;"> 		
+<div class="col-md-9"> 		 		
+<ul> 		
 
 
 				<?php 
@@ -57,7 +57,7 @@
 				{
 					echo "<li> <a href=\"#menu_".$table_array[$i]."\">".$table_onglet_array[$i]."</a> </li>";
 				}
-				echo "</ul></div><div class=\"col-md-2\"> </div>		<div class=\"col-md-12\"> 		 ";
+				echo "</ul></div><div class=\"col-md-1\"> </div>		<div class=\"col-md-12\"> 		 ";
 				
 				// faut ajouter la formation, action mené !
 				$tab_niveaux_Entreprise=array("niveau1"=>array("nomEntreprise","groupe","adresse","complementAdresse","codePostal","ville","pays","commentairesEntreprise"),
