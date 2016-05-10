@@ -6,18 +6,19 @@
 
 $(document).ready(function() 
 {
-
 var flag=1;
-$(".dropdown").click(function(){
+$("ul.nav.navbar-top-links.navbar-right").children().click(function(){
     if(flag==1){
-			$("span").hide(); 
+		$(".infobulle").hide(); 
         flag=0;
     } else {
          flag=1;   
+         $(".infobulle").show(); 
+
     }
 });
-$(".dropdown").blur(function(){
-		$("span").show(); 
+$("ul.nav.navbar-top-links.navbar-right").children().blur(function(){
+		$(".infobulle").show(); 
          flag=1; 
 });
 
