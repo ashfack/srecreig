@@ -221,7 +221,7 @@ table.display tr.odd.row_selected td {background-color: #9FAFD1;}
 }
 #menu_Entreprise, #menu_CoordonneesPersonne, #menu_Alternance, #menu_TaxeApprentissage, #menu_AtelierRH, #menu_Conference, #menu_ForumSG  
 {
-    height: 450px;
+    height: 500px;
     overflow: auto;
 }
 

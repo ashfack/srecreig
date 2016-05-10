@@ -25,7 +25,7 @@
         
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-search fa-fw"><span>Rechercher</span></i>  <i class="fa fa-caret-down"><span>Rechercher</span></i>
+                    <i class="fa fa-search fa-fw"></i>  <i class="fa fa-caret-down"><span>Rechercher</span></i>
                 </a>
                 <ul class="dropdown-menu ">
                     <li><a href="rechercher.php"><i class="fa fa-university fa-fw"></i> Entreprise</a>
@@ -79,7 +79,7 @@
             
             <li class="dropdown">
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-                    <i class="fa fa-user fa-fw"><span>Mon profil</span></i>  <i class="fa fa-caret-down"><span>Mon profil</span></i>
+                    <i class="fa fa-user fa-fw"></i>  <i class="fa fa-caret-down"><span>Profil</span></i>
                 </a>
                 <ul class="dropdown-menu dropdown-user">
                     <?php

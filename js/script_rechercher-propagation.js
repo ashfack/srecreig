@@ -134,7 +134,8 @@ $(document).ready(function()
 				console.log(obj['colVal']);
 				
 				editionAjax(nomEntreprise, idSelected, idCoordRH, idCoordRH2, obj['table'],obj['niveau'],obj['colVal']);
-				
+				location.reload();
+
 				
 			  }
 			},

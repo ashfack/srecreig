@@ -185,12 +185,12 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 				if($table=="Alternance" && ($num_niveau==3 || $num_niveau==4))
 				{
 					if($num_niveau==3)
-						echo "<h3 id='titre_".$table."_"."niveau3' style='cursor:pointer' class='titreDataTable'> <img src='../img/minus.png' alt='Icon zoom'> Niveau 3 (Maître d'apprentissage) </h3>";
+						echo "<h3 id='titre_".$table."_"."niveau3' style='cursor:pointer; margin-top: 60px;' class='titreDataTable'> <img src='../img/minus.png' alt='Icon zoom'> Niveau 3 (Maître d'apprentissage) </h3>";
 					else
-						echo "<h3 id='titre_".$table."_"."niveau4' style='cursor:pointer' class='titreDataTable' > <img src='../img/minus.png' alt='Icon zoom'> Niveau 4 (Responsable RH) </h3>";
+						echo "<h3 id='titre_".$table."_"."niveau4' style='cursor:pointer; margin-top: 60px;' class='titreDataTable' > <img src='../img/minus.png' alt='Icon zoom'> Niveau 4 (Responsable RH) </h3>";
 				}
 				else
-					echo "<h3 id='titre_".$table."_"."$nom_niveau' style='cursor:pointer' class='titreDataTable' > <img src='../img/minus.png' alt='Icon zoom'> Niveau $num_niveau </h3>";
+					echo "<h3 id='titre_".$table."_"."$nom_niveau' style='cursor:pointer; margin-top: 60px;' class='titreDataTable' > <img src='../img/minus.png' alt='Icon zoom'> Niveau $num_niveau </h3>";
 			}
 			
 			
@@ -284,17 +284,31 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 
 			if($_SESSION['profil']=='write' || $_SESSION['profil']=='super')
 			{
-				echo "<input type='button' value='Modifier' id='bModifier_".$table."_"."$nom_niveau'/>";
+				?>
+				<div class="col-md-4"></div>
+				<div class="col-md-4">
+				<center>
+				<?php 
 				if(!in_array($cle, $tablePasBoutonAjouter ))
-					echo "<input type='button' value='Ajouter' id='bAjouter_".$table."_"."$nom_niveau'/>";
+					echo "<button class=\"btn btn-sm\" type='button' value='Ajouter' style =\"margin-left: 10px;\" id='bAjouter_".$table."_"."$nom_niveau'><i class=\"fa fa-plus\"></i> Ajouter</button> ";
+
+				echo "<button class=\"btn btn-sm\" style =\"margin-left: 10px;\" type='button' value='Modifier' id='bModifier_".$table."_"."$nom_niveau'><i class=\"fa fa-pencil\"></i> Modifier</button>";
+
+
+
 			}
 			if($_SESSION['profil']=='super')
 			{
 				if(!in_array($cle, $tablePasBoutonSupprimer ))
-				echo "<input type='button' value='Supprimer' id='bSupprimer_".$table."_"."$nom_niveau'/>";
+				echo "<button class=\"btn btn-sm\" style =\"margin-left: 10px;\" type='button' value='Supprimer' id='bSupprimer_".$table."_"."$nom_niveau'><i class=\"fa fa-trash-o\"></i> Supprimer</button> ";
 			}
 			$cle_CP_presente=false;
 			$colonne_array_affichage=array();
+				?>
+				</center>
+				</div>
+				<div class="col-md-4"></div>
+				<?php
 		}
 		
 		echo "</div>";
