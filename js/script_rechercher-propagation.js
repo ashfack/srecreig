@@ -127,13 +127,16 @@ $(document).ready(function()
 				$( this ).dialog( "close" );
 				var obj=$(this).data('donneesDialog');
 				var idSelected = $("tr.selected").children().attr('id').split('_')[1] ;
-				var idCoordRH = $("tr.selected").find('td:nth-child(3)').text();
-				var idCoordRH2 = $("tr.selected").find('td:nth-child(4)').text();
+				var idCoordRH = $("tr.selected").last().find('td:nth-child(3)').text();
+				var idSelected2 = $("tr.selected").last().find('td:nth-child(1)').text();
+				var idCoordRH2 = $("tr.selected").last().find('td:nth-child(4)').text();
+				var nom1;
+				var prenom1;
 				console.log(obj['table']);
 				console.log(obj['niveau']);
 				console.log(obj['colVal']);
 				
-				editionAjax(nomEntreprise, idSelected, idCoordRH, idCoordRH2, obj['table'],obj['niveau'],obj['colVal']);
+				editionAjax(nomEntreprise, idSelected, idSelected2, idCoordRH, idCoordRH2, nom1, prenom1, obj['table'],obj['niveau'],obj['colVal']);
 				location.reload();
 
 				
@@ -581,7 +584,7 @@ function editer(true_table,true_j,valueRecup)
 					{
 						chaine+="<textarea class='form-control' name='"+colonnes[i]+"' id='"+colonnes[i]+"'>"+ colVal[i] +"</textarea>";	
 					}
-					else
+					else if(colonnes[i]!=" Montant verse " && colonnes[i]!=" Questionnaire de satisfaction " && colonnes[i]!=" Cycle Formation " )
 					{
 						chaine+="<input type='text' class='form-control' name='"+colonnes[i]+"' id='"+colonnes[i]+"' value='"+ colVal[i] +"'/> <br/>";	
 					}
@@ -610,7 +613,7 @@ function editer(true_table,true_j,valueRecup)
 }
 
 
-function editionAjax(nomEntreprise, idSelected, idCoordRH, idCoordRH2, table,niveau,donnees)
+function editionAjax(nomEntreprise, idSelected, idSelected2, idCoordRH, idCoordRH2, nom1, prenom1, table,niveau,donnees)
 {
 	donnees[0]=$( "input[name*='"+colonnes[0]+"']" ).val();
 	for(var i=1;i<donnees.length;i++)
@@ -624,12 +627,14 @@ function editionAjax(nomEntreprise, idSelected, idCoordRH, idCoordRH2, table,niv
 			donnees[i]=$( "input[name*='"+colonnes[i]+"']" ).val();
 		}
 	}
+	var nom1=$("form input")[3].value;
+	var prenom1=$("form input")[4].value;
 	$.ajax({
 
 	   type: "POST",
 	   url: "ajax/editer_propagation.php",
 	   dataType: "text",
-	   data: {nomEntreprise: nomEntreprise, idSelected: idSelected, idCoordRH: idCoordRH, idCoordRH2: idCoordRH2, table: table, niveau: niveau, donnees: donnees},
+	   data: {nomEntreprise: nomEntreprise, idSelected: idSelected, idSelected2: idSelected2, idCoordRH: idCoordRH, idCoordRH2: idCoordRH2, nom1: nom1, prenom1: prenom1, table: table, niveau: niveau, donnees: donnees},
 	   success: function(data)
 	   {
 			if(data=="ok") 

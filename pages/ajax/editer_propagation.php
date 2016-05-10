@@ -8,14 +8,21 @@
         {
             $nomEntreprise=$_POST['nomEntreprise'];
             $idSelected=$_POST['idSelected'];
+			$idSelected2=$_POST['idSelected2'];
             $table=$_POST['table'];
 			$idCoordRH=$_POST['idCoordRH'];
 			$idCoordRH2=$_POST['idCoordRH2'];
+			$nom1=$_POST['nom1'];
+			$prenom1=$_POST['prenom1'];
 
             $donnees=$_POST['donnees'];
             $niveau=$_POST['niveau'];
-            //echo "<p> $nomEntreprise $table $niveau </p>";
+              $donnees=$_POST['donnees'];
+            $niveau=$_POST['niveau'];
+            echo "<p> nom1 : $nom1 prenom1: $prenom1 niveau : $niveau </p>";
             print_r($donnees);
+			print_r($nom1);
+			print_r($prenom1);
       
 
            $tabCorrespondanceColonnes=array("EntrepriseNiveau1"=>array("groupe","adresse","complementAdresse","codePostal","ville","pays","commentairesEntreprise","nomEntreprise"),
@@ -228,10 +235,12 @@
 				}
            
             }
-       
-			elseif($table=="Alternance" && $niveau==3) // NON FAIT
+			
+		
+			elseif($table=="Alternance" && $niveau==3) 
             {
-				$sql ="UPDATE Alternance join CoordonneesPersonne Coord_alternant on CoordonneesPersonne_alternant=Coord_alternant.idCoordonneesPersonne join CoordonneesPersonne Coord_RH on CoordonneesPersonne_RH=Coord_RH.idCoordonneesPersonne  SET 
+				
+				$sql ="UPDATE Alternance, CoordonneesPersonne Coord_alternant, CoordonneesPersonne Coord_RH  SET 
 										Coord_alternant.".$tabCorrespondanceColonnes[$cle][0]." = :donnee1,
 										Coord_alternant.".$tabCorrespondanceColonnes[$cle][1]." = :donnee2,
 										Coord_RH.".$tabCorrespondanceColonnes[$cle][2]." = :donnee3,
@@ -242,24 +251,24 @@
 										Coord_RH.".$tabCorrespondanceColonnes[$cle][7]." = :donnee8,
 										Coord_RH.".$tabCorrespondanceColonnes[$cle][8]." = :donnee9,
 										Coord_RH.".$tabCorrespondanceColonnes[$cle][9]." = :donnee10
-										where Entreprise_nomEntreprise= :nomEntreprise and CoordonneesPersonne_alternant= :idSelected and CoordonneesPersonne_RH= :idCoordRH2 ";
-				print_r($tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][1]);
+										where Entreprise_nomEntreprise= :nomEntreprise and Coord_alternant.idCoordonneesPersonne= :idSelected2 and Coord_RH.idCoordonneesPersonne= :idCoordRH2 ";
+				print_r($nomEntreprise);
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
 				$rep=$conn->prepare($sql);
 				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
-										':idSelected'=>$idSelected,
+										':idSelected2'=>$idSelected2,
 										':idCoordRH2'=>$idCoordRH2,
 										':donnee1'=>trim($donnees[1]),
 										':donnee2'=>trim($donnees[2]),
-										':donnee3'=>trim($donnees[3]),
-										':donnee4'=>trim($donnees[4]),
-										':donnee5'=>trim($donnees[5]),
-										':donnee6'=>trim($donnees[6]),
-										':donnee7'=>trim($donnees[7]),
-										':donnee8'=>trim($donnees[8]),
-										':donnee9'=>trim($donnees[9]),
-										':donnee10'=>trim($donnees[10]))))
+										':donnee3'=>trim($donnees[4]),
+										':donnee4'=>$nom1,
+										':donnee5'=>$prenom1,
+										':donnee6'=>trim($donnees[7]),
+										':donnee7'=>trim($donnees[8]),
+										':donnee8'=>trim($donnees[9]),
+										':donnee9'=>trim($donnees[10]),
+										':donnee10'=>trim($donnees[11]))))
 				{
 					echo "ok";
 				}
@@ -272,27 +281,35 @@
 			
 			elseif($table=="Alternance" && $niveau==4) // NON FAIT
             {
-				$sql ="UPDATE Alternance,CoordonneesPersonne SET 
-										".$tabCorrespondanceColonnes[$cle][0]." = :donnee1,
-										".$tabCorrespondanceColonnes[$cle][1]." = :donnee2,
-										".$tabCorrespondanceColonnes[$cle][2]." = :donnee3,
-										".$tabCorrespondanceColonnes[$cle][3]." = :donnee4,
-										".$tabCorrespondanceColonnes[$cle][4]." = :donnee5,
-										".$tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][1]." = :donnee6,
-										".$tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][2]." = :donnee7
-										where Entreprise_nomEntreprise= :nomEntreprise and CoordonneesPersonne_alternant= idCoordonneesPersonne ";
-				print_r($tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][1]);
+				$sql ="UPDATE Alternance, CoordonneesPersonne Coord_alternant, CoordonneesPersonne Coord_RH  SET 
+										Coord_alternant.".$tabCorrespondanceColonnes[$cle][0]." = :donnee1,
+										Coord_alternant.".$tabCorrespondanceColonnes[$cle][1]." = :donnee2,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][2]." = :donnee3,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][3]." = :donnee4,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][4]." = :donnee5,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][5]." = :donnee6,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][6]." = :donnee7,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][7]." = :donnee8,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][8]." = :donnee9,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][9]." = :donnee10
+										where Entreprise_nomEntreprise= :nomEntreprise and Coord_alternant.idCoordonneesPersonne= :idSelected2 and Coord_RH.idCoordonneesPersonne= :idCoordRH2 ";
+				print_r($nomEntreprise);
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
 				$rep=$conn->prepare($sql);
 				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
+										':idSelected2'=>$idSelected2,
+										':idCoordRH2'=>$idCoordRH2,
 										':donnee1'=>trim($donnees[1]),
 										':donnee2'=>trim($donnees[2]),
-										':donnee3'=>trim($donnees[3]),
-										':donnee4'=>trim($donnees[4]),
-										':donnee5'=>trim($donnees[5]),
-										':donnee6'=>trim($donnees[6]),
-										':donnee7'=>trim($donnees[7]))))
+										':donnee3'=>trim($donnees[4]),
+										':donnee4'=>$nom1,
+										':donnee5'=>$prenom1,
+										':donnee6'=>trim($donnees[7]),
+										':donnee7'=>trim($donnees[8]),
+										':donnee8'=>trim($donnees[9]),
+										':donnee9'=>trim($donnees[10]),
+										':donnee10'=>trim($donnees[11]))))
 				{
 					echo "ok";
 				}
@@ -300,6 +317,7 @@
 				{
 					echo "erreur suppression";
 				}
+           
            
             }
 			
