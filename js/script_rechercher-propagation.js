@@ -634,7 +634,7 @@ function editionAjax(nomEntreprise, idSelected, idCoordRH, idCoordRH2, table,niv
 	   {
 			if(data=="ok") 
 			{
-				// window.location.reload();
+				window.location.reload();
 			}
 			else if(data=="erreur édition")
 			{
