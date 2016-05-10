@@ -9,6 +9,8 @@
             $nomEntreprise=$_POST['nomEntreprise'];
             $idSelected=$_POST['idSelected'];
             $table=$_POST['table'];
+			$idCoordRH=$_POST['idCoordRH'];
+			$idCoordRH2=$_POST['idCoordRH2'];
 
             $donnees=$_POST['donnees'];
             $niveau=$_POST['niveau'];
@@ -19,16 +21,16 @@
            $tabCorrespondanceColonnes=array("EntrepriseNiveau1"=>array("groupe","adresse","complementAdresse","codePostal","ville","pays","commentairesEntreprise","nomEntreprise"),
 												"EntrepriseNiveau2"=>array("numeroSIRET","NAF_codeNAF","libelleNAF","origine","typeContact","partenariatOfficiel","taille","alias"),
                                                 "CoordonneesPersonneNiveau1"=>array("civilite","nom","prenom","fonction","telephoneFixe","telephoneMobile","mail","commentaires","type"),
-                                                "AlternanceNiveau1"=>array("formationAlternance","anneeEntree","typeContrat"),
+                                                "AlternanceNiveau1"=>array("formationAlternance","anneeEntree","typeContrat","civilite","nom","prenom","fonction","telephoneFixe","telephoneMobile","mail","commentaires"),
 												"AlternanceNiveau2"=>array("dateRVPreparation","dateRVSimulation","dateDebutContrat","dateFinContrat","dateEnvoiFLAuCFA","docAAttacher"),
-												"AlternanceNiveau3"=>array("CoordonneesPersonne_maitre"),
-												"AlternanceNiveau4"=>array("CoordonneesPersonne_alternant","CoordonneesPersonne_RH"),
+												"AlternanceNiveau3"=>array("nom","prenom","civilite","nom","prenom","fonction","telephoneFixe","telephoneMobile","mail","commentaires"),
+												"AlternanceNiveau4"=>array("nom","prenom","civilite","nom","prenom","fonction","telephoneFixe","telephoneMobile","mail","commentaires"),
                                                 "TaxeApprentissageNiveau1"=>array("anneeDeVersement","montantPromesseVersement","montantVerse","versementVia","rapprochementAC"),
-												"TaxeApprentissageNiveau2"=>array("anneeDeVersement","cycle","mention","specialite","categorie","montant"),
-												"TaxeApprentissageNiveau3"=>array("anneeDeVersement","OCTA","dateEnregistrement","dateDerniereModification","modePaiement","dateTransmissionChequeAC","commentairesTaxe"),
+												"TaxeApprentissageNiveau2"=>array("anneeDeVersement","dateEnregistrement","cycle","mention","specialite","categorie","montant"),
+												"TaxeApprentissageNiveau3"=>array("anneeDeVersement","dateEnregistrement", "OCTA","dateDerniereModification","modePaiement","dateTransmissionChequeAC","commentairesTaxe"),
                                                 "AtelierRHNiveau1"=>array("dateAtelier","creneauAtelier"),
                                                 "AtelierRHNiveau2"=>array("dateAtelier","civilite","nom","prenom","fonction","telephoneFixe","telephoneMobile","mail","commentaires"),
-                                                "ConferenceNiveau1"=>array("typeConference","dateConference","heureDebut","heureFin","lieuConference","themeConference"),
+                                                "ConferenceNiveau1"=>array("dateConference","typeConference","heureDebut","heureFin","lieuConference","themeConference"),
                                                 "ConferenceNiveau2"=>array("dateConference","civilite","nom","prenom","fonction","telephoneFixe","telephoneMobile","mail","commentaires"),
                                                 "ForumSGNiveau1"=>array("anneeDeParticipation","questionnaireDeSatisfaction","commentairesForum")
                                                 );
@@ -155,34 +157,35 @@
 			
 			elseif($table=="Alternance" && $niveau==1)
             {
-				$sql ="UPDATE Alternance,CoordonneesPersonne, a_Entreprise_CoordonneesPersonne SET 
+				$sql ="UPDATE Alternance join CoordonneesPersonne on CoordonneesPersonne_alternant=idCoordonneesPersonne SET 
 										".$tabCorrespondanceColonnes[$cle][0]." = :donnee1,
 										".$tabCorrespondanceColonnes[$cle][1]." = :donnee2,
 										".$tabCorrespondanceColonnes[$cle][2]." = :donnee3,
-										".$tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][0]." = :donnee4,
-										".$tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][1]." = :donnee5,
-										".$tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][2]." = :donnee6,
-										".$tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][3]." = :donnee7,
-										".$tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][4]." = :donnee8,
-										".$tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][5]." = :donnee9,
-										".$tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][6]." = :donnee10,
-										".$tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][7]." = :donnee11
-										where a_Entreprise_CoordonneesPersonne.Entreprise_nomEntreprise= :nomEntreprise and CoordonneesPersonne_id= idCoordonneesPersonne "; //and codeNAF=:donnee2			PROBLEME			
+										".$tabCorrespondanceColonnes[$cle][3]." = :donnee4,
+										".$tabCorrespondanceColonnes[$cle][4]." = :donnee5,
+										".$tabCorrespondanceColonnes[$cle][5]." = :donnee6,
+										".$tabCorrespondanceColonnes[$cle][6]." = :donnee7,
+										".$tabCorrespondanceColonnes[$cle][7]." = :donnee8,
+										".$tabCorrespondanceColonnes[$cle][8]." = :donnee9,
+										".$tabCorrespondanceColonnes[$cle][9]." = :donnee10,
+										".$tabCorrespondanceColonnes[$cle][10]." = :donnee11
+										where Entreprise_nomEntreprise= :nomEntreprise and CoordonneesPersonne_alternant=:idSelected "; //OK			
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
 				$rep=$conn->prepare($sql);
 				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
-										':donnee1'=>trim($donnees[0]),
-										':donnee2'=>trim($donnees[1]),
-										':donnee3'=>trim($donnees[2]),
-										':donnee4'=>trim($donnees[3]),
-										':donnee5'=>trim($donnees[4]),
-										':donnee6'=>trim($donnees[5]),
-										':donnee7'=>trim($donnees[6]),
-										':donnee8'=>trim($donnees[7]),
-										':donnee9'=>trim($donnees[8]),
-										':donnee10'=>trim($donnees[9]),
-										':donnee11'=>trim($donnees[10]))))
+										':idSelected'=>$idSelected,
+										':donnee1'=>trim($donnees[1]),
+										':donnee2'=>trim($donnees[2]),
+										':donnee3'=>trim($donnees[3]),
+										':donnee4'=>trim($donnees[5]),
+										':donnee5'=>trim($donnees[6]),
+										':donnee6'=>trim($donnees[7]),
+										':donnee7'=>trim($donnees[8]),
+										':donnee8'=>trim($donnees[9]),
+										':donnee9'=>trim($donnees[10]),
+										':donnee10'=>trim($donnees[11]),
+										':donnee11'=>trim($donnees[12]))))
 				{
 					echo "ok";
 				}
@@ -195,7 +198,7 @@
 			
 			elseif($table=="Alternance" && $niveau==2)
             {
-				$sql ="UPDATE Alternance,CoordonneesPersonne SET 
+				$sql ="UPDATE Alternance join CoordonneesPersonne on CoordonneesPersonne_alternant=idCoordonneesPersonne SET 
 										".$tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][1]." = :donnee1,
 										".$tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][2]." = :donnee2,
 										".$tabCorrespondanceColonnes[$cle][0]." = :donnee3,
@@ -203,11 +206,12 @@
 										".$tabCorrespondanceColonnes[$cle][2]." = :donnee5,
 										".$tabCorrespondanceColonnes[$cle][3]." = :donnee6,
 										".$tabCorrespondanceColonnes[$cle][4]." = :donnee7
-										where Entreprise_nomEntreprise= :nomEntreprise and CoordonneesPersonne_alternant= idCoordonneesPersonne "; //and codeNAF=:donnee2			PROBLEME			
+										where Entreprise_nomEntreprise= :nomEntreprise and CoordonneesPersonne_alternant= :idSelected "; //and codeNAF=:donnee2			PROBLEME			
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
 				$rep=$conn->prepare($sql);
 				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
+										':idSelected'=>$idSelected,
 										':donnee1'=>trim($donnees[1]),
 										':donnee2'=>trim($donnees[2]),
 										':donnee3'=>trim($donnees[3]),
@@ -227,27 +231,35 @@
        
 			elseif($table=="Alternance" && $niveau==3) // NON FAIT
             {
-				$sql ="UPDATE Alternance,CoordonneesPersonne SET 
-										".$tabCorrespondanceColonnes[$cle][0]." = :donnee1,
-										".$tabCorrespondanceColonnes[$cle][1]." = :donnee2,
-										".$tabCorrespondanceColonnes[$cle][2]." = :donnee3,
-										".$tabCorrespondanceColonnes[$cle][3]." = :donnee4,
-										".$tabCorrespondanceColonnes[$cle][4]." = :donnee5,
-										".$tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][1]." = :donnee6,
-										".$tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][2]." = :donnee7
-										where Entreprise_nomEntreprise= :nomEntreprise and CoordonneesPersonne_alternant= idCoordonneesPersonne ";
+				$sql ="UPDATE Alternance join CoordonneesPersonne Coord_alternant on CoordonneesPersonne_alternant=Coord_alternant.idCoordonneesPersonne join CoordonneesPersonne Coord_RH on CoordonneesPersonne_RH=Coord_RH.idCoordonneesPersonne  SET 
+										Coord_alternant.".$tabCorrespondanceColonnes[$cle][0]." = :donnee1,
+										Coord_alternant.".$tabCorrespondanceColonnes[$cle][1]." = :donnee2,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][2]." = :donnee3,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][3]." = :donnee4,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][4]." = :donnee5,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][5]." = :donnee6,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][6]." = :donnee7,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][7]." = :donnee8,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][8]." = :donnee9,
+										Coord_RH.".$tabCorrespondanceColonnes[$cle][9]." = :donnee10
+										where Entreprise_nomEntreprise= :nomEntreprise and CoordonneesPersonne_alternant= :idSelected and CoordonneesPersonne_RH= :idCoordRH2 ";
 				print_r($tabCorrespondanceColonnes["CoordonneesPersonneNiveau1"][1]);
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
 				$rep=$conn->prepare($sql);
 				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
+										':idSelected'=>$idSelected,
+										':idCoordRH2'=>$idCoordRH2,
 										':donnee1'=>trim($donnees[1]),
 										':donnee2'=>trim($donnees[2]),
 										':donnee3'=>trim($donnees[3]),
 										':donnee4'=>trim($donnees[4]),
 										':donnee5'=>trim($donnees[5]),
 										':donnee6'=>trim($donnees[6]),
-										':donnee7'=>trim($donnees[7]))))
+										':donnee7'=>trim($donnees[7]),
+										':donnee8'=>trim($donnees[8]),
+										':donnee9'=>trim($donnees[9]),
+										':donnee10'=>trim($donnees[10]))))
 				{
 					echo "ok";
 				}
@@ -299,11 +311,12 @@
 										".$tabCorrespondanceColonnes[$cle][2]." = :donnee3,
 										".$tabCorrespondanceColonnes[$cle][3]." = :donnee4,
 										".$tabCorrespondanceColonnes[$cle][4]." = :donnee5
-										where Entreprise_nomEntreprise= :nomEntreprise"; 
+										where Entreprise_nomEntreprise= :nomEntreprise and idTA =:idSelected"; 
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
 				$rep=$conn->prepare($sql);
 				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
+										':idSelected'=>$idSelected,
 										':donnee1'=>trim($donnees[1]),
 										':donnee2'=>trim($donnees[2]),
 										':donnee3'=>trim($donnees[3]),
@@ -326,17 +339,22 @@
 										".$tabCorrespondanceColonnes[$cle][1]." = :donnee2,
 										".$tabCorrespondanceColonnes[$cle][2]." = :donnee3,
 										".$tabCorrespondanceColonnes[$cle][3]." = :donnee4,
-										".$tabCorrespondanceColonnes[$cle][4]." = :donnee5
-										where Entreprise_nomEntreprise= :nomEntreprise and TaxeApprentissage_id=CycleFormation_id"; 
+										".$tabCorrespondanceColonnes[$cle][4]." = :donnee5,
+										".$tabCorrespondanceColonnes[$cle][5]." = :donnee6,
+										".$tabCorrespondanceColonnes[$cle][6]." = :donnee7
+										where Entreprise_nomEntreprise= :nomEntreprise and TaxeApprentissage_id=:idSelected"; 
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
 				$rep=$conn->prepare($sql);
 				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
+										':idSelected'=>$idSelected,
 										':donnee1'=>trim($donnees[1]),
 										':donnee2'=>trim($donnees[2]),
-										':donnee3'=>trim($donnees[3]),
-										':donnee4'=>trim($donnees[4]),
-										':donnee5'=>trim($donnees[5])
+										':donnee3'=>trim($donnees[4]),
+										':donnee4'=>trim($donnees[5]),
+										':donnee5'=>trim($donnees[6]),
+										':donnee6'=>trim($donnees[7]),
+										':donnee7'=>trim($donnees[8])
 										)))
 				{
 					echo "ok";
@@ -358,11 +376,12 @@
 										".$tabCorrespondanceColonnes[$cle][4]." = :donnee5,
 										".$tabCorrespondanceColonnes[$cle][5]." = :donnee6,
 										".$tabCorrespondanceColonnes[$cle][6]." = :donnee7
-										where Entreprise_nomEntreprise= :nomEntreprise"; 
+										where Entreprise_nomEntreprise= :nomEntreprise and idTA =:idSelected"; 
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
 				$rep=$conn->prepare($sql);
 				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
+										':idSelected'=>$idSelected,
 										':donnee1'=>trim($donnees[1]),
 										':donnee2'=>trim($donnees[2]),
 										':donnee3'=>trim($donnees[3]),
@@ -381,16 +400,17 @@
            
             }
        
-            elseif($table=="AtelierRH" && $niveau==1) // A TESTER
+            elseif($table=="AtelierRH" && $niveau==1) 
             {
-				$sql ="UPDATE atelierrh SET 
+				$sql ="UPDATE AtelierRH SET 
 										".$tabCorrespondanceColonnes[$cle][0]." = :donnee1,
 										".$tabCorrespondanceColonnes[$cle][1]." = :donnee2
-										where Entreprise_nomEntreprise= :nomEntreprise"; 
+										where Entreprise_nomEntreprise= :nomEntreprise and idAtelierRH=:idSelected"; 
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
 				$rep=$conn->prepare($sql);
 				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
+										':idSelected'=>$idSelected,
 										':donnee1'=>trim($donnees[1]),
 										':donnee2'=>trim($donnees[2])
 										)))
@@ -404,9 +424,9 @@
            
             }
 			
-			elseif($table=="AtelierRH" && $niveau==2) // A TESTER
+			elseif($table=="AtelierRH" && $niveau==2) 
             {
-				$sql ="UPDATE atelierrh,CoordonneesPersonne SET 
+				$sql ="UPDATE AtelierRH join a_AtelierRH_CoordonneesPersonne on idAtelierRH=AtelierRH_id join CoordonneesPersonne on CoordonneesPersonne_id=idCoordonneesPersonne SET 
 										".$tabCorrespondanceColonnes[$cle][0]." = :donnee1,
 										".$tabCorrespondanceColonnes[$cle][1]." = :donnee2,
 										".$tabCorrespondanceColonnes[$cle][2]." = :donnee3,
@@ -416,20 +436,21 @@
 										".$tabCorrespondanceColonnes[$cle][6]." = :donnee7,
 										".$tabCorrespondanceColonnes[$cle][7]." = :donnee8,
 										".$tabCorrespondanceColonnes[$cle][8]." = :donnee9
-										where Entreprise_nomEntreprise= :nomEntreprise "; //and codeNAF=:donnee2			PROBLEME			
+										where Entreprise_nomEntreprise= :nomEntreprise and CoordonneesPersonne_id=:idCoordRH"; 			
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
 				$rep=$conn->prepare($sql);
 				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
-										':donnee1'=>trim($donnees[0]),
-										':donnee2'=>trim($donnees[1]),
-										':donnee3'=>trim($donnees[2]),
-										':donnee4'=>trim($donnees[3]),
-										':donnee5'=>trim($donnees[4]),
-										':donnee6'=>trim($donnees[5]),
-										':donnee7'=>trim($donnees[6]),
-										':donnee8'=>trim($donnees[7]),
-										':donnee9'=>trim($donnees[8]))))
+										':idCoordRH'=>$idCoordRH,
+										':donnee1'=>trim($donnees[1]),
+										':donnee2'=>trim($donnees[3]),
+										':donnee3'=>trim($donnees[4]),
+										':donnee4'=>trim($donnees[5]),
+										':donnee5'=>trim($donnees[6]),
+										':donnee6'=>trim($donnees[7]),
+										':donnee7'=>trim($donnees[8]),
+										':donnee8'=>trim($donnees[9]),
+										':donnee9'=>trim($donnees[10]))))
 				{
 					echo "ok";
 				}
@@ -442,24 +463,25 @@
 			
 			elseif($table=="Conference" && $niveau==1) // A TESTER
             {
-				$sql ="UPDATE conference SET 
+				$sql ="UPDATE Conference SET 
 										".$tabCorrespondanceColonnes[$cle][0]." = :donnee1,
 										".$tabCorrespondanceColonnes[$cle][1]." = :donnee2,
 										".$tabCorrespondanceColonnes[$cle][2]." = :donnee3,
 										".$tabCorrespondanceColonnes[$cle][3]." = :donnee4,
 										".$tabCorrespondanceColonnes[$cle][4]." = :donnee5,
 										".$tabCorrespondanceColonnes[$cle][5]." = :donnee6
-										where Entreprise_nomEntreprise= :nomEntreprise "; 	
+										where Entreprise_nomEntreprise= :nomEntreprise and idConference=:idSelected"; 	
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
 				$rep=$conn->prepare($sql);
 				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
-										':donnee1'=>trim($donnees[0]),
-										':donnee2'=>trim($donnees[1]),
-										':donnee3'=>trim($donnees[2]),
-										':donnee4'=>trim($donnees[3]),
-										':donnee5'=>trim($donnees[4]),
-										':donnee6'=>trim($donnees[5]))))
+										':idSelected'=>$idSelected,
+										':donnee1'=>trim($donnees[1]),
+										':donnee2'=>trim($donnees[2]),
+										':donnee3'=>trim($donnees[3]),
+										':donnee4'=>trim($donnees[4]),
+										':donnee5'=>trim($donnees[5]),
+										':donnee6'=>trim($donnees[6]))))
 				{
 					echo "ok";
 				}
@@ -472,7 +494,7 @@
 			
 			elseif($table=="Conference" && $niveau==2) // A TESTER
             {
-				$sql ="UPDATE conference, CoordonneesPersonne SET 
+				$sql ="UPDATE Conference, CoordonneesPersonne SET 
 										".$tabCorrespondanceColonnes[$cle][0]." = :donnee1,
 										".$tabCorrespondanceColonnes[$cle][1]." = :donnee2,
 										".$tabCorrespondanceColonnes[$cle][2]." = :donnee3,
@@ -482,11 +504,12 @@
 										".$tabCorrespondanceColonnes[$cle][6]." = :donnee7,
 										".$tabCorrespondanceColonnes[$cle][7]." = :donnee8,
 										".$tabCorrespondanceColonnes[$cle][8]." = :donnee9
-										where Entreprise_nomEntreprise= :nomEntreprise "; 	
+										where Entreprise_nomEntreprise= :nomEntreprise and idCoordonneesPersonne=:idCoordRH "; 	
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
 				$rep=$conn->prepare($sql);
 				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
+										':idCoordRH'=>$idCoordRH,
 										':donnee1'=>trim($donnees[0]),
 										':donnee2'=>trim($donnees[1]),
 										':donnee3'=>trim($donnees[2]),
