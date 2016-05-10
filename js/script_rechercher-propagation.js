@@ -577,7 +577,15 @@ function editer(true_table,true_j,valueRecup)
 				{
 					colVal[i]=$("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected").last().find('td:nth-child('+(i+1)+')').text();
 					chaine+="<label>"+colonnes[i]+"</label>";
-					chaine+="<input type='text' class='form-control' name='"+colonnes[i]+"' id='"+colonnes[i]+"' value='"+ colVal[i] +"'/> <br/>";
+					if (colonnes[i].substring(0,5)==" Comm")
+					{
+						chaine+="<textarea class='form-control' name='"+colonnes[i]+"' id='"+colonnes[i]+"'>"+ colVal[i] +"</textarea>";	
+					}
+					else
+					{
+						chaine+="<input type='text' class='form-control' name='"+colonnes[i]+"' id='"+colonnes[i]+"' value='"+ colVal[i] +"'/> <br/>";	
+					}
+					
 					
 				}
 			}
@@ -607,8 +615,14 @@ function editionAjax(nomEntreprise, idSelected, idCoordRH, idCoordRH2, table,niv
 	donnees[0]=$( "input[name*='"+colonnes[0]+"']" ).val();
 	for(var i=1;i<donnees.length;i++)
 	{
-		donnees[i]=$( "input[name*='"+colonnes[i]+"']" ).val();
-		
+		if (colonnes[i].substring(0,5)==" Comm")
+		{
+			donnees[i]=$( "textarea[name*='"+colonnes[i]+"']" ).val();
+		}
+		else
+		{	
+			donnees[i]=$( "input[name*='"+colonnes[i]+"']" ).val();
+		}
 	}
 	$.ajax({
 
