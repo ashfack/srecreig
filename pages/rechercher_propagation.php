@@ -45,7 +45,7 @@
 					
 <div class="col-md-2"> </div>
 <div class="col-md-8"> 		 		
-<ul style="margin-left:100px;"> 		
+<ul style="margin-left:50px;"> 		
 
 
 				<?php 

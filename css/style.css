@@ -20,7 +20,11 @@ th.Commentaires.ui-state-default {
 }
 
 th.Civilite.ui-state-default {
-    width: 50px;
+    width: 40px;
+}
+
+th.Annee.ui-state-default, th.Date.ui-state-default {
+    width: 90px;
 }
 
 th.Commentaires.entreprise.ui-state-default {
