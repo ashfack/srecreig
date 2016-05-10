@@ -1,5 +1,5 @@
 <?php
-    
+    require("security.php"); 
     require'../db_connect.php';
     
     if(isset($_POST['nomEntreprise']) && isset($_POST['table'])  && isset($_POST['niveau']) && isset($_POST['donnees'])  )
