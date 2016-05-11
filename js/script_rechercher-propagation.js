@@ -619,15 +619,19 @@ function editer(true_table,true_j,valueRecup)
 				if ($("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected").last().find('td:nth-child('+(i+1)+')').is(":visible"))
 				{
 					colVal[i]=$("#dataTable_"+true_table+"_niveau"+true_j+" tr.selected").last().find('td:nth-child('+(i+1)+')').text();
-					chaine+="<label>"+colonnes[i]+"</label>";
+
 					if (colonnes[i].substring(0,5)==" Comm")
 					{
+						chaine+="<label>"+colonnes[i]+"</label>";						
 						chaine+="<textarea class='form-control' name='"+colonnes[i]+"' id='"+colonnes[i]+"'>"+ colVal[i] +"</textarea>";	
 					}
 					else if(colonnes[i]!=" Montant verse " && colonnes[i]!=" Questionnaire de satisfaction " && colonnes[i]!=" Cycle Formation " )
 					{
+						chaine+="<label>"+colonnes[i]+"</label>";
 						chaine+="<input type='text' class='form-control' name='"+colonnes[i]+"' id='"+colonnes[i]+"' value='"+ colVal[i] +"'/> <br/>";	
 					}
+					else{}
+					
 					
 					
 				}
