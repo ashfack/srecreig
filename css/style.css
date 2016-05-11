@@ -1,3 +1,8 @@
+input#bVoirCycle {
+    color: white;
+    background-color: lightslategrey;
+}
+
 ul.ui-tabs-nav.ui-helper-reset.ui-helper-clearfix.ui-widget-header.ui-corner-all 
 {
   padding: 0 0 0 !important;

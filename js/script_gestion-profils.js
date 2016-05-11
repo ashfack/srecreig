@@ -52,7 +52,7 @@ function f_new()
     }
     else
     {
-      alert('Utilisateur avec un format d\'identifiant incorrect !');
+      alert('Utilisateur avec un format d\'identifiant incorrect ! (Format : prenom.nom)');
     }
    
 }

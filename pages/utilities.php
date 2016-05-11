@@ -285,8 +285,6 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			if($_SESSION['profil']=='write' || $_SESSION['profil']=='super')
 			{
 				?>
-				<div class="col-md-4"></div>
-				<div class="col-md-4">
 				<center>
 				<?php 
 				if(!in_array($cle, $tablePasBoutonAjouter ))
@@ -306,8 +304,6 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			$colonne_array_affichage=array();
 				?>
 				</center>
-				</div>
-				<div class="col-md-4"></div>
 				<?php
 		}
 		

@@ -63,9 +63,12 @@
                 <a class="dropdown-toggle" data-toggle="dropdown" href="#">
                     <i class="fa"></i>  <i class="glyphicon glyphicon-cloud"><span class="infobulle">Stockage</span></i>
                 </a>
-                <ul class="dropdown-menu ">
+                <ul class="dropdown-menu ">            <?php
+                if($_SESSION['profil']!='read')
+                {            ?>            
                     <li><a href="up_fic.php"><i class="glyphicon glyphicon-cloud-upload"></i> Joindre Fichier</a>
                     </li>
+                    <?php  }       ?> 
                     <li><a href="Stockage.php"><i class="glyphicon glyphicon-cloud"></i> Espace stockage</a>
                     </li>
                 </ul>
