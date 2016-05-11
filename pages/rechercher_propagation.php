@@ -108,27 +108,30 @@
 			?>
 		</div>
 		
-		<!-- <div id="dialog_cycle"  title="Cycle Formation">
+		<div id="dialog_cycle"  title="Cycle Formation">
 			<p> En bleu, les cycles/formations liés à l'entreprise (Pour modifier les cycles cliquez sur le bouton "Modifier"):  </p>
 			<?php
-				// require_once ("jstree_cycle.php");
+				require_once ("jstree_cycle.php");
 			?>
-		</div> -->
-		<div id="dialog_cycle"  title="Cycle Formation">
+		</div>
+		<!-- <div id="dialog_cycle"  title="Cycle Formation">
 			<p>  Pour le moment, allez visualisez dans la rubrique Modifier </p>
 			<?php
 				// require_once ("jstree_cycle.php");
 			?>
-		</div>
+		</div> -->
 
 		<div id="dialog_editer" title="Edition">
 			<p>
 			  Edition selon Entreprise <span id="emplacement_editer_nomEntreprise"> </span>
 			</p>
 			<div id="dialog_cycle_edit"  title="Cycle Formation Edition">
-				<?php
-					require("jstree_cycle.php");
-				?>
+				<p>
+			  		Non opérationnel pour le moment
+				</p>
+				<!-- <?php
+					// require("jstree_cycle.php");
+				?> -->
 			</div>
 		</div>
 

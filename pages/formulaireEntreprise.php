@@ -13,7 +13,12 @@ require ('header_script.html');
 ?>
       <script src="../js/script_ajout_entreprise.js"></script>
       <script type="text/javascript" src="../js/ajout_entreprise.js"></script> 
+      
+      <!-- Necessaire pour l'affichage de la jstree -->
       <link rel="stylesheet" href="../framework/jsTree/dist/themes/default/style.min.css" />
+      <script src="../framework/jsTree/dist/jstree.min.js"></script>
+      <script  src="../js/jstree_cycle.js"></script>
+
    </head>
    <body>
   <div class="se-pre-con">
