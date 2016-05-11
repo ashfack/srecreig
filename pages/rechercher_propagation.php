@@ -12,6 +12,11 @@
 	<link href="../css/jquery.dataTables.min.css" rel="stylesheet">
 	<script type="text/javascript" src="../js/export_zip.js"></script>
 
+
+	<link rel="stylesheet" href="../framework/jsTree/dist/themes/default/style.min.css" />
+	<script src="../framework/jsTree/dist/jstree.min.js"></script>
+	<script  src="../js/jstree_cycle.js"></script>
+
 </head>
 <body>
 	<div class="se-pre-con">
@@ -102,13 +107,32 @@
 				echo "Erreur le nom de l'entreprise n'est pas specifié ";
 			?>
 		</div>
-
-		<div id="dialog_cycle"  title="Cycle Formation">
+		
+		<!-- <div id="dialog_cycle"  title="Cycle Formation">
 			<p> En bleu, les cycles/formations liés à l'entreprise (Pour modifier les cycles cliquez sur le bouton "Modifier"):  </p>
 			<?php
-			require ("jstree_cycle.php");
+				// require_once ("jstree_cycle.php");
+			?>
+		</div> -->
+		<div id="dialog_cycle"  title="Cycle Formation">
+			<p>  Pour le moment, allez visualisez dans la rubrique Modifier </p>
+			<?php
+				// require_once ("jstree_cycle.php");
 			?>
 		</div>
+
+		<div id="dialog_editer" title="Edition">
+			<p>
+			  Edition selon Entreprise <span id="emplacement_editer_nomEntreprise"> </span>
+			</p>
+			<div id="dialog_cycle_edit"  title="Cycle Formation Edition">
+				<?php
+					require("jstree_cycle.php");
+				?>
+			</div>
+		</div>
+
+		
 
 		<div id="dialog_message"  title="Information">
 			
@@ -122,20 +146,13 @@
         
         </div>
 		
-		<div id="dialog_editer" title="Edition">
-			<p>
-			  Edition selon Entreprise <span id="emplacement_editer_nomEntreprise"> </span>
-			</p>
-			<?php
-			require('jstree_cycle.php');
-			?>
-		</div>
+		
 </div> 
 
 </div> 
 	</body>
 	
 <script type="text/javascript" src="../js/script_rechercher-propagation.js"></script>
-<link rel="stylesheet" href="../framework/jsTree/dist/themes/default/style.min.css" />
+
 </html>
 

@@ -1,3 +1,7 @@
+<!-- <link rel="stylesheet" href="../framework/jsTree/dist/themes/default/style.min.css" />
+<script src="../framework/jsTree/dist/jstree.min.js"></script>
+<script  src="../js/jstree_cycle.js"></script> -->
+
 <?php
 require ("db_connect.php");
 
@@ -47,6 +51,3 @@ catch(PDOException $e)
    echo "Impossible de joindre le serveur de base de données";
 }
 ?>
-
-<script src="../framework/jsTree/dist/jstree.min.js"></script>
-<script  src="../js/jstree_cycle.js"></script>

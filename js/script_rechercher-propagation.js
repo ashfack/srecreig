@@ -37,6 +37,34 @@ $(document).ready(function()
 
 		]
 	});
+	$("#dialog_cycle_edit").dialog(
+	{
+		height:542,
+		width:542,
+		autoOpen:false,
+		dialogClass: "alert",
+		position: { my: "center bottom", at: "center center", of: window, within: $("#tabs")},
+		draggable: false,
+		modal:true,
+		buttons: 
+		[
+		    {
+		      text: "OK",
+		      icons: 
+		      {
+		        primary: "ui-icon-check"
+		      },
+		      click: function() 
+		      {
+		      	$( this ).dialog( "close" );
+		      	var obj=$('#jstree').jstree(true).get_selected();
+		      	console.log('hey '+obj);
+		      	requeteAjaxCycleUpdate(nomEntreprise);
+		      }
+		    }
+
+		]
+	});
 
 	$( "#dialog_message" ).dialog({
 		height:200,
@@ -552,19 +580,18 @@ $(document).ready(function()
     	requeteAjaxCycle(nomEntreprise);
     });
 	
-
-
-
 			
 });
 
+function cycle()
+{
+	// alert("jojo");
+	var nomEntreprise=($("#titre_nomEntreprise").text()).trim();
+	requeteAjaxCycleEdit(nomEntreprise);
+}
 
 function editer(true_table,true_j,valueRecup)
 {				
-		$("#bEditerCycle").click(function()
-		{	alert("joj");
-			requeteAjaxCycle(nomEntreprise);
-		});
 		//alert("j "+true_j+", table "+true_table);
 		var nbSelected=$(".selected").length;
 		if( nbSelected == 0)
@@ -607,7 +634,7 @@ function editer(true_table,true_j,valueRecup)
 			}
 			if(true_table=="Entreprise" && true_j==1)
 			{
-				chaine+="<td id='cycleFormation'> <input type='button' value='Editer les cycles' id='bEditerCycle'/> </td>";
+				chaine+="<td id='cycleFormation'> <input type='button' value='Editer les cycles' id='bEditerCycle' onclick='cycle()'/> </td>";
 			}
 			chaine+="</form>";
 			$("#dialog_editer").append(chaine);
@@ -710,6 +737,43 @@ function requeteAjaxCycle(nomEntreprise)
 	});
 
 }
+function requeteAjaxCycleEdit(nomEntreprise)
+{
+
+	$.ajax({
+
+	   type: "POST",
+	   url: "ajax/recup_cycleFormation.php",
+	   dataType: "json",
+	   data: 'nomEntreprise='+nomEntreprise,
+	   success: function(data)
+	   {
+			if(data.length>0) 
+			{
+				//$.jstree.defaults.checkbox.whole_node=false;
+		   		//$.jstree.defaults.checkbox.tie_selection=false;
+		   		//$.jstree.reference('#jstree').redraw();
+		   		$('#jstree').jstree("deselect_all");
+
+				for(var i in data)
+				{
+					$('#jstree').jstree('select_node', data[i].toString());
+				}
+					
+				var test = $('#jstree').jstree(true).get_json('#', { 'flat': true });
+				
+				//$.jstree.reference('#jstree').disable_checkbox();
+				//$.jstree.reference('#jstree').hide_checkboxes();
+
+				$("#dialog_cycle_edit").dialog("open");
+			
+			}
+			else
+				popupMessage("#dialog_message","<p> L'entreprise n'est liée à aucun cycle/formation <br/> <br/> Cliquez sur le bouton \"Ajouter\" pour lui attribuer des cycles/formations </p>");
+	   }
+	});
+
+}
 
 function requeteAjaxSuppression(nomEntreprise,table,niveau,donnees)
 {
@@ -739,6 +803,30 @@ function requeteAjaxSuppression(nomEntreprise,table,niveau,donnees)
 	});
 }
 
+function requeteAjaxCycleUpdate(nomEntreprise)
+{
+	var liste_cycle_id= $('#jstree').jstree(true).get_selected();
+	$.ajax({
+
+	   type: "POST",
+	   url: "ajax/cycle_update.php",
+	   dataType: "text",
+	   data: "nomEntreprise="+nomEntreprise+"&liste_cycle_id="+liste_cycle_id,
+	   success: function(data)
+	   {
+			if(data=="ok") 
+			{
+				popupMessage("#dialog_message","<p> Mise à jour effectuée avec succès !! </p>");
+				location.reload();
+			}
+			else
+			{
+				popupMessage("#dialog_message","<p> La mise à jour a echoué </p>");
+			}
+				
+	   }
+	});
+}
 function requeteAjaxAjout(nomEntreprise,table,niveau,donnees)
 {   
     //console.log("nomEntreprise : "+nomEntreprise+" table : "+table+" niveau: "+niveau+" donnees: "+donnees);
@@ -764,6 +852,7 @@ function requeteAjaxAjout(nomEntreprise,table,niveau,donnees)
        }
     });
 }
+
 
 function popupMessage(idPopup,msg)
 {

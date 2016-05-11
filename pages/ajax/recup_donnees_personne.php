@@ -12,7 +12,7 @@
 
     $tab_donnees=array();
     
-    if(isset($_POST['nom']&&$_POST['prenom']) 
+    if(isset($_POST['nom'])&& isset($_POST['prenom'])) 
     {
        
         $nomAlternant=$_POST['choix_alternant'];
