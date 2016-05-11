@@ -126,12 +126,9 @@
 			  Edition selon Entreprise <span id="emplacement_editer_nomEntreprise"> </span>
 			</p>
 			<div id="dialog_cycle_edit"  title="Cycle Formation Edition">
-				<p>
-			  		Non opérationnel pour le moment
-				</p>
-				<!-- <?php
-					// require("jstree_cycle.php");
-				?> -->
+				<?php
+					require("jstree_cycle_bis.php");
+				?>
 			</div>
 		</div>
 
