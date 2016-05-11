@@ -817,7 +817,7 @@ function requeteAjaxCycleUpdate(nomEntreprise)
 			if(data=="ok") 
 			{
 				popupMessage("#dialog_message","<p> Mise à jour effectuée avec succès !! </p>");
-				location.reload();
+				// location.reload();
 			}
 			else
 			{
