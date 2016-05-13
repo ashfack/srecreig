@@ -111,15 +111,9 @@
 		<div id="dialog_cycle"  title="Cycle Formation">
 			<p> En bleu, les cycles/formations liés à l'entreprise (Pour modifier les cycles cliquez sur le bouton "Modifier"):  </p>
 			<?php
-				require_once ("jstree_cycle.php");
+				include("jstree_cycle.php");
 			?>
 		</div>
-		<!-- <div id="dialog_cycle"  title="Cycle Formation">
-			<p>  Pour le moment, allez visualisez dans la rubrique Modifier </p>
-			<?php
-				// require_once ("jstree_cycle.php");
-			?>
-		</div> -->
 
 		<div id="dialog_editer" title="Edition">
 			<p>
@@ -127,7 +121,9 @@
 			</p>
 			<div id="dialog_cycle_edit"  title="Cycle Formation Edition">
 				<?php
-					require("jstree_cycle_bis.php");
+					
+					$id="jstree_edit";
+					include("jstree_cycle.php");
 				?>
 			</div>
 		</div>

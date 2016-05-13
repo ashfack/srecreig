@@ -123,9 +123,8 @@ require ('header_script.html');
                            <textarea class="form-control" rows="14" id="commentairesEntreprise"></textarea>
                         </div>
                         <?php
-require ("jstree_cycle.php");
-
-?>
+                           include ("jstree_cycle.php");
+                        ?>
                      <div class="col-md-10"></div>
                   </div>
                   <div class="col-md-12">

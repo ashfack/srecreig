@@ -5,7 +5,10 @@
 <?php
 require ("db_connect.php");
 
-echo " <div id=\"jstree\">";
+if(!isset($id))
+    $id="jstree";
+  
+echo " <div id='".$id."'>";
 $sql = "Select idCycleformation, cycle from CycleFormation where mention is null ";
 try
 {

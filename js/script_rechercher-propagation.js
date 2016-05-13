@@ -37,6 +37,7 @@ $(document).ready(function()
 
 		]
 	});
+
 	$("#dialog_cycle_edit").dialog(
 	{
 		height:542,
@@ -65,6 +66,32 @@ $(document).ready(function()
 
 		]
 	});
+
+	$('#jstree_edit')
+       .on("init.jstree", function(e, data) 
+       {
+           data.instance.settings.checkbox.cascade = '';
+       })
+       .on("changed.jstree", function(e, data) 
+       {
+           /*console.log("toto");
+           console.log(data.selected);*/
+       })
+       .jstree
+       ({
+           checkbox: 
+           {
+               three_state: false,
+           },
+           types: 
+           {
+               "default": 
+               {
+                   "icon": "glyphicon glyphicon-flash"
+               }
+           },
+           plugins: ['wholerow', 'checkbox', 'types']
+       }),
 
 	$( "#dialog_message" ).dialog({
 		height:200,
@@ -757,14 +784,14 @@ function requeteAjaxCycleEdit(nomEntreprise)
 				//$.jstree.defaults.checkbox.whole_node=false;
 		   		//$.jstree.defaults.checkbox.tie_selection=false;
 		   		//$.jstree.reference('#jstree').redraw();
-		   		$('#jstree_bis').jstree("deselect_all");
+		   		$('#jstree_edit').jstree("deselect_all");
 
 				for(var i in data)
 				{
-					$('#jstree_bis').jstree('select_node', data[i].toString());
+					$('#jstree_edit').jstree('select_node', data[i].toString());
 				}
 					
-				var test = $('#jstree_bis').jstree(true).get_json('#', { 'flat': true });
+				var test = $('#jstree_edit').jstree(true).get_json('#', { 'flat': true });
 				
 				//$.jstree.reference('#jstree').disable_checkbox();
 				//$.jstree.reference('#jstree').hide_checkboxes();
@@ -809,7 +836,7 @@ function requeteAjaxSuppression(nomEntreprise,table,niveau,donnees)
 
 function requeteAjaxCycleUpdate(nomEntreprise)
 {
-	var liste_cycle_id= $('#jstree_bis').jstree(true).get_selected();
+	var liste_cycle_id= $('#jstree_edit').jstree(true).get_selected();
 	$.ajax({
 
 	   type: "POST",
