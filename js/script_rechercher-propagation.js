@@ -739,8 +739,16 @@ function editionAjax(nomEntreprise, idSelected, idSelected2, idCoordRH, idCoordR
 			donnees[i]=$( "input[name*='"+colonnes[i]+"']" ).val();
 		}
 	}
-	var nom1=$("form input")[3].value;
-	var prenom1=$("form input")[4].value;
+	if(table=="Alternance")
+	{
+		var nom1=$("form input")[3].value;
+		var prenom1=$("form input")[4].value;
+	}
+	else
+	{
+		var nom1="";
+		var prenom1="";
+	}
 	$.ajax({
 
 	   type: "POST",

@@ -495,7 +495,7 @@
 										".$tabCorrespondanceColonnes[$cle][3]." = :donnee4,
 										".$tabCorrespondanceColonnes[$cle][4]." = :donnee5,
 										".$tabCorrespondanceColonnes[$cle][5]." = :donnee6,
-										".$tabCorrespondanceColonnes[$cle][6]." = :donnee7,
+										".$tabCorrespondanceColonnes[$cle][6]." = :donnee7
 										where Entreprise_nomEntreprise= :nomEntreprise and idConference=:idSelected"; 	
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
