@@ -30,11 +30,12 @@
       
 
             $tabCorrespondanceColonnes=array( "TaxeApprentissageNiveau1"=>array("anneeDeVersement","montantPromesseVersement","montantVerse","versementVia","rapprochementAC"),
-                                                "AtelierRHNiveau1"=>array("Entreprise_nomEntreprise","dateAtelier","creneauAtelier"),
-                                                "ConferenceNiveau1"=>array("Entreprise_nomEntreprise","dateConference","typeConference","heureDebut","heureFin","lieuConference","themeConference"),
+                                                "AtelierRHNiveau1"=>array("Entreprise_nomEntreprise","dateAtelier","heureDebut","heureFin","commentairesAtelier"),
+                                                "ConferenceNiveau1"=>array("Entreprise_nomEntreprise","dateConference","typeConference","heureDebut","heureFin","lieuConference","themeConference","commentairesConference"),
                                                 "ForumSGNiveau1"=>array("Entreprise_nomEntreprise","anneeDeParticipation","questionnaireDeSatisfaction","commentairesForum")
                                                 );
 
+            //association entre la position des champs "nom" et "prenom"; et la table !
 			$tabPositionNomPersonne=array("CoordonneesPersonneNiveau1"=>1,"AlternanceNiveau1"=>4, "AlternanceNiveau3"=>2, "AlternanceNiveau4"=>2, "AtelierRHNiveau2"=>2, "ConferenceNiveau2"=>2);
 
 

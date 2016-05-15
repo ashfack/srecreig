@@ -35,9 +35,9 @@
                                                 "TaxeApprentissageNiveau1"=>array("anneeDeVersement","montantPromesseVersement","montantVerse","versementVia","rapprochementAC"),
 												"TaxeApprentissageNiveau2"=>array("anneeDeVersement","dateEnregistrement","cycle","mention","specialite","categorie","montant"),
 												"TaxeApprentissageNiveau3"=>array("anneeDeVersement","dateEnregistrement", "OCTA","dateDerniereModification","modePaiement","dateTransmissionChequeAC","commentairesTaxe"),
-                                                "AtelierRHNiveau1"=>array("dateAtelier","creneauAtelier"),
+                                                "AtelierRHNiveau1"=>array("dateAtelier","heureDebut","heureFin","commentairesAtelier"),
                                                 "AtelierRHNiveau2"=>array("dateAtelier","civilite","nom","prenom","fonction","telephoneFixe","telephoneMobile","mail","commentaires"),
-                                                "ConferenceNiveau1"=>array("dateConference","typeConference","heureDebut","heureFin","lieuConference","themeConference"),
+                                                "ConferenceNiveau1"=>array("dateConference","typeConference","heureDebut","heureFin","lieuConference","themeConference","commentairesConference"),
                                                 "ConferenceNiveau2"=>array("dateConference","civilite","nom","prenom","fonction","telephoneFixe","telephoneMobile","mail","commentaires"),
                                                 "ForumSGNiveau1"=>array("anneeDeParticipation","questionnaireDeSatisfaction","commentairesForum")
                                                 );
@@ -425,7 +425,9 @@
             {
 				$sql ="UPDATE AtelierRH SET 
 										".$tabCorrespondanceColonnes[$cle][0]." = :donnee1,
-										".$tabCorrespondanceColonnes[$cle][1]." = :donnee2
+										".$tabCorrespondanceColonnes[$cle][1]." = :donnee2,
+										".$tabCorrespondanceColonnes[$cle][2]." = :donnee3,
+										".$tabCorrespondanceColonnes[$cle][3]." = :donnee4
 										where Entreprise_nomEntreprise= :nomEntreprise and idAtelierRH=:idSelected"; 
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
@@ -433,7 +435,9 @@
 				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
 										':idSelected'=>$idSelected,
 										':donnee1'=>trim($donnees[1]),
-										':donnee2'=>trim($donnees[2])
+										':donnee2'=>trim($donnees[2]),
+										':donnee3'=>trim($donnees[3]),
+										':donnee4'=>trim($donnees[4]),
 										)))
 				{
 					echo "ok";
@@ -490,7 +494,8 @@
 										".$tabCorrespondanceColonnes[$cle][2]." = :donnee3,
 										".$tabCorrespondanceColonnes[$cle][3]." = :donnee4,
 										".$tabCorrespondanceColonnes[$cle][4]." = :donnee5,
-										".$tabCorrespondanceColonnes[$cle][5]." = :donnee6
+										".$tabCorrespondanceColonnes[$cle][5]." = :donnee6,
+										".$tabCorrespondanceColonnes[$cle][6]." = :donnee7,
 										where Entreprise_nomEntreprise= :nomEntreprise and idConference=:idSelected"; 	
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
@@ -502,7 +507,8 @@
 										':donnee3'=>trim($donnees[3]),
 										':donnee4'=>trim($donnees[4]),
 										':donnee5'=>trim($donnees[5]),
-										':donnee6'=>trim($donnees[6]))))
+										':donnee6'=>trim($donnees[6]),
+										':donnee7'=>trim($donnees[7]))))
 				{
 					echo "ok";
 				}

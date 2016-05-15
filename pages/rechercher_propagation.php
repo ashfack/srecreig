@@ -83,10 +83,10 @@
 					"niveau3"=>array("idTA","anneeDeVersement","dateEnregistrement","OCTA","dateDerniereModification","modePaiement","dateTransmissionChequeAC","commentairesTaxe"));
 
 				
-				$tab_niveaux_AtelierRH=array("niveau1"=>array("idAtelierRH","dateAtelier","creneauAtelier"),
+				$tab_niveaux_AtelierRH=array("niveau1"=>array("idAtelierRH","dateAtelier","heureDebut","heureFin","commentairesAtelier"),
 											"niveau2"=>array("idAtelierRH","dateAtelier","CoordonneesPersonne_RH"));
 
-				$tab_niveaux_Conference=array("niveau1"=>array("idConference","dateConference","typeConference","heureDebut","heureFin","lieuConference","themeConference"),
+				$tab_niveaux_Conference=array("niveau1"=>array("idConference","dateConference","typeConference","heureDebut","heureFin","lieuConference","themeConference","commentairesConference"),
 					"niveau2"=>array("idConference","dateConference","CoordonneesPersonne_conferencier"));	
 				
 				

@@ -192,7 +192,7 @@ $(document).ready(function()
 				console.log(obj['colVal']);
 				
 				editionAjax(nomEntreprise, idSelected, idSelected2, idCoordRH, idCoordRH2, nom1, prenom1, obj['table'],obj['niveau'],obj['colVal']);
-				location.reload();
+				//location.reload();
 
 				
 			  }
@@ -245,18 +245,37 @@ $(document).ready(function()
                     //recuperer les valeurs des inputs
                    var fils=$("#form_"+table+"_niveau"+niveau).children();
                    var elem;
-                   var data= new Array();
+                   var elem2;
+                   var elem3;
+                   var elemPush
+                   var data;
+                   var patternOk=false;
+                
+               	   data= new Array();
                    for(var i=0;i<fils.length;i++)
                    {
                    		elem=$(fils[i]).find('input');
-                   	
+                   		elem2=$(fils[i]).find('select');
+                   		elem3=$(fils[i]).find('textarea');
+
                    		if(elem.length!=0)
-                   			data.push($(elem).val());
+                   			elemPush=elem;
+                   		else if(elem2.length!=0)
+                   			elemPush=elem2;
                    		else
-                   			data.push($(fils[i]).find('option:selected').val());
+                   			elemPush=elem3;
+                   			
+                   		data.push($(elemPush).val());
                    }
-                    $(this).dialog("close");
-                    requeteAjaxAjout(nomEntreprise,obj['table'],obj['niveau'], data);
+                   $(this).dialog("close");
+                  // if(verifierPattern(data))
+                   //{
+                   	//	patternOk=true;
+                   		requeteAjaxAjout(nomEntreprise,obj['table'],obj['niveau'], data);
+                   //}
+                   //else
+                   	//	$("#dialog_ajouter").dialog("open");
+                 
 
                 }
         }, {
@@ -275,7 +294,7 @@ $(document).ready(function()
     });
 
 	var nomEntreprise=($("#titre_nomEntreprise").text()).trim();
-	var colonnesType_ajout={Telephonefixe: "tel", Telephonemobile: "tel", Mail: "email", Anneeentree: "number",
+	var colonnesType_ajout={Telephonefixe: "tel", Telephonemobile: "tel", Mail: "email",
 								DateRVpreparation:"text", DateRVsimulation:"text", Datedebutcontrat: "number",  
 								Datefincontrat: "number", DateenvoiFLauCFA: "text", Anneedeversement: "number", 
 								Montantpromesseversement: "number", Montantverse: "number", RapprochementAC: "text",    
@@ -370,7 +389,6 @@ $(document).ready(function()
 						}
 						else if( (true_table=="AtelierRH" || true_table=="Conference")  && true_j==2 )
 						{
-							tabDonnees.push($(ligne).find('td:first').html());
 							tabDonnees.push($(ligne).find('td:nth-child(3)').html());
 						}
 						else if(true_table=="ForumSG")
@@ -378,7 +396,7 @@ $(document).ready(function()
 							tabDonnees.push(nomEntreprise);
 							tabDonnees.push($(ligne).find('td:nth-child(2)').html());
 						}
-						else if(true_table=="CoordonneesPersonne" || (true_table=="Alternance" && (true_j==1 || true_j==2)) )
+						else if(true_table=="Alternance" && (true_j==1 || true_j==2))
 						{
 							tabDonnees.push(nomEntreprise);
 							tabDonnees.push($(ligne).find('td:first').html());
@@ -473,8 +491,23 @@ $(document).ready(function()
                     for(var i=0;i<colonnes.length;i++) 
                     {
                         var colonneSansEspace = colonnes[i].replace(/\s/g,"");
-                        var objet_OptionCiviliteType={Civilite: ["Madame", "Monsieur"], Type: ["Primaire","Secondaire","TA","Autre"]};
-                        //provisoire --> je vais lies les deux selects
+                        var objet_OptionCiviliteType={Civilite: ["Madame", "Monsieur"], Type: ["Primaire","Secondaire","TA","Autre"], 
+                        								Formationalternance: ["AIR","ENERA"], Anneeentree:[1,2,3], Typecontrat: ["Apprentissage","Contrat de Professionalisation"],
+                        								Typeconference:["Métiers","RH","Autre"], 
+                        								Origine:["SRE","AISG","CAVAM","CEDIP","Corps Pédagogique","Direction Institut Galilée",
+                        											"Direction Sup Galilée","Est Ensemble","Membre exterieur Conseil Institu Galilée",
+                        											"Membre exterieur CA Sup Galilée","Plaine Commune","Présidence","Responsable pédagogique",
+                        											"SCUIO-IP"],
+                        								Typecontact: ["Entreprise","Personne","Collectivité territoriale","Communauté d'agglomérations"],
+                        								Parternariatofficiel: ["Oui","Non"],
+                        								Categorie: ["Catégorie A (niveau 5,4,3)","Catégorie A (niveau 2,1)"],
+                        								Actionmenees:["Accueil d'apprentis en Energetique","Accueil d'apprentis en Informatique et Réseaux",
+                        												"Animation d'ateliers RH de simulations d'entretiens","Animation de conférences métiers",
+                        												"Partenariat officiel","Participation au Forum Sup Galilée Entreprises",
+                        												"Recrutement de stagiaires","Recrutement des jeunes diplômé(e)s",
+																		"Soutien financier par le versement de taxe d'apprentissage"]
+                        								 };
+                        //console.log(colonneSansEspace.substring(0,5));
                         if(true_table=="Alternance" && colonneSansEspace=="Prenom" && i==1)
                         {
                         	continue;
@@ -483,8 +516,8 @@ $(document).ready(function()
                         else
                         {
                             chaine+=" <div class='form-group row'>";
-                            chaine+="<label for='"+true_table+"_"+colonneSansEspace+"' class='col-sm-3 form-control-label'>"+colonnes[i]+": </label>";
-                            chaine+="<div class='col-sm-10'>";
+                            chaine+="<label for='"+true_table+"_"+colonneSansEspace+"' class='col-sm-4 form-control-label'>"+colonnes[i]+": </label>";
+                            chaine+="<div class='col-sm-8'>";
 
                             if(true_table=="Alternance" && colonneSansEspace=="Nom" && i==0 )
                             {
@@ -520,7 +553,9 @@ $(document).ready(function()
 
                                 
                             }
-                            else if(colonneSansEspace=="Civilite" || colonneSansEspace=="Type")
+  
+
+                            else if(has( objet_OptionCiviliteType,colonneSansEspace))
                             {
                             	
 	                        	chaine+="<select name='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"' id='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"' class='form-control' >";
@@ -532,6 +567,12 @@ $(document).ready(function()
                                 }
 	                        	chaine+="</select>";
                             }
+
+                            else if (colonneSansEspace.substring(0,4)=="Comm")
+							{	
+								//console.log("ooooooooook");				
+								chaine+="<textarea class='form-control' name='"+colonneSansEspace+"' id='"+colonneSansEspace+"'></textarea>";	
+							}
                             else
                             {
                                 if(has(colonnesType_ajout,colonneSansEspace)) // elle a un type autre que text (sauf pr celles qui seront des datepicker)
@@ -899,7 +940,7 @@ function has(object, key)
 
 function verifierPattern(tabDonnees)
 {
-
+	return false;
 }
 
 

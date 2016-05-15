@@ -16,25 +16,25 @@
       
 
            $tabCorrespondanceColonnes=array("EntrepriseNiveau1"=>array("nomEntreprise"),
-                                                "CoordonneesPersonneNiveau1"=>array("Entreprise_nomEntreprise","CoordonneesPersonne_id"),
+                                                "CoordonneesPersonneNiveau1"=>array("idCoordonneesPersonne"),
                                                 "AlternanceNiveau1"=>array("Entreprise_nomEntreprise","CoordonneesPersonne_alternant"),
                                                 "TaxeApprentissageNiveau1"=>array("idTA"),
                                                 "AtelierRHNiveau1"=>array("idAtelierRH"),
-                                                "AtelierRHNiveau2"=>array("AtelierRH_id","CoordonneesPersonne_id"),
+                                                "AtelierRHNiveau2"=>array("idCoordonneesPersonne"),
                                                 "ConferenceNiveau1"=>array("idConference"),
-                                                "ConferenceNiveau2"=>array("Conference_id","CoordonneesPersonne_id"),
+                                                "ConferenceNiveau2"=>array("idCoordonneesPersonne"),
                                                 "ForumSGNiveau1"=>array("Entreprise_nomEntreprise","anneeDeParticipation")
                                                 );
 
 
            $tabCorrespondanceTables=array("EntrepriseNiveau1"=>"Entreprise",
-                                            "CoordonneesPersonneNiveau1"=>"a_Entreprise_CoordonneesPersonne",
+                                            "CoordonneesPersonneNiveau1"=>"CoordonneesPersonne",
                                             "AlternanceNiveau1"=>"Alternance",
                                             "TaxeApprentissageNiveau1"=>"TaxeApprentissage",
                                             "AtelierRHNiveau1"=>"AtelierRH",
-                                            "AtelierRHNiveau2"=>"a_AtelierRH_CoordonneesPersonne",
+                                            "AtelierRHNiveau2"=>"CoordonneesPersonne",
                                             "ConferenceNiveau1"=>"Conference",
-                                            "ConferenceNiveau2"=>"a_Conference_CoordonneesPersonne",
+                                            "ConferenceNiveau2"=>"CoordonneesPersonne",
                                             "ForumSGNiveau1"=>"ForumSG"
                                             );
             $sql;
@@ -52,7 +52,7 @@
                 $cle=$table."Niveau".$niveau;
                 
                 $sql="DELETE FROM ".$tabCorrespondanceTables[$cle]." WHERE ".$tabCorrespondanceColonnes[$cle][0]." = :donnee1";
-                if(count($tabCorrespondanceColonnes[$cle])==2)
+                if($table=="Alternance" || $table=="ForumSG")
                 {
                     $sql.=" and ".$tabCorrespondanceColonnes[$cle][1]." = :donnee2";
                     $deuxColonnes=true;
@@ -60,7 +60,8 @@
 
                     
             }
-       
+            //echo $sql;
+            //echo trim($donnees[0]);
             $rep=$conn->prepare($sql);
             $rep->bindValue(':donnee1',trim($donnees[0]),PDO::PARAM_STR);
             if($deuxColonnes)
