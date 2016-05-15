@@ -17,7 +17,8 @@
     <!-- Navigation -->
     <nav class="navbar navbar-default navbar-static-top" role="navigation" style="margin-bottom: 0">
         <div class="navbar-header">
-            <a class="navbar-brand" href="index.php">Service Relations Entreprises	</a>
+			<img src="../img/galilee.png" alt="galilee logo" height="52" width="92">
+            <a class="navbar-brand" href="index.php"> Service Relations Entreprises	</a>
         </div>
         <!-- /.navbar-header -->
 
