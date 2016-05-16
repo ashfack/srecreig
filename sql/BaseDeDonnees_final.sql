@@ -28,7 +28,7 @@ CREATE TABLE IF NOT EXISTS `srecreig_base`.`Connexion` (
   PRIMARY KEY (`id`))
 ENGINE = InnoDB;
 
-INSERT INTO `connexion` (`id`, `pass`, `profil`) VALUES
+INSERT INTO `Connexion` (`id`, `pass`, `profil`) VALUES
 ('madame.lecture', '62db9e0f40b319a7e47788c541dacea3', 'read'),
 ('monsieur.ecriture', '9c8e4f0f59c5bba8a1557a233704641a', 'write'),
 ('rachid.lebrache', '9df3b01c60df20d13843841ff0d4482c', 'super');
