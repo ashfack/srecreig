@@ -136,7 +136,7 @@ require ('header_script.html');
                         </div>
                         <div class="panel-body">
                            <label>Civilite :</label>
-                           <label for="civiliteCP" class="radio-inline"><input type="radio"  value="Monsieur" name="civiliteCP">Monsieur</label>
+                           <label for="civiliteCP" class="radio-inline"><input type="radio"  value="Monsieur" name="civiliteCP" checked="checked">Monsieur</label>
                            <label for="civiliteCP" class="radio-inline"><input type="radio"  value="Madame"   name="civiliteCP">Madame</label><br />
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
@@ -172,7 +172,7 @@ require ('header_script.html');
                         </div>
                         <div class="panel-body">
                            <label>Civilite :</label>
-                           <label for="civiliteCS" class="radio-inline"><input type="radio"   value="Monsieur" name="civiliteCS">Monsieur</label>
+                           <label for="civiliteCS" class="radio-inline"><input type="radio"   value="Monsieur" name="civiliteCS" checked="checked">Monsieur</label>
                            <label for="civiliteCS" class="radio-inline"><input type="radio"   value="Madame"   name="civiliteCS">Madame</label><br />
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
@@ -208,7 +208,7 @@ require ('header_script.html');
                         </div>
                         <div class="panel-body">
                            <label>Civilite :</label>
-                           <label for="civiliteTA" class="radio-inline"><input type="radio"  value="Monsieur" name="civiliteTA">Monsieur</label>
+                           <label for="civiliteTA" class="radio-inline"><input type="radio"  value="Monsieur" name="civiliteTA" checked="checked">Monsieur</label>
                            <label for="civiliteTA" class="radio-inline"><input type="radio"  value="Madame"   name="civiliteTA">Madame</label><br/>
                            <div class="input-group">
                               <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
