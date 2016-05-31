@@ -608,7 +608,7 @@ $(document).ready(function()
                                 for(var k=0;k<data.length;k++)
                                 {
                                 	var id=$($("#dataTable_"+true_table+"_niveau1").find("tbody tr")[k]).children().attr('id').split('_')[1];
-                                	console.log(id);
+                                	//console.log(id);
                                     chaine+="<option value='"+id+"'>"+data[k][1]+"</option>";
                                 }
                                 chaine+="</select>";
@@ -677,7 +677,7 @@ $(document).ready(function()
                     if(true_table=="TaxeApprentissage" && true_j==1)
                  	{
              			requeteAjaxSelectCycle(0); 
-             			$("#dialog_ajouter").dialog('option','width',1400);
+             			$("#dialog_ajouter").dialog('option','width','100%');
                  	}
                    
                     for(var i=0; i< idDatePicker.length;i++)
