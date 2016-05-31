@@ -267,50 +267,49 @@ $(document).ready(function()
                    for(var i=0;i<fils.length;i++)
                    {
                    		
-                   		
-               			input=$(fils[i]).find('input');
-                   		select=$(fils[i]).find('select');
-                   		textarea=$(fils[i]).find('textarea');
-
-                   		if(input.length!=0)
-                   			elemPush=input;
-                   		else if(select.length!=0)
-                   			elemPush=select;
-                   		else if(textarea.length!=0)
-                   			elemPush=textarea;
-                   		else
-                   			continue;
-                   		/*console.log(elemPush);	
-                   		console.log(i+" --> "+elemPush.val());*/
-                   		data.push($(elemPush).val());
-
-                   		if(table=="TaxeApprentissage")
+               			id=$(fils[i]).attr("id");
+               			if(id!=null && id.length>=20 && id.substring(0,20)=="montantParFormations")
                    		{
-                   			id=$(fils[i]).attr("id");
-                   			if(id!=null && id.length>=20 && id.substring(0,20)=="montantParFormations")
-	                   		{
-	                   			//console.log(fils[i]);
-	                   			//console.log(id);
-	                   			select=$(fils[i]).find('select');
+                   			//console.log(fils[i]);
+                   			//console.log(id);
+                   			select=$(fils[i]).find('select');
 
-	                   			montant=parseInt($(fils[i]).find('input').val());
-	                   			//A voir
-	                   			if(montant<=0)
-	                   				alert("Attention montant inférieur à 0!!");
-	                   			else
-	                   				sommeMontant+=montant;
-	                   			groupSelectMontant = 
-	                   			{
-	                   				cycle:$(select[0]).val(), 
-	                   				mention:$(select[1]).val(), 
-	                   				specialite:$(select[2]).val(), 
-	                   				categorie: $(select[3]).val(), 
-	                   				montant:montant
-	                   			};
-	                   			//console.log(groupSelectMontant);
-	                   			data.push(groupSelectMontant);
-	                   		}
+                   			montant=parseInt($(fils[i]).find('input').val());
+                   			//A voir
+                   			if(montant<=0)
+                   				alert("Attention montant inférieur à 0!!");
+                   			else
+                   				sommeMontant+=montant;
+                   			groupSelectMontant = 
+                   			{
+                   				cycle:$(select[0]).val(), 
+                   				mention:$(select[1]).val(), 
+                   				specialite:$(select[2]).val(), 
+                   				categorie: $(select[3]).val(), 
+                   				montant:montant
+                   			};
+                   			/*console.log(groupSelectMontant);
+                   			data.push(groupSelectMontant);*/
                    		}
+                   		else
+                   		{
+                   			input=$(fils[i]).find('input');
+	                   		select=$(fils[i]).find('select');
+	                   		textarea=$(fils[i]).find('textarea');
+
+	                   		if(input.length!=0)
+	                   			elemPush=input;
+	                   		else if(select.length!=0)
+	                   			elemPush=select;
+	                   		else if(textarea.length!=0)
+	                   			elemPush=textarea;
+	                   		else
+	                   			continue;
+	                   		/*console.log(elemPush);	
+	                   		console.log(i+" --> "+elemPush.val());*/
+	                   		data.push($(elemPush).val());
+                   		}
+
                    }
                    $(this).dialog("close");
 
@@ -320,11 +319,19 @@ $(document).ready(function()
                    //{
                    	//	patternOk=true;
                    	
-                   	console.log("montant verse: "+montantVerse+" , sommeMontant: "+sommeMontant);
+                   	//console.log("montant verse: "+montantVerse+" , sommeMontant: "+sommeMontant);
                    	if(sommeMontant==montantVerse)
                    		requeteAjaxAjout(nomEntreprise,table,niveau, data);
                    	else
-                   		popupMessage("#dialog_message","<p> La somme des montants par formations et différente du montant versé </p>");
+                   	{
+                   		$("#zone_message").children().remove();
+                   		$("#zone_message").append("<p> La somme des montants par formations est différente du montant versé ou ce dernier est invalide ! </p>");
+                   		$("#zone_message").css('display','block');
+                   		$("#dialog_ajouter").dialog("open");
+                   		$("#dialog_ajouter").dialog('option','width','100%');
+                   		//popupMessage("#dialog_message","<p> La somme des montants par formations est différente du montant versé ou ce dernier est invalide ! </p>");
+                   	}
+                   		
                    //}
                    //else
                    	//	$("#dialog_ajouter").dialog("open");
@@ -545,8 +552,10 @@ $(document).ready(function()
                                                             
                                                     });
 
-
-                    var chaine="<form action='#' method='POST' id='form_ajouter'>";
+                    var chaine="";
+                    if(true_table=="TaxeApprentissage")
+                    		chaine+="<div class='alert alert-danger' role='alert' style='display:none' id='zone_message'> </div>";
+                    chaine+="<form action='#' method='POST' id='form_ajouter'>";
                     var idDatePicker= new Array();
                     for(var i=0;i<colonnes.length;i++) 
                     {
@@ -1141,8 +1150,8 @@ function requeteAjaxSelectFormations(choix,val,nb,cycle)
 		        			chaine+="<option value='"+data[cle][j]+"'>"+data[cle][j]+"</option>";
 		        		}
 		        		$(id).append(chaine);
-		        		if(j==1) // "Aucune" est seulement retourné
-		        			$(id).children().next().prop('selected', true);
+		        		/*if(j==1) // "Aucune" est seulement retourné
+		        			$(id).children().next().prop('selected', true);*/
 		        	}
 		        }
         	}
