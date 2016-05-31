@@ -8,6 +8,11 @@ var colonnesPattern_ajout={Telephonefixe:"^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5
 								Montant:"\d+", Heuredebut: "([01]?[0-9]|2[0-3]):[0-5][0-9]", Heurefin: "([01]?[0-9]|2[0-3]):[0-5][0-9]", 
 								Anneedeparticipation: "20[0-9]{2}", Nom: "[a-zA-Z-_]*", Prenom: "[a-zA-Z-_]*", NumeroSIRET: "[0-9]{14}", Codepostal: "[0-9]{5}"   
 							};
+var tabFormations=["cycle","mention","specialite"];
+var compteurNbFormations=1;
+String.prototype.capitalizeFirstLetter = function() {
+    return this.charAt(0).toUpperCase() + this.slice(1);
+}
 $(document).ready(function() 
 {
 	$("#tabs").tabs();
@@ -242,36 +247,84 @@ $(document).ready(function()
                     var table=obj['table'];
                     var niveau=obj['niveau'];
                    	
-                    //recuperer les valeurs des inputs
-                   var fils=$("#form_"+table+"_niveau"+niveau).children();
-                   var elem;
-                   var elem2;
-                   var elem3;
-                   var elemPush
-                   var data;
+          
+                   var fils=$("#form_ajouter").children();
+                   var select;
+                   var input;
+                   var textarea;
+                   var montant;
+                   var elemPush;
+                   var id;
+      
                    var patternOk=false;
-                
-               	   data= new Array();
+               
+               	   var data= new Array();
+               	   var groupSelectMontant;
+
+               	   var montantVerse=0;
+               	   var sommeMontant=0;
+
                    for(var i=0;i<fils.length;i++)
                    {
-                   		elem=$(fils[i]).find('input');
-                   		elem2=$(fils[i]).find('select');
-                   		elem3=$(fils[i]).find('textarea');
+                   		
+                   		
+               			input=$(fils[i]).find('input');
+                   		select=$(fils[i]).find('select');
+                   		textarea=$(fils[i]).find('textarea');
 
-                   		if(elem.length!=0)
-                   			elemPush=elem;
-                   		else if(elem2.length!=0)
-                   			elemPush=elem2;
+                   		if(input.length!=0)
+                   			elemPush=input;
+                   		else if(select.length!=0)
+                   			elemPush=select;
+                   		else if(textarea.length!=0)
+                   			elemPush=textarea;
                    		else
-                   			elemPush=elem3;
-                   			
+                   			continue;
+                   		/*console.log(elemPush);	
+                   		console.log(i+" --> "+elemPush.val());*/
                    		data.push($(elemPush).val());
+
+                   		if(table=="TaxeApprentissage")
+                   		{
+                   			id=$(fils[i]).attr("id");
+                   			if(id!=null && id.length>=20 && id.substring(0,20)=="montantParFormations")
+	                   		{
+	                   			//console.log(fils[i]);
+	                   			//console.log(id);
+	                   			select=$(fils[i]).find('select');
+
+	                   			montant=parseInt($(fils[i]).find('input').val());
+	                   			//A voir
+	                   			if(montant<=0)
+	                   				alert("Attention montant inférieur à 0!!");
+	                   			else
+	                   				sommeMontant+=montant;
+	                   			groupSelectMontant = 
+	                   			{
+	                   				cycle:$(select[0]).val(), 
+	                   				mention:$(select[1]).val(), 
+	                   				specialite:$(select[2]).val(), 
+	                   				categorie: $(select[3]).val(), 
+	                   				montant:montant
+	                   			};
+	                   			//console.log(groupSelectMontant);
+	                   			data.push(groupSelectMontant);
+	                   		}
+                   		}
                    }
                    $(this).dialog("close");
+
+                   if(table=="TaxeApprentissage")
+                   		montantVerse=$("#TaxeApprentissage_Montantverse_niveau1").val();
                   // if(verifierPattern(data))
                    //{
                    	//	patternOk=true;
-                   		requeteAjaxAjout(nomEntreprise,obj['table'],obj['niveau'], data);
+                   	
+                   	console.log("montant verse: "+montantVerse+" , sommeMontant: "+sommeMontant);
+                   	if(sommeMontant==montantVerse)
+                   		requeteAjaxAjout(nomEntreprise,table,niveau, data);
+                   	else
+                   		popupMessage("#dialog_message","<p> La somme des montants par formations et différente du montant versé </p>");
                    //}
                    //else
                    	//	$("#dialog_ajouter").dialog("open");
@@ -292,6 +345,13 @@ $(document).ready(function()
 
         ]
     });
+	
+	 //reinitialisation de la largeur: la popup pour la taxe necessite une largeur plus grande
+	$('div#dialog_ajouter').on('dialogclose', function(event) 
+	{
+    	$(this).dialog('option','width', 810);
+ 	});
+
 
 	var nomEntreprise=($("#titre_nomEntreprise").text()).trim();
 	var colonnesType_ajout={Telephonefixe: "tel", Telephonemobile: "tel", Mail: "email",
@@ -466,12 +526,12 @@ $(document).ready(function()
                  		return;
                  	}
 
-                 	if(true_table=="TaxeApprentissage" && true_j==1)
+                 	/*if(true_table=="TaxeApprentissage" && true_j==1)
                  	{
                  		popupMessage("#dialog_message","<p> l'ajout de la taxe d'apprentissage n'est pas encore gérée dans cette version </p>");
                  		return;
-                 	}
-
+                 	}*/
+                 	compteurNbFormations=1;
                     var datatable = "#dataTable_"+true_table+"_niveau"+true_j;
 
                     $("#dialog_ajouter").children().remove();
@@ -486,7 +546,7 @@ $(document).ready(function()
                                                     });
 
 
-                    var chaine="<form action='#' method='POST' id='form_"+true_table+"_niveau"+true_j+"'>";
+                    var chaine="<form action='#' method='POST' id='form_ajouter'>";
                     var idDatePicker= new Array();
                     for(var i=0;i<colonnes.length;i++) 
                     {
@@ -501,6 +561,8 @@ $(document).ready(function()
                         								Typecontact: ["Entreprise","Personne","Collectivité territoriale","Communauté d'agglomérations"],
                         								Parternariatofficiel: ["Oui","Non"],
                         								Categorie: ["Catégorie A (niveau 5,4,3)","Catégorie A (niveau 2,1)"],
+                        								Versementvia: ["SRE","Agence Comptable"],
+                        								Modepaiement: ["Cheque","Virement","Inconnu"],
                         								Actionmenees:["Accueil d'apprentis en Energetique","Accueil d'apprentis en Informatique et Réseaux",
                         												"Animation d'ateliers RH de simulations d'entretiens","Animation de conférences métiers",
                         												"Partenariat officiel","Participation au Forum Sup Galilée Entreprises",
@@ -516,7 +578,7 @@ $(document).ready(function()
                         else
                         {
                             chaine+=" <div class='form-group row'>";
-                            chaine+="<label for='"+true_table+"_"+colonneSansEspace+"' class='col-sm-4 form-control-label'>"+colonnes[i]+": </label>";
+                            chaine+="<label for='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"' class='col-sm-4 form-control-label'>"+colonnes[i]+": </label>";
                             chaine+="<div class='col-sm-8'>";
 
                             if(true_table=="Alternance" && colonneSansEspace=="Nom" && i==0 )
@@ -535,7 +597,7 @@ $(document).ready(function()
                                 }
                                 chaine+="</select>";
                             }
-
+                          
                             else if((colonneSansEspace=="Dateatelier" || colonneSansEspace=="Dateconference") && true_j==2)
                             {
                                 var data=$("#dataTable_"+true_table+"_niveau1").dataTable().fnGetData();
@@ -590,21 +652,37 @@ $(document).ready(function()
                                 else
                                 chaine+=">";*/
                             }
+
+                            //ajout de cycle mention specialite montant dans tax
                                        
                             chaine+="</div> </div>";
                         }
                        
                     }
 
-                    //chaine+="<button type='submit' class='btn btn-default'>Valider</button>";
+                
+
+                   	if(true_table=="TaxeApprentissage" && true_j==1)
+                 	{
+                 		chaine+="<div class='form-group row' id='labelMontantFormations'>";
+						chaine+="<label for='montantParFormations_0' class='col-sm-4 form-control-label'> Montant par formations: </label>";
+				    	chaine+="</div>";
+             			chaine+=creerSelectFormation(0); 
+                 	}
+                   
                     chaine+="</form>";
-                    
-                    //console.log(chaine);
+
                     $("#dialog_ajouter").append(chaine);
-                    
+
+                    if(true_table=="TaxeApprentissage" && true_j==1)
+                 	{
+             			requeteAjaxSelectCycle(0); 
+             			$("#dialog_ajouter").dialog('option','width',1400);
+                 	}
+                   
                     for(var i=0; i< idDatePicker.length;i++)
                     {
-                        console.log("#"+idDatePicker[i]);
+                        //console.log("#"+idDatePicker[i]);
                         $("#"+idDatePicker[i]).datepicker({
                         	dateFormat: "yy-mm-dd",
                         	altFormat: "dd/mm/yyyy"
@@ -766,7 +844,11 @@ function editionAjax(nomEntreprise, idSelected, idSelected2, idCoordRH, idCoordR
 				popupMessage("#dialog_message","<p> L'édition a echouée </p>");
 			}
 				
-	   }
+	   },
+	   error : function()
+       {
+       		popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
+       }
 	});
 }
 
@@ -813,7 +895,11 @@ function requeteAjaxCycle(nomEntreprise)
 			}
 			else
 				popupMessage("#dialog_message","<p> L'entreprise n'est liée à aucun cycle/formation <br/> <br/> Cliquez sur le bouton \"Ajouter\" pour lui attribuer des cycles/formations </p>");
-	   }
+	   },
+	   error : function()
+       {
+       		popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
+       }
 	});
 
 }
@@ -850,7 +936,11 @@ function requeteAjaxCycleEdit(nomEntreprise)
 			}
 			else
 				popupMessage("#dialog_message","<p> L'entreprise n'est liée à aucun cycle/formation <br/> <br/> Cliquez sur le bouton \"Ajouter\" pour lui attribuer des cycles/formations </p>");
-	   }
+	   },
+	   error : function()
+       {
+       		popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
+       }
 	});
 
 }
@@ -879,7 +969,11 @@ function requeteAjaxSuppression(nomEntreprise,table,niveau,donnees)
 				popupMessage("#dialog_message","<p> La suppression a echoué </p>");
 			}
 				
-	   }
+	   },
+	   error : function()
+       {
+       		popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
+       }
 	});
 }
 
@@ -904,12 +998,16 @@ function requeteAjaxCycleUpdate(nomEntreprise)
 				popupMessage("#dialog_message","<p> La mise à jour a echoué </p>");
 			}
 				
-	   }
+	   },
+	   error : function()
+       {
+       		popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
+       }
 	});
 }
 function requeteAjaxAjout(nomEntreprise,table,niveau,donnees)
 {   
-    //console.log("nomEntreprise : "+nomEntreprise+" table : "+table+" niveau: "+niveau+" donnees: "+donnees);
+    console.log("nomEntreprise : "+nomEntreprise+" table : "+table+" niveau: "+niveau+" donnees: "+donnees);
     //popupMessage("#dialog_message","<p> L'ajout n'est pas encore opérationnel !! <br/> On travaille dessus actuellement ! </p>");
     $.ajax({
 
@@ -929,9 +1027,167 @@ function requeteAjaxAjout(nomEntreprise,table,niveau,donnees)
                 popupMessage("#dialog_message",data);
             }
                 
+       },
+       error : function()
+       {
+       		popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
        }
     });
 }
+
+function requeteAjaxSelectCycle(nb)
+{   
+   
+   //console.log("requeteAjaxSelectCycle "+nb);
+    $.ajax({
+
+       type: "POST",
+       url: "ajax/recup_cycleMentionSpecialite.php",
+       dataType: "json",
+       success: function(data)
+       {
+       		
+            if(data.length>0) 
+            {
+            	var chaine="<option value='cycle'>Cycle</option>";
+                for(j in data)
+                {
+                	chaine+="<option value='"+data[j]+"'>"+data[j]+"</option>";
+                }
+             
+                $("#cycle_"+nb).html(chaine);
+
+                $("#mention_"+nb).html("<option value='mention'>Mention</option>");
+                $("#specialite_"+nb).html("<option value='specialite'>Specialite</option>");
+            }
+            else
+            {
+                popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
+               
+            }
+                
+       },
+       error : function()
+       {
+       		popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
+       }
+    });
+	/*console.log("créer event");
+	console.log(nb);*/
+
+	$("#bAjouterMontantParFormation").click(function()
+	{
+		$(this).remove();
+		//console.log(compteurNbFormations);
+		$("#form_ajouter").append(creerSelectFormation(compteurNbFormations));
+		requeteAjaxSelectCycle(compteurNbFormations); 
+		compteurNbFormations++;
+	});
+
+	$("#cycle_"+nb).change(function(){
+		
+		requeteAjaxSelectFormations("cycle",$(this).val(),nb,$(this).val());
+	});
+
+	$("#bSupprimer_"+nb).click(function(){
+		
+		$("#montantParFormations_"+nb).remove();
+	});
+
+	$("#mention_"+nb).change(function(){
+		
+		requeteAjaxSelectFormations("mention",$(this).val(),nb,$("#cycle_"+nb).val());
+	});
+
+	/*$("#specialite_"+nb).change(function(){
+		
+		requeteAjaxSelectFormations(choix,$(this).val(),nb,$("#cycle_"+nb).val());
+	});*/
+    
+   
+ 
+}
+
+function requeteAjaxSelectFormations(choix,val,nb,cycle)
+{   
+    /*console.log(choix);
+    console.log(nb);
+    console.log(val);*/
+    
+    $.ajax({
+
+       type: "POST",
+       url: "ajax/recup_selectCycleMentionSpecialite.php",
+       dataType: "json",
+       data: {select: choix , selected: val, cycleChoisit: cycle},
+       success: function(data)
+       {
+        	if(data!=null && typeof data == 'object')
+        	{
+        		if(Object.keys(data).length>0)
+        		{
+	        		var tabCle=Object.keys(data);
+	        		var cle;
+	        		var id;
+	        		for(var i=0;i<tabCle.length;i++)
+		        	{
+		        		cle=tabCle[i];
+		        		id="#"+cle+"_"+nb
+		        		$(id).children().next().remove();
+		        		
+		        		var chaine="";
+		        		for(var j=0;j<data[cle].length;j++)
+		        		{
+		        			chaine+="<option value='"+data[cle][j]+"'>"+data[cle][j]+"</option>";
+		        		}
+		        		$(id).append(chaine);
+		        		/*if(j==1) // "Aucune" est seulement retourné
+		        			$(id).children().next().prop('selected', true);*/
+		        	}
+		        }
+        	}
+        	else
+            {
+                popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
+            }
+        	
+           
+                
+       },
+       error : function()
+       {
+       		popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
+       }
+    });
+}
+function creerSelectFormation(nb)
+{ 
+	/*console.log("créer select");
+    console.log(nb);*/
+    var chaine="<div class='form-inline' name='montantParFormations_"+nb+"' id='montantParFormations_"+nb+"'>";
+		
+	for(var k=0;k<3;k++)
+	{
+		chaine+="<select id='"+tabFormations[k]+"_"+nb+"' class='form-control'>";
+		//les options seront ajoutés après avec un appel ajax
+		chaine+="</select>";
+	}
+	//console.log("chaine fin \n \n "+chaine);
+	chaine+="<select id='categorie_"+nb+"' class='form-control'>";
+	chaine+="<option value='Categorie'>Categorie</option>";
+	chaine+="<option value='A'>A</option>";
+	chaine+="<option value='B'>B</option>";
+	chaine+="<option value='C'>C</option>";
+	chaine+="</select>";
+	chaine+="<input type='number' id='montant_"+nb+"' class='form-control' placeholder='Montant'>";
+	chaine+="<span class='btn btn-danger glyphicon glyphicon-remove' id='bSupprimer_"+nb+"'</span>";
+	chaine+="</div>";
+	chaine+="<button class='btn btn-sm' type='button' value='Ajouter' style ='margin-left: 10px;' id='bAjouterMontantParFormation'><i class='fa fa-plus'></i> Ajouter</button> ";
+	
+
+	return chaine;
+}
+
 
 
 function popupMessage(idPopup,msg)
@@ -950,6 +1206,7 @@ function verifierPattern(tabDonnees)
 {
 	return false;
 }
+
 
 
 	

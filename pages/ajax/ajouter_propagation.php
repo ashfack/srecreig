@@ -13,7 +13,22 @@
 	        else
 	        	return false;
     }
-    
+
+    function verifPersonne($nom,$prenom)
+    {
+		if($nom=="" || $prenom=="")
+    	{
+    		echo "<p> Le nom et le prénom ne sont pas renseignés ! </p>";
+    		return false;
+    	}
+    	else if(personneDansBase($nom, $prenom))
+    	{
+    		echo "<p> La personne que vous essayez d'ajouter existe déjà dans la base ! </p>";
+    		return false;
+    	}
+    	else
+    		return true;
+    }
     
     if(isset($_POST['nomEntreprise']) && isset($_POST['table'])  && isset($_POST['niveau']) && isset($_POST['donnees'])  )
     {
@@ -26,11 +41,10 @@
             $donnees=$_POST['donnees'];
             $niveau=$_POST['niveau'];
             //echo "<p> $nomEntreprise $table $niveau </p>";
-           //print_r($donnees);
+           	//print_r($donnees);
       
 
-            $tabCorrespondanceColonnes=array( "TaxeApprentissageNiveau1"=>array("anneeDeVersement","montantPromesseVersement","montantVerse","versementVia","rapprochementAC"),
-                                                "AtelierRHNiveau1"=>array("Entreprise_nomEntreprise","dateAtelier","heureDebut","heureFin","commentairesAtelier"),
+            $tabCorrespondanceColonnes=array( "AtelierRHNiveau1"=>array("Entreprise_nomEntreprise","dateAtelier","heureDebut","heureFin","commentairesAtelier"),
                                                 "ConferenceNiveau1"=>array("Entreprise_nomEntreprise","dateConference","typeConference","heureDebut","heureFin","lieuConference","themeConference","commentairesConference"),
                                                 "ForumSGNiveau1"=>array("Entreprise_nomEntreprise","anneeDeParticipation","questionnaireDeSatisfaction","commentairesForum")
                                                 );
@@ -47,11 +61,8 @@
 			if($cle=="CoordonneesPersonneNiveau1" || $cle=="AtelierRHNiveau2" || $cle=="ConferenceNiveau2")
             {
             	$pos=$tabPositionNomPersonne[$cle];
-            	if(personneDansBase($donnees[$pos], $donnees[$pos+1]))
-            	{
-            		echo "<p> La personne que vous essayez d'ajouter existe déjà dans la base ! </p>";
-            	}
-            	else
+            
+            	if(verifPersonne($donnees[$pos], $donnees[$pos+1]))
             	{
             		$sql ="INSERT INTO CoordonneesPersonne(civilite,nom,prenom,fonction,telephoneFixe,telephoneMobile,mail,commentaires) VALUES ( :civilite, :nom, :prenom,:fonction, :telephoneFixe, :telephoneMobile, :mail, :commentaires ); ";
 					$sql.="SET @id = LAST_INSERT_ID(); ";
@@ -109,11 +120,8 @@
 			elseif($table=="Alternance" && $niveau==1)
             {
 				$pos=$tabPositionNomPersonne[$cle];
-            	if(personneDansBase($donnees[$pos], $donnees[$pos+1]))
-            	{
-            		echo "<p> La personne que vous essayez d'ajouter existe déjà dans la base ! </p>";
-            	}
-            	else
+
+				if(verifPersonne($donnees[$pos], $donnees[$pos+1]))
             	{
             		$sql ="INSERT INTO CoordonneesPersonne(civilite,nom,prenom,fonction,telephoneFixe,telephoneMobile,mail,commentaires) VALUES ( :civilite, :nom, :prenom,:fonction, :telephoneMobile, :telephoneMobile, :mail, :commentaires ); ";
 					$sql.="SET @id = LAST_INSERT_ID(); ";
@@ -152,11 +160,7 @@
             elseif($table=="Alternance" && ($niveau==3 || $niveau==4))
             {
 				$pos=$tabPositionNomPersonne[$cle];
-            	if(personneDansBase($donnees[$pos], $donnees[$pos+1]))
-            	{
-            		echo "<p> La personne que vous essayez d'ajouter existe déjà dans la base ! </p>";
-            	}
-            	else
+				if(verifPersonne($donnees[$pos], $donnees[$pos+1]))
             	{
             		$sql ="INSERT INTO CoordonneesPersonne(civilite,nom,prenom,fonction,telephoneFixe,telephoneMobile,mail,commentaires) VALUES ( :civilite, :nom, :prenom,:fonction, :telephoneMobile, :telephoneMobile, :mail, :commentaires ); ";
 					$sql.="SET @id = LAST_INSERT_ID(); ";
@@ -186,6 +190,110 @@
 					}
 
 				}
+            }
+            elseif($table=="TaxeApprentissage" && $niveau==1 )
+            {
+            	//echo "<p> ok </p>";
+
+            	$objFormations;
+				$toutOK=true;
+          		$tabIdCF=array();
+
+				for($i=5;$i<count($donnees);$i++)
+				{
+					$objFormations=$donnees[$i];
+
+					$cycle=trim($objFormations['cycle']);
+					$mention=trim($objFormations['mention']);
+					$specialite=trim($objFormations['specialite']);
+					$categorie=trim($objFormations['categorie']);
+					
+					if($cycle=="cycle" || $categorie=="Categorie")
+					{
+						$toutOK=false;
+						break;
+					}
+					$sql="SELECT idCycleFormation as id FROM CycleFormation WHERE cycle=:cycle ";
+					
+					if($mention!="Aucune" && $mention!="mention")
+						$sql.="and mention=:mention ";
+					if($specialite!="Aucune" && $specialite!="specialite")
+						$sql.="and specialite=:specialite";
+						
+					
+					$rep = $conn->prepare($sql);
+					$rep->bindValue(':cycle',$cycle,PDO::PARAM_STR);
+					
+					if($mention!="Aucune" && $mention!="mention")
+						$rep->bindValue(':mention',$mention,PDO::PARAM_STR);
+					
+					if($specialite!="Aucune" && $specialite!="specialite")
+						$rep->bindValue(':specialite',$specialite,PDO::PARAM_STR);
+					$rep->execute();
+					if($res = $rep->fetch())
+					{
+						$idCF=intval($res['id']);
+						$tabIdCF[$i]=$idCF;
+					}
+					else
+					{
+						$toutOK=false;
+						break;
+					}
+						
+				}
+
+          		if($toutOK)
+				{
+
+	            	$sql ="INSERT INTO TaxeApprentissage(Entreprise_nomEntreprise,anneeDeVersement,montantPromesseVersement,montantVerse,versementVia,rapprochementAC,dateEnregistrement) VALUES (:nomEntreprise,:anneeDeVersement,:montantPromesseVersement,:montantVerse,:versementVia,:rapprochementAC, DATE( NOW() ) ) ";
+				
+					$rep=$conn->prepare($sql);
+					
+					$rep->bindValue(':nomEntreprise',$nomEntreprise,PDO::PARAM_STR);
+					$rep->bindValue(':anneeDeVersement',trim($donnees[0]),PDO::PARAM_INT);
+					$rep->bindValue(':montantPromesseVersement',trim($donnees[1]),PDO::PARAM_INT);
+					$rep->bindValue(':montantVerse',trim($donnees[2]),PDO::PARAM_INT);
+					$rep->bindValue(':versementVia',trim($donnees[3]),PDO::PARAM_STR);
+					$rep->bindValue(':rapprochementAC',trim($donnees[4]),PDO::PARAM_STR);
+
+					if($rep->execute())
+					{
+						$rep = $conn->query('SELECT LAST_INSERT_ID() AS id');
+						$res = $rep->fetch();
+						$idTA=intval($res['id']);
+
+						for($i=5;$i<count($donnees);$i++)
+						{
+							//echo "i : $i";
+							$objFormations=$donnees[$i];
+							//print_r($objFormations);
+							$sql="INSERT INTO a_TaxeApprentissage_CycleFormation VALUES(:idTA, :idCF, :categorie, :montant)";
+							//echo "sql : $sql";
+							//echo "idCF : ".$tabIdCF[$i];
+							$rep=$conn->prepare($sql);
+
+							$rep->bindValue(':idTA',$idTA,PDO::PARAM_INT);
+							$rep->bindValue(':idCF',$tabIdCF[$i],PDO::PARAM_INT);
+							$rep->bindValue(':categorie',trim($objFormations['categorie']),PDO::PARAM_STR);
+							$rep->bindValue(':montant',trim($objFormations['montant']),PDO::PARAM_INT);
+
+							$rep->execute();
+
+						}
+
+						echo "ok";
+
+					}
+					else
+					{
+						echo "<p> Une erreur s'est produite ! </p>";
+					}
+
+				}
+				else
+					echo "<p> L'une des combinaisons cycle,mention,specialite est incorrecte </p>";
+				
             }
             else
             {

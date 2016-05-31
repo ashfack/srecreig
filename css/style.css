@@ -305,4 +305,7 @@ button#bInfo, button#bSupprimer, button#bEditer
     height: 35px !important;
 }
 
+.form-inline > * {
+   margin:5px 3px;
+}
 
