@@ -1141,8 +1141,8 @@ function requeteAjaxSelectFormations(choix,val,nb,cycle)
 		        			chaine+="<option value='"+data[cle][j]+"'>"+data[cle][j]+"</option>";
 		        		}
 		        		$(id).append(chaine);
-		        		/*if(j==1) // "Aucune" est seulement retourné
-		        			$(id).children().next().prop('selected', true);*/
+		        		if(j==1) // "Aucune" est seulement retourné
+		        			$(id).children().next().prop('selected', true);
 		        	}
 		        }
         	}
