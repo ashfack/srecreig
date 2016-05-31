@@ -288,8 +288,8 @@ $(document).ready(function()
                    				categorie: $(select[3]).val(), 
                    				montant:montant
                    			};
-                   			/*console.log(groupSelectMontant);
-                   			data.push(groupSelectMontant);*/
+                   			/*console.log(groupSelectMontant);*/
+                   			data.push(groupSelectMontant);
                    		}
                    		else
                    		{
