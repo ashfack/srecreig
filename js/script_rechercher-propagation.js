@@ -252,7 +252,12 @@ $(document).ready(function()
                    var select;
                    var input;
                    var textarea;
+
+                   var cycle;
+                   var mention;
+                   var specialite;
                    var montant;
+
                    var elemPush;
                    var id;
       
@@ -263,7 +268,7 @@ $(document).ready(function()
 
                	   var montantVerse=0;
                	   var sommeMontant=0;
-
+               	   var formationsOK=true;
                    for(var i=0;i<fils.length;i++)
                    {
                    		
@@ -280,16 +285,27 @@ $(document).ready(function()
                    				alert("Attention montant inférieur à 0!!");
                    			else
                    				sommeMontant+=montant;
-                   			groupSelectMontant = 
+
+                   			cycle=$(select[0]).val(); 
+                   			mention=$(select[1]).val(); 
+                   			specialite=$(select[2]).val();
+                   			categorie=$(select[3]).val();
+                   			if(cycle=="cycle" || mention=="mention" || specialite=="specialite" || categorie=="Categorie")
+                   				formationsOK=false;
+                   			else
                    			{
-                   				cycle:$(select[0]).val(), 
-                   				mention:$(select[1]).val(), 
-                   				specialite:$(select[2]).val(), 
-                   				categorie: $(select[3]).val(), 
-                   				montant:montant
-                   			};
-                   			/*console.log(groupSelectMontant);*/
-                   			data.push(groupSelectMontant);
+                   				groupSelectMontant = 
+	                   			{
+	                   				cycle:$(select[0]).val(), 
+	                   				mention:$(select[1]).val(), 
+	                   				specialite:$(select[2]).val(), 
+	                   				categorie: $(select[3]).val(), 
+	                   				montant:montant
+	                   			};
+	                   			/*console.log(groupSelectMontant);*/
+	                   			data.push(groupSelectMontant);
+                   			}
+                   		
                    		}
                    		else
                    		{
@@ -320,12 +336,15 @@ $(document).ready(function()
                    	//	patternOk=true;
                    	
                    	//console.log("montant verse: "+montantVerse+" , sommeMontant: "+sommeMontant);
-                   	if(sommeMontant==montantVerse)
+                   	if(formationsOK && sommeMontant==montantVerse)
                    		requeteAjaxAjout(nomEntreprise,table,niveau, data);
                    	else
                    	{
                    		$("#zone_message").children().remove();
-                   		$("#zone_message").append("<p> La somme des montants par formations est différente du montant versé ou ce dernier est invalide ! </p>");
+                   		if(!formationsOK)
+                   			$("#zone_message").append("<p> Veuillez selectionner dans les listes déroulante des valeurs autre que 'cycle','mention','specialite', et 'categorie' ! </p>");	
+                   		if(sommeMontant!=montantVerse)
+                   			$("#zone_message").append("<p> La somme des montants par formations est différente du montant versé ou ce dernier est invalide ! </p>");
                    		$("#zone_message").css('display','block');
                    		$("#dialog_ajouter").dialog("open");
                    		$("#dialog_ajouter").dialog('option','width','100%');
