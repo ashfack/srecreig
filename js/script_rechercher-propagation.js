@@ -1,13 +1,38 @@
 var colVal = new Array();
 var colonnes = new Array();
-var colonnesPattern_ajout={Telephonefixe:"^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$", 
-								Telephonemobile: "^((\+\d{1,3}(-| )?\(?\d\)?(-| )?\d{1,5})|(\(?\d{2,6}\)?))(-| )?(\d{3,4})(-| )?(\d{4})(( x| ext)\d{1,5}){0,1}$", 
-								Mail: "[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$", 
-								Anneeentree: "[1-9]{1}", Datedebutcontrat: "20[0-9]{2}", Datefincontrat: "20[0-9]{2}",  
-								Anneedeversement: "20[0-9]{2}", Montantpromesseversement: "\d+", Montantverse: "\d+", 
-								Montant:"\d+", Heuredebut: "([01]?[0-9]|2[0-3]):[0-5][0-9]", Heurefin: "([01]?[0-9]|2[0-3]):[0-5][0-9]", 
-								Anneedeparticipation: "20[0-9]{2}", Nom: "[a-zA-Z-_]*", Prenom: "[a-zA-Z-_]*", NumeroSIRET: "[0-9]{14}", Codepostal: "[0-9]{5}"   
+var colonnesPattern_ajout={Telephonefixe:/^0[1-68]([-. ]?[0-9]{2}){4}$/,
+								Telephonemobile: /^0[1-68]([-. ]?[0-9]{2}){4}$/, 
+								Mail: /[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$/, 
+								Anneeentree: /^[123]$/, Datedebutcontrat: /^20[0-9]{2}$/, Datefincontrat: /^20[0-9]{2}$/,  
+								Anneedeversement: /^20[0-9]{2}$/, Montantpromesseversement: /^[0-9]+(\.?[0-9]+)?$/, Montantverse: /^[0-9]+(\.?[0-9]+)?$/, 
+								Montant:/^[0-9]+(\.?[0-9]+)?$/, Heuredebut: /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/, Heurefin: /^([01]?[0-9]|2[0-3]):[0-5][0-9]$/,
+								Dateatelier: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/, Dateconference: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/,
+								RapprochementAC: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/, Dateenregistrement: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/,
+								Datedernieremodification: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/, DatetransmissionchequeAC: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/,
+								DateRVpreparation: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/, DateRVsimulation: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/,
+								DateenvoiFLauCFA: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/, 
+								Anneedeparticipation: /^20[0-9]{2}$/, Nom: /^[A-Z-_]+$/, Prenom: /^[A-Z]{1}[a-z-_]*$/, NumeroSIRET: /^[0-9]{14}$/, Codepostal: /^[0-9]{5}$/   
 							};
+							
+var exemplePattern_ajout={Telephonefixe:"01.00.00.00.00", 
+								Telephonemobile: "06.00.00.00.00", 
+								Mail: "exemple@exemple.com", 
+								Anneeentree: "1 (ou 2,3)", Datedebutcontrat: "2016", Datefincontrat: "2016",  
+								Anneedeversement: "2016", Montantpromesseversement: "1000 (nombre positif)", Montantverse: "1000 (nombre positif)", 
+								Montant:"1000 (nombre positif)", Heuredebut: "14:00", Heurefin: "17:00", 
+								Anneedeparticipation: "2016", Nom: "EXEMPLE", Prenom: "Exemple", NumeroSIRET: "12345678912345 (14 chiffres)", Codepostal: "75000",
+								Dateatelier: "2016-06-05", Dateconference: "2016-06-05",RapprochementAC: "2016-06-05", Dateenregistrement: "2016-06-05",
+								Datedernieremodification:"2016-06-05", DatetransmissionchequeAC: "2016-06-05", DateRVpreparation: "2016-06-05", DateRVsimulation: "2016-06-05",
+								DateenvoiFLauCFA:"2016-06-05"  
+							};
+
+var colonnesObligatoire_ajout={CoordonneesPersonneNiveau1:["Nom","Prenom"],AlternanceNiveau1:["Nom","Prenom"],
+								AlternanceNiveau3:["Nom","Prenom"],AlternanceNiveau4:["Nom","Prenom"],
+								TaxeApprentissageNiveau1:["Anneedeversement","Montantverse"],
+								AtelierRHNiveau1:["Dateatelier"],AtelierRHNiveau2:["Nom","Prenom"],
+								ConferenceNiveau1:["Dateconference"],ConferenceNiveau1:["Nom","Prenom"],
+								ForumSGNiveau1:["Anneedeparticipation"]
+							 };
 var tabFormations=["cycle","mention","specialite"];
 var compteurNbFormations=1;
 String.prototype.capitalizeFirstLetter = function() {
@@ -216,7 +241,6 @@ $(document).ready(function()
 		]
 		});
 
-
 	$("#dialog_ajouter").dialog(
     {
         height: 600,
@@ -240,15 +264,11 @@ $(document).ready(function()
                     primary: "ui-icon-check"
                 },
                 click: function() 
-                {
-
-                    
+                {                  
                     var obj=$(this).data('donneesDialog');
                     var table=obj['table'];
                     var niveau=obj['niveau'];
                    	
-          
-                   var fils=$("#form_ajouter").children();
                    var select;
                    var input;
                    var textarea;
@@ -260,8 +280,10 @@ $(document).ready(function()
 
                    var elemPush;
                    var id;
+                   var idElem;
+                   var valElm;
       
-                   var patternOk=false;
+                   var patternOk=true;
                
                	   var data= new Array();
                	   var groupSelectMontant;
@@ -269,27 +291,31 @@ $(document).ready(function()
                	   var montantVerse=0;
                	   var sommeMontant=0;
                	   var formationsOK=true;
+               	 
+               	   var chaineMessageErreur="<ul>";
+               	   var chaine="";
+
+               	   var fils=$("#form_ajouter").children();
                    for(var i=0;i<fils.length;i++)
                    {
                    		
                			id=$(fils[i]).attr("id");
+               			if(id!=null && id=="cacher_datepicker")
+               				continue;
+               			
                			if(id!=null && id.length>=20 && id.substring(0,20)=="montantParFormations")
                    		{
-                   			//console.log(fils[i]);
-                   			//console.log(id);
+                   			
                    			select=$(fils[i]).find('select');
 
-                   			montant=parseInt($(fils[i]).find('input').val());
-                   			//A voir
-                   			if(montant<=0)
-                   				alert("Attention montant inférieur à 0!!");
-                   			else
-                   				sommeMontant+=montant;
+                   			montant=parseInt($(fils[i]).find('input').val());               		
+                   			sommeMontant+=montant;
 
                    			cycle=$(select[0]).val(); 
                    			mention=$(select[1]).val(); 
                    			specialite=$(select[2]).val();
                    			categorie=$(select[3]).val();
+
                    			if(cycle=="cycle" || mention=="mention" || specialite=="specialite" || categorie=="Categorie")
                    				formationsOK=false;
                    			else
@@ -302,7 +328,7 @@ $(document).ready(function()
 	                   				categorie: $(select[3]).val(), 
 	                   				montant:montant
 	                   			};
-	                   			/*console.log(groupSelectMontant);*/
+	                   			
 	                   			data.push(groupSelectMontant);
                    			}
                    		
@@ -321,41 +347,51 @@ $(document).ready(function()
 	                   			elemPush=textarea;
 	                   		else
 	                   			continue;
-	                   		/*console.log(elemPush);	
-	                   		console.log(i+" --> "+elemPush.val());*/
-	                   		data.push($(elemPush).val());
+
+	                   		idElem=$(elemPush).attr('id');
+	                   		valElem=$(elemPush).val();
+
+	                   		chaine=verifierPattern(idElem,valElem,table,niveau)
+	                   		if(chaine!="ok")
+	                   		{
+	                   			patternOk=false;
+	                   			chaineMessageErreur+=chaine;
+	                   		}
+	                   				
+	                   		data.push(valElem);
                    		}
 
                    }
-                   $(this).dialog("close");
+                    
 
-                   if(table=="TaxeApprentissage")
-                   		montantVerse=$("#TaxeApprentissage_Montantverse_niveau1").val();
-                  // if(verifierPattern(data))
-                   //{
-                   	//	patternOk=true;
+                  	if(table=="TaxeApprentissage")
+                  	{
+                  		montantVerse=$("#TaxeApprentissage_Montantverse_niveau1").val();
+                  		if(!formationsOK)
+                   			chaineMessageErreur+="<li> Veuillez selectionner dans les listes déroulante des valeurs autre que 'cycle','mention','specialite', et 'categorie' ! </li>";	
+                   		if(sommeMontant!=montantVerse)
+                   			chaineMessageErreur+="<li> La somme des montants par formations est différente du montant versé ou ce dernier est invalide ! </li>";
+                  	}
                    	
-                   	//console.log("montant verse: "+montantVerse+" , sommeMontant: "+sommeMontant);
-                   	if(formationsOK && sommeMontant==montantVerse)
-                   		requeteAjaxAjout(nomEntreprise,table,niveau, data);
+                   	chaineMessageErreur+="</ul>";
+                   
+                   	$(this).dialog("close");
+
+                   	if(patternOk && formationsOK && sommeMontant==montantVerse)
+                   		requeteAjaxAjout(nomEntreprise,table,niveau,data);
                    	else
                    	{
                    		$("#zone_message").children().remove();
-                   		if(!formationsOK)
-                   			$("#zone_message").append("<p> Veuillez selectionner dans les listes déroulante des valeurs autre que 'cycle','mention','specialite', et 'categorie' ! </p>");	
-                   		if(sommeMontant!=montantVerse)
-                   			$("#zone_message").append("<p> La somme des montants par formations est différente du montant versé ou ce dernier est invalide ! </p>");
+                   		$("#zone_message").append(chaineMessageErreur);
                    		$("#zone_message").css('display','block');
-                   		$("#dialog_ajouter").dialog("open");
-                   		$("#dialog_ajouter").dialog('option','width','100%');
-                   		//popupMessage("#dialog_message","<p> La somme des montants par formations est différente du montant versé ou ce dernier est invalide ! </p>");
-                   	}
+                   		$(this).dialog("open");
+                   		if(table=="TaxeApprentissage")
+                   			$(this).dialog('option','width','100%');
                    		
-                   //}
-                   //else
-                   	//	$("#dialog_ajouter").dialog("open");
-                 
+                   	}
 
+                   	
+                   		
                 }
         }, {
                 text: "Annuler",
@@ -482,7 +518,7 @@ $(document).ready(function()
 							tabDonnees.push(nomEntreprise);
 							tabDonnees.push($(ligne).find('td:nth-child(2)').html());
 						}
-						else if(true_table=="Alternance" && (true_j==1 || true_j==2))
+						else if(true_table=="Alternance" && true_j==1)
 						{
 							tabDonnees.push(nomEntreprise);
 							tabDonnees.push($(ligne).find('td:first').html());
@@ -552,144 +588,136 @@ $(document).ready(function()
                  		return;
                  	}
 
-                 	/*if(true_table=="TaxeApprentissage" && true_j==1)
-                 	{
-                 		popupMessage("#dialog_message","<p> l'ajout de la taxe d'apprentissage n'est pas encore gérée dans cette version </p>");
-                 		return;
-                 	}*/
                  	compteurNbFormations=1;
                     var datatable = "#dataTable_"+true_table+"_niveau"+true_j;
 
                     $("#dialog_ajouter").children().remove();
                     
                     colonnes= $(datatable+" th").map(function() 
-                                                    { 
-                                                        if($(this).attr('name')!="cacher" && $(this).text()!="")
-                                                        {
-                                                            return $(this).text();
-                                                        }
-                                                            
-                                                    });
-
-                    var chaine="";
-                    if(true_table=="TaxeApprentissage")
-                    		chaine+="<div class='alert alert-danger' role='alert' style='display:none' id='zone_message'> </div>";
+	                            { 
+	                                if($(this).attr('name')!="cacher" && $(this).text()!="")
+	                                {
+	                                    return $(this).text();
+	                                }
+	                                    
+	                            });
+                    var chaine="<div class='alert alert-danger' role='alert' style='display:none' id='zone_message'> </div>";
                     chaine+="<form action='#' method='POST' id='form_ajouter'>";
+
+                    if((true_table=="AtelierRH" || true_table=="Conference") && true_j==1)
+			        {
+			        	chaine+="<input style='height:0px; border:none' id='cacher_datepicker'/>";
+			        }
                     var idDatePicker= new Array();
+                 	var objet_Option={Civilite: ["Monsieur","Madame"], Type: ["Primaire","Secondaire","TA","Autre"], 
+                    								Formationalternance: ["AIR","ENERA"], Anneeentree:[1,2,3], Typecontrat: ["Apprentissage","Contrat de Professionalisation"],
+                    								Typeconference:["Métiers","RH","Autre"], 
+                    								Origine:["SRE","AISG","CAVAM","CEDIP","Corps Pédagogique","Direction Institut Galilée",
+                    											"Direction Sup Galilée","Est Ensemble","Membre exterieur Conseil Institu Galilée",
+                    											"Membre exterieur CA Sup Galilée","Plaine Commune","Présidence","Responsable pédagogique",
+                    											"SCUIO-IP"],
+                    								Typecontact: ["Entreprise","Personne","Collectivité territoriale","Communauté d'agglomérations"],
+                    								Parternariatofficiel: ["Oui","Non"],
+                    								Categorie: ["Catégorie A (niveau 5,4,3)","Catégorie B (niveau 2,1)"],
+                    								Versementvia: ["SRE","Agence Comptable"],
+                    								Modepaiement: ["Cheque","Virement","Inconnu"],
+                    								Actionmenees:["Accueil d'apprentis en Energetique","Accueil d'apprentis en Informatique et Réseaux",
+                    												"Animation d'ateliers RH de simulations d'entretiens","Animation de conférences métiers",
+                    												"Partenariat officiel","Participation au Forum Sup Galilée Entreprises",
+                    												"Recrutement de stagiaires","Recrutement des jeunes diplômé(e)s",
+																	"Soutien financier par le versement de taxe d'apprentissage"]
+                    								 };
+                    var colonneSansEspace;
+                    var id;
+                  
                     for(var i=0;i<colonnes.length;i++) 
                     {
-                        var colonneSansEspace = colonnes[i].replace(/\s/g,"");
-                        var objet_OptionCiviliteType={Civilite: ["Madame", "Monsieur"], Type: ["Primaire","Secondaire","TA","Autre"], 
-                        								Formationalternance: ["AIR","ENERA"], Anneeentree:[1,2,3], Typecontrat: ["Apprentissage","Contrat de Professionalisation"],
-                        								Typeconference:["Métiers","RH","Autre"], 
-                        								Origine:["SRE","AISG","CAVAM","CEDIP","Corps Pédagogique","Direction Institut Galilée",
-                        											"Direction Sup Galilée","Est Ensemble","Membre exterieur Conseil Institu Galilée",
-                        											"Membre exterieur CA Sup Galilée","Plaine Commune","Présidence","Responsable pédagogique",
-                        											"SCUIO-IP"],
-                        								Typecontact: ["Entreprise","Personne","Collectivité territoriale","Communauté d'agglomérations"],
-                        								Parternariatofficiel: ["Oui","Non"],
-                        								Categorie: ["Catégorie A (niveau 5,4,3)","Catégorie A (niveau 2,1)"],
-                        								Versementvia: ["SRE","Agence Comptable"],
-                        								Modepaiement: ["Cheque","Virement","Inconnu"],
-                        								Actionmenees:["Accueil d'apprentis en Energetique","Accueil d'apprentis en Informatique et Réseaux",
-                        												"Animation d'ateliers RH de simulations d'entretiens","Animation de conférences métiers",
-                        												"Partenariat officiel","Participation au Forum Sup Galilée Entreprises",
-                        												"Recrutement de stagiaires","Recrutement des jeunes diplômé(e)s",
-																		"Soutien financier par le versement de taxe d'apprentissage"]
-                        								 };
-                        //console.log(colonneSansEspace.substring(0,5));
-                        if(true_table=="Alternance" && colonneSansEspace=="Prenom" && i==1)
+                        colonneSansEspace = colonnes[i].replace(/\s/g,"");
+                      
+                        //On affiche que le nom de l'alternant pr les niveaux 4 et 3 (position 1)
+                        if(true_table=="Alternance" && ((colonneSansEspace=="Prenom" && i==1) || (colonneSansEspace=="Fonction" && true_j==1 )))
                         {
                         	continue;
                         }
+                       
+                        id=true_table+"_"+colonneSansEspace+"_niveau"+true_j;
+
+                        chaine+=" <div class='form-group row'>";
+                        chaine+="<label for='"+id+"' class='col-sm-4 form-control-label'>"+colonnes[i]+": </label>";
+                        chaine+="<div class='col-sm-8'>";
+
+                        //recupere les noms de la datatable niveau 1 et construit une liste déroulante
+                        if(true_table=="Alternance" && colonneSansEspace=="Nom" && i==0 )
+                        {
+                            
+                            var data=$("#dataTable_Alternance_niveau1").dataTable().fnGetData();
+                            
+                            chaine+="<select name='"+id+"_Alternant' id='"+id+"_Alternant' class='form-control'>"
+                            var id_alternant;
+                            for(var k=0;k<data.length;k++)
+                            {
+                                id_alternant=$($("#dataTable_Alternance_niveau1").find("tbody tr")[k]).children().attr('id').split('_')[1];
+                            	
+                                chaine+="<option value='"+id_alternant+"'>"+data[k][6]+"</option>";
+                            }
+                            chaine+="</select>";
+                        }
+                      	//Pareil qu'au dessus mais avec des dates
+                        else if((colonneSansEspace=="Dateatelier" || colonneSansEspace=="Dateconference") && true_j==2)
+                        {
+                            var data=$("#dataTable_"+true_table+"_niveau1").dataTable().fnGetData();
+
                            
+                            chaine+="<select name='"+id+"' id='"+id+"' class='form-control' >"
+                            var id_date;
+                            for(var k=0;k<data.length;k++)
+                            {
+                            	id_date=$($("#dataTable_"+true_table+"_niveau1").find("tbody tr")[k]).children().attr('id').split('_')[1];
+                            
+                                chaine+="<option value='"+id_date+"'>"+data[k][1]+"</option>";
+                            }
+                            chaine+="</select>";
+
+                            
+                        }
+                        //c'est une colonne qui a plusieurs options ---> création d'une liste déroulante 
+                        else if(has( objet_Option,colonneSansEspace))
+                        {
+                        	
+                        	chaine+="<select name='"+id+"' id='"+id+"' class='form-control' >";
+                        	
+                        	var tabOption= objet_Option[colonneSansEspace];
+                        	for(var k=0;k<tabOption.length;k++)
+                            {
+                                chaine+="<option value='"+tabOption[k]+"'>"+tabOption[k]+"</option>";
+                            }
+                        	chaine+="</select>";
+                        }
+                        // c'est un commentaire --> un textarea
+                        else if (colonneSansEspace.substring(0,4)=="Comm")
+						{				
+							chaine+="<textarea class='form-control' name='"+colonneSansEspace+"' id='"+colonneSansEspace+"'></textarea>";	
+						}
+
+						// La colonne a un type autre que text (sauf pr celles qui seront des datepicker)
                         else
                         {
-                            chaine+=" <div class='form-group row'>";
-                            chaine+="<label for='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"' class='col-sm-4 form-control-label'>"+colonnes[i]+": </label>";
-                            chaine+="<div class='col-sm-8'>";
-
-                            if(true_table=="Alternance" && colonneSansEspace=="Nom" && i==0 )
+                            if(has(colonnesType_ajout,colonneSansEspace)) 
                             {
-                                
-                                var data=$("#dataTable_Alternance_niveau1").dataTable().fnGetData();
-                                
-                                chaine+="<select name='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"_Alternant' id='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"_Alternant' class='form-control'>"
-                                
-                                for(var k=0;k<data.length;k++)
-                                {
-                                    //var choixData= (i==0) ? data[k][6] : data[k][7];
-                                    var id=$($("#dataTable_Alternance_niveau1").find("tbody tr")[k]).children().attr('id').split('_')[1];
-                                	//console.log(id);
-                                    chaine+="<option value='"+id+"'>"+data[k][6]+"</option>";
-                                }
-                                chaine+="</select>";
+                                chaine+="<input type='"+colonnesType_ajout[colonneSansEspace]+"' class='form-control' id='"+id+"'>";
+
+                                if(colonnesType_ajout[colonneSansEspace]=="text")
+                                    idDatePicker.push(id);
                             }
-                          
-                            else if((colonneSansEspace=="Dateatelier" || colonneSansEspace=="Dateconference") && true_j==2)
-                            {
-                                var data=$("#dataTable_"+true_table+"_niveau1").dataTable().fnGetData();
-
-                                
-                                chaine+="<select name='"+true_table+"_"+colonneSansEspace+"_niveau2' id='"+true_table+"_"+colonneSansEspace+"_niveau2' class='form-control' >"
-                                
-                                for(var k=0;k<data.length;k++)
-                                {
-                                	var id=$($("#dataTable_"+true_table+"_niveau1").find("tbody tr")[k]).children().attr('id').split('_')[1];
-                                	//console.log(id);
-                                    chaine+="<option value='"+id+"'>"+data[k][1]+"</option>";
-                                }
-                                chaine+="</select>";
-
-                                
-                            }
-  
-
-                            else if(has( objet_OptionCiviliteType,colonneSansEspace))
-                            {
-                            	
-	                        	chaine+="<select name='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"' id='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"' class='form-control' >";
-	                        	
-	                        	var tabOption= objet_OptionCiviliteType[colonneSansEspace];
-	                        	for(var k=0;k<tabOption.length;k++)
-                                {
-                                    chaine+="<option value='"+tabOption[k]+"'>"+tabOption[k]+"</option>";
-                                }
-	                        	chaine+="</select>";
-                            }
-
-                            else if (colonneSansEspace.substring(0,4)=="Comm")
-							{	
-								//console.log("ooooooooook");				
-								chaine+="<textarea class='form-control' name='"+colonneSansEspace+"' id='"+colonneSansEspace+"'></textarea>";	
-							}
                             else
-                            {
-                                if(has(colonnesType_ajout,colonneSansEspace)) // elle a un type autre que text (sauf pr celles qui seront des datepicker)
-                                {
-                                    chaine+="<input type='"+colonnesType_ajout[colonneSansEspace]+"' class='form-control' id='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"'>";
-
-                                    if(colonnesType_ajout[colonneSansEspace]=="text")
-                                        idDatePicker.push(true_table+"_"+colonneSansEspace+"_niveau"+true_j);
-                                }
-                                else
-                                    chaine+="<input type='text' class='form-control' id='"+true_table+"_"+colonneSansEspace+"_niveau"+true_j+"' >";
-
-                                /*if(has(colonnesPattern_ajout,colonneSansEspace))
-                                    chaine+=" pattern='"+colonnesPattern_ajout[colonneSansEspace]+"' required>";
-                                else
-                                chaine+=">";*/
-                            }
-
-                            //ajout de cycle mention specialite montant dans tax
-                                       
-                            chaine+="</div> </div>";
+                                chaine+="<input type='text' class='form-control' id='"+id+"' >";
                         }
-                       
+       
+                        chaine+="</div> </div>";
+                             
                     }
 
-                
-
+                    //ajout de cycle mention specialite montant dans taxe
                    	if(true_table=="TaxeApprentissage" && true_j==1)
                  	{
                  		chaine+="<div class='form-group row' id='labelMontantFormations'>";
@@ -708,12 +736,22 @@ $(document).ready(function()
              			$("#dialog_ajouter").dialog('option','width','100%');
                  	}
                    
+                   	// generation des datepicker
                     for(var i=0; i< idDatePicker.length;i++)
                     {
-                        //console.log("#"+idDatePicker[i]);
                         $("#"+idDatePicker[i]).datepicker({
                         	dateFormat: "yy-mm-dd",
-                        	altFormat: "dd/mm/yyyy"
+                        	altFormat: "dd/mm/yyyy",
+                        	changeMonth: true,
+                        	changeYear: true,
+                        	monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+							monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+							dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+							dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+                        	dayNamesMin: [ "Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa" ],
+                        	showWeek: true,
+                        	weekHeader: "Sem.",
+                        	yearRange: "1900:2020"
                         });
                     }
 
@@ -1230,9 +1268,38 @@ function has(object, key)
       return object ? hasOwnProperty.call(object, key) : false;
 }
 
-function verifierPattern(tabDonnees)
+function verifierPattern(idElem,valElem,table,niveau)
 {
-	return false;
+	//ces id correspondent aux selects présents dans les niveaux 3 et 4 de l'onglet alternance. Ceux-ci sont recuperés directement depuis la datatable niveau 1 
+	// et sont forcément au bon format. Les valeurs des options étant des id (de la BDD) on est obligé de traiter le cas
+	if(idElem=="Alternance_Nom_niveau4_Alternant" || idElem=="Alternance_Nom_niveau3_Alternant")
+	{
+		return "ok";
+	}
+
+	var nomColonne=idElem.split('_')[1];
+	var cle=table+"Niveau"+niveau;
+	var nomColonneEspace;
+	if(valElem=="")
+	{
+		if(has(colonnesObligatoire_ajout,cle) && colonnesObligatoire_ajout[cle].indexOf(nomColonne)!=-1)
+		{
+			nomColonneEspace=($("#"+idElem).parent().prev().html()).replace(":",""); // recuperation du label
+			return "<li> L'attribut "+nomColonneEspace+" est obligatoire ! </li>";
+		}
+			
+	}
+	else
+	{
+		if(has(colonnesPattern_ajout,nomColonne) && !colonnesPattern_ajout[nomColonne].test(valElem))
+		{
+			nomColonneEspace=($("#"+idElem).parent().prev().html()).replace(":","");
+			return "<li> L'attribut "+nomColonneEspace+" n'est pas au bon format (exemple: "+exemplePattern_ajout[nomColonne]+" ) </li>";
+		}
+	}
+
+	return "ok";
+
 }
 
 

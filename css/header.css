@@ -2,13 +2,13 @@
 /* Header CSS Rafal */ 
 
 
-a {
+#wrapper a {
   color: #01008A;
   text-decoration: none;
 }
 
 
-a:hover {
+#wrapper a:hover {
 	color:red !important;
 }
 
@@ -94,7 +94,7 @@ body
 
 /*** infobulle **/
 
-a span{
+#wrapper a span{
      position:absolute;                
      margin-top:23px;
      margin-left:-35px;
@@ -110,8 +110,7 @@ a span{
 }
 
 
-a:hover span, a:focus span{
+#wrapper a:hover span, #wrapper a:focus span{
      transform:scale(1) rotate(0);        
      opacity:1;
-
 }

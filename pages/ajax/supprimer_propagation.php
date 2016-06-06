@@ -17,7 +17,6 @@
 
            $tabCorrespondanceColonnes=array("EntrepriseNiveau1"=>array("nomEntreprise"),
                                                 "CoordonneesPersonneNiveau1"=>array("idCoordonneesPersonne"),
-                                                "AlternanceNiveau1"=>array("Entreprise_nomEntreprise","CoordonneesPersonne_alternant"),
                                                 "TaxeApprentissageNiveau1"=>array("idTA"),
                                                 "AtelierRHNiveau1"=>array("idAtelierRH"),
                                                 "AtelierRHNiveau2"=>array("idCoordonneesPersonne"),
@@ -47,12 +46,18 @@
                 $sql="UPDATE Alternance SET $colonne = NULL WHERE CoordonneesPersonne_alternant= :donnee1 and $colonne= :donnee2";
                 $deuxColonnes=true;
             }
+            else if($table=="Alternance" && $niveau==1)
+            {
+                $sql="DELETE FROM Alternance WHERE Entreprise_nomEntreprise=:donnee1 and CoordonneesPersonne_alternant = :donnee2; ";
+                $sql.="DELETE FROM CoordonneesPersonne WHERE  idCoordonneesPersonne = :donnee2";
+                $deuxColonnes=true;
+            }
             else
             {
                 $cle=$table."Niveau".$niveau;
                 
                 $sql="DELETE FROM ".$tabCorrespondanceTables[$cle]." WHERE ".$tabCorrespondanceColonnes[$cle][0]." = :donnee1";
-                if($table=="Alternance" || $table=="ForumSG")
+                if($table=="ForumSG")
                 {
                     $sql.=" and ".$tabCorrespondanceColonnes[$cle][1]." = :donnee2";
                     $deuxColonnes=true;

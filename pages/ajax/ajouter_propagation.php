@@ -132,11 +132,11 @@
 					$rep->bindValue(':civilite',trim($donnees[3]),PDO::PARAM_STR);
 					$rep->bindValue(':nom',trim($donnees[4]),PDO::PARAM_STR);
 					$rep->bindValue(':prenom',trim($donnees[5]),PDO::PARAM_STR);
-					$rep->bindValue(':fonction',trim($donnees[6]),PDO::PARAM_STR);
-					$rep->bindValue(':telephoneFixe',trim($donnees[7]),PDO::PARAM_STR);
-					$rep->bindValue(':telephoneMobile',trim($donnees[8]),PDO::PARAM_STR);
-					$rep->bindValue(':mail',trim($donnees[9]),PDO::PARAM_STR);
-					$rep->bindValue(':commentaires',trim($donnees[10]),PDO::PARAM_STR);
+					$rep->bindValue(':fonction',"Alternant",PDO::PARAM_STR);
+					$rep->bindValue(':telephoneFixe',trim($donnees[6]),PDO::PARAM_STR);
+					$rep->bindValue(':telephoneMobile',trim($donnees[7]),PDO::PARAM_STR);
+					$rep->bindValue(':mail',trim($donnees[8]),PDO::PARAM_STR);
+					$rep->bindValue(':commentaires',trim($donnees[9]),PDO::PARAM_STR);
 
 					$rep->bindValue(':nomEntreprise',$nomEntreprise,PDO::PARAM_STR);
 					$rep->bindValue(':formationAlternance',trim($donnees[0]),PDO::PARAM_STR);

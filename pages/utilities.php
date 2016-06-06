@@ -67,7 +67,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 {
 	echo "<div id='menu_$table' class='panel'>";
 	$cle_CP_presente=false;
-
+	//$array_colonne_date=array("dateRVPreparation","dateRVSimulation","dateDebutContrat","dateFinContrat","dateEnvoiFLAuCFA","rapprochementAC");
 	try
 	{
 	
@@ -221,6 +221,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			{
 					
 					colonne_null($data);
+					
 					echo "<tr>";
 					if($table=="Alternance")
 						$pk="idCoordonneesPersonne";
@@ -235,11 +236,6 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 							$valeur=$data[$niveau[$j]];
 							if($niveau[$j]=="idCoordonneesPersonne")
 								echo "<td id='$table"."_".$valeur_pk."_".$niveau[$j]."_"."$nom_niveau' name='cacher'> $valeur</td>";
-							/*if (substr($niveau[$j],0,4)=="comm")
-							{
-								echo "je change le commentaires";
-								echo "<td id='$table"."_".$valeur_pk."_".$niveau[$j]."_"."$nom_niveau' name='cacher' style='height:100px;'> <div style='overflow:scroll; height:100%'>$valeur</div></td>";
-							}*/	
 							else
 								echo "<td id='$table"."_".$valeur_pk."_".$niveau[$j]."_"."$nom_niveau'> $valeur</td>";
 						}
@@ -252,15 +248,12 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 						{
 							$nom_col=$niveau[$j];
 
+							if($nom_col=="heureDebut" || $nom_col=="heureFin")
+								$data[$nom_col]=substr($data[$nom_col],0,5);
+
 							$valeur=$data[$nom_col];
 							if(substr($nom_col, 0,2)=="id" || $nom_col=="nomEntreprise"  || $nom_col=="Entreprise_nomEntreprise")
 									echo "<td id='$table"."_".$valeur_pk."_".$nom_col."_"."$nom_niveau' name='cacher'> $valeur</td>";
-
-							/*if(substr($niveau[$j],0,4)=="comm")
-							{
-								echo "je change le commentaires";
-								echo "<td id='$table"."_".$valeur_pk."_".$niveau[$j]."_"."$nom_niveau' name='cacher' style='height:200px;'> <div style='overflow:scroll; height:100%'>$valeur</div></td>";
-							}*/
 							else
 								echo "<td id='$table"."_".$valeur_pk."_".$nom_col."_"."$nom_niveau'> $valeur</td>";
 						}
