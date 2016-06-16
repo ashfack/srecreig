@@ -303,7 +303,7 @@ $(document).ready(function()
                			if(id!=null && id=="cacher_datepicker")
                				continue;
                			
-               			if(id!=null && id.length>=20 && id.substring(0,20)=="montantParFormations")
+               			if(id!=null && id.length>=20 && id.substring(0,19)=="montantParFormation")
                    		{
                    			
                    			select=$(fils[i]).find('select');
@@ -721,7 +721,7 @@ $(document).ready(function()
                    	if(true_table=="TaxeApprentissage" && true_j==1)
                  	{
                  		chaine+="<div class='form-group row' id='labelMontantFormations'>";
-						chaine+="<label for='montantParFormations_0' class='col-sm-4 form-control-label'> Montant par formations: </label>";
+						chaine+="<label for='montantParFormation_0' class='col-sm-4 form-control-label'> Montant par formation: </label>";
 				    	chaine+="</div>";
              			chaine+=creerSelectFormation(0); 
                  	}
@@ -1157,7 +1157,7 @@ function requeteAjaxSelectCycle(nb)
 
 	$("#bSupprimer_"+nb).click(function(){
 		
-		$("#montantParFormations_"+nb).remove();
+		$("#montantParFormation_"+nb).remove();
 	});
 
 	$("#mention_"+nb).change(function(){
@@ -1230,7 +1230,7 @@ function creerSelectFormation(nb)
 { 
 	/*console.log("créer select");
     console.log(nb);*/
-    var chaine="<div class='form-inline' name='montantParFormations_"+nb+"' id='montantParFormations_"+nb+"'>";
+    var chaine="<div class='form-inline' name='montantParFormation_"+nb+"' id='montantParFormation_"+nb+"'>";
 		
 	for(var k=0;k<3;k++)
 	{
