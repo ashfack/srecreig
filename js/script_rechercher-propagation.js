@@ -611,7 +611,7 @@ $(document).ready(function()
                     var idDatePicker= new Array();
                  	var objet_Option={Civilite: ["Monsieur","Madame"], Type: ["Primaire","Secondaire","TA","Autre"], 
                     								Formationalternance: ["AIR","ENERA"], Anneeentree:[1,2,3], Typecontrat: ["Apprentissage","Contrat de Professionalisation"],
-                    								Typeconference:["Métiers","RH","Autre"], 
+                    								Typeconference:["Métiers","Technique","Autre"],
                     								Origine:["SRE","AISG","CAVAM","CEDIP","Corps Pédagogique","Direction Institut Galilée",
                     											"Direction Sup Galilée","Est Ensemble","Membre exterieur Conseil Institu Galilée",
                     											"Membre exterieur CA Sup Galilée","Plaine Commune","Présidence","Responsable pédagogique",
