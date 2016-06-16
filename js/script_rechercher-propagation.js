@@ -720,7 +720,13 @@ $(document).ready(function()
                     //ajout de cycle mention specialite montant dans taxe
                    	if(true_table=="TaxeApprentissage" && true_j==1)
                  	{
-                 		chaine+="<div class='form-group row' id='labelMontantFormations'>";
+						chaine+="<div class='form-group row' id='OCTA'>";
+						chaine+="<label for='TaxeApprentissage_OCTA_niveau1' class='col-sm-4 form-control-label'> OCTA: </label>";
+						chaine+="<div class='col-sm-8'>";
+						chaine+="<input type='text' class='form-control' id='TaxeApprentissage_OCTA_niveau1' >";
+						chaine+="</div>";
+						chaine+="</div>";
+						chaine+="<div class='form-group row' id='labelMontantFormations'>";
 						chaine+="<label for='montantParFormation_0' class='col-sm-4 form-control-label'> Montant par formation: </label>";
 				    	chaine+="</div>";
              			chaine+=creerSelectFormation(0); 

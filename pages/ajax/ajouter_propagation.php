@@ -246,7 +246,7 @@
           		if($toutOK)
 				{
 
-	            	$sql ="INSERT INTO TaxeApprentissage(Entreprise_nomEntreprise,anneeDeVersement,montantPromesseVersement,montantVerse,versementVia,rapprochementAC,dateEnregistrement) VALUES (:nomEntreprise,:anneeDeVersement,:montantPromesseVersement,:montantVerse,:versementVia,:rapprochementAC, DATE( NOW() ) ) ";
+	            	$sql ="INSERT INTO TaxeApprentissage(Entreprise_nomEntreprise,anneeDeVersement,montantPromesseVersement,montantVerse,versementVia,rapprochementAC,dateEnregistrement,OCTA) VALUES (:nomEntreprise,:anneeDeVersement,:montantPromesseVersement,:montantVerse,:versementVia,:rapprochementAC, DATE( NOW() ),:OCTA) ";
 				
 					$rep=$conn->prepare($sql);
 					
@@ -256,14 +256,14 @@
 					$rep->bindValue(':montantVerse',trim($donnees[2]),PDO::PARAM_INT);
 					$rep->bindValue(':versementVia',trim($donnees[3]),PDO::PARAM_STR);
 					$rep->bindValue(':rapprochementAC',trim($donnees[4]),PDO::PARAM_STR);
-
+					$rep->bindValue(':OCTA',trim($donnees[5]),PDO::PARAM_STR);
 					if($rep->execute())
 					{
 						$rep = $conn->query('SELECT LAST_INSERT_ID() AS id');
 						$res = $rep->fetch();
 						$idTA=intval($res['id']);
 
-						for($i=5;$i<count($donnees);$i++)
+						for($i=6;$i<count($donnees);$i++)
 						{
 							//echo "i : $i";
 							$objFormations=$donnees[$i];
