@@ -199,7 +199,7 @@
 				$toutOK=true;
           		$tabIdCF=array();
 
-				for($i=5;$i<count($donnees);$i++)
+				for($i=6;$i<count($donnees);$i++)
 				{
 					$objFormations=$donnees[$i];
 
