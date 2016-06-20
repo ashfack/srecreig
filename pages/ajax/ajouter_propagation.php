@@ -199,7 +199,7 @@
 				$toutOK=true;
           		$tabIdCF=array();
 
-				for($i=6;$i<count($donnees);$i++)
+				for($i=9;$i<count($donnees);$i++)
 				{
 					$objFormations=$donnees[$i];
 
@@ -246,7 +246,7 @@
           		if($toutOK)
 				{
 
-	            	$sql ="INSERT INTO TaxeApprentissage(Entreprise_nomEntreprise,anneeDeVersement,montantPromesseVersement,montantVerse,versementVia,rapprochementAC,dateEnregistrement,OCTA) VALUES (:nomEntreprise,:anneeDeVersement,:montantPromesseVersement,:montantVerse,:versementVia,:rapprochementAC, DATE( NOW() ),:OCTA) ";
+	            	$sql ="INSERT INTO TaxeApprentissage(Entreprise_nomEntreprise,anneeDeVersement,montantPromesseVersement,montantVerse,versementVia,rapprochementAC,dateEnregistrement,OCTA,modePaiement,dateTransmissionChequeAC,commentairesTaxe) VALUES (:nomEntreprise,:anneeDeVersement,:montantPromesseVersement,:montantVerse,:versementVia,:rapprochementAC, DATE( NOW() ),:OCTA,:modePaiement,:dateTransmissionChequeAC,:commentairesTaxe) ";
 				
 					$rep=$conn->prepare($sql);
 					
@@ -257,13 +257,16 @@
 					$rep->bindValue(':versementVia',trim($donnees[3]),PDO::PARAM_STR);
 					$rep->bindValue(':rapprochementAC',trim($donnees[4]),PDO::PARAM_STR);
 					$rep->bindValue(':OCTA',trim($donnees[5]),PDO::PARAM_STR);
+					$rep->bindValue(':modePaiement',trim($donnees[6]),PDO::PARAM_STR);
+					$rep->bindValue(':dateTransmissionChequeAC',trim($donnees[7]),PDO::PARAM_STR);
+					$rep->bindValue(':commentairesTaxe',trim($donnees[8]),PDO::PARAM_STR);
 					if($rep->execute())
 					{
 						$rep = $conn->query('SELECT LAST_INSERT_ID() AS id');
 						$res = $rep->fetch();
 						$idTA=intval($res['id']);
 
-						for($i=6;$i<count($donnees);$i++)
+						for($i=9;$i<count($donnees);$i++)
 						{
 							//echo "i : $i";
 							$objFormations=$donnees[$i];

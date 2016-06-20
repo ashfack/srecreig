@@ -726,6 +726,31 @@ $(document).ready(function()
 						chaine+="<input type='text' class='form-control' id='TaxeApprentissage_OCTA_niveau1' >";
 						chaine+="</div>";
 						chaine+="</div>";
+
+						chaine+="<div class='form-group row' id='Modepaiement'>";
+						chaine+="<label for='TaxeApprentissage_ModePaiement_niveau1' class='col-sm-4 form-control-label'> Mode de paiement: </label>";
+						chaine+="<div class='col-sm-8'>";
+						chaine+="<select class='form-control' name='TaxeApprentissage_Modepaiement_niveau1' id='TaxeApprentissage_Modepaiement_niveau1'>";
+						chaine+="<option value='cheque'>cheque</option>"; 
+						chaine+="<option value='virement'>virement</option>";
+						chaine+="</select>";
+						chaine+="</div>";
+						chaine+="</div>";
+
+						chaine+="<div class='form-group row' id='DatetransmissionchequeAC'>";
+						chaine+="<label for='TaxeApprentissage_DatetransmissionchequeAC_niveau1' class='col-sm-4 form-control-label'> Date transmission cheque AC: </label>";
+						chaine+="<div class='col-sm-8'>";
+						chaine+="<input type='date' class='form-control hasDatepicker' id='TaxeApprentissage_DatetransmissionchequeAC_niveau1' >";
+						chaine+="</div>";
+						chaine+="</div>";
+
+						chaine+="<div class='form-group row' id='CommentairesTaxes'>";
+						chaine+="<label for='TaxeApprentissage_CommentairesTaxes_niveau1' class='col-sm-4 form-control-label'> Commentaires Taxes: </label>";
+						chaine+="<div class='col-sm-8'>";
+						chaine+="<input type='textarea' class='form-control' id='TaxeApprentissage_CommentairesTaxes_niveau1' >";
+						chaine+="</div>";
+						chaine+="</div>";
+
 						chaine+="<div class='form-group row' id='labelMontantFormations'>";
 						chaine+="<label for='montantParFormation_0' class='col-sm-4 form-control-label'> Montant par formation: </label>";
 				    	chaine+="</div>";
@@ -740,6 +765,20 @@ $(document).ready(function()
                  	{
              			requeteAjaxSelectCycle(0); 
              			$("#dialog_ajouter").dialog('option','width','100%');
+             			$("#TaxeApprentissage_DatetransmissionchequeAC_niveau1").datepicker({
+             				dateFormat: "yyyy-mm-dd",
+                        	altFormat: "yyy/mm/dd",
+                        	changeMonth: true,
+                        	changeYear: true,
+                        	monthNames: ['Janvier', 'Février', 'Mars', 'Avril', 'Mai', 'Juin', 'Juillet', 'Août', 'Septembre', 'Octobre', 'Novembre', 'Décembre'],
+							monthNamesShort: ['Janv.', 'Févr.', 'Mars', 'Avril', 'Mai', 'Juin', 'Juil.', 'Août', 'Sept.', 'Oct.', 'Nov.', 'Déc.'],
+							dayNames: ['Dimanche', 'Lundi', 'Mardi', 'Mercredi', 'Jeudi', 'Vendredi', 'Samedi'],
+							dayNamesShort: ['Dim.', 'Lun.', 'Mar.', 'Mer.', 'Jeu.', 'Ven.', 'Sam.'],
+                        	dayNamesMin: [ "Di", "Lu", "Ma", "Me", "Je", "Ve", "Sa" ],
+                        	showWeek: true,
+                        	weekHeader: "Sem.",
+                        	yearRange: "1900:2020"
+             			});
                  	}
                    
                    	// generation des datepicker
@@ -760,6 +799,7 @@ $(document).ready(function()
                         	yearRange: "1900:2020"
                         });
                     }
+
 
                     $("#dialog_ajouter").data("donneesDialog", { table: true_table, niveau: true_j}).dialog("open");
                     
