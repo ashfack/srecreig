@@ -56,7 +56,7 @@ function colonne_null(&$tab_donnees)
 {
 	foreach ($tab_donnees as $key => $value) 
 	{
-		if($value=="NaN" || $value=="null" || $value=="undefined")
+		if($value=="NaN" || $value=="null" || $value=="undefined" || $value=="0000-00-00")
 			$tab_donnees[$key]="";
 			
 	}
@@ -201,14 +201,14 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			
 			if($table=="Entreprise" && $nom_niveau=="niveau1")
 			{
-				$colonne_array_affichage[count($colonne_array_affichage)]="Cycle Formation";
+				$colonne_array_affichage[count($colonne_array_affichage)]="Cycle formation";
 			}
 			
 			
 			for($i=0;$i<count($colonne_array_affichage);$i++)
 			{
 				$nom_col_affichage=$colonne_array_affichage[$i];
-				if(substr($nom_col_affichage, 0,2)=="id" || $nom_col_affichage=="Nom entreprise")
+				if(substr($nom_col_affichage, 0,2)=="id" || $nom_col_affichage=="Nom entreprise" || ($nom_col_affichage=="Fonction" && $table=="Alternance" && $nom_niveau=="niveau1"))
 					echo  "<th name='cacher'> $nom_col_affichage </th>";
 				else
 					echo  "<th class=\"$nom_col_affichage\"> $nom_col_affichage </th>";
@@ -252,7 +252,7 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 								$data[$nom_col]=substr($data[$nom_col],0,5);
 
 							$valeur=$data[$nom_col];
-							if(substr($nom_col, 0,2)=="id" || $nom_col=="nomEntreprise"  || $nom_col=="Entreprise_nomEntreprise")
+							if(substr($nom_col, 0,2)=="id" || $nom_col=="nomEntreprise"  || $nom_col=="Entreprise_nomEntreprise" || ($nom_col=="fonction" && $table=="Alternance" && $nom_niveau=="niveau1"))
 									echo "<td id='$table"."_".$valeur_pk."_".$nom_col."_"."$nom_niveau' name='cacher'> $valeur</td>";
 							else
 								echo "<td id='$table"."_".$valeur_pk."_".$nom_col."_"."$nom_niveau'> $valeur</td>";
@@ -283,10 +283,8 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 				if(!in_array($cle, $tablePasBoutonAjouter ))
 					echo "<button class=\"btn btn-sm\" type='button' value='Ajouter' style =\"margin-left: 10px;\" id='bAjouter_".$table."_"."$nom_niveau'><i class=\"fa fa-plus\"></i> Ajouter</button> ";
 
-				echo "<button class=\"btn btn-sm\" style =\"margin-left: 10px;\" type='button' value='Modifier' id='bModifier_".$table."_"."$nom_niveau'><i class=\"fa fa-pencil\"></i> Modifier</button>";
-
-
-
+				if($cle!="TaxeApprentissageNiveau2")
+					echo "<button class=\"btn btn-sm\" style =\"margin-left: 10px;\" type='button' value='Modifier' id='bModifier_".$table."_"."$nom_niveau'><i class=\"fa fa-pencil\"></i> Modifier</button>";
 			}
 			if($_SESSION['profil']=='super')
 			{

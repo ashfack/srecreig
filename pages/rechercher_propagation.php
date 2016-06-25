@@ -119,10 +119,10 @@
 			<p>
 			  Edition selon Entreprise <span id="emplacement_editer_nomEntreprise"> </span>
 			</p>
-			<div id="dialog_cycle_edit"  title="Cycle Formation Edition">
+			<div id="dialog_cycle_editer"  title="Cycle Formation Edition">
 				<?php
 					
-					$id="jstree_edit";
+					$id="jstree_editer";
 					include("jstree_cycle.php");
 				?>
 			</div>

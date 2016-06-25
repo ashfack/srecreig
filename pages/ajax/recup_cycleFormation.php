@@ -8,7 +8,7 @@
         $nomEntreprise=$_POST['nomEntreprise'];
 
         $rep=$conn->prepare("SELECT CycleFormation_id FROM a_Entreprise_CycleFormation WHERE Entreprise_nomEntreprise = :nomEntreprise ");
-        $rep->bindValue(':nomEntreprise',"$nomEntreprise",PDO::PARAM_STR);
+        $rep->bindValue(':nomEntreprise',$nomEntreprise,PDO::PARAM_STR);
         $rep->execute();
        
         while($data=$rep->fetch())

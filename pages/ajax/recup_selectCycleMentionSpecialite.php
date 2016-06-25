@@ -46,7 +46,7 @@
                 array_push($donneesInt, "Aucune");
                 while($data=$rep->fetch())
                 {
-                    array_push($donneesInt, $data[$choix]);
+                    array_push($donneesInt,$data[$choix]);
                 }
                 $donnees[$choix]=$donneesInt;  
             }
