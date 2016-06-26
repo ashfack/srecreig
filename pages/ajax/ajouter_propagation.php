@@ -70,7 +70,6 @@
 					{
 						$compt=0;
 						$sql.="INSERT INTO a_Entreprise_CoordonneesPersonne VALUES(:nomEntreprise,@id,:type);";
-						
 					}
 					else
 					{
@@ -300,41 +299,65 @@
             }
             else
             {
-            	$tabColonnesPrepare=$tabCorrespondanceColonnes[$cle];
-            	for($i=0;$i<count($tabColonnesPrepare);$i++)
+            	$ok=true;
+            	if($cle=="ForumSGNiveau1")
             	{
-            		$chaine=$tabColonnesPrepare[$i];
-            		$tabColonnesPrepare[$i]=":".$chaine;
+            		$sql="SELECT count(*) as res FROM ForumSG WHERE anneeDeParticipation=:anneeDeParticipation and Entreprise_nomEntreprise=:nomEntreprise ";
+            		$rep=$conn->prepare($sql);
+            		$rep->bindValue(":anneeDeParticipation",trim($donnees[0]),PDO::PARAM_INT);
+            		$rep->bindValue(":nomEntreprise",$nomEntreprise,PDO::PARAM_STR);
+
+            		if($rep->execute())
+            		{
+						$data = $rep->fetch();
+						$nb=intval($data['res']);
+
+						if($nb==1)
+							$ok=false;
+					}
+					else
+						echo "<p> Une erreur s'est produite ! </p>";
             	}
 
-            	$sql="INSERT INTO $table (".implode(",", $tabCorrespondanceColonnes[$cle]).") VALUES (".implode(",", $tabColonnesPrepare)."); ";
-		
-				//echo "<p> $sql </p>";
-				$rep=$conn->prepare($sql);
-				for($i=0;$i<count($tabColonnesPrepare);$i++)
+            	if($ok)
             	{
-            		$chaine=$tabColonnesPrepare[$i];
-            		if($chaine==":anneeDeParticipation")
-            			$rep->bindValue($chaine,trim($donnees[0]),PDO::PARAM_INT);
-            		else
-            		{
-            			if($chaine==":Entreprise_nomEntreprise")
-            				$rep->bindValue($chaine,$nomEntreprise,PDO::PARAM_STR);
-            			else
-							$rep->bindValue($chaine,trim($donnees[$i-1]),PDO::PARAM_STR); // moins 1 parce que j'ai ajouté entreprise en premiere
-            		}
-            			
-            	}
-          		
-				
-				if($rep->execute())
-				{
-					echo "ok";
+            		$tabColonnesPrepare=$tabCorrespondanceColonnes[$cle];
+	            	for($i=0;$i<count($tabColonnesPrepare);$i++)
+	            	{
+	            		$chaine=$tabColonnesPrepare[$i];
+	            		$tabColonnesPrepare[$i]=":".$chaine;
+	            	}
+
+					$sql="INSERT INTO $table (".implode(",", $tabCorrespondanceColonnes[$cle]).") VALUES (".implode(",", $tabColonnesPrepare)."); ";
+			
+					//echo "<p> $sql </p>";
+					$rep=$conn->prepare($sql);
+					for($i=0;$i<count($tabColonnesPrepare);$i++)
+		        	{
+		        		$chaine=$tabColonnesPrepare[$i];
+		        		if($chaine==":anneeDeParticipation")
+		        			$rep->bindValue($chaine,trim($donnees[0]),PDO::PARAM_INT);
+		        		else
+		        		{
+		        			if($chaine==":Entreprise_nomEntreprise")
+		        				$rep->bindValue($chaine,$nomEntreprise,PDO::PARAM_STR);
+		        			else
+								$rep->bindValue($chaine,trim($donnees[$i-1]),PDO::PARAM_STR); // moins 1 parce que j'ai ajouté entreprise en premiere
+		        		}
+		        			
+		        	}
+
+					if($rep->execute())
+					{
+						echo "ok";
+					}
+					else
+					{
+						echo "<p> Une erreur s'est produite ! </p>";
+					}
 				}
 				else
-				{
-					echo "<p> Une erreur s'est produite ! </p>";
-				}
+					echo "<p> L'année renseignée est dejà présente en base ! </p>";
             }
             
 		}
