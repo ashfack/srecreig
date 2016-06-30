@@ -71,7 +71,7 @@ String.prototype.capitalizeFirstLetter = function() {
 $(document).ready(function() 
 {
 	$("#tabs").tabs();
-
+	
 	$("#dialog_cycle").dialog(
 	{
 		height:542,
@@ -604,6 +604,7 @@ function requeteAjaxSuppression(table,niveau,donnees)
 			if(data=="ok") 
 			{
 				popupMessage("#dialog_message","<p> Suppression effectué avec succès !! </p>");
+
 				if(table=="Entreprise")
 					document.location.href="rechercher.php";
 				else
@@ -1298,10 +1299,10 @@ function verifierPopupAjoutEdition(popup,obj)
 
 	if(table=="TaxeApprentissage" && niveau==1)
   	{
-  		montantVerse=$("#TaxeApprentissage_Montantverse_niveau1").val();
+  		montantVerse=parseFloat($("#TaxeApprentissage_Montantverse_niveau1").val());
 	    if(sommeMontant!=montantVerse)
 	    {
-	    	toutOk=false;
+	    	toutOK=false;
 	    	chaineMessageErreur+="<li> La somme des montants par formation est différente du montant versé ou ce dernier est invalide ! </li>";
 	    }
 	}
