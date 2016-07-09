@@ -1,10 +1,13 @@
 $(document).ready(function(){
+	requeteAjaxLibelleNAF();
     $('#ajoutEntreprise').submit(function() {      
 	  
 
 	    var nomEntreprise = $("#nom").val();
 		var groupe = $("#groupe").val();
-		var codeNAF = $("#codeNAF").val();
+		var libelleNAF = $("#libellesNAF").val();
+		if(libelleNAF=='0')
+			libelleNAF="NULL";
 		var siret = $("#siret").val();
 		var adresse = $("#adresse").val();
 		var complAdr = $("#complAdr").val();
@@ -37,15 +40,21 @@ $(document).ready(function(){
 		var emailTA = $("#emailTA").val();
 		var civiliteTA = $("input[name='civiliteTA']:checked").val();
 		
-		var typeContact=$("input:checked").map(function() { return $(this).val(); } );
+		/*var typeContact=$("input:checked").map(function() { return $(this).val(); } );
 		var typeContact0= typeContact[0];
 		var typeContact1= typeContact[1];
-		var typeContact2= typeContact[0];
-		
+		var typeContact2= typeContact[2];*/
+		var typeContact=$("input[name='typeContact']:checked").val();
+		console.log(typeContact);
+		if (typeof typeContact === "undefined") 
+		{
+		    typeContact=null;
+		}
 		var commentairesEntreprise= $("#commentairesEntreprise").val();
 		
-		var origine = $("select").val();
-		
+		var origine = $("#origineContact").val();
+		/*if(origine==null)
+			origine="NULL";*/
 		// var jstree=$.jstree.reference('#jstree');
         // var checked=jstree.get_checked();
 		var liste_cycle_id= $('#jstree').jstree(true).get_selected();
@@ -53,7 +62,7 @@ $(document).ready(function(){
             $.ajax({		
                 url: "ajax/ajouterEntreprise.php", 
                 type: "POST", 
-                data: "nomEntreprise="+nomEntreprise+"&groupe="+groupe+"&codeNAF="+codeNAF+"&siret="+siret+"&adresse="+adresse+"&complAdr="+complAdr+
+                data: "nomEntreprise="+nomEntreprise+"&groupe="+groupe+"&libelleNAF="+libelleNAF+"&siret="+siret+"&adresse="+adresse+"&complAdr="+complAdr+
 					  "&codeP="+codeP+"&ville="+ville+"&pays="+pays+
 					  
 					  "&nomCP="+nomCP+"&prenomCP="+prenomCP+"&fonctionCP="+fonctionCP+
@@ -68,7 +77,7 @@ $(document).ready(function(){
 					  "&liste_cycle_id="+liste_cycle_id+
 					  "&origine="+origine+
 					  "&commentairesEntreprise="+commentairesEntreprise+
-					  "&typeContact2="+typeContact2,
+					  "&typeContact="+typeContact,
 
                 success: function(msg)
                 { 			
@@ -95,3 +104,33 @@ $(document).ready(function(){
         return false;
     });
 });
+
+function requeteAjaxLibelleNAF()
+{   
+    $.ajax({
+       type: "POST",
+       url: "ajax/recup_libelleNAF.php",
+       dataType: "json",
+       async:false,
+       success: function(data)
+       {
+        	if(data!=null && data.length >0)
+        	{
+        		var chaine="<option value='0'>Libellé NAF</option>";
+        		for(i in data)
+        		{
+        			chaine+="<option value='"+data[i]['id']+"'>"+data[i]['libelle']+"</option>";
+        		}
+        		$("#libellesNAF").append(chaine);
+        	}
+        	else
+            {
+                alert("Une erreur s'est produite lors de la récupération des libelles NAF !");
+            }    
+       },
+       error : function()
+       {
+       		alert("Une erreur s'est produite lors de la récupération des libelles NAF !");
+       }
+    });
+}

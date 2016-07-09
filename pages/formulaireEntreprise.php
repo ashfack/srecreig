@@ -11,7 +11,6 @@ require ('header_link.html');
 require ('header_script.html');
 
 ?>
-      <script src="../js/script_ajout_entreprise.js"></script>
       <script type="text/javascript" src="../js/ajout_entreprise.js"></script> 
       
       <!-- Necessaire pour l'affichage de la jstree -->
@@ -46,12 +45,12 @@ require ('header_script.html');
                         </div>
                         <div class="input-group">
                            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-pencil-square-o"></i></span>
-                           <input type="text" id="codeNAF" name="codeNAF" class="form-control" placeholder="Code NAF" pattern="[0-9]{3}[A-Z]" aria-describedby="sizing-addon1">
+                           <!-- <input type="text" id="codeNAF" name="codeNAF" class="form-control" placeholder="Code NAF" pattern="[0-9]{3}[A-Z]" aria-describedby="sizing-addon1"> -->
+                            <select name="libellesNAF" id="libellesNAF" class='form-control libellesNAF'>
+                                 
+                           </select>
                         </div>
-                        <div class="input-group">
-                           <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-arrow-right"></i></span>
-                           <input type="text" id="libelleNAF" name="libelleNAF" class="form-control" disabled="disabled"  placeholder="Libellé NAF" aria-describedby="sizing-addon1">
-                        </div>
+
                         <div class="input-group">
                            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-group"></i></span>
                            <input type="text" id="siret" name="siret" class="form-control" placeholder="N° SIRET" pattern="[0-9]{14}" aria-describedby="sizing-addon1">
@@ -103,16 +102,16 @@ require ('header_script.html');
                               </select>
                               <label for="typeContact" type="radio"> </br>Type de contact : </label>
                               <div class="radio">
-                                 <label> <input  type="radio"  name="typeContact" value="Entreprise"/>Entreprise </label>
+                                 <label> <input  type="radio"  name="typeContact" value="entreprise"/>Entreprise </label>
                               </div>
                               <div class="radio">
-                                 <label>   <input type="radio" name="typeContact" value="Personne" />Personne</label>
+                                 <label>   <input type="radio" name="typeContact" value="personne" />Personne</label>
                               </div>
                               <div class="radio">
-                                 <label>   <input type="radio" name="typeContact" value="Colectivité territoriale"/>Collectivité territoriale </label>
+                                 <label>   <input type="radio" name="typeContact" value="ct"/>Collectivité territoriale </label>
                               </div>
                               <div class="radio">
-                                 <label>    <input type="radio" name="typeContact" value="Communauté d'agglomérations"/>Communauté d'agglomérations<br /></label>
+                                 <label>    <input type="radio" name="typeContact" value="ca"/>Communauté d'agglomérations<br /></label>
                               </div>
                            </div>
                         </div>

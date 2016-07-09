@@ -18,7 +18,7 @@
       		//print_r($donnees);
 
            $tabCorrespondanceColonnes=array("EntrepriseNiveau1"=>array("groupe","adresse","complementAdresse","codePostal","ville","pays","commentairesEntreprise","nomEntreprise"),
-												"EntrepriseNiveau2"=>array("numeroSIRET","codeNAF","libelleNAF","origine","typeContact","partenariatOfficiel","taille","alias"),
+												"EntrepriseNiveau2"=>array("numeroSIRET","NAF_codeNAF","origine","typeContact","partenariatOfficiel","taille","alias"),
                                                 "CoordonneesPersonneNiveau1"=>array("civilite","nom","prenom","fonction","telephoneFixe","telephoneMobile","mail","commentaires","type"),
                                                 "AlternanceNiveau1"=>array("formationAlternance","anneeEntree","typeContrat","civilite","nom","prenom","telephoneFixe","telephoneMobile","mail","commentaires"),
 												"AlternanceNiveau2"=>array("dateRVPreparation","dateRVSimulation","dateDebutContrat","dateFinContrat","dateEnvoiFLAuCFA","docAAttacher"),
@@ -72,47 +72,30 @@
             }
             elseif($table=="Entreprise" && $niveau==2)
             {
-            		//lorsqu'il y aura les codes naf
-				/*$sql ="UPDATE Entreprise, NAF  SET 
+            	if($donnees[1]=="NULL")
+            		$donnees[1]=null;
+			    
+			    $sql ="UPDATE Entreprise SET 
 										".$tabCorrespondanceColonnes[$cle][0]." = :donnee1,
 										".$tabCorrespondanceColonnes[$cle][1]." = :donnee2,
 										".$tabCorrespondanceColonnes[$cle][2]." = :donnee3,
 										".$tabCorrespondanceColonnes[$cle][3]." = :donnee4,
 										".$tabCorrespondanceColonnes[$cle][4]." = :donnee5,
 										".$tabCorrespondanceColonnes[$cle][5]." = :donnee6,
-										".$tabCorrespondanceColonnes[$cle][6]." = :donnee7,
-										".$tabCorrespondanceColonnes[$cle][7]." = :donnee8
-										where nomEntreprise = :nomEntreprise "; //and codeNAF=:donnee2			PROBLEME*/
-
-			    $sql ="UPDATE Entreprise SET 
-										".$tabCorrespondanceColonnes[$cle][0]." = :donnee1,
-										".$tabCorrespondanceColonnes[$cle][3]." = :donnee4,
-										".$tabCorrespondanceColonnes[$cle][4]." = :donnee5,
-										".$tabCorrespondanceColonnes[$cle][5]." = :donnee6,
-										".$tabCorrespondanceColonnes[$cle][6]." = :donnee7,
-										".$tabCorrespondanceColonnes[$cle][7]." = :donnee8
-										where nomEntreprise = :nomEntreprise "; //and codeNAF=:donnee2			PROBLEME
+										".$tabCorrespondanceColonnes[$cle][6]." = :donnee7
+										where nomEntreprise = :nomEntreprise "; 
 				$rep=$conn->prepare($sql);
                 $deuxColonnes=true;
-				//print_r($tabCorrespondanceColonnes[$cle][5]);
-				//print_r(trim($donnees[6]));
+
 				$rep=$conn->prepare($sql);
-				/*if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
+				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
 										':donnee1'=>trim($donnees[0]),
-										':donnee2'=>trim($donnees[1]),
+										':donnee2'=>$donnees[1],
 										':donnee3'=>trim($donnees[2]),
 										':donnee4'=>trim($donnees[3]),
 										':donnee5'=>trim($donnees[4]),
 										':donnee6'=>trim($donnees[5]),
-										':donnee7'=>trim($donnees[6]),
-										':donnee8'=>trim($donnees[7]))))*/
-				if($rep->execute(array(':nomEntreprise'=>$nomEntreprise,
-										':donnee1'=>trim($donnees[0]),
-										':donnee4'=>trim($donnees[3]),
-										':donnee5'=>trim($donnees[4]),
-										':donnee6'=>trim($donnees[5]),
-										':donnee7'=>trim($donnees[6]),
-										':donnee8'=>trim($donnees[7]))))
+										':donnee7'=>trim($donnees[6]))))
 				{
 					echo "ok";
 				}

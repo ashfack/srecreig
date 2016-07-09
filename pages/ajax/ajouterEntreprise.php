@@ -1,4 +1,5 @@
-<?php
+﻿<?php
+	header('Content-Type: text/html; charset=utf-8'); 
 	require("security.php");
 	try
 	{
@@ -7,7 +8,7 @@
 		//Entreprise
 		$nomEntreprise = $_POST["nomEntreprise"];
 		$groupe = $_POST["groupe"];
-		$codeNAF = $_POST["codeNAF"];
+		$libelleNAF = $_POST["libelleNAF"];
 		$siret = $_POST["siret"];
 		$adresse = $_POST["adresse"];
 		$complAdr = $_POST["complAdr"];
@@ -52,28 +53,46 @@
 
 		//origine
 		$origine = $_POST["origine"];
+		$correspondance_origine=array("sre"=>"SRE",
+                                 "aisg"=>"AISG",
+                                 "aimg"=>"AMIG",
+                                 "cavam"=>"CAVAM",
+                                 "cedip"=>"CEDIP",
+                                 "corpsPeda"=>"Corps Pédagogique",
+                                 "dig"=>"Direction Institut Galilée",
+                                 "dsg"=>"Direction Sup Galilée",
+                                 "estEns"=>"Est Ensemble",
+                                 "mecig"=>"Membre exterieur Conseil Institu Galilée",
+                                 "meCAsg"=>"Membre exterieur CA Sup Galilée",
+                                 "pc"=>"Plaine Commune",
+                                 "presidence"=>"Présidence",
+                                 "rp"=>"Responsable pédagogique",
+                               	"scuio"=>"SCUIO-IP");
 
 		//type contact
-		$typeContact2= $_POST["typeContact2"];
+		$typeContact= $_POST["typeContact"];
+		$correspondance_typeContact=array("entreprise"=>"Entreprise","personne"=>"Personne","ct"=>"Collectivité territoriale","ca"=>"Communauté d'agglomérations");
 
 		$commentairesEntreprise= $_POST["commentairesEntreprise"];
 		$liste_cycle_id= $_POST["liste_cycle_id"];
 		try{
-			// Ne devrait pas se faire � la soumission du formulaire mais dynamiquement avec le onblur ou autre
+			// Ne devrait pas se faire à la soumission du formulaire mais dynamiquement avec le onblur ou autre
 			if($req = $nomEntr->fetch()) 
 			{ 
 				echo 0;
 			}
 			else
-			{				
-				$result=$conn->prepare("INSERT INTO Entreprise(nomEntreprise,groupe,adresse,complementAdresse,codePostal,ville,pays,numeroSIRET,origine,typeContact,commentairesEntreprise) VALUES (upper(?),?,?,?,?,upper(?),?,?,?,?,?)");
-				$result->execute(array($nomEntreprise,$groupe,$adresse,$complAdr,$codeP,$ville,$pays,$siret,$origine,$typeContact2,$commentairesEntreprise));
-				
-				/*verifier si NAF existe dans 
-				$result=$conn->prepare("INSERT INTO Entreprise(NAF_codeNaf) VALUES (?)");
-				$result->execute(array($codeNAF));
-				probl�me table Naf non rempli*/
+			{
+				if($libelleNAF=="NULL")
+					$libelleNAF=null;
+				if($origine!="null")
+					$origine=$correspondance_origine[$origine];
+				if($typeContact!="null")
+					$typeContact=$correspondance_typeContact[$typeContact];
 
+				$result=$conn->prepare("INSERT INTO Entreprise(nomEntreprise,groupe,adresse,complementAdresse,codePostal,ville,pays,numeroSIRET,NAF_codeNAF,origine,typeContact,commentairesEntreprise) VALUES (upper(?),?,?,?,?,upper(?),?,?,?,?,?,?)");
+				$result->execute(array($nomEntreprise,$groupe,$adresse,$complAdr,$codeP,$ville,$pays,$siret,$libelleNAF,$origine,$typeContact,$commentairesEntreprise));
+				
 				$tab_list_cycle = explode(",",$liste_cycle_id);
 				$arr_length=count($tab_list_cycle);
 				// Insertion des cycles
@@ -129,6 +148,6 @@
 	}
 	catch(Exception $e)
 	{
-		//echo "�chec : " . $e->getMessage();
+		//echo "Échec : " . $e->getMessage();
 	}
 ?>

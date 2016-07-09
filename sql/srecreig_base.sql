@@ -27,7 +27,8 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `Action` (
-  `idAction` varchar(100) NOT NULL,
+  `idAction` int(11) NOT NULL AUTO_INCREMENT,
+  `action` varchar(100) NOT NULL,
   PRIMARY KEY (`idAction`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -35,16 +36,16 @@ CREATE TABLE IF NOT EXISTS `Action` (
 -- Dumping data for table `Action`
 --
 
-INSERT INTO `Action` (`idAction`) VALUES
-('Accueil d''apprentis en Energetique'),
-('Accueil d''apprentis en Informatique et Réseaux'),
-('Animation d''ateliers RH de simulations d''entretiens'),
-('Animation de conférences métiers'),
-('Partenariat officiel'),
-('Participation au Forum Sup Galilée Entreprises'),
-('Recrutement de stagiaires'),
-('Recrutement des jeunes diplômé(e)s'),
-('Soutien financier par le versement de taxe d''apprentissage');
+INSERT INTO `Action` (`idAction`,`action`) VALUES
+(1,'Accueil d''apprentis en Energetique'),
+(2,'Accueil d''apprentis en Informatique et Réseaux'),
+(3,'Animation d''ateliers RH de simulations d''entretiens'),
+(4,'Animation de conférences métiers'),
+(5,'Partenariat officiel'),
+(6,'Participation au Forum Sup Galilée Entreprises'),
+(7,'Recrutement de stagiaires'),
+(8,'Recrutement des jeunes diplômé(e)s'),
+(9,'Soutien financier par le versement de taxe d''apprentissage');
 
 -- --------------------------------------------------------
 
@@ -180,7 +181,7 @@ INSERT INTO `a_Conference_CoordonneesPersonne` (`Conference_id`, `CoordonneesPer
 
 CREATE TABLE IF NOT EXISTS `a_Entreprise_Action` (
   `Entreprise_nomEntreprise` varchar(70) NOT NULL,
-  `Action_id` varchar(100) NOT NULL,
+  `Action_id` int(11) NOT NULL,
   PRIMARY KEY (`Entreprise_nomEntreprise`,`Action_id`),
   KEY `fk_a_actEnt_Entreprise_idx` (`Entreprise_nomEntreprise`),
   KEY `fk_a-Entreprise-Action_Action` (`Action_id`)
@@ -915,7 +916,7 @@ INSERT INTO `Entreprise` (`nomEntreprise`, `groupe`, `adresse`, `complementAdres
 ('EDF', '', '45 rue Kleber', '', '92309', 'Levallois Perret Cedex', 'France', NULL, NULL, NULL, NULL, 'NON', '> 5000', NULL, 'Commentaires import (pour le contact: PESKINE Gabrielle) : \n Direction Services Partages\nCommentaires import (pour le contact: LUCAT Celine) : \nDirection des Services Partages\nDirection des Ressources Humaines\n'),
 ('ERDF', '', '6 rue de la Liberte', '', '93691', 'PANTIN CEDEX', 'France', NULL, NULL, NULL, NULL, 'NON', NULL, NULL, ''),
 ('LINK BY NET', '', '5 RUE DE L INDUSTRIE', '', '93200', 'SAINT DENIS', 'France', NULL, NULL, NULL, NULL, 'NON', '250 à 5000', NULL, ''),
-('ORANGE', '', '16 Boulevard du Mont D', '', '93160', 'NOISY LE GRAND', 'France', NULL, NULL, NULL, NULL, 'NON', NULL, NULL, ''),
+('ORANGE', '', '16 Boulevard du Mont D', '', '93160', 'NOISY LE GRAND', 'France', NULL, NULL, NULL, 54, 'NON', NULL, NULL, ''),
 ('SFR', '', '12 rue Jean-Philippe RAMEAU', 'CS 80001', '93634', 'La Plaine St-Denis cedex', 'France', NULL, NULL, NULL, NULL, 'NON', '> 5000', NULL, ''),
 ('SODEXO ENERGIE ET MAINTENANCE', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'NON', NULL, NULL, NULL),
 ('VINCI ENERGIES', '', 'Pôle Ile-de-France Tertiaire\n7 Place de la Defense', '', '92400', 'COURBEVOIE', 'France', NULL, NULL, NULL, NULL, 'NON', NULL, NULL, '');
@@ -969,10 +970,101 @@ INSERT INTO `ForumSG` (`Entreprise_nomEntreprise`, `anneeDeParticipation`, `ques
 --
 
 CREATE TABLE IF NOT EXISTS `NAF` (
-  `codeNAF` int(11) NOT NULL,
-  `libelleNAF` int(11) DEFAULT NULL,
+  `codeNAF` int(11) NOT NULL AUTO_INCREMENT,
+  `libelleNAF` TEXT DEFAULT NULL,
   PRIMARY KEY (`codeNAF`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+
+INSERT INTO `NAF` (`codeNAF`, `libelleNAF`) VALUES
+(1, 'Culture et production animale, chasse et services annexes'),
+(2, 'Sylviculture et exploitation forestière'),
+(3, 'Pêche et aquaculture'),
+(4, 'Extraction de houille et de lignite'),
+(5, 'Extraction d''hydrocarbures'),
+(6, 'Extraction de minerais métalliques'),
+(7, 'Autres industries extractives'),
+(8, 'Services de soutien aux industries extractives'),
+(9, 'Industries alimentaires'),
+(10, 'Fabrication de boissons'),
+(11, 'Fabrication de produits à base de tabac'),
+(12, 'Fabrication de textiles'),
+(13, 'Industrie de l''habillement'),
+(14, 'Industrie du cuir et de la chaussure'),
+(15, 'Travail du bois et fabrication d''articles en bois et en liège, à l''exception des meubles ; fabrication d''articles en vannerie et sparterie'),
+(16, 'Industrie du papier et du carton'),
+(17, 'Imprimerie et reproduction d''enregistrements'),
+(18, 'Cokéfaction et raffinage'),
+(19, 'Industrie chimique'),
+(20, 'Industrie pharmaceutique'),
+(21, 'Fabrication de produits en caoutchouc et en plastique'),
+(22, 'Fabrication d''autres produits minéraux non métalliques'),
+(23, 'Métallurgie'),
+(24, 'Fabrication de produits métalliques, à l''exception des machines et des équipements'),
+(25, 'Fabrication de produits informatiques, électroniques et optiques'),
+(26, 'Fabrication d''équipements électriques'),
+(27, 'Fabrication de machines et équipements n.c.a.'),
+(28, 'Industrie automobile'),
+(29, 'Fabrication d''autres matériels de transport'),
+(30, 'Fabrication de meubles'),
+(31, 'Autres industries manufacturières'),
+(32, 'Réparation et installation de machines et d''équipements'),
+(33, 'Production et distribution d''électricité, de gaz, de vapeur et d''air conditionné'),
+(34, 'Captage, traitement et distribution d''eau'),
+(35, 'Collecte et traitement des eaux usées'),
+(36, 'Collecte, traitement et élimination des déchets ; récupération'),
+(37, 'Dépollution et autres services de gestion des déchets'),
+(38, 'Construction de bâtiments'),
+(39, 'Génie civil'),
+(40, 'Travaux de construction spécialisés'),
+(41, 'Commerce et réparation d''automobiles et de motocycles'),
+(42, 'Commerce de gros, à l''exception des automobiles et des motocycles'),
+(43, 'Commerce de détail, à l''exception des automobiles et des motocycles'),
+(44, 'Transports terrestres et transport par conduites'),
+(45, 'Transports par eau'),
+(46, 'Transports aériens'),
+(47, 'Entreposage et services auxiliaires des transports'),
+(48, 'Activités de poste et de courrier'),
+(49, 'Hébergement'),
+(50, 'Restauration'),
+(51, 'Édition'),
+(52, 'Production de films cinématographiques, de vidéo et de programmes de télévision ; enregistrement sonore et édition musicale'),
+(53, 'Programmation et diffusion'),
+(54, 'Télécommunications'),
+(55, 'Programmation, conseil et autres activités informatiques'),
+(56, 'Services d''information'),
+(57, 'Activités des services financiers, hors assurance et caisses de retraite'),
+(58, 'Assurance'),
+(59, 'Activités auxiliaires de services financiers et d''assurance'),
+(60, 'Activités immobilières'),
+(61, 'Activités juridiques et comptables'),
+(62, 'Activités des sièges sociaux ; conseil de gestion'),
+(63, 'Activités d''architecture et d''ingénierie ; activités de contrôle et analyses techniques'),
+(64, 'Recherche-développement scientifique'),
+(65, 'Publicité et études de marché'),
+(66, 'Autres activités spécialisées, scientifiques et techniques'),
+(67, 'Activités vétérinaires'),
+(68, 'Activités de location et location-bail'),
+(69, 'Activités liées à l''emploi'),
+(70, 'Activités des agences de voyage, voyagistes, services de réservation et activités connexes'),
+(71, 'Enquêtes et sécurité'),
+(72, 'Services relatifs aux bâtiments et aménagement paysager'),
+(73, 'Activités administratives et autres activités de soutien aux entreprises'),
+(74, 'Administration publique et défense ; sécurité sociale obligatoire'),
+(75, 'Enseignement'),
+(76, 'Activités pour la santé humaine'),
+(77, 'Hébergement médico-social et social'),
+(78, 'Action sociale sans hébergement'),
+(79, 'Activités créatives, artistiques et de spectacle'),
+(80, 'Bibliothèques, archives, musées et autres activités culturelles'),
+(81, 'Organisation de jeux de hasard et d''argent'),
+(82, 'Activités sportives, récréatives et de loisirs'),
+(83, 'Activités des organisations associatives'),
+(84, 'Réparation d''ordinateurs et de biens personnels et domestiques'),
+(85, 'Autres services personnels'),
+(86, 'Activités des ménages en tant qu''employeurs de personnel domestique'),
+(87, 'Activités indifférenciées des ménages en tant que producteurs de biens et services pour usage propre'),
+(88, 'Activités des organisations et organismes extraterritoriaux');
 
 -- --------------------------------------------------------
 
@@ -1349,7 +1441,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`srecreig`@`%` SQL SECURITY DEFINER VIEW `vue
 --
 DROP TABLE IF EXISTS `vueEntreprise`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`srecreig`@`%` SQL SECURITY DEFINER VIEW `vueEntreprise` AS select `Entreprise`.`nomEntreprise` AS `nomEntreprise`,`Entreprise`.`groupe` AS `groupe`,`Entreprise`.`adresse` AS `adresse`,`Entreprise`.`complementAdresse` AS `complementAdresse`,`Entreprise`.`codePostal` AS `codePostal`,`Entreprise`.`ville` AS `ville`,`Entreprise`.`pays` AS `pays`,`Entreprise`.`typeContact` AS `typeContact`,`Entreprise`.`origine` AS `origine`,`Entreprise`.`numeroSIRET` AS `numeroSIRET`,`Entreprise`.`NAF_codeNAF` AS `NAF_codeNAF`,`Entreprise`.`partenariatOfficiel` AS `partenariatOfficiel`,`Entreprise`.`taille` AS `taille`,`Entreprise`.`alias` AS `alias`,`Entreprise`.`commentairesEntreprise` AS `commentairesEntreprise` from `Entreprise`;
+CREATE ALGORITHM=UNDEFINED DEFINER=`srecreig`@`%` SQL SECURITY DEFINER VIEW `vueEntreprise` AS select `Entreprise`.`nomEntreprise` AS `nomEntreprise`,`Entreprise`.`groupe` AS `groupe`,`Entreprise`.`adresse` AS `adresse`,`Entreprise`.`complementAdresse` AS `complementAdresse`,`Entreprise`.`codePostal` AS `codePostal`,`Entreprise`.`ville` AS `ville`,`Entreprise`.`pays` AS `pays`,`Entreprise`.`typeContact` AS `typeContact`,`Entreprise`.`origine` AS `origine`,`Entreprise`.`numeroSIRET` AS `numeroSIRET`,`NAF`.`libelleNAF` AS `libelleNAF`,`Entreprise`.`partenariatOfficiel` AS `partenariatOfficiel`,`Entreprise`.`taille` AS `taille`,`Entreprise`.`alias` AS `alias`,`Entreprise`.`commentairesEntreprise` AS `commentairesEntreprise` from `Entreprise` LEFT join `NAF` on `Entreprise`.`NAF_codeNAF`=`NAF`.`codeNAF` AND `NAF`.`codeNAF`=`Entreprise`.`NAF_codeNAF`;
 
 -- --------------------------------------------------------
 
@@ -1376,7 +1468,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`srecreig`@`%` SQL SECURITY DEFINER VIEW `vue
 --
 DROP TABLE IF EXISTS `Vue_Entreprise_Contact`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`srecreig`@`%` SQL SECURITY DEFINER VIEW `Vue_Entreprise_Contact` AS select `Entreprise`.`nomEntreprise` AS `nomEntreprise`,`Entreprise`.`groupe` AS `groupe`,`Entreprise`.`adresse` AS `adresse`,`Entreprise`.`complementAdresse` AS `complementAdresse`,`Entreprise`.`codePostal` AS `codePostal`,`Entreprise`.`ville` AS `ville`,`Entreprise`.`pays` AS `pays`,`Entreprise`.`typeContact` AS `typeContact`,`Entreprise`.`origine` AS `origine`,`Entreprise`.`numeroSIRET` AS `numeroSIRET`,`Entreprise`.`NAF_codeNAF` AS `NAF_codeNAF`,`Entreprise`.`partenariatOfficiel` AS `partenariatOfficiel`,`Entreprise`.`taille` AS `taille`,`Entreprise`.`alias` AS `alias`,`Entreprise`.`commentairesEntreprise` AS `commentairesEntreprise`,`CoordonneesPersonne`.`idCoordonneesPersonne` AS `idCoordonneesPersonne`,`CoordonneesPersonne`.`civilite` AS `civilite`,`CoordonneesPersonne`.`nom` AS `nom`,`CoordonneesPersonne`.`prenom` AS `prenom`,`CoordonneesPersonne`.`fonction` AS `fonction`,`CoordonneesPersonne`.`telephoneFixe` AS `telephoneFixe`,`CoordonneesPersonne`.`telephoneMobile` AS `telephoneMobile`,`CoordonneesPersonne`.`mail` AS `mail`,`CoordonneesPersonne`.`commentaires` AS `commentaires` from ((`Entreprise` join `CoordonneesPersonne`) join `a_Entreprise_CoordonneesPersonne`) where ((`a_Entreprise_CoordonneesPersonne`.`CoordonneesPersonne_id` = `CoordonneesPersonne`.`idCoordonneesPersonne`) and (`a_Entreprise_CoordonneesPersonne`.`Entreprise_nomEntreprise` = `Entreprise`.`nomEntreprise`));
+CREATE ALGORITHM=UNDEFINED DEFINER=`srecreig`@`%` SQL SECURITY DEFINER VIEW `Vue_Entreprise_Contact` AS select `Entreprise`.`nomEntreprise` AS `nomEntreprise`,`Entreprise`.`groupe` AS `groupe`,`Entreprise`.`adresse` AS `adresse`,`Entreprise`.`complementAdresse` AS `complementAdresse`,`Entreprise`.`codePostal` AS `codePostal`,`Entreprise`.`ville` AS `ville`,`Entreprise`.`pays` AS `pays`,`Entreprise`.`typeContact` AS `typeContact`,`Entreprise`.`origine` AS `origine`,`Entreprise`.`numeroSIRET` AS `numeroSIRET`,`NAF`.`libelleNAF` AS `libelleNAF`,`Entreprise`.`partenariatOfficiel` AS `partenariatOfficiel`,`Entreprise`.`taille` AS `taille`,`Entreprise`.`alias` AS `alias`,`Entreprise`.`commentairesEntreprise` AS `commentairesEntreprise`,`CoordonneesPersonne`.`idCoordonneesPersonne` AS `idCoordonneesPersonne`,`CoordonneesPersonne`.`civilite` AS `civilite`,`CoordonneesPersonne`.`nom` AS `nom`,`CoordonneesPersonne`.`prenom` AS `prenom`,`CoordonneesPersonne`.`fonction` AS `fonction`,`CoordonneesPersonne`.`telephoneFixe` AS `telephoneFixe`,`CoordonneesPersonne`.`telephoneMobile` AS `telephoneMobile`,`CoordonneesPersonne`.`mail` AS `mail`,`CoordonneesPersonne`.`commentaires` AS `commentaires` from (((`Entreprise` LEFT join `NAF` on `Entreprise`.`NAF_codeNAF`=`NAF`.`codeNAF` AND `NAF`.`codeNAF`=`Entreprise`.`NAF_codeNAF`) join `CoordonneesPersonne`) join `a_Entreprise_CoordonneesPersonne` ) where ((`a_Entreprise_CoordonneesPersonne`.`CoordonneesPersonne_id` = `CoordonneesPersonne`.`idCoordonneesPersonne`) and (`a_Entreprise_CoordonneesPersonne`.`Entreprise_nomEntreprise` = `Entreprise`.`nomEntreprise`));
 
 --
 -- Constraints for dumped tables

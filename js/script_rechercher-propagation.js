@@ -11,7 +11,7 @@ var colonnesPattern_ajout={Telephonefixe:/^0[1-68]([-. ]?[0-9]{2}){4}$/,
 								RapprochementAC: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/, Dateenregistrement: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/,
 								Datedernieremodification: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/, DatetransmissionchequeAC: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/,
 								DateRVpreparation: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/, DateRVsimulation: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/,
-								DateenvoiFLauCFA: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/, 
+								DateenvoiFLauCFA: /^[0-9]{4}-(0[1-9]|1[0-2])-(0[1-9]|[1-2][0-9]|3[0-1])$/,
 								Anneedeparticipation: /^20[0-9]{2}$/, Nom: /^[A-Z-_ ]+$/, Prenom: /^[A-Z]{1}[a-z-_ A-Z]*$/, NumeroSIRET: /^[0-9]{14}$/, Codepostal: /^[0-9]{5}$/   
 							};
 							
@@ -47,7 +47,7 @@ var objet_Option={Civilite: ["Monsieur","Madame"], Type: ["Primaire","Secondaire
 								Formationalternance: ["AIR","ENERA"], Anneeentree:[1,2,3], Typecontrat: ["Apprentissage","Contrat de Professionalisation"],
 								Typeconference:["Métiers","Technique","Autre"], 
 								Origine:["SRE","AISG","CAVAM","CEDIP","Corps Pédagogique","Direction Institut Galilée",
-											"Direction Sup Galilée","Est Ensemble","Membre exterieur Conseil Institu Galilée",
+											"Direction Sup Galilée","Est Ensemble","Membre exterieur Conseil Institut Galilée",
 											"Membre exterieur CA Sup Galilée","Plaine Commune","Présidence","Responsable pédagogique",
 											"SCUIO-IP"],
 								Typecontact: ["Entreprise","Personne","Collectivité territoriale","Communauté d'agglomérations"],
@@ -511,6 +511,7 @@ function cycle()
 
 function editionAjax(idSelected, idSelected2, idCoordRH, idCoordRH2,table,niveau,donnees)
 {
+	console.log(donnees);
 	$.ajax({
 
 	   type: "POST",
@@ -820,6 +821,64 @@ function requeteAjaxSelectFormations(choix,val,nb,cycle)
        }
     });
 }
+
+function requeteAjaxLibelleNAF()
+{   
+    $.ajax({
+       type: "POST",
+       url: "ajax/recup_libelleNAF.php",
+       dataType: "json",
+       async:false,
+       success: function(data)
+       {
+        	if(data!=null && data.length >0)
+        	{
+        		var chaine="<option value='NULL'> </option>";
+        		for(i in data)
+        		{
+        			chaine+="<option value='"+data[i]['id']+"'>"+data[i]['libelle']+"</option>";
+        		}
+        		$("#Entreprise_LibelleNAF_niveau2").append(chaine);
+        	}
+        	else
+            {
+                popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
+            }    
+       },
+       error : function()
+       {
+       		popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
+       }
+    });
+}
+
+function requeteAjaxLibelleNAFEdition()
+{   
+    $.ajax({
+       type: "POST",
+       url: "ajax/recup_libelleNAF_edition.php",
+       dataType: "text",
+       data: {nomEntreprise: nomEntreprise},
+       async:false,
+       success: function(codeNAF) //en réalité c'est un id pour le libellé NAF
+       {
+       		console.log(codeNAF);
+        	if(!isNaN(parseFloat(codeNAF)))
+        	{
+        		$("#Entreprise_LibelleNAF_niveau2 option[value='"+codeNAF+"']").prop('selected',true);
+        	}
+        	else
+            {
+                $("#Entreprise_LibelleNAF_niveau2 option[value='NULL']").prop('selected',true);
+            }    
+       },
+       error : function()
+       {
+       		popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
+       }
+    });
+}
+
 function creerSelectFormation(nb)
 { 
 
@@ -827,7 +886,7 @@ function creerSelectFormation(nb)
 		
 	for(var k=0;k<3;k++)
 	{
-		chaine+="<select id='"+tabFormations[k]+"_"+nb+"' class='form-control'>";
+		chaine+="<select id='"+tabFormations[k]+"_"+nb+"' class='form-control selectsFormation'>";
 		if(tabFormations[k]=="cycle")
 		{
 			chaine+="<option value='cycle'>Cycle</option>";
@@ -843,7 +902,7 @@ function creerSelectFormation(nb)
 		chaine+="</select>";
 	}
 
-	chaine+="<select id='categorie_"+nb+"' class='form-control'>";
+	chaine+="<select id='categorie_"+nb+"' class='form-control selectsFormation'>";
 	chaine+="<option value='Categorie'>Categorie</option>";
 	chaine+="<option value='A'>A</option>";
 	chaine+="<option value='B'>B</option>";
@@ -1011,6 +1070,11 @@ function creerFormulairePopup(table,niveau,popup,idTA)
 
             
         }
+        else if( colonneSansEspace=="LibelleNAF")
+        {
+        	chaine+="<select name='"+id+"' id='"+id+"' class='form-control libellesNAF'> </select>";
+        	//les options seront ajoutés plus loin
+        }
         //c'est une colonne qui a plusieurs options ---> création d'une liste déroulante 
         else if(has( objet_Option,colonneSansEspace))
         {
@@ -1020,7 +1084,7 @@ function creerFormulairePopup(table,niveau,popup,idTA)
         	var tabOption= objet_Option[colonneSansEspace];
         	for(var k=0;k<tabOption.length;k++)
             {
-                chaine+="<option value='"+tabOption[k]+"'";
+                chaine+="<option value=\""+tabOption[k]+"\"";
 
                 if(popup=="editer" && valeur==tabOption[k])
                 	chaine+=" selected";
@@ -1132,6 +1196,13 @@ function creerFormulairePopup(table,niveau,popup,idTA)
 
 		$("#dialog_"+popup).dialog('option','width','100%');
  	}
+
+ 	if(table="Entreprise")
+ 	{
+ 		requeteAjaxLibelleNAF();
+ 		requeteAjaxLibelleNAFEdition();
+ 	}
+ 		
    
    	// generation des datepicker
     for(var i=0; i< idDatePicker.length;i++)

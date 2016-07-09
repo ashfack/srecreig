@@ -313,3 +313,15 @@ button#bInfo, button#bSupprimer, button#bEditer
 {
   color: black !important;
 }
+
+#libellesNAF
+{
+  width: 172px;
+  overflow: auto;
+}
+
+.selectsFormation
+{
+  width: 220px !important;
+  overflow: auto;
+}
