@@ -293,7 +293,11 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 
 				if($cle!="TaxeApprentissageNiveau2")
 					echo "<button class=\"btn btn-sm\" style =\"margin-left: 10px;\" type='button' value='Modifier' id='bModifier_".$table."_"."$nom_niveau'><i class=\"fa fa-pencil\"></i> Modifier</button>";
-			}
+				if($cle=="EntrepriseNiveau1")
+					echo "<button class=\"btn btn-sm\" style =\"margin-left: 10px;\" type='button' id='bEditerCycle' onclick='editerCycle()' > <i class=\"fa fa-pencil\"></i> Editer les cycles</button> ";
+				if($cle=="EntrepriseNiveau2")
+					echo "<button class=\"btn btn-sm\" style =\"margin-left: 10px;\" type='button' id='bEditerActions' onclick='editerActionsMenees()' > <i class=\"fa fa-pencil\"></i> Editer les actions menées</button> ";
+			}	
 			if($_SESSION['profil']=='super')
 			{
 				if(!in_array($cle, $tablePasBoutonSupprimer ))

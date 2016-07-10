@@ -1295,7 +1295,7 @@ function creerFormulairePopup(table,niveau,popup,idTA)
     	}
 			
  	}
-   	if(popup=="editer" && table=="Entreprise")
+   /*if(popup=="editer" && table=="Entreprise")
    	{
    		if(niveau==1)
 			chaine+="<button type='button' class='btn btn-info' id='bEditerCycle' onclick='editerCycle()' >Editer les cycles</button> ";
@@ -1304,7 +1304,7 @@ function creerFormulairePopup(table,niveau,popup,idTA)
 			chaine+="<button type='button' class='btn btn-info' id='bEditerActions' onclick='editerActionsMenees()' >Editer les actions menées</button> ";
 		}
 			
-	}
+	}*/
     chaine+="</form>";
 
     $("#dialog_"+popup).append(chaine);
