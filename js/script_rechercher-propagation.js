@@ -74,8 +74,8 @@ $(document).ready(function()
 	
 	$("#dialog_cycle").dialog(
 	{
-		height:500,
-		width:830,
+		height:542,
+		width:542,
 		autoOpen:false,
 		dialogClass: "alert",
 		position: { my: "center bottom", at: "center center", of: window, within: $("#tabs")},
@@ -701,7 +701,7 @@ function requeteAjaxCycle(idJstree)
 			
 			}
 			else
-				popupMessage("#dialog_message","<p> L'entreprise n'est liée à aucun cycle/formation <br/> <br/> Cliquez sur le bouton \"Modifier\" pour lui attribuer des cycles/formations </p>");
+				popupMessage("#dialog_message","<p> L'entreprise n'est liée à aucun cycle/formation <br/> <br/> Cliquez sur le bouton \"Editer les cycles\" pour lui attribuer des cycles/formations </p>");
 	   },
 	   error : function()
        {
