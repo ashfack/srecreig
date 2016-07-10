@@ -202,6 +202,11 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 			if($table=="Entreprise" && $nom_niveau=="niveau1")
 			{
 				$colonne_array_affichage[count($colonne_array_affichage)]="Cycle formation";
+				
+			}
+			if($table=="Entreprise" && $nom_niveau=="niveau2")
+			{
+				$colonne_array_affichage[count($colonne_array_affichage)]="Actions menees";
 			}
 			
 			
@@ -260,6 +265,9 @@ function genererDataTable($table,$nomEntreprise,$pk,$tab_niveaux)
 
 						if($table=="Entreprise" && $nom_niveau=="niveau1")
 							echo "<td id='cycleFormation'> <input type='button' value='Voir les cycles' id='bVoirCycle'/> </td>";
+						if($table=="Entreprise" && $nom_niveau=="niveau2")
+							echo "<td id='actionsMenees'> <input type='button' value='Voir les actions' id='bVoirActionsMenees'/> </td>";
+							
 					}
 					
 					echo '</tr>';

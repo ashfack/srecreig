@@ -1,4 +1,4 @@
-input#bVoirCycle {
+#bVoirCycle,#bVoirActionsMenees{
     color: white;
     background-color: lightslategrey;
 }
@@ -324,4 +324,9 @@ button#bInfo, button#bSupprimer, button#bEditer
 {
   width: 220px !important;
   overflow: auto;
+}
+
+.actionsCheckbox
+{
+  margin-right: 10px !important;
 }

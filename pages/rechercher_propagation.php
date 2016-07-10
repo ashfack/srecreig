@@ -109,7 +109,7 @@
 		</div>
 		
 		<div id="dialog_cycle"  title="Cycle Formation">
-			<p> En bleu, les cycles/formations liés à l'entreprise (Pour modifier les cycles cliquez sur le bouton "Modifier"):  </p>
+			<p style="font-weight: bold;"> En bleu, les cycles/formations liés à l'entreprise (Pour modifier les cycles cliquez sur le bouton "Modifier"):  </p>
 			<?php
 				include("jstree_cycle.php");
 			?>
@@ -141,9 +141,22 @@
         <div id="dialog_ajouter" title="ajouter">
         	
         </div>
-		
-		
-</div> 
+
+        <div id="dialog_actionsMenees" title="Actions menées">
+        	<p style="font-weight: bold;"> Sont pré-cochées les actions menées par l'entreprise :  </p>
+        	<div class="input-group">
+        		<input type="checkbox" name="actions[]" value="1" class="actionsCheckbox"> <span> Accueil d'apprentis en Energetique </span></br>
+			    <input type="checkbox" name="actions[]" value="2" class="actionsCheckbox"> <span> Accueil d'apprentis en Informatique et Réseaux </span> </br>
+			    <input type="checkbox" name="actions[]" value="3" class="actionsCheckbox"> <span> Animation d'ateliers RH de simulations d'entretiens </span> </br>
+			    <input type="checkbox" name="actions[]" value="4" class="actionsCheckbox"> <span> Animation de conférences métiers </span> </br>
+			    <input type="checkbox" name="actions[]" value="5" class="actionsCheckbox"> <span> Partenariat officiel </span> </br>
+			    <input type="checkbox" name="actions[]" value="6" class="actionsCheckbox"> <span> Participation au Forum Sup Galilée Entreprises </span> </br>
+			    <input type="checkbox" name="actions[]" value="7" class="actionsCheckbox"> <span> Recrutement de stagiaires </span> </br>
+			    <input type="checkbox" name="actions[]" value="8" class="actionsCheckbox"> <span> Recrutement des jeunes diplômé(e)s </span> </br>
+			    <input type="checkbox" name="actions[]" value="9" class="actionsCheckbox"> <span> Soutien financier par le versement de taxe d'apprentissage </span>
+        	</div>
+
+		</div> 
 
 </div> 
 	</body>

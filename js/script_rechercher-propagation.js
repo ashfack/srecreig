@@ -74,28 +74,13 @@ $(document).ready(function()
 	
 	$("#dialog_cycle").dialog(
 	{
-		height:542,
-		width:542,
+		height:500,
+		width:830,
 		autoOpen:false,
 		dialogClass: "alert",
 		position: { my: "center bottom", at: "center center", of: window, within: $("#tabs")},
 		draggable: false,
-		modal:true,
-		buttons: 
-		[
-		    {
-		      text: "OK",
-		      icons: 
-		      {
-		        primary: "ui-icon-check"
-		      },
-		      click: function() 
-		      {
-		      	$( this ).dialog( "close" );
-		      }
-		    }
-
-		]
+		modal:true
 	});
 
 	$("#dialog_cycle_editer").dialog(
@@ -164,6 +149,42 @@ $(document).ready(function()
 	          dialog_message.dialog('close');
 	        }, 2000);
 	    }
+		
+	});
+
+	$("#dialog_actionsMenees").dialog({
+		height:400,
+		width:500,
+		autoOpen:false,
+		dialogClass: "alert",
+		position: { my: "center center", at: "center top", of: window, within: $("#tabs")},
+		draggable: false,
+		buttons: 
+		[
+		    {
+		      text: "OK",
+		      icons: 
+		      {
+		        primary: "ui-icon-check"
+		      },
+		      click: function() 
+		      {
+		      	$( this ).dialog( "close" );
+		      	
+		      	var mode=$(this).data('mode');
+		      	if(mode=="edition")
+		      	{
+		      		var donnees = new Array();
+					$.each($("input[name='actions[]']:checked"), function() 
+					{
+					  donnees.push($(this).val());
+					});
+		      		requeteAjaxActionsMeneesEdition(donnees);
+		      	}
+		      }
+		    }
+
+		]
 		
 	});
 
@@ -500,18 +521,56 @@ $(document).ready(function()
     {
     	requeteAjaxCycle("jstree");
     });
+
+     $("#bVoirActionsMenees").click(function()
+    {
+    	initCheckboxActionsMenees("visualisation");
+    	$("#dialog_actionsMenees").data("mode", "visualisation").dialog("open");
+    	$("#dialog_actionsMenees").dialog("open");
+    });
 	
 			
 });
 
-function cycle()
+function editerCycle()
 {
 	requeteAjaxCycle("jstree_editer");
 }
 
+function editerActionsMenees()
+{
+	initCheckboxActionsMenees("edition");
+	$("#dialog_actionsMenees").data("mode", "edition").dialog("open");
+    $("#dialog_actionsMenees").dialog("open");
+}
+
+function initCheckboxActionsMenees(mode)
+{
+	$.each($("input[name='actions[]']"), function() 
+	{
+	  $(this).prop('checked',false);
+	});
+	$("#dialog_actionsMenees span").css('color','black');
+
+	requeteAjaxActionsMenees(mode);
+	if(mode=="visualisation")
+	{
+		$.each($("input[name='actions[]']"), function() {
+		  $(this).prop('disabled',true);
+		});
+	}
+	else
+	{
+		$.each($("input[name='actions[]']"), function() {
+		  $(this).prop('disabled',false);
+		});
+	}
+	
+}
+
+
 function editionAjax(idSelected, idSelected2, idCoordRH, idCoordRH2,table,niveau,donnees)
 {
-	console.log(donnees);
 	$.ajax({
 
 	   type: "POST",
@@ -532,6 +591,67 @@ function editionAjax(idSelected, idSelected2, idCoordRH, idCoordRH2,table,niveau
 				
 	   },
 	   error : function()
+       {
+       		popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
+       }
+	});
+}
+
+function requeteAjaxActionsMenees(mode)
+{
+	$.ajax({
+
+	   type: "POST",
+	   url: "ajax/recup_actionsMenees.php",
+	   dataType: "json",
+	   async:false,
+	   data: 'nomEntreprise='+nomEntreprise,
+       success: function(data)
+       {
+        	if(data!=null && data.length >0)
+        	{
+        		for(var i=0;i<data.length;i++)
+        		{
+        			$("input.actionsCheckbox[value='"+data[i]+"']").prop('checked',true);
+        			if(mode=="visualisation")
+        				$("input.actionsCheckbox[value='"+data[i]+"'] + span").css('color','blue');
+        		}
+        	}
+        	else
+            {
+               //popupMessage("#dialog_message","<p> Aucune action menée par l'entreprise n'est référencée en base <br/> <br/> Cliquez sur le bouton \"Modifier\" pour lui attribuer des actions </p>");
+            }    
+       },
+       error : function()
+       {
+       		popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
+       }
+	});
+}
+
+function requeteAjaxActionsMeneesEdition(donnees)
+{
+	$.ajax({
+
+	   type: "POST",
+	   url: "ajax/editer_actionsMenees.php",
+	   dataType: "text",
+	   async:false,
+	   data: {nomEntreprise: nomEntreprise, donnees:donnees},
+       success: function(data)
+       {
+       		console.log(data);
+        	if(data=="ok")
+        	{
+        		// rien 		
+        	}
+        	else
+            {
+               popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
+            } 
+            $("#dialog_actionsMenees").dialog("close");    
+       },
+       error : function()
        {
        		popupMessage("#dialog_message","<p> Une erreur s'est produite ! </p>");
        }
@@ -862,7 +982,6 @@ function requeteAjaxLibelleNAFEdition()
        async:false,
        success: function(codeNAF) //en réalité c'est un id pour le libellé NAF
        {
-       		console.log(codeNAF);
         	if(!isNaN(parseFloat(codeNAF)))
         	{
         		$("#Entreprise_LibelleNAF_niveau2 option[value='"+codeNAF+"']").prop('selected',true);
@@ -1003,7 +1122,7 @@ function creerFormulairePopup(table,niveau,popup,idTA)
 
         //On affiche que le nom de l'alternant pr les niveaux 4 et 3 (position 1)
         // cycle formation --> jstree
-        if((table=="Alternance" && (colonneSansEspace=="Prenom" && i==1 )) || colonneSansEspace=="Cycleformation")
+        if((table=="Alternance" && (colonneSansEspace=="Prenom" && i==1 )) || colonneSansEspace=="Cycleformation" || colonneSansEspace=="Actionsmenees")
         {
         	continue;
         }
@@ -1072,7 +1191,7 @@ function creerFormulairePopup(table,niveau,popup,idTA)
         }
         else if( colonneSansEspace=="LibelleNAF")
         {
-        	chaine+="<select name='"+id+"' id='"+id+"' class='form-control libellesNAF'> </select>";
+        	chaine+="<select name='"+id+"' id='"+id+"' class='form-control'> </select>";
         	//les options seront ajoutés plus loin
         }
         //c'est une colonne qui a plusieurs options ---> création d'une liste déroulante 
@@ -1176,9 +1295,15 @@ function creerFormulairePopup(table,niveau,popup,idTA)
     	}
 			
  	}
-   if(popup=="editer" && table=="Entreprise" && niveau==1)
-	{
-		chaine+="<button type='button' class='btn btn-info' id='bEditerCycle' onclick='cycle()' >Editer les cycles</button> ";
+   	if(popup=="editer" && table=="Entreprise")
+   	{
+   		if(niveau==1)
+			chaine+="<button type='button' class='btn btn-info' id='bEditerCycle' onclick='editerCycle()' >Editer les cycles</button> ";
+		else
+		{
+			chaine+="<button type='button' class='btn btn-info' id='bEditerActions' onclick='editerActionsMenees()' >Editer les actions menées</button> ";
+		}
+			
 	}
     chaine+="</form>";
 
