@@ -75,6 +75,7 @@
 
 		$commentairesEntreprise= $_POST["commentairesEntreprise"];
 		$liste_cycle_id= $_POST["liste_cycle_id"];
+		$actions=$_POST["actions"];
 		try{
 			// Ne devrait pas se faire à la soumission du formulaire mais dynamiquement avec le onblur ou autre
 			if($req = $nomEntr->fetch()) 
@@ -100,7 +101,22 @@
 				{
 					$result=$conn->prepare("INSERT INTO a_Entreprise_CycleFormation(Entreprise_nomEntreprise,CycleFormation_id) VALUES (upper(?),?)");
 					$result->execute(array($nomEntreprise,$tab_list_cycle[$i]));	
-				}	
+				}
+
+				//insertion des actions
+				if($actions!="")
+				{
+					$tab_actions = explode(",",$actions);
+					$actions_length=count($tab_actions);
+				}
+				else
+					$actions_length=0;
+			
+				for($i=0;$i<$actions_length;$i++)
+				{
+					$result=$conn->prepare("INSERT INTO a_Entreprise_Action(Entreprise_nomEntreprise,Action_id) VALUES (upper(?),?)");
+					$result->execute(array($nomEntreprise,$tab_actions[$i]));	
+				}		
 
 				if($nomCP!="")
 				{             

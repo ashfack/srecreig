@@ -330,3 +330,8 @@ button#bInfo, button#bSupprimer, button#bEditer
 {
   margin-right: 10px !important;
 }
+
+#panelInforEntreprise1 input,#panelInforEntreprise1 select
+{
+  width: 210px !important;
+}

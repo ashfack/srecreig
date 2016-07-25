@@ -40,12 +40,8 @@ $(document).ready(function(){
 		var emailTA = $("#emailTA").val();
 		var civiliteTA = $("input[name='civiliteTA']:checked").val();
 		
-		/*var typeContact=$("input:checked").map(function() { return $(this).val(); } );
-		var typeContact0= typeContact[0];
-		var typeContact1= typeContact[1];
-		var typeContact2= typeContact[2];*/
+
 		var typeContact=$("input[name='typeContact']:checked").val();
-		console.log(typeContact);
 		if (typeof typeContact === "undefined") 
 		{
 		    typeContact=null;
@@ -53,13 +49,16 @@ $(document).ready(function(){
 		var commentairesEntreprise= $("#commentairesEntreprise").val();
 		
 		var origine = $("#origineContact").val();
-		/*if(origine==null)
-			origine="NULL";*/
-		// var jstree=$.jstree.reference('#jstree');
-        // var checked=jstree.get_checked();
+	
 		var liste_cycle_id= $('#jstree').jstree(true).get_selected();
 
-            $.ajax({		
+		var actions = new Array();
+		$.each($("input[name='actions[]']:checked"), function() 
+		{
+		  actions.push($(this).val());
+		});
+
+        $.ajax({		
                 url: "ajax/ajouterEntreprise.php", 
                 type: "POST", 
                 data: "nomEntreprise="+nomEntreprise+"&groupe="+groupe+"&libelleNAF="+libelleNAF+"&siret="+siret+"&adresse="+adresse+"&complAdr="+complAdr+
@@ -77,7 +76,7 @@ $(document).ready(function(){
 					  "&liste_cycle_id="+liste_cycle_id+
 					  "&origine="+origine+
 					  "&commentairesEntreprise="+commentairesEntreprise+
-					  "&typeContact="+typeContact,
+					   "&typeContact="+typeContact+"&actions="+actions,
 
                 success: function(msg)
                 { 			

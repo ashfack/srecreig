@@ -34,7 +34,6 @@ require ('header_script.html');
                   </div>
                   <div class="panel-body">
                      </br>
-                     <div class="col-md-4">
                         <div class="input-group">
                            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
                            <input type="text" id="nom" name="nom" style='text-transform:uppercase' class="form-control" required="true" placeholder="Nom" aria-describedby="sizing-addon1">
@@ -76,31 +75,33 @@ require ('header_script.html');
                            <input type="text"  id="pays" name="pays" class="form-control" value="France" placeholder="Pays" aria-describedby="sizing-addon1">
                         </div>
                      </div>
-                     <div class="col-md-4">
+                     <div class="col-md-5">
                         <div class="panel panel-primary">
                            <div class="panel-heading">
-                              <h4 class="panel-title text-center">Origine</h4>
+                              <h4 class="panel-title text-center">Origine, type de contact et actions menées</h4>
                            </div>
                            <div class="panel-body">
-                              <select name="origineContact" id="origineContact" type="select" multiple size="10">
-                                 <optgroup label = "Origine du contact : ">
-                                 <option value="sre">SRE</option>
-                                 <option value="aisg">AISG</option>
-                                 <option value="aimg">AMIG</option>
-                                 <option value="cavam">CAVAM</option>
-                                 <option value="cedip">CEDIP</option>
-                                 <option value="corpsPeda">Corps Pédagogique</option>
-                                 <option value="dig">Direction Institut Galilée</option>
-                                 <option value="dsg">Direction Sup Galilée</option>
-                                 <option value="estEns">Est Ensemble</option>
-                                 <option value="mecig">Membre exterieur Conseil Institu Galilée</option>
-                                 <option value="meCAsg">Membre exterieur CA Sup Galilée</option>
-                                 <option value="pc">Plaine Commune</option>
-                                 <option value="presidence">Présidence</option>
-                                 <option value="rp">Responsable pédagogique</option>
-                                 <option value="scuio">SCUIO-IP</option>
-                              </select>
-                              <label for="typeContact" type="radio"> </br>Type de contact : </label>
+                              <div>
+                                 <label for="origineContact" > Origine du contact : </br></label>
+                                 <select name="origineContact" id="origineContact" type="select" multiple size="10">
+                                    <option value="sre">SRE</option>
+                                    <option value="aisg">AISG</option>
+                                    <option value="aimg">AMIG</option>
+                                    <option value="cavam">CAVAM</option>
+                                    <option value="cedip">CEDIP</option>
+                                    <option value="corpsPeda">Corps Pédagogique</option>
+                                    <option value="dig">Direction Institut Galilée</option>
+                                    <option value="dsg">Direction Sup Galilée</option>
+                                    <option value="estEns">Est Ensemble</option>
+                                    <option value="mecig">Membre exterieur Conseil Institu Galilée</option>
+                                    <option value="meCAsg">Membre exterieur CA Sup Galilée</option>
+                                    <option value="pc">Plaine Commune</option>
+                                    <option value="presidence">Présidence</option>
+                                    <option value="rp">Responsable pédagogique</option>
+                                    <option value="scuio">SCUIO-IP</option>
+                                 </select>
+                              </div>
+                              <label for="typeContact" type="radio"> </br> Type de contact : </label>
                               <div class="radio">
                                  <label> <input  type="radio"  name="typeContact" value="entreprise"/>Entreprise </label>
                               </div>
@@ -112,6 +113,19 @@ require ('header_script.html');
                               </div>
                               <div class="radio">
                                  <label>    <input type="radio" name="typeContact" value="ca"/>Communauté d'agglomérations<br /></label>
+                              </div>
+                              
+                              <label for="actions[]" type="checkbox"> </br>Actions menées : </label>
+                              <div class="input-group">
+                                 <input type="checkbox" name="actions[]" value="1" class="actionsCheckbox"> <span> Accueil d'apprentis en Energetique </span></br>
+                                  <input type="checkbox" name="actions[]" value="2" class="actionsCheckbox"> <span> Accueil d'apprentis en Informatique et Réseaux </span> </br>
+                                  <input type="checkbox" name="actions[]" value="3" class="actionsCheckbox"> <span> Animation d'ateliers RH de simulations d'entretiens </span> </br>
+                                  <input type="checkbox" name="actions[]" value="4" class="actionsCheckbox"> <span> Animation de conférences métiers </span> </br>
+                                  <input type="checkbox" name="actions[]" value="5" class="actionsCheckbox"> <span> Partenariat officiel </span> </br>
+                                  <input type="checkbox" name="actions[]" value="6" class="actionsCheckbox"> <span> Participation au Forum Sup Galilée Entreprises </span> </br>
+                                  <input type="checkbox" name="actions[]" value="7" class="actionsCheckbox"> <span> Recrutement de stagiaires </span> </br>
+                                  <input type="checkbox" name="actions[]" value="8" class="actionsCheckbox"> <span> Recrutement des jeunes diplômé(e)s </span> </br>
+                                  <input type="checkbox" name="actions[]" value="9" class="actionsCheckbox"> <span> Soutien financier par le versement de taxe d'apprentissage </span>
                               </div>
                            </div>
                         </div>
