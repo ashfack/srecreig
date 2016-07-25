@@ -34,6 +34,7 @@ require ('header_script.html');
                   </div>
                   <div class="panel-body">
                      </br>
+                     <div class="col-md-3" id="panelInforEntreprise1">
                         <div class="input-group">
                            <span class="input-group-addon" id="sizing-addon1"><i class="fa fa-user">*</i></span>
                            <input type="text" id="nom" name="nom" style='text-transform:uppercase' class="form-control" required="true" placeholder="Nom" aria-describedby="sizing-addon1">
